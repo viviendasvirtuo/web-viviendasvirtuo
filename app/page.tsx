@@ -9,6 +9,8 @@ import Testimonios from '@/components/Testimonios';
 import Contacto from '@/components/Contacto';
 import Footer from '@/components/Footer';
 
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
   return (
     <>
