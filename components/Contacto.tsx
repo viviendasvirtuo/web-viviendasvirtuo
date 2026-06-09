@@ -1,315 +1,253 @@
 'use client';
 import { useState } from 'react';
-import { insertarLead } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase';
+
+type FormState = 'idle' | 'loading' | 'success' | 'error';
 
 export default function Contacto() {
-  const [form, setForm] = useState({
-    tipo: 'propietario' as 'propietario' | 'inquilino',
-    sistema: 'sin_definir' as 'coliving' | 'temporal' | 'vacacional' | 'sin_definir',
-    nombre: '',
-    telefono: '',
-    email: '',
-    ciudad: '',
-    mensaje: '',
-  });
-  const [estado, setEstado] = useState<'idle' | 'loading' | 'ok' | 'error'>('idle');
+  const [tipo, setTipo] = useState<'propietario' | 'inquilino'>('propietario');
+  const [sistema, setSistema] = useState('sin_definir');
+  const [nombre, setNombre] = useState('');
+  const [telefono, setTelefono] = useState('');
+  const [email, setEmail] = useState('');
+  const [mensaje, setMensaje] = useState('');
+  const [estado, setEstado] = useState<FormState>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setEstado('loading');
-    try {
-      await insertarLead(form);
-      setEstado('ok');
-      setForm({ tipo: 'propietario', sistema: 'sin_definir', nombre: '', telefono: '', email: '', ciudad: '', mensaje: '' });
-    } catch {
-      setEstado('error');
+    if (!nombre.trim() || !telefono.trim()) {
+      setErrorMsg('Por favor rellena nombre y teléfono.');
+      return;
     }
-  };
+    setEstado('loading');
+    setErrorMsg('');
 
-  return (
-    <>
-      <style>{`
-        .contacto { background: var(--color-surface); }
-        .contacto__inner {
-          display: grid;
-          grid-template-columns: 1fr 1.4fr;
-          gap: var(--space-16);
-          align-items: start;
-        }
-        .contacto__info-title {
-          font-family: var(--font-display);
-          font-size: var(--text-xl);
-          font-weight: 800;
-          color: var(--color-text);
-          line-height: 1.2;
-          margin-bottom: var(--space-4);
-        }
-        .contacto__info-desc {
-          color: var(--color-text-muted);
-          line-height: 1.7;
-          margin-bottom: var(--space-8);
-        }
-        .contacto__datos {
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-4);
-        }
-        .contacto__dato {
-          display: flex;
-          align-items: center;
-          gap: var(--space-3);
-          font-size: 0.9rem;
-          color: var(--color-text-muted);
-        }
-        .contacto__dato-icon {
-          width: 36px;
-          height: 36px;
-          border-radius: var(--radius-md);
-          background: var(--color-primary-light);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1rem;
-          flex-shrink: 0;
-        }
-        .contacto__form {
-          background: var(--color-bg);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-xl);
-          padding: var(--space-8);
-          box-shadow: var(--shadow-md);
-        }
-        .form-tabs {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: var(--space-2);
-          margin-bottom: var(--space-6);
-          background: var(--color-surface);
-          padding: 0.25rem;
-          border-radius: var(--radius-md);
-          border: 1px solid var(--color-border);
-        }
-        .form-tab {
-          padding: 0.6rem;
-          border-radius: calc(var(--radius-md) - 2px);
-          border: none;
-          font-family: var(--font-display);
-          font-size: 0.875rem;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all var(--transition);
-          background: transparent;
-          color: var(--color-text-muted);
-        }
-        .form-tab--active {
-          background: var(--color-primary);
-          color: #fff;
-          box-shadow: var(--shadow-sm);
-        }
-        .form-row {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: var(--space-4);
-          margin-bottom: var(--space-4);
-        }
-        .form-group {
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-2);
-          margin-bottom: var(--space-4);
-        }
-        .form-label {
-          font-size: 0.82rem;
-          font-weight: 600;
-          color: var(--color-text);
-          letter-spacing: 0.01em;
-        }
-        .form-label span { color: var(--color-primary); margin-left: 2px; }
-        .form-input {
-          width: 100%;
-          padding: 0.7rem 0.875rem;
-          border: 1.5px solid var(--color-border);
-          border-radius: var(--radius-md);
-          font-family: var(--font-body);
-          font-size: 0.9rem;
-          color: var(--color-text);
-          background: var(--color-surface);
-          transition: border-color var(--transition), box-shadow var(--transition);
-          outline: none;
-        }
-        .form-input:focus {
-          border-color: var(--color-primary);
-          box-shadow: 0 0 0 3px rgba(26,74,138,0.1);
-        }
-        .form-input::placeholder { color: var(--color-text-faint); }
-        .form-success {
-          text-align: center;
-          padding: var(--space-10);
-        }
-        .form-success-icon {
-          width: 64px;
-          height: 64px;
-          border-radius: 50%;
-          background: #dcfce7;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 2rem;
-          margin: 0 auto var(--space-4);
-        }
-        .form-success-title {
-          font-family: var(--font-display);
-          font-size: 1.3rem;
-          font-weight: 700;
-          color: var(--color-text);
-          margin-bottom: var(--space-2);
-        }
-        .form-success-desc {
-          color: var(--color-text-muted);
-          font-size: 0.9rem;
-        }
-        @media (max-width: 900px) {
-          .contacto__inner { grid-template-columns: 1fr; gap: var(--space-10); }
-          .form-row { grid-template-columns: 1fr; }
-        }
-      `}</style>
+    const { error } = await supabase.from('leads').insert({
+      tipo,
+      sistema,
+      nombre: nombre.trim(),
+      telefono: telefono.trim(),
+      email: email.trim() || null,
+      mensaje: mensaje.trim() || null,
+      canal: 'web',
+    });
 
-      <section className="section contacto" id="contacto">
-        <div className="container">
-          <div className="contacto__inner">
-            <div>
-              <span className="section-label">Contacto</span>
-              <h2 className="contacto__info-title">Hablemos sobre tu propiedad</h2>
-              <p className="contacto__info-desc">
-                Sin compromisos. Te contactamos en menos de 24h para entender tu situación y ver cómo podemos ayudarte.
-              </p>
+    if (error) {
+      console.error(error);
+      setEstado('error');
+      setErrorMsg('Algo salió mal. Inténtalo de nuevo o llámanos directamente.');
+    } else {
+      setEstado('success');
+    }
+  }
 
-              <div className="contacto__datos">
-                <div className="contacto__dato">
-                  <div className="contacto__dato-icon">📍</div>
-                  <span>Barcelona y área metropolitana</span>
-                </div>
-                <div className="contacto__dato">
-                  <div className="contacto__dato-icon">⏱️</div>
-                  <span>Respuesta en menos de 24 horas</span>
-                </div>
-                <div className="contacto__dato">
-                  <div className="contacto__dato-icon">🎯</div>
-                  <span>Análisis de propiedad gratuito y sin compromiso</span>
-                </div>
-                <div className="contacto__dato">
-                  <div className="contacto__dato-icon">🔒</div>
-                  <span>Tus datos están seguros. Nunca los compartimos.</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="contacto__form">
-              {estado === 'ok' ? (
-                <div className="form-success">
-                  <div className="form-success-icon">✅</div>
-                  <div className="form-success-title">¡Mensaje recibido!</div>
-                  <p className="form-success-desc">Nos ponemos en contacto contigo en menos de 24 horas. Gracias por confiar en Viviendas Virtuo.</p>
-                  <button
-                    onClick={() => setEstado('idle')}
-                    className="btn btn-outline"
-                    style={{ marginTop: 'var(--space-6)' }}
-                  >
-                    Enviar otro mensaje
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit}>
-                  <div className="form-tabs">
-                    <button
-                      type="button"
-                      className={`form-tab ${form.tipo === 'propietario' ? 'form-tab--active' : ''}`}
-                      onClick={() => setForm(p => ({ ...p, tipo: 'propietario' }))}
-                    >
-                      🏠 Soy propietario
-                    </button>
-                    <button
-                      type="button"
-                      className={`form-tab ${form.tipo === 'inquilino' ? 'form-tab--active' : ''}`}
-                      onClick={() => setForm(p => ({ ...p, tipo: 'inquilino' }))}
-                    >
-                      🔑 Busco habitación
-                    </button>
-                  </div>
-
-                  <div className="form-row">
-                    <div className="form-group" style={{ marginBottom: 0 }}>
-                      <label className="form-label">Nombre<span>*</span></label>
-                      <input name="nombre" value={form.nombre} onChange={handleChange} required className="form-input" placeholder="Tu nombre" />
-                    </div>
-                    <div className="form-group" style={{ marginBottom: 0 }}>
-                      <label className="form-label">Teléfono<span>*</span></label>
-                      <input name="telefono" value={form.telefono} onChange={handleChange} required className="form-input" placeholder="+34 600 000 000" />
-                    </div>
-                  </div>
-
-                  <div className="form-row">
-                    <div className="form-group" style={{ marginBottom: 0 }}>
-                      <label className="form-label">Email</label>
-                      <input name="email" type="email" value={form.email} onChange={handleChange} className="form-input" placeholder="tu@email.com" />
-                    </div>
-                    <div className="form-group" style={{ marginBottom: 0 }}>
-                      <label className="form-label">Ciudad</label>
-                      <input name="ciudad" value={form.ciudad} onChange={handleChange} className="form-input" placeholder="Barcelona" />
-                    </div>
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Sistema de interés</label>
-                    <select name="sistema" value={form.sistema} onChange={handleChange} className="form-input">
-                      <option value="sin_definir">No lo tengo claro aún</option>
-                      <option value="coliving">Coliving (medio-largo plazo)</option>
-                      <option value="temporal">Temporal (corta duración)</option>
-                      <option value="vacacional">Vacacional (turismo)</option>
-                    </select>
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Cuéntanos más (opcional)</label>
-                    <textarea
-                      name="mensaje"
-                      value={form.mensaje}
-                      onChange={handleChange}
-                      className="form-input"
-                      rows={3}
-                      placeholder={form.tipo === 'propietario' ? 'Tipo de propiedad, ubicación, situación actual...' : 'Cuándo necesitas la habitación, zona preferida, duración...'}
-                      style={{ resize: 'vertical' }}
-                    />
-                  </div>
-
-                  {estado === 'error' && (
-                    <p style={{ color: 'var(--color-error)', fontSize: '0.85rem', marginBottom: 'var(--space-4)' }}>
-                      ⚠️ Ha ocurrido un error. Por favor, inténtalo de nuevo.
-                    </p>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={estado === 'loading'}
-                    className="btn btn-primary"
-                    style={{ width: '100%', justifyContent: 'center', opacity: estado === 'loading' ? 0.7 : 1 }}
-                  >
-                    {estado === 'loading' ? 'Enviando...' : 'Enviar mensaje'}
-                  </button>
-
-                  <p style={{ fontSize: '0.75rem', color: 'var(--color-text-faint)', textAlign: 'center', marginTop: 'var(--space-3)' }}>
-                    Al enviar aceptas que nos pongamos en contacto contigo. Sin spam.
-                  </p>
-                </form>
-              )}
-            </div>
+  if (estado === 'success') {
+    return (
+      <section id="contacto" className="section" style={{ background: 'var(--color-bg)' }}>
+        <div className="container container--narrow" style={{ textAlign: 'center' }}>
+          <div style={{
+            padding: 'var(--space-16)',
+            background: 'var(--color-surface)',
+            borderRadius: 'var(--radius-xl)',
+            boxShadow: 'var(--shadow-lg)',
+          }}>
+            <div style={{ fontSize: '4rem', marginBottom: 'var(--space-4)' }}>🎉</div>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-2xl)', fontWeight: 800, color: 'var(--color-primary)', marginBottom: 'var(--space-3)' }}>
+              ¡Recibido!
+            </h2>
+            <p style={{ fontSize: 'var(--text-lg)', color: 'var(--color-text-muted)', maxWidth: '40ch', margin: '0 auto' }}>
+              Te contactamos en menos de 24 horas. Si prefieres hablar ahora, llámanos directamente.
+            </p>
           </div>
         </div>
       </section>
-    </>
+    );
+  }
+
+  const inputStyle: React.CSSProperties = {
+    width: '100%',
+    padding: '0.8rem 1rem',
+    borderRadius: 'var(--radius-md)',
+    border: '1.5px solid var(--color-border)',
+    background: 'var(--color-bg)',
+    fontSize: 'var(--text-base)',
+    color: 'var(--color-text)',
+    transition: 'border-color var(--transition)',
+    outline: 'none',
+  };
+
+  return (
+    <section id="contacto" className="section" style={{ background: 'var(--color-bg)' }}>
+      <div className="container">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(440px, 100%), 1fr))',
+          gap: 'var(--space-16)',
+          alignItems: 'start',
+        }}>
+          {/* Info */}
+          <div>
+            <p className="section-label">Contacto</p>
+            <h2 className="section-title">Hablemos de tu propiedad<br />o de tu próximo hogar</h2>
+            <p className="section-subtitle" style={{ marginBottom: 'var(--space-8)' }}>
+              Sin compromiso. En menos de 24 horas un experto de Virtuo se pone en contacto contigo.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+              {[
+                { icon: '📞', label: 'Teléfono', val: '+34 900 000 000' },
+                { icon: '✉️', label: 'Email', val: 'hola@viviendasvirtuo.com' },
+                { icon: '📍', label: 'Zona de actuación', val: 'Barcelona y área metropolitana' },
+              ].map(c => (
+                <div key={c.label} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', fontSize: 'var(--text-base)' }}>
+                  <span style={{ fontSize: '1.5rem' }}>{c.icon}</span>
+                  <div>
+                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{c.label}</div>
+                    <div style={{ fontWeight: 600, color: 'var(--color-text)' }}>{c.val}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Formulario */}
+          <div style={{
+            background: 'var(--color-surface)',
+            borderRadius: 'var(--radius-xl)',
+            padding: 'var(--space-8)',
+            boxShadow: 'var(--shadow-lg)',
+            border: '1px solid var(--color-border)',
+          }}>
+            <form onSubmit={handleSubmit} noValidate>
+              {/* Selector de tipo */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-2)', marginBottom: 'var(--space-6)' }}>
+                {(['propietario', 'inquilino'] as const).map(t => (
+                  <button
+                    key={t} type="button"
+                    onClick={() => setTipo(t)}
+                    style={{
+                      padding: 'var(--space-3)',
+                      borderRadius: 'var(--radius-md)',
+                      border: `2px solid ${tipo === t ? 'var(--color-primary)' : 'var(--color-border)'}`,
+                      background: tipo === t ? 'var(--color-primary-light)' : 'transparent',
+                      color: tipo === t ? 'var(--color-primary)' : 'var(--color-text-muted)',
+                      fontWeight: 700,
+                      fontSize: 'var(--text-sm)',
+                      transition: 'all var(--transition)',
+                      cursor: 'pointer',
+                      textTransform: 'capitalize',
+                    }}>
+                    {t === 'propietario' ? '🏠 Propietario' : '👤 Inquilino'}
+                  </button>
+                ))}
+              </div>
+
+              {/* Sistema (solo propietarios) */}
+              {tipo === 'propietario' && (
+                <div style={{ marginBottom: 'var(--space-4)' }}>
+                  <label style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--color-text)', marginBottom: 'var(--space-2)' }}>
+                    ¿Qué sistema te interesa?
+                  </label>
+                  <select
+                    value={sistema}
+                    onChange={e => setSistema(e.target.value)}
+                    style={{ ...inputStyle }}>
+                    <option value="sin_definir">No lo sé aún, me asesoran</option>
+                    <option value="coliving">Coliving (habitaciones)</option>
+                    <option value="temporal">Temporal (estancias cortas)</option>
+                    <option value="vacacional">Vacacional (apartamento turístico)</option>
+                  </select>
+                </div>
+              )}
+
+              {/* Nombre */}
+              <div style={{ marginBottom: 'var(--space-4)' }}>
+                <label htmlFor="nombre" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, marginBottom: 'var(--space-2)', color: 'var(--color-text)' }}>
+                  Nombre *
+                </label>
+                <input
+                  id="nombre" type="text" required
+                  placeholder="Tu nombre"
+                  value={nombre} onChange={e => setNombre(e.target.value)}
+                  style={inputStyle}
+                  onFocus={e => (e.target.style.borderColor = 'var(--color-primary)')}
+                  onBlur={e => (e.target.style.borderColor = 'var(--color-border)')}
+                />
+              </div>
+
+              {/* Teléfono */}
+              <div style={{ marginBottom: 'var(--space-4)' }}>
+                <label htmlFor="telefono" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, marginBottom: 'var(--space-2)', color: 'var(--color-text)' }}>
+                  Teléfono *
+                </label>
+                <input
+                  id="telefono" type="tel" required
+                  placeholder="+34 600 000 000"
+                  value={telefono} onChange={e => setTelefono(e.target.value)}
+                  style={inputStyle}
+                  onFocus={e => (e.target.style.borderColor = 'var(--color-primary)')}
+                  onBlur={e => (e.target.style.borderColor = 'var(--color-border)')}
+                />
+              </div>
+
+              {/* Email */}
+              <div style={{ marginBottom: 'var(--space-4)' }}>
+                <label htmlFor="email" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, marginBottom: 'var(--space-2)', color: 'var(--color-text)' }}>
+                  Email <span style={{ color: 'var(--color-text-faint)', fontWeight: 400 }}>(opcional)</span>
+                </label>
+                <input
+                  id="email" type="email"
+                  placeholder="tu@email.com"
+                  value={email} onChange={e => setEmail(e.target.value)}
+                  style={inputStyle}
+                  onFocus={e => (e.target.style.borderColor = 'var(--color-primary)')}
+                  onBlur={e => (e.target.style.borderColor = 'var(--color-border)')}
+                />
+              </div>
+
+              {/* Mensaje */}
+              <div style={{ marginBottom: 'var(--space-6)' }}>
+                <label htmlFor="mensaje" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, marginBottom: 'var(--space-2)', color: 'var(--color-text)' }}>
+                  Cuéntanos algo <span style={{ color: 'var(--color-text-faint)', fontWeight: 400 }}>(opcional)</span>
+                </label>
+                <textarea
+                  id="mensaje" rows={3}
+                  placeholder={tipo === 'propietario' ? 'Tipo de piso, zona, situación actual...' : 'Zona que buscas, duración, presupuesto...'}
+                  value={mensaje} onChange={e => setMensaje(e.target.value)}
+                  style={{ ...inputStyle, resize: 'vertical' }}
+                  onFocus={e => (e.target.style.borderColor = 'var(--color-primary)')}
+                  onBlur={e => (e.target.style.borderColor = 'var(--color-border)')}
+                />
+              </div>
+
+              {errorMsg && (
+                <div style={{ background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 'var(--radius-md)', padding: 'var(--space-3) var(--space-4)', marginBottom: 'var(--space-4)', fontSize: 'var(--text-sm)', color: '#dc2626' }}>
+                  {errorMsg}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={estado === 'loading'}
+                className="btn btn-primary btn-lg"
+                style={{ width: '100%', justifyContent: 'center', opacity: estado === 'loading' ? 0.7 : 1 }}>
+                {estado === 'loading' ? 'Enviando...' : 'Enviar mensaje'}
+                {estado !== 'loading' && (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                    <line x1="22" y1="2" x2="11" y2="13"/>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                  </svg>
+                )}
+              </button>
+
+              <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)', textAlign: 'center', marginTop: 'var(--space-3)' }}>
+                Sin compromiso · Te respondemos en menos de 24h
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

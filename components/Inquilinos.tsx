@@ -1,118 +1,85 @@
 export default function Inquilinos() {
-  const items = [
-    { icon: '✅', titulo: 'Habitaciones verificadas', desc: 'Todas las habitaciones están revisadas, equipadas y en buen estado antes de que llegues.' },
-    { icon: '⚡', titulo: 'Respuesta rápida', desc: 'Cualquier incidencia se gestiona en menos de 48h. Tienes un interlocutor directo siempre.' },
-    { icon: '📃', titulo: 'Contratos claros', desc: 'Sin letra pequeña. Contratos legales, transparentes y adaptados a tu situación.' },
-    { icon: '🌐', titulo: 'Todo incluido', desc: 'Wi-Fi, suministros y servicios básicos incluidos según la modalidad. Sin sorpresas al final del mes.' },
+  const ventajas = [
+    { icon: '✅', text: 'Habitaciones verificadas y en perfecto estado' },
+    { icon: '⚡', text: 'Respuesta rápida a incidencias — máx. 48h' },
+    { icon: '📄', text: 'Contratos claros y transparentes' },
+    { icon: '🤝', text: 'Trato humano, no burocracia fría' },
+    { icon: '🏠', text: 'Zonas comunes cuidadas y limpias' },
+    { icon: '📱', text: 'Comunicación directa con el equipo gestor' },
+  ];
+
+  const tipos = [
+    { badge: 'Coliving', desc: 'Habitación en piso compartido. Ambiente cuidado, vecinos seleccionados.', color: 'var(--color-coliving)' },
+    { badge: 'Temporal', desc: 'Para estancias cortas: trabajo, formación, proyectos.', color: 'var(--color-temporal)' },
+    { badge: 'Vacacional', desc: 'Apartamento completo para disfrutar sin ataduras.', color: 'var(--color-vacacional)' },
   ];
 
   return (
-    <>
-      <style>{`
-        .inquilinos { background: var(--color-surface); }
-        .inquilinos__inner {
-          display: grid;
-          grid-template-columns: 1.2fr 1fr;
-          gap: var(--space-16);
-          align-items: center;
-        }
-        .inquilinos__items {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: var(--space-4);
-        }
-        .inquilinos__item {
-          background: var(--color-bg);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-lg);
-          padding: var(--space-6);
-        }
-        .inquilinos__item-icon {
-          font-size: 1.5rem;
-          margin-bottom: var(--space-3);
-          display: block;
-        }
-        .inquilinos__item-titulo {
-          font-family: var(--font-display);
-          font-weight: 700;
-          font-size: 0.95rem;
-          color: var(--color-text);
-          margin-bottom: var(--space-2);
-        }
-        .inquilinos__item-desc {
-          font-size: 0.85rem;
-          color: var(--color-text-muted);
-          line-height: 1.55;
-        }
-        .inquilinos__cta-box {
-          background: var(--color-primary-light);
-          border: 1px solid rgba(26,74,138,0.12);
-          border-radius: var(--radius-xl);
-          padding: var(--space-8);
-        }
-        .inquilinos__cta-title {
-          font-family: var(--font-display);
-          font-weight: 700;
-          font-size: 1.4rem;
-          color: var(--color-primary-dark);
-          margin-bottom: var(--space-3);
-          line-height: 1.25;
-        }
-        .inquilinos__cta-desc {
-          font-size: 0.9rem;
-          color: var(--color-text-muted);
-          margin-bottom: var(--space-6);
-          line-height: 1.6;
-        }
-        .inquilinos__tipos {
-          display: flex;
-          flex-wrap: wrap;
-          gap: var(--space-2);
-          margin-bottom: var(--space-6);
-        }
-        @media (max-width: 900px) {
-          .inquilinos__inner { grid-template-columns: 1fr; gap: var(--space-10); }
-          .inquilinos__items { order: 2; }
-          .inquilinos__cta-box { order: 1; }
-        }
-        @media (max-width: 480px) {
-          .inquilinos__items { grid-template-columns: 1fr; }
-        }
-      `}</style>
+    <section id="inquilinos" className="section" style={{ background: 'var(--color-bg)' }}>
+      <div className="container">
+        <div style={{ textAlign: 'center', marginBottom: 'var(--space-16)' }}>
+          <p className="section-label">Para inquilinos</p>
+          <h2 className="section-title">Vive en un espacio bien gestionado</h2>
+          <p className="section-subtitle" style={{ margin: '0 auto' }}>
+            No es solo alquilar. Es vivir en un espacio donde alguien responde, cuida y resuelve. Eso es lo que ofrecemos.
+          </p>
+        </div>
 
-      <section className="section inquilinos" id="inquilinos">
-        <div className="container">
-          <div className="inquilinos__inner">
-            <div className="inquilinos__items">
-              <div style={{ gridColumn: '1 / -1', marginBottom: 'var(--space-4)' }}>
-                <span className="section-label">Para inquilinos</span>
-                <h2 className="section-title">Habitaciones bien gestionadas, nada más</h2>
-                <p className="section-subtitle">No somos un portal de anuncios. Somos la empresa que gestiona la vivienda donde vas a vivir.</p>
-              </div>
-              {items.map(item => (
-                <div key={item.titulo} className="inquilinos__item">
-                  <span className="inquilinos__item-icon">{item.icon}</span>
-                  <div className="inquilinos__item-titulo">{item.titulo}</div>
-                  <div className="inquilinos__item-desc">{item.desc}</div>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(480px,100%), 1fr))',
+          gap: 'var(--space-12)',
+          alignItems: 'center',
+        }}>
+          {/* Ventajas */}
+          <div>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: 'var(--space-3)',
+              marginBottom: 'var(--space-8)',
+            }}>
+              {ventajas.map(v => (
+                <div key={v.text} style={{
+                  display: 'flex', alignItems: 'flex-start', gap: 'var(--space-2)',
+                  padding: 'var(--space-4)',
+                  background: 'var(--color-surface)',
+                  borderRadius: 'var(--radius-lg)',
+                  border: '1px solid var(--color-border)',
+                  fontSize: 'var(--text-sm)',
+                }}>
+                  <span style={{ flexShrink: 0 }}>{v.icon}</span>
+                  <span style={{ color: 'var(--color-text)', lineHeight: 1.45 }}>{v.text}</span>
                 </div>
               ))}
             </div>
 
-            <div className="inquilinos__cta-box">
-              <h3 className="inquilinos__cta-title">¿Buscas habitación o alojamiento en Barcelona?</h3>
-              <p className="inquilinos__cta-desc">Cuéntanos qué necesitas: coliving estable, alquiler temporal o estancia vacacional. Te buscamos la opción ideal.</p>
-              <div className="inquilinos__tipos">
-                <span className="badge badge-blue">Coliving</span>
-                <span className="badge badge-purple">Temporal</span>
-                <span className="badge badge-orange">Vacacional</span>
+            <a href="#contacto" className="btn btn-primary btn-lg">
+              Buscar habitación disponible
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+            </a>
+          </div>
+
+          {/* Tipos de alojamiento */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+            {tipos.map(t => (
+              <div key={t.badge} style={{
+                padding: 'var(--space-5) var(--space-6)',
+                background: 'var(--color-surface)',
+                borderRadius: 'var(--radius-lg)',
+                border: '1px solid var(--color-border)',
+                borderLeft: `4px solid ${t.color}`,
+                boxShadow: 'var(--shadow-sm)',
+              }}>
+                <div style={{ fontWeight: 700, color: t.color, fontSize: 'var(--text-sm)', marginBottom: 'var(--space-1)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t.badge}</div>
+                <div style={{ fontSize: 'var(--text-base)', color: 'var(--color-text)' }}>{t.desc}</div>
               </div>
-              <a href="#contacto" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-                Consultar disponibilidad
-              </a>
-            </div>
+            ))}
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

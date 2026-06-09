@@ -15,11 +15,3 @@ export type Lead = {
   ciudad?: string;
   canal?: string;
 };
-
-export async function insertarLead(lead: Lead) {
-  const { data, error } = await supabase
-    .from('leads')
-    .insert([{ ...lead, canal: 'web', estado: 'NUEVO' }]);
-  if (error) throw error;
-  return data;
-}

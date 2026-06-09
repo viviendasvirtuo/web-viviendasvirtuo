@@ -1,144 +1,92 @@
 export default function Propietarios() {
-  const ventajas = [
-    { icon: '💰', titulo: 'Ingresos garantizados', desc: 'Recibes tu renta puntualmente cada mes, independientemente de lo que pase con los inquilinos.' },
-    { icon: '📋', titulo: 'Cero gestiones', desc: 'Nosotros nos ocupamos de contratos, incidencias, pagos, limpiezas y todo lo demás.' },
-    { icon: '🔍', titulo: 'Inquilinos verificados', desc: 'Seleccionamos y verificamos a cada inquilino. Tú no tienes que conocerlos ni tratar con ellos.' },
-    { icon: '📊', titulo: 'Informes mensuales', desc: 'Recibes un informe detallado con ingresos, gastos y estado de tu propiedad cada mes.' },
-    { icon: '🛠️', titulo: 'Mantenimiento incluido', desc: 'Gestionamos incidencias y reparaciones con nuestra red de proveedores de confianza.' },
-    { icon: '📱', titulo: 'Seguimiento en tiempo real', desc: 'Accede a tu panel de propietario para ver el estado de tu propiedad en cualquier momento.' },
+  const beneficios = [
+    { icon: '💰', title: 'Ingresos garantizados', desc: 'Liquidación puntual cada mes. Sin retrasos, sin excusas.' },
+    { icon: '🔑', title: 'Gestión 100% delegada', desc: 'Desde la búsqueda de inquilinos hasta el mantenimiento. Tú solo cobras.' },
+    { icon: '📋', title: 'Contratos y legal', desc: 'Toda la documentación en regla. Nos encargamos de todo el papeleo.' },
+    { icon: '🛠️', title: 'Mantenimiento incluido', desc: 'Red de proveedores propia. Incidencias resueltas en menos de 48h.' },
+    { icon: '📊', title: 'Informes mensuales', desc: 'Transparencia total. Sabes exactamente qué pasa con tu propiedad.' },
+    { icon: '🚀', title: 'Máxima rentabilidad', desc: 'Elegimos el sistema que genera más ingresos para tu perfil de propiedad.' },
   ];
 
   return (
-    <>
-      <style>{`
-        .propietarios {
-          background: var(--color-primary-dark);
-          position: relative;
-          overflow: hidden;
-        }
-        .propietarios::before {
-          content: '';
-          position: absolute;
-          top: 0; right: 0;
-          width: 50%;
-          height: 100%;
-          background: linear-gradient(180deg, rgba(26,74,138,0.4) 0%, transparent 100%);
-          pointer-events: none;
-        }
-        .propietarios__inner {
-          position: relative;
-          z-index: 1;
-          display: grid;
-          grid-template-columns: 1fr 1.4fr;
-          gap: var(--space-16);
-          align-items: start;
-        }
-        .propietarios__left { position: sticky; top: 100px; }
-        .propietarios__label {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          background: rgba(255,255,255,0.1);
-          border: 1px solid rgba(255,255,255,0.15);
-          color: #93c5fd;
-          padding: 0.35rem 0.85rem;
-          border-radius: var(--radius-full);
-          font-size: var(--text-xs);
-          font-weight: 600;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          margin-bottom: var(--space-5);
-        }
-        .propietarios__title {
-          font-family: var(--font-display);
-          font-size: var(--text-xl);
-          font-weight: 800;
-          color: #fff;
-          line-height: 1.15;
-          margin-bottom: var(--space-5);
-          letter-spacing: -0.01em;
-        }
-        .propietarios__desc {
-          color: rgba(255,255,255,0.65);
-          line-height: 1.7;
-          margin-bottom: var(--space-8);
-          font-size: 1rem;
-        }
-        .propietarios__grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: var(--space-4);
-        }
-        .ventaja-card {
-          background: rgba(255,255,255,0.05);
-          border: 1px solid rgba(255,255,255,0.08);
-          border-radius: var(--radius-lg);
-          padding: var(--space-6);
-          transition: background var(--transition), border-color var(--transition);
-        }
-        .ventaja-card:hover {
-          background: rgba(255,255,255,0.08);
-          border-color: rgba(255,255,255,0.15);
-        }
-        .ventaja-card__icon {
-          font-size: 1.6rem;
-          margin-bottom: var(--space-3);
-          display: block;
-        }
-        .ventaja-card__titulo {
-          font-family: var(--font-display);
-          font-weight: 700;
-          font-size: 0.95rem;
-          color: #fff;
-          margin-bottom: var(--space-2);
-        }
-        .ventaja-card__desc {
-          font-size: 0.83rem;
-          color: rgba(255,255,255,0.55);
-          line-height: 1.55;
-        }
-        @media (max-width: 900px) {
-          .propietarios__inner { grid-template-columns: 1fr; gap: var(--space-10); }
-          .propietarios__left { position: static; }
-          .propietarios__grid { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 480px) {
-          .propietarios__grid { grid-template-columns: 1fr; }
-        }
-      `}</style>
+    <section id="propietarios" className="section section-alt">
+      <div className="container">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(480px, 100%), 1fr))',
+          gap: 'var(--space-16)',
+          alignItems: 'center',
+        }}>
+          {/* Texto */}
+          <div>
+            <p className="section-label">Para propietarios</p>
+            <h2 className="section-title">Rentabiliza tu vivienda sin<br />mover un dedo</h2>
+            <p className="section-subtitle" style={{ marginBottom: 'var(--space-10)' }}>
+              Olvídate de inquilinos que no pagan, averías de madrugada o contratos mal redactados. Nosotros nos hacemos cargo de absolutamente todo.
+            </p>
 
-      <section className="section propietarios" id="propietarios">
-        <div className="container">
-          <div className="propietarios__inner">
-            <div className="propietarios__left">
-              <div className="propietarios__label">Para propietarios</div>
-              <h2 className="propietarios__title">
-                Rentabiliza tu propiedad sin dedicarle un minuto
-              </h2>
-              <p className="propietarios__desc">
-                Nos convertimos en tu gestor integral. Tú cobras, nosotros trabajamos. Sin llamadas de inquilinos, sin incidencias de madrugada, sin papeleo.
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
-                <a href="#contacto" className="btn btn-white">
-                  Quiero saber más
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-                <a href="#como-funciona" className="btn btn-ghost-white">Ver cómo funciona</a>
-              </div>
-            </div>
-
-            <div className="propietarios__grid">
-              {ventajas.map(v => (
-                <div key={v.titulo} className="ventaja-card">
-                  <span className="ventaja-card__icon">{v.icon}</span>
-                  <div className="ventaja-card__titulo">{v.titulo}</div>
-                  <div className="ventaja-card__desc">{v.desc}</div>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: 'var(--space-4)',
+              marginBottom: 'var(--space-8)',
+            }}>
+              {beneficios.map(b => (
+                <div key={b.title} style={{
+                  padding: 'var(--space-5)',
+                  background: 'var(--color-bg)',
+                  borderRadius: 'var(--radius-lg)',
+                  border: '1px solid var(--color-border)',
+                }}>
+                  <div style={{ fontSize: '1.75rem', marginBottom: 'var(--space-2)' }}>{b.icon}</div>
+                  <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)', marginBottom: 'var(--space-1)' }}>{b.title}</div>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', lineHeight: 1.5 }}>{b.desc}</div>
                 </div>
               ))}
             </div>
+
+            <a href="#contacto" className="btn btn-primary btn-lg">
+              Quiero rentabilizar mi propiedad
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
+          {/* Tarjeta visual */}
+          <div style={{ position: 'relative' }}>
+            <div style={{
+              background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%)',
+              borderRadius: 'var(--radius-xl)',
+              padding: 'var(--space-10)',
+              color: '#fff',
+              boxShadow: 'var(--shadow-xl)',
+            }}>
+              <div style={{ fontSize: 'var(--text-xs)', opacity: 0.7, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 'var(--space-2)' }}>Propietario ejemplo</div>
+              <div style={{ fontSize: 'var(--text-2xl)', fontFamily: 'var(--font-display)', fontWeight: 900, marginBottom: 'var(--space-1)' }}>+€1.240/mes</div>
+              <div style={{ fontSize: 'var(--text-sm)', opacity: 0.75, marginBottom: 'var(--space-8)' }}>Piso 4 hab. · Sistema Coliving</div>
+              {[
+                { label: 'Ocupación media', val: '97%' },
+                { label: 'Incidencias este mes', val: '0' },
+                { label: 'Próxima liquidación', val: '1 jul' },
+              ].map(row => (
+                <div key={row.label} style={{
+                  display: 'flex', justifyContent: 'space-between',
+                  padding: 'var(--space-3) 0',
+                  borderBottom: '1px solid rgba(255,255,255,0.15)',
+                  fontSize: 'var(--text-sm)',
+                }}>
+                  <span style={{ opacity: 0.7 }}>{row.label}</span>
+                  <span style={{ fontWeight: 700 }}>{row.val}</span>
+                </div>
+              ))}
+              <div style={{ marginTop: 'var(--space-6)', fontSize: 'var(--text-xs)', opacity: 0.55, textAlign: 'center' }}>
+                Vista del panel del propietario
+              </div>
+            </div>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

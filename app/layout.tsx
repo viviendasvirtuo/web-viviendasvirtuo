@@ -2,29 +2,26 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Viviendas Virtuo | Gestión profesional de alquiler',
-  description: 'Convierte tu vivienda en ingresos estables con gestión 100% profesional. Coliving, alquiler temporal y vacacional en Barcelona y área metropolitana.',
-  keywords: 'gestión alquiler Barcelona, coliving Barcelona, alquiler temporal Barcelona, alquiler vacacional gestión, propietarios Barcelona',
+  title: 'Viviendas Virtuo | Gestión profesional de alquiler en Barcelona',
+  description: 'Convertimos tu vivienda en ingresos estables. Coliving, alquiler temporal y vacacional gestionados al 100% por nosotros. Sin preocupaciones.',
+  keywords: 'gestión alquiler barcelona, coliving barcelona, alquiler temporal, alquiler vacacional, gestión viviendas',
   openGraph: {
     title: 'Viviendas Virtuo | Gestión profesional de alquiler',
-    description: 'Tu vivienda genera ingresos. Nosotros nos encargamos de todo.',
+    description: 'Tres sistemas de alquiler adaptados a tu propiedad. Máxima rentabilidad, cero gestión.',
     url: 'https://www.viviendasvirtuo.com',
     siteName: 'Viviendas Virtuo',
     locale: 'es_ES',
     type: 'website',
   },
+  robots: { index: true, follow: true },
+  alternates: { canonical: 'https://www.viviendasvirtuo.com' },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
-          rel="stylesheet"
-        />
+        <link rel="preconnect" href="https://api.fontshare.com" />
       </head>
       <body>{children}</body>
     </html>

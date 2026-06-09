@@ -1,181 +1,156 @@
+const sistemas = [
+  {
+    id: 'coliving',
+    badge: 'Coliving',
+    badgeClass: 'badge-coliving',
+    title: 'Alquiler por habitaciones a largo plazo',
+    desc: 'Ideal para viviendas compartidas. Gestionamos cada habitación de forma independiente con contratos estables, selección de perfiles compatibles y máxima ocupación garantizada.',
+    color: '#1a4a8a',
+    features: [
+      'Contratos individuales por habitación',
+      'Selección y verificación de inquilinos',
+      'Gestión de zonas comunes',
+      'Ingresos estables mes a mes',
+    ],
+    ideal: 'Pisos de 3+ habitaciones',
+    rentabilidad: 'Alta',
+    estabilidad: 'Máxima',
+  },
+  {
+    id: 'temporal',
+    badge: 'Temporal',
+    badgeClass: 'badge-temporal',
+    title: 'Estancias cortas para trabajo y estudio',
+    desc: 'Para trabajadores desplazados, estudiantes de máster o ciclos cortos. Flexibilidad en duración, máxima rotación controlada y precio por encima del mercado tradicional.',
+    color: '#1e7a5a',
+    features: [
+      'Estancias de 1 a 6 meses',
+      'Check-in y check-out incluidos',
+      'Limpieza y mantenimiento',
+      'Precio superior al alquiler tradicional',
+    ],
+    ideal: 'Pisos céntricos amueblados',
+    rentabilidad: 'Muy alta',
+    estabilidad: 'Alta',
+  },
+  {
+    id: 'vacacional',
+    badge: 'Vacacional',
+    badgeClass: 'badge-vacacional',
+    title: 'Apartamento completo para turismo',
+    desc: 'Máxima rentabilidad por noche. Gestionamos la presencia en plataformas (Airbnb, Booking), la comunicación con huéspedes, limpiezas y toda la operativa.',
+    color: '#c84820',
+    features: [
+      'Alta en Airbnb, Booking y más',
+      'Pricing dinámico por temporada',
+      'Gestión completa de huéspedes',
+      'Rentabilidad máxima del mercado',
+    ],
+    ideal: 'Apartamentos turísticos',
+    rentabilidad: 'Máxima',
+    estabilidad: 'Media',
+  },
+];
+
 export default function Sistemas() {
-  const sistemas = [
-    {
-      id: 'coliving',
-      emoji: '🏘️',
-      tag: 'Coliving',
-      tagColor: 'badge-blue',
-      titulo: 'Alquiler por habitaciones',
-      subtitulo: 'Medio y largo plazo',
-      descripcion: 'Ideal para pisos con varias habitaciones. Gestionamos inquilinos, contratos, pagos y convivencia. Ingresos estables mes a mes sin que tengas que intervenir.',
-      para: 'Propietarios que quieren estabilidad y previsibilidad.',
-      beneficios: ['Inquilinos verificados', 'Contratos LAU gestionados', 'Cobro garantizado', 'Gestión de incidencias'],
-      acento: '#1a4a8a',
-      fondo: 'linear-gradient(135deg, #e8eef7 0%, #f0f5ff 100%)',
-    },
-    {
-      id: 'temporal',
-      emoji: '📋',
-      tag: 'Temporal',
-      tagColor: 'badge-purple',
-      titulo: 'Alquiler de corta duración',
-      subtitulo: 'Para trabajadores y estudiantes',
-      descripcion: 'Habitaciones para profesionales en desplazamiento, estudiantes de ciclos cortos o proyectos temporales. Más rotación, mayor ingreso por ocupación.',
-      para: 'Propietarios que buscan flexibilidad y mayor rendimiento.',
-      beneficios: ['Check-in y check-out gestionados', 'Perfiles profesionales', 'Precios dinámicos', 'Sin burocracia para ti'],
-      acento: '#7c3aed',
-      fondo: 'linear-gradient(135deg, #f3e8ff 0%, #faf5ff 100%)',
-    },
-    {
-      id: 'vacacional',
-      emoji: '✈️',
-      tag: 'Vacacional',
-      tagColor: 'badge-orange',
-      titulo: 'Apartamento completo para turistas',
-      subtitulo: 'Máxima rentabilidad',
-      descripcion: 'Gestionamos tu apartamento en plataformas como Airbnb y Booking. Fotografías profesionales, pricing dinámico, atención 24h al viajero y limpieza tras cada estancia.',
-      para: 'Propietarios que quieren maximizar ingresos por noche.',
-      beneficios: ['Gestión en Airbnb y Booking', 'Fotografía profesional', 'Pricing dinámico', 'Limpieza entre huéspedes'],
-      acento: '#c2410c',
-      fondo: 'linear-gradient(135deg, #fff7ed 0%, #fffbf5 100%)',
-    },
-  ];
-
   return (
-    <>
-      <style>{`
-        .sistemas { background: var(--color-bg); }
-        .sistemas__header {
-          text-align: center;
-          margin-bottom: var(--space-12);
-        }
-        .sistemas__grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: var(--space-6);
-        }
-        .sistema-card {
-          border-radius: var(--radius-xl);
-          overflow: hidden;
-          border: 1px solid var(--color-border);
-          box-shadow: var(--shadow-sm);
-          transition: box-shadow var(--transition), transform var(--transition);
-          display: flex;
-          flex-direction: column;
-        }
-        .sistema-card:hover {
-          box-shadow: var(--shadow-lg);
-          transform: translateY(-4px);
-        }
-        .sistema-card__top {
-          padding: var(--space-8);
-          flex: 1;
-        }
-        .sistema-card__emoji {
-          font-size: 2.5rem;
-          margin-bottom: var(--space-4);
-          display: block;
-        }
-        .sistema-card__titulo {
-          font-family: var(--font-display);
-          font-size: 1.3rem;
-          font-weight: 700;
-          color: var(--color-text);
-          margin-bottom: 0.25rem;
-          line-height: 1.2;
-        }
-        .sistema-card__sub {
-          font-size: 0.82rem;
-          font-weight: 600;
-          color: var(--color-text-faint);
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          margin-bottom: var(--space-4);
-        }
-        .sistema-card__desc {
-          font-size: 0.92rem;
-          color: var(--color-text-muted);
-          line-height: 1.65;
-          margin-bottom: var(--space-6);
-        }
-        .sistema-card__beneficios {
-          list-style: none;
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-2);
-        }
-        .sistema-card__beneficio {
-          display: flex;
-          align-items: center;
-          gap: var(--space-2);
-          font-size: 0.875rem;
-          color: var(--color-text-muted);
-        }
-        .sistema-card__beneficio::before {
-          content: '';
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: var(--color-primary);
-          flex-shrink: 0;
-        }
-        .sistema-card__bottom {
-          padding: var(--space-6) var(--space-8);
-          border-top: 1px solid var(--color-border);
-          background: var(--color-surface);
-        }
-        .sistema-card__para {
-          font-size: 0.8rem;
-          color: var(--color-text-faint);
-          margin-bottom: var(--space-4);
-        }
-        @media (max-width: 900px) {
-          .sistemas__grid { grid-template-columns: 1fr; }
-        }
-        @media (min-width: 640px) and (max-width: 900px) {
-          .sistemas__grid { grid-template-columns: 1fr 1fr; }
-        }
-      `}</style>
-
-      <section className="section sistemas" id="sistemas">
-        <div className="container">
-          <div className="sistemas__header">
-            <span className="section-label">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              Nuestros sistemas
-            </span>
-            <h2 className="section-title" style={{ fontSize: 'var(--text-xl)' }}>Tres formas de rentabilizar tu propiedad</h2>
-            <p className="section-subtitle" style={{ margin: '0 auto' }}>Cada sistema está diseñado para un perfil de propiedad y objetivo de rentabilidad distinto. Nosotros te asesoramos cuál encaja mejor.</p>
-          </div>
-
-          <div className="sistemas__grid">
-            {sistemas.map(s => (
-              <div key={s.id} className="sistema-card" style={{ background: s.fondo }}>
-                <div className="sistema-card__top">
-                  <span className="sistema-card__emoji">{s.emoji}</span>
-                  <div>
-                    <span className={`badge ${s.tagColor}`} style={{ marginBottom: 'var(--space-3)' }}>{s.tag}</span>
-                  </div>
-                  <h3 className="sistema-card__titulo">{s.titulo}</h3>
-                  <div className="sistema-card__sub">{s.subtitulo}</div>
-                  <p className="sistema-card__desc">{s.descripcion}</p>
-                  <ul className="sistema-card__beneficios">
-                    {s.beneficios.map(b => (
-                      <li key={b} className="sistema-card__beneficio">{b}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="sistema-card__bottom">
-                  <div className="sistema-card__para">✓ {s.para}</div>
-                  <a href="#contacto" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', fontSize: '0.875rem' }}>
-                    Me interesa el {s.tag}
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
+    <section id="sistemas" className="section" style={{ background: 'var(--color-bg)' }}>
+      <div className="container">
+        <div style={{ textAlign: 'center', marginBottom: 'var(--space-16)' }}>
+          <p className="section-label">Nuestros sistemas</p>
+          <h2 className="section-title">Elige el modelo que mejor se adapta<br />a tu propiedad</h2>
+          <p className="section-subtitle" style={{ margin: '0 auto' }}>
+            No somos una inmobiliaria tradicional. Somos una empresa de gestión especializada con tres sistemas distintos para maximizar la rentabilidad de tu vivienda.
+          </p>
         </div>
-      </section>
-    </>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))',
+          gap: 'var(--space-6)',
+        }}>
+          {sistemas.map(s => (
+            <article key={s.id} style={{
+              background: 'var(--color-surface)',
+              borderRadius: 'var(--radius-xl)',
+              overflow: 'hidden',
+              boxShadow: 'var(--shadow-md)',
+              border: '1px solid var(--color-border)',
+              transition: 'all var(--transition-slow)',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+            onMouseEnter={e => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.transform = 'translateY(-6px)';
+              el.style.boxShadow = 'var(--shadow-xl)';
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.transform = 'none';
+              el.style.boxShadow = 'var(--shadow-md)';
+            }}>
+              {/* Cabecera de color */}
+              <div style={{
+                background: s.color,
+                padding: 'var(--space-8) var(--space-8) var(--space-6)',
+              }}>
+                <span className={`badge ${s.badgeClass}`} style={{ background: 'rgba(255,255,255,0.2)', color: '#fff', marginBottom: 'var(--space-4)' }}>
+                  {s.badge}
+                </span>
+                <h3 style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'var(--text-xl)',
+                  fontWeight: 800,
+                  color: '#fff',
+                  lineHeight: 1.2,
+                }}>
+                  {s.title}
+                </h3>
+              </div>
+
+              {/* Cuerpo */}
+              <div style={{ padding: 'var(--space-6) var(--space-8)', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                <p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text-muted)', marginBottom: 'var(--space-6)', lineHeight: 1.65 }}>
+                  {s.desc}
+                </p>
+
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', marginBottom: 'var(--space-6)', flex: 1 }}>
+                  {s.features.map(f => (
+                    <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 'var(--space-2)', fontSize: 'var(--text-sm)' }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={s.color} strokeWidth="2.5" style={{ flexShrink: 0, marginTop: '3px' }} aria-hidden="true">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                      <span style={{ color: 'var(--color-text)' }}>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Métricas */}
+                <div style={{
+                  display: 'grid', gridTemplateColumns: '1fr 1fr 1fr',
+                  gap: 'var(--space-2)',
+                  padding: 'var(--space-4)',
+                  background: 'var(--color-bg)',
+                  borderRadius: 'var(--radius-lg)',
+                  marginBottom: 'var(--space-6)',
+                }}>
+                  {[{ label: 'Ideal para', val: s.ideal }, { label: 'Rentabilidad', val: s.rentabilidad }, { label: 'Estabilidad', val: s.estabilidad }].map(m => (
+                    <div key={m.label} style={{ textAlign: 'center' }}>
+                      <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '4px' }}>{m.label}</div>
+                      <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: s.color }}>{m.val}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <a href="#contacto" className="btn btn-outline" style={{ borderColor: s.color, color: s.color, justifyContent: 'center' }}>
+                  Me interesa este sistema
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
