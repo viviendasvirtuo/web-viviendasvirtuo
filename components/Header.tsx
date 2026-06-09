@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [_open, setOpen] = useState(false);
 
   return (
     <header style={{
