@@ -1,9 +1,13 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === '/';
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -16,29 +20,32 @@ export default function Header() {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
+  // En home hacemos scroll suave a secciones; en subpáginas navegamos a la ruta
   const navLinks = [
-    { href: '#sistemas', label: 'Sistemas' },
-    { href: '#propietarios', label: 'Propietarios' },
-    { href: '#inquilinos', label: 'Inquilinos' },
-    { href: '#como-funciona', label: 'Cómo funciona' },
-    { href: '#contacto', label: 'Contacto' },
+    { href: isHome ? '#sistemas' : '/#sistemas', label: 'Sistemas' },
+    { href: '/propietarios', label: 'Propietarios' },
+    { href: '/inquilinos', label: 'Inquilinos' },
+    { href: isHome ? '#como-funciona' : '/#como-funciona', label: 'Cómo funciona' },
+    { href: '/contacto', label: 'Contacto' },
   ];
+
+  const isTransparent = isHome && !scrolled;
 
   return (
     <header style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
-      background: scrolled ? 'rgba(255,255,255,0.96)' : 'transparent',
-      backdropFilter: scrolled ? 'blur(16px)' : 'none',
-      borderBottom: scrolled ? '1px solid rgba(26,74,138,0.1)' : '1px solid transparent',
+      background: isTransparent ? 'transparent' : 'rgba(255,255,255,0.96)',
+      backdropFilter: isTransparent ? 'none' : 'blur(16px)',
+      borderBottom: isTransparent ? '1px solid transparent' : '1px solid rgba(26,74,138,0.1)',
       transition: 'all 300ms cubic-bezier(0.16,1,0.3,1)',
-      boxShadow: scrolled ? '0 4px 24px rgba(13,27,46,0.06)' : 'none',
+      boxShadow: isTransparent ? 'none' : '0 4px 24px rgba(13,27,46,0.06)',
     }}>
       <div className="container" style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         height: '72px',
       }}>
         {/* Logo */}
-        <a href="/" aria-label="Viviendas Virtuo" style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
+        <Link href="/" aria-label="Viviendas Virtuo" style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0, textDecoration: 'none' }}>
           <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
             <rect width="36" height="36" rx="8" fill="#1a4a8a"/>
             <path d="M8 22L18 10L28 22" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -49,48 +56,51 @@ export default function Header() {
             fontFamily: 'var(--font-display)',
             fontWeight: 800,
             fontSize: '1.2rem',
-            color: scrolled ? 'var(--color-primary)' : 'white',
+            color: isTransparent ? 'white' : 'var(--color-primary)',
             transition: 'color 300ms',
             letterSpacing: '-0.01em',
           }}>Virtuo</span>
-        </a>
+        </Link>
 
         {/* Nav desktop */}
         <nav aria-label="Navegación principal" style={{
           display: 'flex', gap: 'var(--space-1)', alignItems: 'center',
         }} className="nav-desktop">
           {navLinks.map(link => (
-            <a key={link.href} href={link.href} style={{
+            <Link key={link.href} href={link.href} style={{
               fontFamily: 'var(--font-body)',
               fontSize: 'var(--text-sm)',
               fontWeight: 500,
-              color: scrolled ? 'var(--color-text-muted)' : 'rgba(255,255,255,0.85)',
+              color: isTransparent ? 'rgba(255,255,255,0.85)' : 'var(--color-text-muted)',
               padding: '0.5rem 0.85rem',
               borderRadius: 'var(--radius-md)',
               transition: 'all var(--transition)',
+              textDecoration: 'none',
+              ...(pathname === link.href ? { color: isTransparent ? 'white' : 'var(--color-primary)', fontWeight: 600 } : {}),
             }}
             onMouseEnter={e => {
-              (e.target as HTMLElement).style.color = scrolled ? 'var(--color-primary)' : 'white';
-              (e.target as HTMLElement).style.background = scrolled ? 'var(--color-primary-light)' : 'rgba(255,255,255,0.12)';
+              (e.currentTarget as HTMLElement).style.color = isTransparent ? 'white' : 'var(--color-primary)';
+              (e.currentTarget as HTMLElement).style.background = isTransparent ? 'rgba(255,255,255,0.12)' : 'var(--color-primary-light, #e8f0fa)';
             }}
             onMouseLeave={e => {
-              (e.target as HTMLElement).style.color = scrolled ? 'var(--color-text-muted)' : 'rgba(255,255,255,0.85)';
-              (e.target as HTMLElement).style.background = 'transparent';
+              (e.currentTarget as HTMLElement).style.color = isTransparent ? 'rgba(255,255,255,0.85)' : 'var(--color-text-muted)';
+              (e.currentTarget as HTMLElement).style.background = 'transparent';
             }}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         {/* CTA desktop */}
-        <a href="#contacto" className="btn btn-primary btn-sm nav-desktop" style={{
-          background: scrolled ? 'var(--color-primary)' : 'rgba(255,255,255,0.15)',
-          border: scrolled ? 'none' : '1.5px solid rgba(255,255,255,0.5)',
-          backdropFilter: scrolled ? 'none' : 'blur(8px)',
+        <Link href="/contacto" className="btn btn-primary btn-sm nav-desktop" style={{
+          background: isTransparent ? 'rgba(255,255,255,0.15)' : 'var(--color-primary)',
+          border: isTransparent ? '1.5px solid rgba(255,255,255,0.5)' : 'none',
+          backdropFilter: isTransparent ? 'blur(8px)' : 'none',
           color: 'white',
+          textDecoration: 'none',
         }}>
           Hablar con un experto
-        </a>
+        </Link>
 
         {/* Hamburguesa */}
         <button
@@ -102,7 +112,7 @@ export default function Header() {
             display: 'none',
             flexDirection: 'column',
             gap: '5px', padding: '8px',
-            color: scrolled ? 'var(--color-primary)' : 'white',
+            color: isTransparent ? 'white' : 'var(--color-primary)',
           }}>
           <span style={{
             display: 'block', width: '22px', height: '2px',
@@ -136,7 +146,7 @@ export default function Header() {
           animation: 'fadeIn 200ms ease',
         }}>
           {navLinks.map(link => (
-            <a key={link.href} href={link.href}
+            <Link key={link.href} href={link.href}
               onClick={() => setMenuOpen(false)}
               style={{
                 fontFamily: 'var(--font-display)',
@@ -146,16 +156,17 @@ export default function Header() {
                 padding: 'var(--space-3) 0',
                 borderBottom: '1px solid var(--color-border)',
                 display: 'block',
+                textDecoration: 'none',
               }}>
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a href="#contacto"
+          <Link href="/contacto"
             onClick={() => setMenuOpen(false)}
             className="btn btn-primary btn-lg"
-            style={{ marginTop: 'var(--space-6)', textAlign: 'center', justifyContent: 'center' }}>
+            style={{ marginTop: 'var(--space-6)', textAlign: 'center', justifyContent: 'center', textDecoration: 'none' }}>
             Hablar con un experto
-          </a>
+          </Link>
         </div>
       )}
 
