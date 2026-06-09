@@ -1,89 +1,76 @@
+'use client';
+import { useState } from 'react';
+
+const pasos = [
+  { num: '01', title: 'Analizamos tu vivienda', desc: 'Visita gratuita o videollamada. Estudiamos la propiedad, la zona y el potencial de cada sistema para darte la recomendación más rentable.' },
+  { num: '02', title: 'Preparamos y publicamos', desc: 'Nos encargamos de la decoración básica si es necesaria, las fotos profesionales y la publicación en todas las plataformas.' },
+  { num: '03', title: 'Gestionamos todo', desc: 'Contratos, selección de inquilinos, check-ins, mantenimiento, incidencias... Todo sin que muevas un dedo.' },
+  { num: '04', title: 'Cobras puntualmente', desc: 'Liquidación mensual garantizada. Recibes un informe detallado con ingresos, gastos y estado de tu propiedad.' },
+];
+
 export default function Propietarios() {
-  const beneficios = [
-    { icon: '💰', title: 'Ingresos garantizados', desc: 'Liquidación puntual cada mes. Sin retrasos, sin excusas.' },
-    { icon: '🔑', title: 'Gestión 100% delegada', desc: 'Desde la búsqueda de inquilinos hasta el mantenimiento. Tú solo cobras.' },
-    { icon: '📋', title: 'Contratos y legal', desc: 'Toda la documentación en regla. Nos encargamos de todo el papeleo.' },
-    { icon: '🛠️', title: 'Mantenimiento incluido', desc: 'Red de proveedores propia. Incidencias resueltas en menos de 48h.' },
-    { icon: '📊', title: 'Informes mensuales', desc: 'Transparencia total. Sabes exactamente qué pasa con tu propiedad.' },
-    { icon: '🚀', title: 'Máxima rentabilidad', desc: 'Elegimos el sistema que genera más ingresos para tu perfil de propiedad.' },
-  ];
+  const [activo, setActivo] = useState(0);
 
   return (
-    <section id="propietarios" className="section section-alt">
+    <section id="propietarios" className="section section-dark">
       <div className="container">
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(min(480px, 100%), 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(440px, 100%), 1fr))',
           gap: 'var(--space-16)',
           alignItems: 'center',
         }}>
-          {/* Texto */}
           <div>
-            <p className="section-label">Para propietarios</p>
-            <h2 className="section-title">Rentabiliza tu vivienda sin<br />mover un dedo</h2>
-            <p className="section-subtitle" style={{ marginBottom: 'var(--space-10)' }}>
-              Olvídate de inquilinos que no pagan, averías de madrugada o contratos mal redactados. Nosotros nos hacemos cargo de absolutamente todo.
+            <p className="section-label" style={{ color: 'rgba(255,255,255,0.6)' }}>Para propietarios</p>
+            <h2 className="section-title section-title--white">Tu vivienda trabaja.<br />Tú descansas.</h2>
+            <p className="section-subtitle section-subtitle--white" style={{ marginBottom: 'var(--space-10)' }}>
+              Gestión 360° sin complicaciones. Desde el primer contacto hasta la liquidación mensual, nos ocupamos de absolutamente todo.
             </p>
-
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-              gap: 'var(--space-4)',
-              marginBottom: 'var(--space-8)',
-            }}>
-              {beneficios.map(b => (
-                <div key={b.title} style={{
-                  padding: 'var(--space-5)',
-                  background: 'var(--color-bg)',
-                  borderRadius: 'var(--radius-lg)',
-                  border: '1px solid var(--color-border)',
-                }}>
-                  <div style={{ fontSize: '1.75rem', marginBottom: 'var(--space-2)' }}>{b.icon}</div>
-                  <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)', marginBottom: 'var(--space-1)' }}>{b.title}</div>
-                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', lineHeight: 1.5 }}>{b.desc}</div>
-                </div>
-              ))}
+            <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
+              <a href="#contacto" className="btn btn-white">Quiero rentabilizar mi piso</a>
+              <a href="#sistemas" className="btn btn-ghost-white">Ver sistemas</a>
             </div>
-
-            <a href="#contacto" className="btn btn-primary btn-lg">
-              Quiero rentabilizar mi propiedad
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
           </div>
 
-          {/* Tarjeta visual */}
-          <div style={{ position: 'relative' }}>
-            <div style={{
-              background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%)',
-              borderRadius: 'var(--radius-xl)',
-              padding: 'var(--space-10)',
-              color: '#fff',
-              boxShadow: 'var(--shadow-xl)',
-            }}>
-              <div style={{ fontSize: 'var(--text-xs)', opacity: 0.7, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 'var(--space-2)' }}>Propietario ejemplo</div>
-              <div style={{ fontSize: 'var(--text-2xl)', fontFamily: 'var(--font-display)', fontWeight: 900, marginBottom: 'var(--space-1)' }}>+€1.240/mes</div>
-              <div style={{ fontSize: 'var(--text-sm)', opacity: 0.75, marginBottom: 'var(--space-8)' }}>Piso 4 hab. · Sistema Coliving</div>
-              {[
-                { label: 'Ocupación media', val: '97%' },
-                { label: 'Incidencias este mes', val: '0' },
-                { label: 'Próxima liquidación', val: '1 jul' },
-              ].map(row => (
-                <div key={row.label} style={{
-                  display: 'flex', justifyContent: 'space-between',
-                  padding: 'var(--space-3) 0',
-                  borderBottom: '1px solid rgba(255,255,255,0.15)',
-                  fontSize: 'var(--text-sm)',
-                }}>
-                  <span style={{ opacity: 0.7 }}>{row.label}</span>
-                  <span style={{ fontWeight: 700 }}>{row.val}</span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+            {pasos.map((paso, i) => (
+              <div
+                key={paso.num}
+                onClick={() => setActivo(i)}
+                style={{
+                  padding: 'var(--space-5) var(--space-6)',
+                  borderRadius: 'var(--radius-lg)',
+                  border: `1px solid ${activo === i ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.07)'}`,
+                  background: activo === i ? 'rgba(255,255,255,0.08)' : 'transparent',
+                  cursor: 'pointer',
+                  transition: 'all var(--transition)',
+                }}
+                onMouseEnter={e => {
+                  if (activo !== i) (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.04)';
+                }}
+                onMouseLeave={e => {
+                  if (activo !== i) (e.currentTarget as HTMLElement).style.background = 'transparent';
+                }}
+              >
+                <div style={{ display: 'flex', gap: 'var(--space-4)', alignItems: 'flex-start' }}>
+                  <span style={{
+                    fontSize: 'var(--text-xs)', fontWeight: 800,
+                    color: activo === i ? '#60a5fa' : 'rgba(255,255,255,0.3)',
+                    letterSpacing: '0.1em', flexShrink: 0, marginTop: '3px',
+                  }}>{paso.num}</span>
+                  <div>
+                    <div style={{ fontWeight: 700, color: activo === i ? '#fff' : 'rgba(255,255,255,0.7)', marginBottom: activo === i ? 'var(--space-2)' : 0, transition: 'all var(--transition)' }}>
+                      {paso.title}
+                    </div>
+                    {activo === i && (
+                      <p style={{ fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, maxWidth: '48ch' }}>
+                        {paso.desc}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              ))}
-              <div style={{ marginTop: 'var(--space-6)', fontSize: 'var(--text-xs)', opacity: 0.55, textAlign: 'center' }}>
-                Vista del panel del propietario
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

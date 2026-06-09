@@ -1,3 +1,4 @@
+'use client';
 export default function LogoBar() {
   const items = [
     'Gestión integral 360°',

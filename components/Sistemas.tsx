@@ -1,3 +1,4 @@
+'use client';
 const sistemas = [
   {
     id: 'coliving',
@@ -90,7 +91,6 @@ export default function Sistemas() {
               el.style.transform = 'none';
               el.style.boxShadow = 'var(--shadow-md)';
             }}>
-              {/* Cabecera de color */}
               <div style={{
                 background: s.color,
                 padding: 'var(--space-8) var(--space-8) var(--space-6)',
@@ -109,7 +109,6 @@ export default function Sistemas() {
                 </h3>
               </div>
 
-              {/* Cuerpo */}
               <div style={{ padding: 'var(--space-6) var(--space-8)', flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text-muted)', marginBottom: 'var(--space-6)', lineHeight: 1.65 }}>
                   {s.desc}
@@ -126,7 +125,6 @@ export default function Sistemas() {
                   ))}
                 </ul>
 
-                {/* Métricas */}
                 <div style={{
                   display: 'grid', gridTemplateColumns: '1fr 1fr 1fr',
                   gap: 'var(--space-2)',

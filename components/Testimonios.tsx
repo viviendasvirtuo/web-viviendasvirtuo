@@ -1,5 +1,5 @@
+'use client';
 export default function Testimonios() {
-  // Testimonios estáticos (la web cargará los de Supabase cuando existan)
   const testimonios = [
     {
       nombre: 'Carlos M.',
@@ -51,7 +51,6 @@ export default function Testimonios() {
               flexDirection: 'column',
               gap: 'var(--space-4)',
             }}>
-              {/* Estrellas */}
               <div style={{ display: 'flex', gap: '3px' }}>
                 {Array.from({ length: t.valoracion }).map((_, i) => (
                   <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" aria-hidden="true">
@@ -59,11 +58,9 @@ export default function Testimonios() {
                   </svg>
                 ))}
               </div>
-
               <p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text)', lineHeight: 1.65, fontStyle: 'italic', flex: 1 }}>
                 &ldquo;{t.texto}&rdquo;
               </p>
-
               <footer style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)' }}>{t.nombre}</div>
