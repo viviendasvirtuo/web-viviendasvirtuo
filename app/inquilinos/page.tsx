@@ -3,6 +3,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Inquilinos — Viviendas Virtuo',
   description: 'Encuentra tu habitación ideal en Barcelona. Coliving, alquiler temporal y vacacional gestionados por profesionales. Entra y vive.',
