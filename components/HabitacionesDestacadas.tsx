@@ -1,10 +1,12 @@
 'use client';
+import Image from 'next/image';
 
 const habitaciones = [
   {
     ref: 'Mora_2026_01',
     titulo: 'Habitación Port BDN',
     zona: 'Eduard Maristany · Badalona',
+    imagen: '/images/eduard_maristany_bdn.png',
     detalles: ['4 habitaciones nuevas', '2 baños nuevos'],
     extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
     precio: 1050,
@@ -15,6 +17,7 @@ const habitaciones = [
     ref: 'Eixam_2026_01',
     titulo: 'Habitación Eixample',
     zona: 'Passeig de Gràcia / Provença',
+    imagen: '/images/eixample01.jpg',
     detalles: ['5 habitaciones', '2 baños renovados'],
     extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
     precio: 1200,
@@ -25,6 +28,7 @@ const habitaciones = [
     ref: 'Gracia_2026_01',
     titulo: 'Habitación Gràcia',
     zona: 'Vila de Gràcia / Lesseps',
+    imagen: '/images/piso_gracia.avif',
     detalles: ['4 habitaciones', 'Escritorio profesional'],
     extras: ['Terraza común', 'Suministros incluidos', 'WiFi'],
     precio: 950,
@@ -35,6 +39,7 @@ const habitaciones = [
     ref: 'Sants_2026_01',
     titulo: 'Habitación Sants',
     zona: 'Sants-Badal / Plaça Sants',
+    imagen: '/images/sants01.png',
     detalles: ['6 habitaciones', 'Hab. XXL +15m²', '3 baños completos'],
     extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
     precio: 900,
@@ -45,6 +50,7 @@ const habitaciones = [
     ref: 'Dmar_2026_02',
     titulo: 'Habitación Poblenou',
     zona: 'Diagonal Mar',
+    imagen: '/images/zona_poblenou.png',
     detalles: ['4 habitaciones', '2 baños'],
     extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
     precio: 1000,
@@ -55,6 +61,7 @@ const habitaciones = [
     ref: 'Ramblas_2026_02',
     titulo: 'Habitación Ramblas',
     zona: 'Canaletas',
+    imagen: '/images/zona_ramblas.png',
     detalles: ['5 habitaciones', '3 baños'],
     extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
     precio: 1100,
@@ -65,6 +72,7 @@ const habitaciones = [
     ref: 'Sagrada_2026_03',
     titulo: 'Habitación Sagrada Família',
     zona: 'Marina',
+    imagen: '/images/zona_sagrada_familia.png',
     detalles: ['6 habitaciones', '3 baños nuevos'],
     extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
     precio: 950,
@@ -75,6 +83,7 @@ const habitaciones = [
     ref: 'PEspaña_2026_03',
     titulo: 'Habitación Pl. España',
     zona: 'Tarragona',
+    imagen: '/images/zonas_plaza_españa.jpg',
     detalles: ['5 habitaciones', '3 baños'],
     extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
     precio: 900,
@@ -137,11 +146,12 @@ export default function HabitacionesDestacadas() {
         </div>
 
         {/* Grid de cards: 4 columnas en desktop, 2 en tablet, 1 en móvil */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '20px',
-        }}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: '20px',
+          }}
           className="habitaciones-grid"
         >
           {habitaciones.map((hab) => (
@@ -150,12 +160,11 @@ export default function HabitacionesDestacadas() {
               style={{
                 background: '#ffffff',
                 borderRadius: '16px',
-                padding: '22px',
+                overflow: 'hidden',
                 boxShadow: '0 2px 8px rgba(26,74,138,0.07), 0 8px 24px rgba(26,74,138,0.05)',
                 border: '1px solid rgba(26,74,138,0.08)',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '14px',
                 transition: 'transform 0.2s ease, box-shadow 0.2s ease',
               }}
               onMouseEnter={(e) => {
@@ -167,10 +176,22 @@ export default function HabitacionesDestacadas() {
                 (e.currentTarget as HTMLDivElement).style.boxShadow = '0 2px 8px rgba(26,74,138,0.07), 0 8px 24px rgba(26,74,138,0.05)';
               }}
             >
-              {/* Badge disponibilidad */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                <span style={{
-                  background: '#e8f5e9',
+              {/* Imagen superior */}
+              <div style={{ position: 'relative', width: '100%', height: '180px', flexShrink: 0 }}>
+                <Image
+                  src={hab.imagen}
+                  alt={`Foto de ${hab.titulo}`}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 25vw"
+                />
+                {/* Badge disponibilidad sobre la imagen */}
+                <div style={{
+                  position: 'absolute',
+                  top: '10px',
+                  left: '10px',
+                  background: 'rgba(255,255,255,0.95)',
+                  backdropFilter: 'blur(4px)',
                   color: '#2e7d32',
                   fontSize: '11px',
                   fontWeight: 600,
@@ -178,120 +199,127 @@ export default function HabitacionesDestacadas() {
                   borderRadius: '999px',
                 }}>
                   ● Disponible {getFechaDisponible(hab.mesesDisponible)}
-                </span>
-                <span style={{
+                </div>
+                {/* Ref discreta */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: '8px',
+                  right: '10px',
+                  background: 'rgba(0,0,0,0.45)',
+                  color: '#fff',
                   fontSize: '10px',
-                  color: '#9aa5b4',
                   fontFamily: 'monospace',
+                  padding: '2px 7px',
+                  borderRadius: '6px',
                 }}>
                   {hab.ref}
-                </span>
+                </div>
               </div>
 
-              {/* Título y zona */}
-              <div>
-                <h3 style={{
-                  fontSize: '1.05rem',
-                  fontWeight: 700,
-                  color: '#0f2d5e',
-                  marginBottom: '4px',
-                }}>
-                  {hab.titulo}
-                </h3>
-                <p style={{
-                  fontSize: '0.85rem',
-                  color: '#5a6a7e',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                }}>
-                  <span>📍</span> {hab.zona}
-                </p>
-              </div>
+              {/* Contenido */}
+              <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px', flex: 1 }}>
 
-              {/* Detalles de la vivienda */}
-              <div style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '6px',
-              }}>
-                {hab.detalles.map((d) => (
-                  <span key={d} style={{
-                    background: '#f0f4fa',
-                    color: '#1a4a8a',
-                    fontSize: '11px',
-                    fontWeight: 500,
-                    padding: '3px 10px',
-                    borderRadius: '8px',
+                {/* Título y zona */}
+                <div>
+                  <h3 style={{
+                    fontSize: '1.05rem',
+                    fontWeight: 700,
+                    color: '#0f2d5e',
+                    marginBottom: '4px',
                   }}>
-                    {d}
-                  </span>
-                ))}
-              </div>
+                    {hab.titulo}
+                  </h3>
+                  <p style={{
+                    fontSize: '0.85rem',
+                    color: '#5a6a7e',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                  }}>
+                    <span>📍</span> {hab.zona}
+                  </p>
+                </div>
 
-              {/* Servicios incluidos */}
-              <div style={{
-                borderTop: '1px solid rgba(26,74,138,0.08)',
-                paddingTop: '12px',
-              }}>
-                <p style={{ fontSize: '10px', color: '#9aa5b4', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>
-                  Todo incluido
-                </p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
-                  {hab.extras.map((e) => (
-                    <span key={e} style={{
+                {/* Detalles de la vivienda */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  {hab.detalles.map((d) => (
+                    <span key={d} style={{
+                      background: '#f0f4fa',
+                      color: '#1a4a8a',
                       fontSize: '11px',
-                      color: '#3d6b9e',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '3px',
+                      fontWeight: 500,
+                      padding: '3px 10px',
+                      borderRadius: '8px',
                     }}>
-                      ✓ {e}
+                      {d}
                     </span>
                   ))}
                 </div>
-              </div>
 
-              {/* Precio y CTA */}
-              <div style={{
-                marginTop: 'auto',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                paddingTop: '8px',
-              }}>
-                <div>
-                  <span style={{
-                    fontSize: '1.5rem',
-                    fontWeight: 800,
-                    color: '#1a4a8a',
-                    lineHeight: 1,
-                  }}>
-                    {hab.precio.toLocaleString('es-ES')}€
-                  </span>
-                  <span style={{ fontSize: '0.8rem', color: '#9aa5b4', marginLeft: '4px' }}>/mes</span>
-                  <p style={{ fontSize: '10px', color: '#9aa5b4', marginTop: '2px' }}>Precio regulado INCASÒL</p>
+                {/* Servicios incluidos */}
+                <div style={{
+                  borderTop: '1px solid rgba(26,74,138,0.08)',
+                  paddingTop: '10px',
+                }}>
+                  <p style={{ fontSize: '10px', color: '#9aa5b4', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>
+                    Todo incluido
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                    {hab.extras.map((e) => (
+                      <span key={e} style={{
+                        fontSize: '11px',
+                        color: '#3d6b9e',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '3px',
+                      }}>
+                        ✓ {e}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <a
-                  href={hab.tallyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    background: '#1a4a8a',
-                    color: '#ffffff',
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                    padding: '10px 16px',
-                    borderRadius: '10px',
-                    textDecoration: 'none',
-                    whiteSpace: 'nowrap',
-                    transition: 'background 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = '#0f2d5e')}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = '#1a4a8a')}
-                >
-                  Reservar →
-                </a>
+
+                {/* Precio y CTA */}
+                <div style={{
+                  marginTop: 'auto',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  paddingTop: '8px',
+                }}>
+                  <div>
+                    <span style={{
+                      fontSize: '1.5rem',
+                      fontWeight: 800,
+                      color: '#1a4a8a',
+                      lineHeight: 1,
+                    }}>
+                      {hab.precio.toLocaleString('es-ES')}€
+                    </span>
+                    <span style={{ fontSize: '0.8rem', color: '#9aa5b4', marginLeft: '4px' }}>/mes</span>
+                    <p style={{ fontSize: '10px', color: '#9aa5b4', marginTop: '2px' }}>Precio regulado INCASÒL</p>
+                  </div>
+                  <a
+                    href={hab.tallyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      background: '#1a4a8a',
+                      color: '#ffffff',
+                      fontSize: '0.85rem',
+                      fontWeight: 600,
+                      padding: '10px 16px',
+                      borderRadius: '10px',
+                      textDecoration: 'none',
+                      whiteSpace: 'nowrap',
+                      transition: 'background 0.2s ease',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.background = '#0f2d5e')}
+                    onMouseLeave={(e) => (e.currentTarget.style.background = '#1a4a8a')}
+                  >
+                    Reservar →
+                  </a>
+                </div>
               </div>
             </div>
           ))}
