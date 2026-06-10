@@ -96,7 +96,7 @@ export default function HabitacionesDestacadas() {
       padding: '80px 0',
     }}>
       <div style={{
-        maxWidth: '1200px',
+        maxWidth: '1400px',
         margin: '0 auto',
         padding: '0 24px',
       }}>
@@ -136,24 +136,26 @@ export default function HabitacionesDestacadas() {
           </p>
         </div>
 
-        {/* Grid de cards */}
+        {/* Grid de cards: 4 columnas en desktop, 2 en tablet, 1 en móvil */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(min(320px, 100%), 1fr))',
-          gap: '24px',
-        }}>
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: '20px',
+        }}
+          className="habitaciones-grid"
+        >
           {habitaciones.map((hab) => (
             <div
               key={hab.ref}
               style={{
                 background: '#ffffff',
                 borderRadius: '16px',
-                padding: '28px',
+                padding: '22px',
                 boxShadow: '0 2px 8px rgba(26,74,138,0.07), 0 8px 24px rgba(26,74,138,0.05)',
                 border: '1px solid rgba(26,74,138,0.08)',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '16px',
+                gap: '14px',
                 transition: 'transform 0.2s ease, box-shadow 0.2s ease',
               }}
               onMouseEnter={(e) => {
@@ -170,15 +172,15 @@ export default function HabitacionesDestacadas() {
                 <span style={{
                   background: '#e8f5e9',
                   color: '#2e7d32',
-                  fontSize: '12px',
+                  fontSize: '11px',
                   fontWeight: 600,
-                  padding: '4px 12px',
+                  padding: '4px 10px',
                   borderRadius: '999px',
                 }}>
                   ● Disponible {getFechaDisponible(hab.mesesDisponible)}
                 </span>
                 <span style={{
-                  fontSize: '11px',
+                  fontSize: '10px',
                   color: '#9aa5b4',
                   fontFamily: 'monospace',
                 }}>
@@ -189,7 +191,7 @@ export default function HabitacionesDestacadas() {
               {/* Título y zona */}
               <div>
                 <h3 style={{
-                  fontSize: '1.2rem',
+                  fontSize: '1.05rem',
                   fontWeight: 700,
                   color: '#0f2d5e',
                   marginBottom: '4px',
@@ -197,7 +199,7 @@ export default function HabitacionesDestacadas() {
                   {hab.titulo}
                 </h3>
                 <p style={{
-                  fontSize: '0.9rem',
+                  fontSize: '0.85rem',
                   color: '#5a6a7e',
                   display: 'flex',
                   alignItems: 'center',
@@ -211,15 +213,15 @@ export default function HabitacionesDestacadas() {
               <div style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '8px',
+                gap: '6px',
               }}>
                 {hab.detalles.map((d) => (
                   <span key={d} style={{
                     background: '#f0f4fa',
                     color: '#1a4a8a',
-                    fontSize: '12px',
+                    fontSize: '11px',
                     fontWeight: 500,
-                    padding: '4px 12px',
+                    padding: '3px 10px',
                     borderRadius: '8px',
                   }}>
                     {d}
@@ -230,19 +232,19 @@ export default function HabitacionesDestacadas() {
               {/* Servicios incluidos */}
               <div style={{
                 borderTop: '1px solid rgba(26,74,138,0.08)',
-                paddingTop: '14px',
+                paddingTop: '12px',
               }}>
-                <p style={{ fontSize: '11px', color: '#9aa5b4', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>
+                <p style={{ fontSize: '10px', color: '#9aa5b4', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>
                   Todo incluido
                 </p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
                   {hab.extras.map((e) => (
                     <span key={e} style={{
-                      fontSize: '12px',
+                      fontSize: '11px',
                       color: '#3d6b9e',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '4px',
+                      gap: '3px',
                     }}>
                       ✓ {e}
                     </span>
@@ -260,15 +262,15 @@ export default function HabitacionesDestacadas() {
               }}>
                 <div>
                   <span style={{
-                    fontSize: '1.7rem',
+                    fontSize: '1.5rem',
                     fontWeight: 800,
                     color: '#1a4a8a',
                     lineHeight: 1,
                   }}>
                     {hab.precio.toLocaleString('es-ES')}€
                   </span>
-                  <span style={{ fontSize: '0.85rem', color: '#9aa5b4', marginLeft: '4px' }}>/mes</span>
-                  <p style={{ fontSize: '11px', color: '#9aa5b4', marginTop: '2px' }}>Precio regulado INCASÒL</p>
+                  <span style={{ fontSize: '0.8rem', color: '#9aa5b4', marginLeft: '4px' }}>/mes</span>
+                  <p style={{ fontSize: '10px', color: '#9aa5b4', marginTop: '2px' }}>Precio regulado INCASÒL</p>
                 </div>
                 <a
                   href={hab.tallyUrl}
@@ -277,9 +279,9 @@ export default function HabitacionesDestacadas() {
                   style={{
                     background: '#1a4a8a',
                     color: '#ffffff',
-                    fontSize: '0.9rem',
+                    fontSize: '0.85rem',
                     fontWeight: 600,
-                    padding: '12px 20px',
+                    padding: '10px 16px',
                     borderRadius: '10px',
                     textDecoration: 'none',
                     whiteSpace: 'nowrap',
@@ -305,6 +307,15 @@ export default function HabitacionesDestacadas() {
           Todos los precios incluyen renta regulada según índice oficial y pack de servicios. Contratos conformes a la normativa catalana vigente.
         </p>
       </div>
+
+      <style>{`
+        @media (max-width: 1100px) {
+          .habitaciones-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 600px) {
+          .habitaciones-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 }
