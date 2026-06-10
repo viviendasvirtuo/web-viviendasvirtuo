@@ -3,6 +3,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Coliving — Viviendas Virtuo',
   description: 'Habitaciones en coliving gestionadas profesionalmente en Barcelona. Espacios listos para entrar, comunidad cuidada, sin complicaciones.',
