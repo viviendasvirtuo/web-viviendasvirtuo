@@ -185,24 +185,31 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Flecha scroll */}
+      {/* Flecha scroll — CSS hover, sin onMouseEnter/Leave */}
       <a
         href="#sistemas"
         aria-label="Ver sistemas"
+        className="hero-scroll-arrow"
         style={{
           position: 'absolute', bottom: '2.5rem', left: '50%',
           transform: 'translateX(-50%)',
-          color: 'rgba(255,255,255,0.3)',
-          transition: 'color var(--transition)',
           animation: 'fadeUp 1s 1s both',
         }}
-        onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.7)'}
-        onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.3)'}
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
           <path d="M12 5v14M5 12l7 7 7-7"/>
         </svg>
       </a>
+
+      <style>{`
+        .hero-scroll-arrow {
+          color: rgba(255,255,255,0.3);
+          transition: color 0.2s ease;
+        }
+        .hero-scroll-arrow:hover {
+          color: rgba(255,255,255,0.7);
+        }
+      `}</style>
     </section>
   );
 }
