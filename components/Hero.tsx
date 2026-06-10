@@ -76,7 +76,6 @@ export default function Hero() {
 
       {/* Contenido principal */}
       <div
-        className="container"
         style={{
           position: 'relative',
           zIndex: 1,
@@ -85,10 +84,12 @@ export default function Hero() {
           flex: 1,
           display: 'flex',
           alignItems: 'flex-start',
+          paddingInline: 'clamp(1rem, 4vw, 3rem)',
+          maxWidth: 'var(--content-wide)',
         }}
       >
-        {/* Caja de contenido — ancho máximo, alineada izquierda dentro del container centrado */}
-        <div style={{ width: '100%', maxWidth: '680px' }}>
+        {/* Caja de contenido — ancho máximo, pegada a la izquierda */}
+        <div style={{ width: '100%', maxWidth: '620px' }}>
 
           {/* Badge */}
           <div
