@@ -29,7 +29,7 @@ export default function Hero() {
         overflow: 'hidden',
       }}
     >
-      {/* Ruido de grano muy sutil */}
+      {/* Grano sutil */}
       <div
         aria-hidden="true"
         style={{
@@ -39,7 +39,7 @@ export default function Hero() {
         }}
       />
 
-      {/* Imagen hero — visible solo en desktop, lado derecho */}
+      {/* Imagen hero — solo desktop, lado derecho */}
       <div
         aria-hidden="true"
         style={{
@@ -60,19 +60,15 @@ export default function Hero() {
           sizes="46vw"
           priority
         />
-        {/* Degradado de fusión izquierda */}
         <div
           style={{
-            position: 'absolute',
-            inset: 0,
+            position: 'absolute', inset: 0,
             background: 'linear-gradient(to right, #0f2d5e 0%, rgba(15,45,94,0.6) 40%, rgba(15,45,94,0) 100%)',
           }}
         />
-        {/* Degradado de fusión inferior */}
         <div
           style={{
-            position: 'absolute',
-            inset: 0,
+            position: 'absolute', inset: 0,
             background: 'linear-gradient(to top, #091525 0%, transparent 30%)',
           }}
         />
@@ -81,11 +77,20 @@ export default function Hero() {
       {/* Contenido principal */}
       <div
         className="container"
-        style={{ position: 'relative', zIndex: 1, paddingTop: '130px', paddingBottom: '80px', flex: 1 }}
+        style={{
+          position: 'relative',
+          zIndex: 1,
+          paddingTop: '130px',
+          paddingBottom: '80px',
+          flex: 1,
+          display: 'flex',
+          alignItems: 'flex-start',
+        }}
       >
-        <div style={{ maxWidth: '780px' }}>
+        {/* Caja de contenido — ancho máximo, alineada izquierda dentro del container centrado */}
+        <div style={{ width: '100%', maxWidth: '680px' }}>
 
-          {/* Badge de estado */}
+          {/* Badge */}
           <div
             style={{
               display: 'inline-flex', alignItems: 'center', gap: '8px',
@@ -97,18 +102,8 @@ export default function Hero() {
               backdropFilter: 'blur(12px)',
             }}
           >
-            <span
-              style={{
-                width: '7px', height: '7px', borderRadius: '50%',
-                background: '#4ade80', flexShrink: 0,
-              }}
-            />
-            <span
-              style={{
-                fontSize: 'var(--text-xs)', fontWeight: 600,
-                color: 'rgba(255,255,255,0.8)', letterSpacing: '0.05em',
-              }}
-            >
+            <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4ade80', flexShrink: 0 }} />
+            <span style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'rgba(255,255,255,0.8)', letterSpacing: '0.05em' }}>
               Gestión profesional de alquiler · Barcelona
             </span>
           </div>
@@ -126,13 +121,7 @@ export default function Hero() {
             }}
           >
             Tu vivienda genera ingresos.
-            <span
-              style={{
-                display: 'block',
-                color: 'rgba(255,255,255,0.45)',
-                fontWeight: 700,
-              }}
-            >
+            <span style={{ display: 'block', color: 'rgba(255,255,255,0.45)', fontWeight: 700 }}>
               Nosotros lo gestionamos todo.
             </span>
           </h1>
@@ -187,21 +176,10 @@ export default function Hero() {
                   borderRight: i < stats.length - 1 ? '1px solid rgba(255,255,255,0.1)' : undefined,
                 }}
               >
-                <div
-                  style={{
-                    fontSize: 'var(--text-2xl)', fontFamily: 'var(--font-display)',
-                    fontWeight: 900, color: '#fff', letterSpacing: '-0.02em',
-                    lineHeight: 1,
-                  }}
-                >
+                <div style={{ fontSize: 'var(--text-2xl)', fontFamily: 'var(--font-display)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1 }}>
                   {stat.num}
                 </div>
-                <div
-                  style={{
-                    fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)',
-                    marginTop: '6px', maxWidth: '18ch', lineHeight: 1.4,
-                  }}
-                >
+                <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)', marginTop: '6px', maxWidth: '18ch', lineHeight: 1.4 }}>
                   {stat.label}
                 </div>
               </div>
@@ -210,14 +188,11 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Ticker giratorio — en la parte inferior del hero */}
+      {/* Ticker inferior */}
       <div
         aria-hidden="true"
         style={{
-          position: 'relative',
-          zIndex: 2,
-          width: '100%',
-          overflow: 'hidden',
+          position: 'relative', zIndex: 2, width: '100%', overflow: 'hidden',
           borderTop: '1px solid rgba(255,255,255,0.08)',
           background: 'rgba(255,255,255,0.03)',
           backdropFilter: 'blur(8px)',
@@ -262,9 +237,7 @@ export default function Hero() {
           animation: ticker 28s linear infinite;
           will-change: transform;
         }
-        .ticker-track:hover {
-          animation-play-state: paused;
-        }
+        .ticker-track:hover { animation-play-state: paused; }
         .ticker-item {
           display: inline-flex;
           align-items: center;
@@ -278,8 +251,7 @@ export default function Hero() {
           white-space: nowrap;
         }
         .ticker-dot {
-          width: 4px;
-          height: 4px;
+          width: 4px; height: 4px;
           border-radius: 50%;
           background: rgba(255,255,255,0.25);
           flex-shrink: 0;
@@ -288,17 +260,13 @@ export default function Hero() {
           color: rgba(255,255,255,0.3);
           transition: color 0.2s ease;
         }
-        .hero-scroll-arrow:hover {
-          color: rgba(255,255,255,0.7);
-        }
+        .hero-scroll-arrow:hover { color: rgba(255,255,255,0.7); }
         @keyframes fadeUp {
           from { opacity: 0; transform: translateX(-50%) translateY(10px); }
           to   { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
         @media (max-width: 768px) {
-          .hero-img-wrap {
-            display: none;
-          }
+          .hero-img-wrap { display: none; }
         }
       `}</style>
     </section>
