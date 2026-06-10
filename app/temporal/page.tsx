@@ -11,9 +11,9 @@ export const metadata: Metadata = {
   description: 'Habitaciones de alquiler temporal en Barcelona para trabajadores, estudiantes y profesionales. Estancias de 1 a 6 meses gestionadas profesionalmente.',
 };
 
-const TEMPORAL_GREEN = '#0d9e6e';
-const TEMPORAL_GREEN_DARK = '#0a7d57';
-const TEMPORAL_ACCENT = '#6ee7b7';
+const TEMPORAL_GREEN = '#00c47a';
+const TEMPORAL_GREEN_DARK = '#008f58';
+const TEMPORAL_ACCENT = '#6effc0';
 
 export default function TemporalPage() {
   return (
@@ -31,7 +31,7 @@ export default function TemporalPage() {
             priority
           />
           <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(135deg, ${TEMPORAL_GREEN_DARK}e6 0%, ${TEMPORAL_GREEN}cc 100%)` }} />
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: `radial-gradient(circle at 70% 50%, ${TEMPORAL_ACCENT}14 0%, transparent 60%)`, pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: `radial-gradient(circle at 70% 50%, ${TEMPORAL_ACCENT}18 0%, transparent 60%)`, pointerEvents: 'none' }} />
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px', flexWrap: 'wrap' }}>
               <Link href="/" style={{ color: 'rgba(255,255,255,0.6)', fontSize: 'var(--text-sm)', textDecoration: 'none' }}>Inicio</Link>
@@ -59,7 +59,7 @@ export default function TemporalPage() {
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
           <div className="container">
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(480px, 100%), 1fr))', gap: 'clamp(40px, 6vw, 80px)', alignItems: 'center' }}>
-              <div style={{ position: 'relative', borderRadius: 'var(--radius-xl)', overflow: 'hidden', aspectRatio: '4/3', boxShadow: `0 20px 60px ${TEMPORAL_GREEN}26` }}>
+              <div style={{ position: 'relative', borderRadius: 'var(--radius-xl)', overflow: 'hidden', aspectRatio: '4/3', boxShadow: `0 20px 60px ${TEMPORAL_GREEN}30` }}>
                 <Image
                   src="/images/temporal.jpg"
                   alt="Habitación de alquiler temporal en Barcelona gestionada por Viviendas Virtuo"
@@ -68,12 +68,12 @@ export default function TemporalPage() {
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div style={{ position: 'absolute', bottom: '20px', left: '20px', background: 'rgba(255,255,255,0.95)', borderRadius: 'var(--radius-lg)', padding: '12px 16px', boxShadow: '0 4px 20px rgba(0,0,0,0.12)' }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontWeight: 900, color: TEMPORAL_GREEN, lineHeight: 1 }}>+35%</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontWeight: 900, color: TEMPORAL_GREEN_DARK, lineHeight: 1 }}>+35%</div>
                   <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>más rentabilidad</div>
                 </div>
               </div>
               <div>
-                <p style={{ color: TEMPORAL_GREEN, fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Todo incluido</p>
+                <p style={{ color: TEMPORAL_GREEN_DARK, fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Todo incluido</p>
                 <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '20px' }}>Una habitación lista para entrar</h2>
                 <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.75, marginBottom: '28px', fontSize: 'var(--text-base)' }}>Sin muebles que comprar, sin contratos de suministros que dar de alta, sin perder tiempo. Llegas con tu maleta y ya está.</p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '32px' }}>
