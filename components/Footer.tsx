@@ -77,7 +77,7 @@ export default function Footer() {
           }}
         >
           {/* Marca + contacto */}
-          <div style={{ gridColumn: '1' }}>
+          <div style={{ gridColumn: '1', minWidth: 0 }}>
             <Link
               href="/"
               style={{
@@ -153,6 +153,7 @@ export default function Footer() {
                     border: '1px solid rgba(255,255,255,0.1)',
                     borderRadius: '8px',
                     transition: 'background 0.2s ease, color 0.2s ease',
+                    flexShrink: 0,
                   }}>
                   {r.icon}
                 </a>
@@ -188,7 +189,7 @@ export default function Footer() {
           </div>
 
           {/* Sistemas */}
-          <div>
+          <div style={{ minWidth: 0 }}>
             <h3 style={{
               fontSize: 'var(--text-xs)', fontWeight: 700,
               color: 'rgba(255,255,255,0.3)', marginBottom: 'var(--space-5)',
@@ -212,7 +213,7 @@ export default function Footer() {
           </div>
 
           {/* Empresa */}
-          <div>
+          <div style={{ minWidth: 0 }}>
             <h3 style={{
               fontSize: 'var(--text-xs)', fontWeight: 700,
               color: 'rgba(255,255,255,0.3)', marginBottom: 'var(--space-5)',
@@ -236,7 +237,7 @@ export default function Footer() {
           </div>
 
           {/* Para ti */}
-          <div>
+          <div style={{ minWidth: 0 }}>
             <h3 style={{
               fontSize: 'var(--text-xs)', fontWeight: 700,
               color: 'rgba(255,255,255,0.3)', marginBottom: 'var(--space-5)',
@@ -260,12 +261,18 @@ export default function Footer() {
             {/* PROPIA */}
             <div style={{
               marginTop: 'var(--space-8)',
-              padding: '16px',
+              padding: '14px',
               background: 'rgba(255,255,255,0.05)',
               border: '1px solid rgba(255,255,255,0.1)',
               borderRadius: '12px',
+              overflow: 'hidden',
             }}>
-              <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', marginBottom: '8px', lineHeight: 1.5 }}>
+              <p style={{
+                fontSize: '11px',
+                color: 'rgba(255,255,255,0.4)',
+                marginBottom: '10px',
+                lineHeight: 1.5,
+              }}>
                 Usamos IA para escalar.
               </p>
               <a
@@ -273,14 +280,24 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '6px',
-                  fontSize: '12px', fontWeight: 700,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px',
+                  fontSize: '12px',
+                  fontWeight: 700,
                   color: '#fff',
                   textDecoration: 'none',
                   background: '#1a4a8a',
-                  padding: '7px 14px',
+                  padding: '8px 12px',
                   borderRadius: '8px',
                   transition: 'background 0.2s ease',
+                  width: '100%',
+                  boxSizing: 'border-box',
+                  textAlign: 'center',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
                 }}
                 onMouseEnter={e => (e.currentTarget.style.background = '#0f2d5e')}
                 onMouseLeave={e => (e.currentTarget.style.background = '#1a4a8a')}
@@ -316,11 +333,11 @@ export default function Footer() {
           .footer-link-legal { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s ease; }
           .footer-link-legal:hover { color: rgba(255,255,255,0.8); }
           @media (max-width: 900px) {
-            footer .container > div:first-child { grid-template-columns: 1fr 1fr; }
+            footer .container > div:first-child { grid-template-columns: 1fr 1fr !important; }
             footer .container > div:first-child > div:first-child { grid-column: span 2; }
           }
           @media (max-width: 540px) {
-            footer .container > div:first-child { grid-template-columns: 1fr; }
+            footer .container > div:first-child { grid-template-columns: 1fr !important; }
             footer .container > div:first-child > div:first-child { grid-column: span 1; }
           }
         `}</style>
