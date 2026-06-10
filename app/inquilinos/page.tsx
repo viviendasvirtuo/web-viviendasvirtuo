@@ -3,8 +3,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = {
   title: 'Inquilinos — Viviendas Virtuo',
   description: 'Encuentra tu habitación ideal en Barcelona. Coliving, alquiler temporal y vacacional gestionados por profesionales. Entra y vive.',
@@ -107,7 +105,7 @@ export default function InquilinosPage() {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px,1fr))', gap: '16px' }}>
               {[
-                { step: '1', title: 'Nos escribes', desc: 'Cuéntanos qué buscas: tipo, fechas, zona, presupuesto.' },
+                { step: '1', title: 'Nos escribes', desc: 'Cuéntanos lo que buscas: tipo, fechas, zona, presupuesto.' },
                 { step: '2', title: 'Te mostramos opciones', desc: 'En menos de 24h te enviamos las habitaciones o pisos disponibles.' },
                 { step: '3', title: 'Visita y reserva', desc: 'Visita virtual o presencial. Si te gusta, reservas con garantías.' },
                 { step: '4', title: 'Entras a vivir', desc: 'Firma digital, llaves en mano. Bienvenido/a.' },
