@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const faqs: { categoria: string; color: string; items: { q: string; a: string }[] }[] = [
   {
     categoria: 'Para propietarios',
-    color: '#1a4a8a',
+    color: '#0453ab',
     items: [
       {
         q: '¿Qué hace exactamente Virtuo con mi vivienda?',
@@ -46,7 +46,7 @@ const faqs: { categoria: string; color: string; items: { q: string; a: string }[
   },
   {
     categoria: 'Para inquilinos',
-    color: '#0d3b2e',
+    color: '#0d9e6e',
     items: [
       {
         q: '¿Cómo puedo ver una habitación o apartamento disponible?',
@@ -88,7 +88,7 @@ const faqs: { categoria: string; color: string; items: { q: string; a: string }[
       },
       {
         q: '¿El apartamento vacacional necesita licencia turística?',
-        a: "Sí. Para operar legalmente en el alquiler vacacional en Cataluña es imprescindible disponer de la HUTB (Habitatge d'Ús Turístic de Barcelona) o licencia equivalente según el municipio. Asesoramos al propietario en este proceso, aunque la licencia es responsabilidad del titular de la vivienda.",
+        a: "Sí. Para operar legalmente en el alquiler vacacional en Cataluña es imprescindible disponer de la HUTB (Habitatge d'\u00fas Tur\u00edstic de Barcelona) o licencia equivalente seg\u00fan el municipio. Asesoramos al propietario en este proceso, aunque la licencia es responsabilidad del titular de la vivienda.",
       },
       {
         q: '¿Virtuo solo trabaja en Barcelona?',
@@ -106,7 +106,7 @@ export default function FaqPage() {
 
         {/* HERO */}
         <section style={{
-          background: 'linear-gradient(135deg, #0f2d5e 0%, #1a4a8a 60%, #1e5aa8 100%)',
+          background: 'linear-gradient(135deg, #033d82 0%, #0453ab 60%, #0566cc 100%)',
           paddingTop: '140px',
           paddingBottom: '80px',
           position: 'relative',
@@ -115,12 +115,12 @@ export default function FaqPage() {
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 50%)', pointerEvents: 'none' }} />
           <div className="container">
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '999px', padding: '6px 16px', marginBottom: '32px' }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#90caf9', display: 'inline-block' }} />
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#6dbcdb', display: 'inline-block' }} />
               <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'var(--text-xs)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Preguntas frecuentes</span>
             </div>
             <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, color: 'white', lineHeight: 1.1, marginBottom: '24px', maxWidth: '680px' }}>
               Resolvemos tus dudas{' '}
-              <span style={{ color: '#90caf9' }}>sin rodeos.</span>
+              <span style={{ color: '#6dbcdb' }}>sin rodeos.</span>
             </h1>
             <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 'var(--text-lg)', maxWidth: '540px', lineHeight: 1.7 }}>
               Las preguntas que más nos hacen propietarios e inquilinos, respondidas con honestidad. Si no encuentras lo que buscas, escríbenos.
@@ -139,12 +139,7 @@ export default function FaqPage() {
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
                   {cat.items.map((item, i) => (
-                    <details
-                      key={i}
-                      style={{
-                        borderBottom: '1px solid var(--color-border)',
-                      }}
-                    >
+                    <details key={i} style={{ borderBottom: '1px solid var(--color-border)' }}>
                       <summary style={{
                         padding: '20px 4px',
                         cursor: 'pointer',
@@ -164,14 +159,7 @@ export default function FaqPage() {
                           <path d="M4 6.5L9 11.5L14 6.5" stroke={cat.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </summary>
-                      <p style={{
-                        padding: '0 4px 20px',
-                        color: 'var(--color-text-muted)',
-                        fontSize: 'var(--text-base)',
-                        lineHeight: 1.75,
-                        margin: 0,
-                        maxWidth: '65ch',
-                      }}>{item.a}</p>
+                      <p style={{ padding: '0 4px 20px', color: 'var(--color-text-muted)', fontSize: 'var(--text-base)', lineHeight: 1.75, margin: 0, maxWidth: '65ch' }}>{item.a}</p>
                     </details>
                   ))}
                 </div>
