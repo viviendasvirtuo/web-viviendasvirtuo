@@ -17,9 +17,20 @@ export default function VacacionalPage() {
       <Header />
       <main>
         {/* HERO */}
-        <section style={{ background: 'linear-gradient(135deg, #7c3a00 0%, #c45e00 100%)', paddingTop: '140px', paddingBottom: '80px', position: 'relative', overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(255,180,80,0.12) 0%, transparent 60%)', pointerEvents: 'none' }} />
-          <div className="container">
+        <section style={{ position: 'relative', paddingTop: '140px', paddingBottom: '80px', overflow: 'hidden', minHeight: '520px' }}>
+          {/* Foto de fondo */}
+          <Image
+            src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1600&q=80&auto=format&fit=crop"
+            alt=""
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            sizes="100vw"
+            priority
+          />
+          {/* Overlay naranja/marrón oscuro */}
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(80,30,0,0.90) 0%, rgba(160,70,0,0.80) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(255,180,80,0.10) 0%, transparent 60%)', pointerEvents: 'none' }} />
+          <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px', flexWrap: 'wrap' }}>
               <Link href="/" style={{ color: 'rgba(255,255,255,0.6)', fontSize: 'var(--text-sm)', textDecoration: 'none' }}>Inicio</Link>
               <span style={{ color: 'rgba(255,255,255,0.3)' }}>›</span>

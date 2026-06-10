@@ -17,9 +17,20 @@ export default function TemporalPage() {
       <Header />
       <main>
         {/* HERO */}
-        <section style={{ background: 'linear-gradient(135deg, #0d3b2e 0%, #1a6b52 100%)', paddingTop: '140px', paddingBottom: '80px', position: 'relative', overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(100,220,160,0.1) 0%, transparent 60%)', pointerEvents: 'none' }} />
-          <div className="container">
+        <section style={{ position: 'relative', paddingTop: '140px', paddingBottom: '80px', overflow: 'hidden', minHeight: '520px' }}>
+          {/* Foto de fondo */}
+          <Image
+            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1600&q=80&auto=format&fit=crop"
+            alt=""
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            sizes="100vw"
+            priority
+          />
+          {/* Overlay verde oscuro */}
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(13,59,46,0.90) 0%, rgba(26,107,82,0.82) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(100,220,160,0.08) 0%, transparent 60%)', pointerEvents: 'none' }} />
+          <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px', flexWrap: 'wrap' }}>
               <Link href="/" style={{ color: 'rgba(255,255,255,0.6)', fontSize: 'var(--text-sm)', textDecoration: 'none' }}>Inicio</Link>
               <span style={{ color: 'rgba(255,255,255,0.3)' }}>›</span>

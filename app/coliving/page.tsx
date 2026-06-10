@@ -17,9 +17,20 @@ export default function ColivingPage() {
       <Header />
       <main>
         {/* HERO */}
-        <section style={{ background: 'linear-gradient(135deg, #0f2d5e 0%, #1a4a8a 100%)', paddingTop: '140px', paddingBottom: '80px', position: 'relative', overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(144,202,249,0.12) 0%, transparent 60%)', pointerEvents: 'none' }} />
-          <div className="container">
+        <section style={{ position: 'relative', paddingTop: '140px', paddingBottom: '80px', overflow: 'hidden', minHeight: '520px' }}>
+          {/* Foto de fondo */}
+          <Image
+            src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=1600&q=80&auto=format&fit=crop"
+            alt=""
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            sizes="100vw"
+            priority
+          />
+          {/* Overlay */}
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(15,45,94,0.88) 0%, rgba(26,74,138,0.80) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(144,202,249,0.10) 0%, transparent 60%)', pointerEvents: 'none' }} />
+          <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px', flexWrap: 'wrap' }}>
               <Link href="/" style={{ color: 'rgba(255,255,255,0.6)', fontSize: 'var(--text-sm)', textDecoration: 'none' }}>Inicio</Link>
               <span style={{ color: 'rgba(255,255,255,0.3)' }}>›</span>
