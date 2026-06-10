@@ -4,6 +4,8 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Propietarios — Viviendas Virtuo',
   description: 'Rentabiliza tu vivienda en Barcelona sin preocupaciones. Elige entre coliving, alquiler temporal o vacacional. Gestión 100% profesional, ingresos garantizados.',
@@ -55,7 +57,6 @@ export default function PropietariosPage() {
               gap: 'clamp(40px, 6vw, 80px)',
               alignItems: 'center',
             }}>
-              {/* Texto + métricas izquierda */}
               <div>
                 <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Por qué Virtuo</p>
                 <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '20px' }}>
@@ -64,8 +65,6 @@ export default function PropietariosPage() {
                 <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-base)', lineHeight: 1.75, marginBottom: '40px', maxWidth: '48ch' }}>
                   Nos ocupamos de absolutamente todo: inquilinos, contratos, incidencias y cobros. Tú solo recibes la liquidación mensual.
                 </p>
-
-                {/* 3 métricas clave */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
                   {[
                     { num: '+30%', label: 'Más rentabilidad vs alquiler tradicional', desc: 'Optimizamos precios y ocupación continuamente para que no pierdas ni un euro.' },
@@ -92,13 +91,11 @@ export default function PropietariosPage() {
                     </div>
                   ))}
                 </div>
-
                 <div style={{ marginTop: '36px' }}>
                   <Link href="/contacto" className="btn btn-primary">Solicitar análisis gratuito →</Link>
                 </div>
               </div>
 
-              {/* Foto derecha */}
               <div style={{
                 position: 'relative',
                 borderRadius: 'var(--radius-xl)',
@@ -113,7 +110,6 @@ export default function PropietariosPage() {
                   style={{ objectFit: 'cover', objectPosition: 'center' }}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                {/* Badge flotante */}
                 <div style={{
                   position: 'absolute',
                   top: '20px',
@@ -174,7 +170,7 @@ export default function PropietariosPage() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
               {[
                 { bg: 'linear-gradient(135deg, #0f2d5e, #1a4a8a)', badge: 'Coliving', title: 'Alquiler por habitaciones', desc: 'Ideal para viviendas de 3+ habitaciones. Cada habitación tiene su contrato. Más ingresos, más estabilidad.', stat: '+40%', statLabel: 'vs. alquiler tradicional', href: '/coliving' },
-                { bg: 'linear-gradient(135deg, #0d3b2e, #1a6b52)', badge: 'Temporal', title: 'Estancias cortas (1–6 meses)', desc: 'Trabajadores, estudiantes y profesionales de paso. Alta rotación gestionada sin esfuerzo tuyo.', stat: '+35%', statLabel: 'vs. alquiler tradicional', href: '/temporal' },
+                { bg: 'linear-gradient(135deg, #008f58, #00c47a)', badge: 'Temporal', title: 'Estancias cortas (1–6 meses)', desc: 'Trabajadores, estudiantes y profesionales de paso. Alta rotación gestionada sin esfuerzo tuyo.', stat: '+35%', statLabel: 'vs. alquiler tradicional', href: '/temporal' },
                 { bg: 'linear-gradient(135deg, #7c3a00, #c45e00)', badge: 'Vacacional', title: 'Apartamento completo para turistas', desc: 'La mayor rentabilidad por m². Gestión en Airbnb, Booking y más, con pricing dinámico.', stat: '+70%', statLabel: 'vs. alquiler tradicional', href: '/vacacional' },
               ].map((s) => (
                 <div key={s.href} style={{ background: s.bg, borderRadius: 'var(--radius-xl)', padding: '36px 28px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
