@@ -1,112 +1,182 @@
+import Link from 'next/link';
+
 export default function Hero() {
   return (
-    <section style={{
-      position: 'relative',
-      minHeight: '100dvh',
-      display: 'flex',
-      alignItems: 'center',
-      background: 'linear-gradient(135deg, #0d1b2e 0%, #1a4a8a 50%, #0f2d5e 100%)',
-      overflow: 'hidden',
-    }}>
-      {/* Patrón decorativo */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', inset: 0, opacity: 0.04,
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-      }}/>
+    <section
+      style={{
+        position: 'relative',
+        minHeight: '100dvh',
+        display: 'flex',
+        alignItems: 'center',
+        background: 'linear-gradient(160deg, #091525 0%, #0f2d5e 45%, #1a4a8a 100%)',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Ruido de grano muy sutil */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute', inset: 0, opacity: 0.025,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          backgroundSize: '256px',
+        }}
+      />
 
-      {/* Círculo decorativo */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', right: '-10%', top: '10%',
-        width: 'clamp(300px, 50vw, 700px)',
-        height: 'clamp(300px, 50vw, 700px)',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)',
-        border: '1px solid rgba(255,255,255,0.06)',
-      }}/>
+      {/* Círculo atmosférico derecho */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          right: '-8%', top: '5%',
+          width: 'clamp(380px, 52vw, 800px)',
+          height: 'clamp(380px, 52vw, 800px)',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle at 40% 40%, rgba(26,74,138,0.35) 0%, transparent 65%)',
+          border: '1px solid rgba(255,255,255,0.04)',
+        }}
+      />
+      {/* Anillo interior */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          right: '2%', top: '18%',
+          width: 'clamp(200px, 28vw, 440px)',
+          height: 'clamp(200px, 28vw, 440px)',
+          borderRadius: '50%',
+          border: '1px solid rgba(255,255,255,0.06)',
+        }}
+      />
 
-      <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: '120px', paddingBottom: '80px' }}>
-        <div style={{ maxWidth: '760px' }}>
-          {/* Badge */}
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: '8px',
-            background: 'rgba(255,255,255,0.1)',
-            border: '1px solid rgba(255,255,255,0.2)',
-            borderRadius: 'var(--radius-full)',
-            padding: '0.4rem 1rem',
-            marginBottom: 'var(--space-6)',
-            backdropFilter: 'blur(8px)',
-          }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#4ade80', flexShrink: 0 }}/>
-            <span style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+      <div
+        className="container"
+        style={{ position: 'relative', zIndex: 1, paddingTop: '130px', paddingBottom: '100px' }}
+      >
+        <div style={{ maxWidth: '780px' }}>
+
+          {/* Badge de estado */}
+          <div
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: '8px',
+              background: 'rgba(255,255,255,0.07)',
+              border: '1px solid rgba(255,255,255,0.14)',
+              borderRadius: 'var(--radius-full)',
+              padding: '0.35rem 1rem 0.35rem 0.6rem',
+              marginBottom: 'var(--space-8)',
+              backdropFilter: 'blur(12px)',
+            }}
+          >
+            <span
+              style={{
+                width: '7px', height: '7px', borderRadius: '50%',
+                background: '#4ade80', flexShrink: 0,
+                animation: 'pulse-dot 2s ease-in-out infinite',
+              }}
+            />
+            <span
+              style={{
+                fontSize: 'var(--text-xs)', fontWeight: 600,
+                color: 'rgba(255,255,255,0.8)', letterSpacing: '0.05em',
+              }}
+            >
               Gestión profesional de alquiler · Barcelona
             </span>
           </div>
 
-          {/* Titular */}
-          <h1 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'var(--text-hero)',
-            fontWeight: 900,
-            color: '#ffffff',
-            lineHeight: 1.1,
-            marginBottom: 'var(--space-6)',
-            letterSpacing: '-0.02em',
-          }}>
+          {/* Titular — sin gradient text */}
+          <h1
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'var(--text-hero)',
+              fontWeight: 900,
+              color: '#ffffff',
+              lineHeight: 1.07,
+              marginBottom: 'var(--space-6)',
+              letterSpacing: '-0.025em',
+            }}
+          >
             Tu vivienda genera ingresos.
-            <span style={{
-              display: 'block',
-              background: 'linear-gradient(90deg, #60a5fa, #a5f3fc)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}>
+            <span
+              style={{
+                display: 'block',
+                color: 'rgba(255,255,255,0.45)',
+                fontWeight: 700,
+              }}
+            >
               Nosotros lo gestionamos todo.
             </span>
           </h1>
 
           {/* Subtítulo */}
-          <p style={{
-            fontSize: 'var(--text-lg)',
-            color: 'rgba(255,255,255,0.75)',
-            marginBottom: 'var(--space-10)',
-            maxWidth: '52ch',
-            lineHeight: 1.65,
-          }}>
-            Tres sistemas de alquiler adaptados a tu propiedad: coliving, temporal y vacacional. Sin esfuerzo de tu parte, con rentabilidad máxima.
+          <p
+            style={{
+              fontSize: 'var(--text-lg)',
+              color: 'rgba(255,255,255,0.65)',
+              marginBottom: 'var(--space-10)',
+              maxWidth: '50ch',
+              lineHeight: 1.7,
+            }}
+          >
+            Tres sistemas de alquiler adaptados a tu propiedad. Sin esfuerzo de tu parte, con rentabilidad máxima garantizada.
           </p>
 
           {/* CTAs */}
           <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
-            <a href="#contacto" className="btn btn-white btn-lg">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+            <Link href="/contacto" className="btn btn-white btn-lg">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                 <polyline points="9 22 9 12 15 12 15 22"/>
               </svg>
               Soy propietario
-            </a>
+            </Link>
             <a href="#inquilinos" className="btn btn-ghost-white btn-lg">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
               </svg>
               Busco habitación
             </a>
           </div>
 
-          {/* Social proof */}
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: 'var(--space-6)',
-            marginTop: 'var(--space-12)',
-            flexWrap: 'wrap',
-          }}>
+          {/* Stats — más concretos y creíbles */}
+          <div
+            style={{
+              display: 'flex', alignItems: 'stretch',
+              gap: 'var(--space-8)',
+              marginTop: 'var(--space-16)',
+              flexWrap: 'wrap',
+            }}
+          >
             {[
-              { num: '3', label: 'Sistemas de alquiler' },
-              { num: '100%', label: 'Gestión completa' },
-              { num: '0', label: 'Preocupaciones tuyas' },
+              { num: '+30%', label: 'Más rentabilidad vs alquiler tradicional' },
+              { num: '72h', label: 'Tiempo medio hasta primera reserva' },
+              { num: '100%', label: 'Gestión completa sin intervención tuya' },
             ].map(stat => (
-              <div key={stat.label}>
-                <div style={{ fontSize: 'var(--text-2xl)', fontFamily: 'var(--font-display)', fontWeight: 900, color: '#fff' }}>{stat.num}</div>
-                <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.55)', letterSpacing: '0.04em', textTransform: 'uppercase', marginTop: '2px' }}>{stat.label}</div>
+              <div
+                key={stat.label}
+                style={{
+                  paddingRight: 'var(--space-8)',
+                  borderRight: '1px solid rgba(255,255,255,0.1)',
+                  lastChild: 'none',
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: 'var(--text-2xl)', fontFamily: 'var(--font-display)',
+                    fontWeight: 900, color: '#fff', letterSpacing: '-0.02em',
+                    lineHeight: 1,
+                  }}
+                >
+                  {stat.num}
+                </div>
+                <div
+                  style={{
+                    fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)',
+                    marginTop: '6px', maxWidth: '18ch', lineHeight: 1.4,
+                  }}
+                >
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -114,12 +184,20 @@ export default function Hero() {
       </div>
 
       {/* Flecha scroll */}
-      <a href="#sistemas" aria-label="Ver más" style={{
-        position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)',
-        color: 'rgba(255,255,255,0.4)',
-        animation: 'fadeUp 1s 0.8s both',
-      }}>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+      <a
+        href="#sistemas"
+        aria-label="Ver sistemas"
+        style={{
+          position: 'absolute', bottom: '2.5rem', left: '50%',
+          transform: 'translateX(-50%)',
+          color: 'rgba(255,255,255,0.3)',
+          transition: 'color var(--transition)',
+          animation: 'fadeUp 1s 1s both',
+        }}
+        onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.7)'}
+        onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.3)'}
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
           <path d="M12 5v14M5 12l7 7 7-7"/>
         </svg>
       </a>

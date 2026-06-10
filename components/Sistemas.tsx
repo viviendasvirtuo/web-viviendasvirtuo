@@ -1,55 +1,69 @@
 'use client';
+import Link from 'next/link';
+
 const sistemas = [
   {
     id: 'coliving',
+    href: '/coliving',
     badge: 'Coliving',
     badgeClass: 'badge-coliving',
     title: 'Alquiler por habitaciones a largo plazo',
     desc: 'Ideal para viviendas compartidas. Gestionamos cada habitación de forma independiente con contratos estables, selección de perfiles compatibles y máxima ocupación garantizada.',
-    color: '#1a4a8a',
+    color: 'var(--color-coliving)',
+    colorRaw: '#1a4a8a',
     features: [
       'Contratos individuales por habitación',
       'Selección y verificación de inquilinos',
       'Gestión de zonas comunes',
       'Ingresos estables mes a mes',
     ],
-    ideal: 'Pisos de 3+ habitaciones',
-    rentabilidad: 'Alta',
-    estabilidad: 'Máxima',
+    meta: [
+      { label: 'Ideal para', val: 'Pisos 3+ hab.' },
+      { label: 'Rentabilidad', val: 'Alta' },
+      { label: 'Estabilidad', val: 'Máxima' },
+    ],
   },
   {
     id: 'temporal',
+    href: '/temporal',
     badge: 'Temporal',
     badgeClass: 'badge-temporal',
-    title: 'Estancias cortas para trabajo y estudio',
-    desc: 'Para trabajadores desplazados, estudiantes de máster o ciclos cortos. Flexibilidad en duración, máxima rotación controlada y precio por encima del mercado tradicional.',
-    color: '#1e7a5a',
+    title: 'Estancias de 1 a 6 meses para trabajo y estudio',
+    desc: 'Para trabajadores desplazados y estudiantes de ciclos cortos. Flexibilidad total en duración, máxima rotación controlada y precio por encima del alquiler tradicional.',
+    color: 'var(--color-temporal)',
+    colorRaw: '#1e7a5a',
     features: [
       'Estancias de 1 a 6 meses',
       'Check-in y check-out incluidos',
       'Limpieza y mantenimiento',
-      'Precio superior al alquiler tradicional',
+      'Precio superior al mercado',
     ],
-    ideal: 'Pisos céntricos amueblados',
-    rentabilidad: 'Muy alta',
-    estabilidad: 'Alta',
+    meta: [
+      { label: 'Ideal para', val: 'Pisos céntricos' },
+      { label: 'Rentabilidad', val: 'Muy alta' },
+      { label: 'Estabilidad', val: 'Alta' },
+    ],
   },
   {
     id: 'vacacional',
+    href: '/vacacional',
     badge: 'Vacacional',
     badgeClass: 'badge-vacacional',
     title: 'Apartamento completo para turismo',
-    desc: 'Máxima rentabilidad por noche. Gestionamos la presencia en plataformas (Airbnb, Booking), la comunicación con huéspedes, limpiezas y toda la operativa.',
-    color: '#c84820',
+    desc: 'Máxima rentabilidad por noche. Gestionamos la presencia en plataformas (Airbnb, Booking), comunicación con huéspedes, limpiezas y toda la operativa sin que intervengas.',
+    color: 'var(--color-vacacional)',
+    colorRaw: '#c84820',
     features: [
       'Alta en Airbnb, Booking y más',
       'Pricing dinámico por temporada',
       'Gestión completa de huéspedes',
       'Rentabilidad máxima del mercado',
     ],
-    ideal: 'Apartamentos turísticos',
-    rentabilidad: 'Máxima',
-    estabilidad: 'Media',
+    meta: [
+      { label: 'Ideal para', val: 'Apartamentos' },
+      { label: 'Rentabilidad', val: 'Máxima' },
+      { label: 'Estabilidad', val: 'Media' },
+    ],
   },
 ];
 
@@ -57,97 +71,197 @@ export default function Sistemas() {
   return (
     <section id="sistemas" className="section" style={{ background: 'var(--color-bg)' }}>
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: 'var(--space-16)' }}>
+
+        {/* Cabecera — alineada a la izquierda */}
+        <div style={{ marginBottom: 'var(--space-12)' }}>
           <p className="section-label">Nuestros sistemas</p>
-          <h2 className="section-title">Elige el modelo que mejor se adapta<br />a tu propiedad</h2>
-          <p className="section-subtitle" style={{ margin: '0 auto' }}>
-            No somos una inmobiliaria tradicional. Somos una empresa de gestión especializada con tres sistemas distintos para maximizar la rentabilidad de tu vivienda.
-          </p>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'flex-end',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: 'var(--space-4)',
+            }}
+          >
+            <h2
+              className="section-title"
+              style={{ margin: 0, maxWidth: '22ch' }}
+            >
+              Tres modelos. Una sola gestión.
+            </h2>
+            <p
+              className="section-subtitle"
+              style={{ maxWidth: '44ch', margin: 0 }}
+            >
+              No somos una inmobiliaria. Somos especialistas en gestión de alquiler con tres sistemas distintos para maximizar la rentabilidad de tu vivienda.
+            </p>
+          </div>
         </div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))',
-          gap: 'var(--space-6)',
-        }}>
-          {sistemas.map(s => (
-            <article key={s.id} style={{
-              background: 'var(--color-surface)',
-              borderRadius: 'var(--radius-xl)',
-              overflow: 'hidden',
-              boxShadow: 'var(--shadow-md)',
-              border: '1px solid var(--color-border)',
-              transition: 'all var(--transition-slow)',
-              display: 'flex',
-              flexDirection: 'column',
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.transform = 'translateY(-6px)';
-              el.style.boxShadow = 'var(--shadow-xl)';
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.transform = 'none';
-              el.style.boxShadow = 'var(--shadow-md)';
-            }}>
-              <div style={{
-                background: s.color,
-                padding: 'var(--space-8) var(--space-8) var(--space-6)',
-              }}>
-                <span className={`badge ${s.badgeClass}`} style={{ background: 'rgba(255,255,255,0.2)', color: '#fff', marginBottom: 'var(--space-4)' }}>
+        {/* Grid asimétrico: 1 grande + 2 pequeñas */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateRows: 'auto',
+            gap: 'var(--space-5)',
+          }}
+        >
+          {sistemas.map((s, i) => (
+            <article
+              key={s.id}
+              style={{
+                gridColumn: i === 0 ? 'span 2' : 'span 1',
+                background: 'var(--color-surface)',
+                borderRadius: 'var(--radius-xl)',
+                border: '1px solid var(--color-border)',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: i === 0 ? 'row' : 'column',
+                transition: 'box-shadow var(--transition-slow), transform var(--transition-slow)',
+                boxShadow: 'var(--shadow-sm)',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.boxShadow = 'var(--shadow-lg)';
+                el.style.transform = 'translateY(-3px)';
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.boxShadow = 'var(--shadow-sm)';
+                el.style.transform = 'none';
+              }}
+            >
+              {/* Franja de color lateral (grande) o superior (pequeñas) */}
+              <div
+                style={{
+                  background: s.colorRaw,
+                  width: i === 0 ? '6px' : 'auto',
+                  height: i === 0 ? 'auto' : '4px',
+                  flexShrink: 0,
+                }}
+              />
+
+              <div
+                style={{
+                  padding: i === 0 ? 'var(--space-10) var(--space-10)' : 'var(--space-7) var(--space-7)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  flex: 1,
+                }}
+              >
+                {/* Badge */}
+                <span className={`badge ${s.badgeClass}`} style={{ marginBottom: 'var(--space-4)', alignSelf: 'flex-start' }}>
                   {s.badge}
                 </span>
-                <h3 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'var(--text-xl)',
-                  fontWeight: 800,
-                  color: '#fff',
-                  lineHeight: 1.2,
-                }}>
+
+                {/* Título */}
+                <h3
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: i === 0 ? 'var(--text-xl)' : 'var(--text-lg)',
+                    fontWeight: 800,
+                    color: 'var(--color-text)',
+                    marginBottom: 'var(--space-3)',
+                    lineHeight: 1.2,
+                    letterSpacing: '-0.01em',
+                  }}
+                >
                   {s.title}
                 </h3>
-              </div>
 
-              <div style={{ padding: 'var(--space-6) var(--space-8)', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                <p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text-muted)', marginBottom: 'var(--space-6)', lineHeight: 1.65 }}>
+                {/* Descripción */}
+                <p
+                  style={{
+                    fontSize: 'var(--text-sm)',
+                    color: 'var(--color-text-muted)',
+                    lineHeight: 1.7,
+                    marginBottom: 'var(--space-6)',
+                    flex: i === 0 ? 1 : undefined,
+                    maxWidth: i === 0 ? '52ch' : '38ch',
+                  }}
+                >
                   {s.desc}
                 </p>
 
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', marginBottom: 'var(--space-6)', flex: 1 }}>
-                  {s.features.map(f => (
-                    <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 'var(--space-2)', fontSize: 'var(--text-sm)' }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={s.color} strokeWidth="2.5" style={{ flexShrink: 0, marginTop: '3px' }} aria-hidden="true">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                      <span style={{ color: 'var(--color-text)' }}>{f}</span>
-                    </li>
-                  ))}
-                </ul>
+                {/* Features — solo en la card grande */}
+                {i === 0 && (
+                  <ul
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: '1fr 1fr',
+                      gap: 'var(--space-2)',
+                      marginBottom: 'var(--space-8)',
+                    }}
+                  >
+                    {s.features.map(f => (
+                      <li
+                        key={f}
+                        style={{
+                          display: 'flex', alignItems: 'flex-start',
+                          gap: 'var(--space-2)', fontSize: 'var(--text-sm)',
+                        }}
+                      >
+                        <svg
+                          width="14" height="14" viewBox="0 0 24 24" fill="none"
+                          stroke={s.colorRaw} strokeWidth="3"
+                          style={{ flexShrink: 0, marginTop: '4px' }}
+                          aria-hidden="true"
+                        >
+                          <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        <span style={{ color: 'var(--color-text-muted)' }}>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
-                <div style={{
-                  display: 'grid', gridTemplateColumns: '1fr 1fr 1fr',
-                  gap: 'var(--space-2)',
-                  padding: 'var(--space-4)',
-                  background: 'var(--color-bg)',
-                  borderRadius: 'var(--radius-lg)',
-                  marginBottom: 'var(--space-6)',
-                }}>
-                  {[{ label: 'Ideal para', val: s.ideal }, { label: 'Rentabilidad', val: s.rentabilidad }, { label: 'Estabilidad', val: s.estabilidad }].map(m => (
-                    <div key={m.label} style={{ textAlign: 'center' }}>
-                      <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '4px' }}>{m.label}</div>
-                      <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: s.color }}>{m.val}</div>
-                    </div>
-                  ))}
+                {/* Meta + CTA */}
+                <div
+                  style={{
+                    marginTop: 'auto',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    flexWrap: 'wrap',
+                    gap: 'var(--space-4)',
+                    paddingTop: 'var(--space-6)',
+                    borderTop: '1px solid var(--color-border)',
+                  }}
+                >
+                  <div style={{ display: 'flex', gap: 'var(--space-6)', flexWrap: 'wrap' }}>
+                    {s.meta.map(m => (
+                      <div key={m.label}>
+                        <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '3px' }}>{m.label}</div>
+                        <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: s.colorRaw }}>{m.val}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <Link
+                    href={s.href}
+                    className="btn btn-outline btn-sm"
+                    style={{ borderColor: `${s.colorRaw}40`, color: s.colorRaw, whiteSpace: 'nowrap' }}
+                  >
+                    Ver sistema
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                      <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                  </Link>
                 </div>
-
-                <a href="#contacto" className="btn btn-outline" style={{ borderColor: s.color, color: s.color, justifyContent: 'center' }}>
-                  Me interesa este sistema
-                </a>
               </div>
             </article>
           ))}
         </div>
+
+        {/* Responsive: stack en móvil */}
+        <style>{`
+          @media (max-width: 768px) {
+            #sistemas .sistemas-grid article { grid-column: span 3 !important; flex-direction: column !important; }
+            #sistemas .sistemas-grid article > div:first-child { width: auto !important; height: 4px !important; }
+          }
+        `}</style>
       </div>
     </section>
   );

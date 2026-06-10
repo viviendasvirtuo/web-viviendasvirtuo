@@ -1,120 +1,154 @@
-'use client';
+import Link from 'next/link';
+
 export default function ComoFunciona() {
   const pasos = [
     {
-      num: '1',
+      num: '01',
       title: 'Contacta con nosotros',
       desc: 'Rellena el formulario o llámanos. En menos de 24h un experto de Virtuo se pone en contacto contigo para conocer tu situación.',
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.46 16z"/>
-        </svg>
-      ),
     },
     {
-      num: '2',
+      num: '02',
       title: 'Analizamos y recomendamos',
-      desc: 'Estudiamos tu propiedad, zona y objetivos. Te presentamos el sistema más rentable para ti con una estimación de ingresos real.',
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-          <circle cx="11" cy="11" r="8"/>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-      ),
+      desc: 'Estudiamos tu propiedad, zona y objetivos. Te presentamos el sistema más rentable con una estimación de ingresos real y sin compromiso.',
     },
     {
-      num: '3',
+      num: '03',
       title: 'Firmamos y activamos',
-      desc: 'Contrato claro y transparente. Nos encargamos de la preparación, fotografías y publicación. Tu vivienda está activa en días.',
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
-          <line x1="16" y1="13" x2="8" y2="13"/>
-          <line x1="16" y1="17" x2="8" y2="17"/>
-          <polyline points="10 9 9 9 8 9"/>
-        </svg>
-      ),
+      desc: 'Contrato claro y transparente. Nos encargamos de la preparación, fotografías y publicación. Tu vivienda está activa en pocos días.',
     },
     {
-      num: '4',
+      num: '04',
       title: 'Cobras cada mes',
-      desc: 'Liquidación puntual con informe detallado. Tú ves los números, nosotros hacemos el trabajo.',
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-          <rect x="2" y="5" width="20" height="14" rx="2"/>
-          <line x1="2" y1="10" x2="22" y2="10"/>
-        </svg>
-      ),
+      desc: 'Liquidación puntual con informe detallado. Tú ves los números en tiempo real, nosotros hacemos todo el trabajo.',
     },
   ];
 
   return (
-    <section id="como-funciona" className="section" style={{ background: 'var(--color-surface-2, var(--color-bg))' }}>
+    <section id="como-funciona" className="section" style={{ background: 'var(--color-bg)' }}>
       <div className="container">
+
+        {/* Cabecera */}
         <div style={{ textAlign: 'center', marginBottom: 'var(--space-16)' }}>
           <p className="section-label">El proceso</p>
-          <h2 className="section-title">De propietario preocupado<br />a propietario tranquilo</h2>
+          <h2 className="section-title">
+            De propietario preocupado<br />a propietario tranquilo
+          </h2>
           <p className="section-subtitle" style={{ margin: '0 auto' }}>
             Cuatro pasos para que tu vivienda empiece a generar ingresos sin que tengas que gestionar nada.
           </p>
         </div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(min(240px, 100%), 1fr))',
-          gap: 'var(--space-6)',
-          position: 'relative',
-        }}>
+        {/* Timeline horizontal */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: 'var(--space-4)',
+            position: 'relative',
+          }}
+        >
+          {/* Línea conectora */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              top: '28px',
+              left: 'calc(12.5% + 20px)',
+              right: 'calc(12.5% + 20px)',
+              height: '1px',
+              background: 'linear-gradient(90deg, var(--color-primary) 0%, rgba(26,74,138,0.15) 100%)',
+              zIndex: 0,
+            }}
+          />
+
           {pasos.map((paso, i) => (
-            <div key={paso.num} style={{
-              background: 'var(--color-surface)',
-              borderRadius: 'var(--radius-xl)',
-              padding: 'var(--space-8)',
-              boxShadow: 'var(--shadow-sm)',
-              border: '1px solid var(--color-border)',
-              position: 'relative',
-            }}>
-              <div style={{
-                width: '56px', height: '56px',
-                borderRadius: 'var(--radius-lg)',
-                background: 'var(--color-primary-light)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: 'var(--color-primary)',
-                marginBottom: 'var(--space-5)',
-              }}>
-                {paso.icon}
+            <div
+              key={paso.num}
+              style={{
+                background: 'var(--color-surface)',
+                borderRadius: 'var(--radius-xl)',
+                padding: 'var(--space-8) var(--space-6)',
+                border: '1px solid var(--color-border)',
+                boxShadow: 'var(--shadow-sm)',
+                position: 'relative',
+                zIndex: 1,
+              }}
+            >
+              {/* Número como dot */}
+              <div
+                style={{
+                  width: '40px', height: '40px',
+                  borderRadius: '50%',
+                  background: i === 0 ? 'var(--color-primary)' : 'var(--color-surface)',
+                  border: `2px solid ${i === 0 ? 'var(--color-primary)' : 'var(--color-border)'}`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  marginBottom: 'var(--space-5)',
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: 'var(--text-xs)', fontWeight: 900,
+                    color: i === 0 ? '#fff' : 'var(--color-text-faint)',
+                    fontFamily: 'var(--font-display)',
+                    letterSpacing: '0.04em',
+                  }}
+                >
+                  {paso.num}
+                </span>
               </div>
-              <div style={{
-                position: 'absolute', top: 'var(--space-6)', right: 'var(--space-6)',
-                fontSize: 'var(--text-3xl)', fontFamily: 'var(--font-display)',
-                fontWeight: 900, color: 'var(--color-border)',
-                lineHeight: 1, userSelect: 'none',
-              }}>{paso.num}</div>
-              <h3 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'var(--text-lg)',
-                fontWeight: 700,
-                color: 'var(--color-text)',
-                marginBottom: 'var(--space-3)',
-              }}>{paso.title}</h3>
-              <p style={{
-                fontSize: 'var(--text-sm)',
-                color: 'var(--color-text-muted)',
-                lineHeight: 1.65,
-              }}>{paso.desc}</p>
+
+              <h3
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'var(--text-base)',
+                  fontWeight: 700,
+                  color: 'var(--color-text)',
+                  marginBottom: 'var(--space-3)',
+                  lineHeight: 1.3,
+                }}
+              >
+                {paso.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: 'var(--text-sm)',
+                  color: 'var(--color-text-muted)',
+                  lineHeight: 1.65,
+                }}
+              >
+                {paso.desc}
+              </p>
             </div>
           ))}
         </div>
 
+        {/* Responsive: 2 cols en tablet, 1 col en móvil */}
+        <style>{`
+          @media (max-width: 900px) {
+            #como-funciona .container > div:nth-child(2) {
+              grid-template-columns: 1fr 1fr;
+            }
+            #como-funciona .container > div:nth-child(2) > div:first-child {
+              display: none;
+            }
+          }
+          @media (max-width: 540px) {
+            #como-funciona .container > div:nth-child(2) {
+              grid-template-columns: 1fr;
+            }
+          }
+        `}</style>
+
+        {/* CTA */}
         <div style={{ textAlign: 'center', marginTop: 'var(--space-12)' }}>
-          <a href="#contacto" className="btn btn-primary btn-lg">
+          <Link href="/contacto" className="btn btn-primary btn-lg">
             Empezar ahora — es gratis
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
               <line x1="5" y1="12" x2="19" y2="12"/>
               <polyline points="12 5 19 12 12 19"/>
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
