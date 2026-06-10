@@ -4,11 +4,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
-export const metadata = {
-  title: 'Contacto — Viviendas Virtuo',
-  description: 'Contacta con Viviendas Virtuo. Propietarios y inquilinos, estamos a tu disposición. Respuesta en menos de 24 horas.',
-};
-
 export default function ContactoPage() {
   const [tipo, setTipo] = useState<'propietario' | 'inquilino'>('propietario');
   const [sistema, setSistema] = useState('');
