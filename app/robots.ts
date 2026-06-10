@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/_next/'],
       },
     ],
-    sitemap: 'https://viviendas-virtuo.es/sitemap.xml',
-    host: 'https://viviendas-virtuo.es',
+    sitemap: 'https://viviendasvirtuo.com/sitemap.xml',
+    host: 'https://viviendasvirtuo.com',
   };
 }

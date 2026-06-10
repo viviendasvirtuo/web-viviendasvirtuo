@@ -5,7 +5,12 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Sobre Nosotros — Viviendas Virtuo',
-  description: 'Conoce Viviendas Virtuo: quiénes somos, nuestra historia y por qué somos distintos a una inmobiliaria tradicional. Gestión profesional de alquileres en Barcelona.',
+  description: 'Conoce Viviendas Virtuo: quiénes somos, cómo trabajamos y por qué somos diferentes a una inmobiliaria tradicional. Gestión profesional de alquiler en Barcelona.',
+  openGraph: {
+    title: 'Sobre Nosotros — Viviendas Virtuo',
+    description: 'Gestión profesional de alquiler en Barcelona. Coliving, temporal y vacacional con un equipo que se implica de verdad.',
+    url: 'https://viviendasvirtuo.com/sobre-nosotros',
+  },
 };
 
 export default function SobreNosotrosPage() {
@@ -14,70 +19,52 @@ export default function SobreNosotrosPage() {
       <Header />
       <main>
         {/* HERO */}
-        <section style={{
-          background: 'linear-gradient(135deg, #0f2d5e 0%, #1a4a8a 60%, #1e5aa8 100%)',
-          paddingTop: '140px',
-          paddingBottom: '80px',
-          position: 'relative',
-          overflow: 'hidden',
-        }}>
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(255,255,255,0.06) 0%, transparent 60%)', pointerEvents: 'none' }} />
+        <section style={{ background: 'linear-gradient(135deg, #0f2d5e 0%, #1a4a8a 100%)', paddingTop: '140px', paddingBottom: '80px' }}>
           <div className="container">
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '999px', padding: '6px 16px', marginBottom: '32px' }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#90caf9', display: 'inline-block' }} />
-              <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'var(--text-xs)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Quiénes somos</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px' }}>
+              <Link href="/" style={{ color: 'rgba(255,255,255,0.6)', fontSize: 'var(--text-sm)', textDecoration: 'none' }}>Inicio</Link>
+              <span style={{ color: 'rgba(255,255,255,0.3)' }}>›</span>
+              <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'var(--text-sm)', fontWeight: 600 }}>Sobre nosotros</span>
             </div>
-            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, color: 'white', lineHeight: 1.1, marginBottom: '24px', maxWidth: '680px' }}>
-              No somos una inmobiliaria.{' '}
-              <span style={{ color: '#90caf9' }}>Somos tu equipo de gestión.</span>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '999px', padding: '6px 16px', marginBottom: '24px' }}>
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#90caf9', display: 'inline-block' }} />
+              <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'var(--text-xs)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Viviendas Virtuo</span>
+            </div>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)', fontWeight: 900, color: 'white', lineHeight: 1.1, marginBottom: '20px', maxWidth: '700px' }}>
+              No somos una inmobiliaria.<br />
+              <span style={{ color: '#90caf9' }}>Somos gestión de verdad.</span>
             </h1>
             <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 'var(--text-lg)', maxWidth: '560px', lineHeight: 1.7 }}>
-              Viviendas Virtuo nació para hacer lo que las inmobiliarias no hacen: gestionar de verdad. Desde el primer inquilino hasta el último céntimo de la liquidación mensual.
+              Viviendas Virtuo nació para resolver lo que las inmobiliarias no resuelven: la gestión continua, el día a día, el detalle que marca la diferencia para propietarios e inquilinos.
             </p>
           </div>
         </section>
 
-        {/* NUESTRA HISTORIA */}
-        <section style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: 'var(--color-bg)' }}>
+        {/* QUÉ SOMOS */}
+        <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
           <div className="container">
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(480px, 100%), 1fr))',
-              gap: 'clamp(40px, 6vw, 80px)',
-              alignItems: 'center',
-            }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(480px,100%),1fr))', gap: 'clamp(40px,6vw,80px)', alignItems: 'center' }}>
               <div>
-                <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Nuestra historia</p>
-                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '24px' }}>
-                  Empezamos siendo propietarios frustrados
-                </h2>
-                <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-base)', lineHeight: 1.8, marginBottom: '20px', maxWidth: '52ch' }}>
-                  Conocemos perfectamente la sensación de confiar tu vivienda a una agencia y no volver a saber nada hasta que hay un problema. Inquilinos sin verificar, meses de vacíos entre contratos, reparaciones que nadie gestiona.
+                <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Quiénes somos</p>
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '20px' }}>Una empresa de gestión profesional de alquiler</h2>
+                <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.75, marginBottom: '16px', fontSize: 'var(--text-base)' }}>
+                  Gestionamos viviendas en Barcelona bajo tres sistemas distintos: coliving, temporal y vacacional. Cada sistema tiene su lógica, su público y su operativa. Nosotros la dominamos.
                 </p>
-                <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-base)', lineHeight: 1.8, marginBottom: '20px', maxWidth: '52ch' }}>
-                  Por eso creamos Viviendas Virtuo: una empresa que gestiona tu propiedad como si fuera la nuestra. Con los tres sistemas que el mercado de alquiler realmente necesita: coliving, temporal y vacacional.
-                </p>
-                <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-base)', lineHeight: 1.8, maxWidth: '52ch' }}>
-                  Operamos en Barcelona y área metropolitana, con un equipo pequeño y comprometido que conoce cada vivienda que gestiona.
+                <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.75, fontSize: 'var(--text-base)' }}>
+                  Para el propietario, somos el socio que convierte su piso en rentabilidad sin dolores de cabeza. Para el inquilino, somos el gestor que siempre está disponible y cumple lo que promete.
                 </p>
               </div>
-              {/* Métricas */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 {[
-                  { num: '3', label: 'Sistemas de gestión', sub: 'Coliving, Temporal y Vacacional' },
-                  { num: '+30%', label: 'Más rentabilidad', sub: 'vs. alquiler tradicional de media' },
-                  { num: '72h', label: 'Hasta primera reserva', sub: 'Tiempo medio desde publicación' },
-                  { num: '100%', label: 'Gestión delegada', sub: 'Sin intervención del propietario' },
-                ].map((m, i) => (
-                  <div key={i} style={{
-                    background: i % 2 === 0 ? 'white' : '#f0f4fa',
-                    border: '1px solid var(--color-border)',
-                    borderRadius: 'var(--radius-xl)',
-                    padding: '28px 24px',
-                  }}>
-                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 3vw, 2.8rem)', fontWeight: 900, color: 'var(--color-primary)', lineHeight: 1, marginBottom: '8px' }}>{m.num}</div>
-                    <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)', marginBottom: '4px' }}>{m.label}</div>
-                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', lineHeight: 1.5 }}>{m.sub}</div>
+                  { num: '3', label: 'Sistemas de gestión', sub: 'Coliving, Temporal, Vacacional' },
+                  { num: '+50', label: 'Viviendas gestionadas', sub: 'En Barcelona y área metropolitana' },
+                  { num: '98%', label: 'Ocupación media', sub: 'En los últimos 12 meses' },
+                  { num: '24h', label: 'Tiempo de respuesta', sub: 'A propietarios e inquilinos' },
+                ].map((s, i) => (
+                  <div key={i} style={{ background: i % 2 === 0 ? 'var(--color-primary)' : 'var(--color-surface)', borderRadius: 'var(--radius-xl)', padding: '24px 20px', border: i % 2 !== 0 ? '1px solid var(--color-border)' : 'none' }}>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem,3vw,2.4rem)', fontWeight: 900, color: i % 2 === 0 ? 'white' : 'var(--color-primary)', lineHeight: 1, marginBottom: '6px' }}>{s.num}</div>
+                    <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: i % 2 === 0 ? 'rgba(255,255,255,0.9)' : 'var(--color-text)', marginBottom: '4px' }}>{s.label}</div>
+                    <div style={{ fontSize: 'var(--text-xs)', color: i % 2 === 0 ? 'rgba(255,255,255,0.65)' : 'var(--color-text-muted)' }}>{s.sub}</div>
                   </div>
                 ))}
               </div>
@@ -85,106 +72,67 @@ export default function SobreNosotrosPage() {
           </div>
         </section>
 
-        {/* POR QUÉ SOMOS DISTINTOS */}
-        <section style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: '#f0f4fa' }}>
+        {/* NUESTRA FORMA DE TRABAJAR */}
+        <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: '#f0f4fa' }}>
           <div className="container">
-            <div style={{ maxWidth: '680px', marginBottom: '56px' }}>
-              <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>La diferencia Virtuo</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>
-                No vendemos pisos. Los gestionamos.
-              </h2>
+            <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+              <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Cómo trabajamos</p>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>Lo que nos diferencia</h2>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))', gap: '2px', borderRadius: 'var(--radius-xl)', overflow: 'hidden', border: '1px solid var(--color-border)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px,1fr))', gap: '24px' }}>
               {[
                 {
-                  title: 'Inmobiliaria tradicional',
-                  items: [
-                    'Te cobra por buscar un inquilino y desaparece',
-                    'No gestiona incidencias ni mantenimiento',
-                    'Alquiler completo o nada',
-                    'Sin informes ni transparencia',
-                    'Vacíos entre contratos sin solución proactiva',
-                  ],
-                  dark: false,
-                  accent: 'var(--color-text-faint)',
+                  title: 'Gestión integral, no intermediación',
+                  desc: 'No ponemos a propietarios e inquilinos en contacto y nos vamos. Nos quedamos. Gestionamos el contrato, el mantenimiento, las incidencias y la relación diaria.',
                 },
                 {
-                  title: 'Viviendas Virtuo',
-                  items: [
-                    'Gestión continua: inquilinos, contratos, cobros e incidencias',
-                    'Mantenimiento gestionado sin molestar al propietario',
-                    '3 sistemas adaptados a cada tipo de vivienda',
-                    'Informe mensual con ingresos y ocupación',
-                    'Buscamos el siguiente inquilino antes de que se vaya el actual',
-                  ],
-                  dark: true,
-                  accent: '#90caf9',
+                  title: 'Tres sistemas, una sola empresa',
+                  desc: 'Coliving para convivencia organizada. Temporal para estancias cortas. Vacacional para máxima rentabilidad turística. Cada piso va al sistema que le va mejor.',
                 },
-              ].map((col) => (
-                <div
-                  key={col.title}
-                  style={{
-                    background: col.dark ? 'linear-gradient(160deg, #0f2d5e, #1a4a8a)' : 'white',
-                    padding: 'clamp(32px, 4vw, 48px)',
-                  }}
-                >
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontWeight: 800, color: col.dark ? 'white' : 'var(--color-text)', marginBottom: '28px' }}>
-                    {col.title}
-                  </h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                    {col.items.map((item, i) => (
-                      <li key={i} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                        <span style={{
-                          flexShrink: 0,
-                          width: '20px',
-                          height: '20px',
-                          borderRadius: '50%',
-                          background: col.dark ? 'rgba(144,202,249,0.2)' : 'rgba(0,0,0,0.06)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          marginTop: '1px',
-                        }}>
-                          {col.dark ? (
-                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                              <path d="M2 5l2 2 4-4" stroke="#90caf9" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                          ) : (
-                            <svg width="8" height="2" viewBox="0 0 8 2" fill="none" aria-hidden="true">
-                              <path d="M1 1h6" stroke="#9ca3af" strokeWidth="1.5" strokeLinecap="round" />
-                            </svg>
-                          )}
-                        </span>
-                        <span style={{ fontSize: 'var(--text-sm)', color: col.dark ? 'rgba(255,255,255,0.82)' : 'var(--color-text-muted)', lineHeight: 1.65 }}>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                {
+                  title: 'Transparencia total con el propietario',
+                  desc: 'Informe mensual de ocupación, ingresos y gastos. Sin sorpresas, sin letra pequeña. El propietario sabe exactamente qué pasa con su vivienda.',
+                },
+                {
+                  title: 'Inquilinos verificados',
+                  desc: 'Proceso de selección propio: verificación de identidad, solvencia y referencias. Priorizamos la calidad de convivencia sobre la velocidad de cierre.',
+                },
+                {
+                  title: 'Equipo accesible',
+                  desc: 'Hay una persona real detrás de cada vivienda. Con nombre. Con teléfono. Que coge las llamadas y resuelve los problemas.',
+                },
+                {
+                  title: 'Barcelona como especialidad',
+                  desc: 'Conocemos el mercado barcelonés en profundidad: sus barrios, su normativa, su demanda real. No gestionamos en abstracto.',
+                },
+              ].map((item, i) => (
+                <div key={i} style={{ background: 'white', borderRadius: 'var(--radius-xl)', padding: '28px 24px', border: '1px solid var(--color-border)' }}>
+                  <div style={{ width: '32px', height: '3px', background: 'var(--color-primary)', borderRadius: '2px', marginBottom: '16px' }} />
+                  <h3 style={{ fontWeight: 700, fontSize: 'var(--text-base)', color: 'var(--color-text)', marginBottom: '10px', lineHeight: 1.3 }}>{item.title}</h3>
+                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.7, margin: 0 }}>{item.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* NUESTROS VALORES */}
-        <section style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: 'var(--color-bg)' }}>
+        {/* LOS TRES SISTEMAS */}
+        <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
           <div className="container">
-            <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-              <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Cómo trabajamos</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>
-                Nuestros principios
-              </h2>
+            <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)' }}>Nuestros tres sistemas</h2>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px,1fr))', gap: '20px' }}>
               {[
-                { num: '01', title: 'Transparencia total', desc: 'Informe mensual con cada ingreso, cada gasto y cada gestión realizada. Sin sorpresas, sin letra pequeña.' },
-                { num: '02', title: 'Proactividad', desc: 'No esperamos a que surjan problemas. Los anticipamos: buscamos inquilino antes de que el piso quede libre.' },
-                { num: '03', title: 'Selección rigurosa', desc: 'Verificamos documentación, solvencia y referencias de cada inquilino. Tu vivienda está en buenas manos.' },
-                { num: '04', title: 'Adaptación al propietario', desc: 'No todos los propietarios quieren lo mismo. Por eso tenemos 3 sistemas y escuchamos antes de proponer.' },
-              ].map((v, i) => (
-                <div key={i} style={{ borderTop: '2px solid var(--color-primary)', paddingTop: '24px' }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', fontWeight: 900, color: 'var(--color-border)', marginBottom: '12px' }}>{v.num}</div>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-text)', marginBottom: '10px' }}>{v.title}</h3>
-                  <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)', lineHeight: 1.7, margin: 0 }}>{v.desc}</p>
+                { href: '/coliving', color: '#0f2d5e', label: 'Coliving', desc: 'Habitaciones a medio-largo plazo con comunidad gestionada. Estable, rentable y sin conflictos.', tag: 'Largo plazo' },
+                { href: '/temporal', color: '#008f58', label: 'Temporal', desc: 'Estancias de 1 a 6 meses para trabajadores, estudiantes y profesionales en tránsito.', tag: '1–6 meses' },
+                { href: '/vacacional', color: '#b84b00', label: 'Vacacional', desc: 'Apartamento completo para turistas. Gestión integral: check-in, limpieza y atención al huésped.', tag: 'Turismo' },
+              ].map((s) => (
+                <div key={s.href} style={{ background: s.color, borderRadius: 'var(--radius-xl)', padding: '32px 24px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <span style={{ display: 'inline-block', background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.25)', borderRadius: '999px', padding: '4px 14px', fontSize: 'var(--text-xs)', fontWeight: 700, color: 'white', alignSelf: 'flex-start' }}>{s.tag}</span>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', fontWeight: 800, color: 'white', lineHeight: 1.1 }}>{s.label}</h3>
+                  <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 'var(--text-sm)', lineHeight: 1.65, flex: 1 }}>{s.desc}</p>
+                  <Link href={s.href} style={{ display: 'inline-flex', alignItems: 'center', background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', borderRadius: 'var(--radius-lg)', padding: '10px 20px', color: 'white', fontSize: 'var(--text-sm)', fontWeight: 600, textDecoration: 'none', alignSelf: 'flex-start' }}>Ver sistema →</Link>
                 </div>
               ))}
             </div>
@@ -192,21 +140,13 @@ export default function SobreNosotrosPage() {
         </section>
 
         {/* CTA */}
-        <section style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: 'linear-gradient(135deg, #0f2d5e 0%, #1a4a8a 100%)', textAlign: 'center' }}>
+        <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'linear-gradient(135deg, #0f2d5e, #1a4a8a)', textAlign: 'center' }}>
           <div className="container">
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, color: 'white', marginBottom: '16px' }}>
-              ¿Hablamos?
-            </h2>
-            <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 'var(--text-lg)', maxWidth: '480px', margin: '0 auto 40px', lineHeight: 1.7 }}>
-              Sin compromiso. Cuéntanos tu vivienda y te hacemos una propuesta en menos de 48 horas.
-            </p>
-            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
-              <Link href="/contacto" className="btn btn-primary btn-lg" style={{ background: 'white', color: '#1a4a8a' }}>
-                Contactar ahora
-              </Link>
-              <Link href="/faq" className="btn btn-lg" style={{ border: '1.5px solid rgba(255,255,255,0.4)', color: 'white', background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)' }}>
-                Ver preguntas frecuentes
-              </Link>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,3vw,2.2rem)', fontWeight: 800, color: 'white', marginBottom: '16px' }}>¿Hablamos?</h2>
+            <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 'var(--text-lg)', maxWidth: '460px', margin: '0 auto 36px', lineHeight: 1.7 }}>Si tienes una vivienda en Barcelona o buscas alojamiento gestionado, contáctanos.</p>
+            <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link href="/propietarios" style={{ display: 'inline-flex', alignItems: 'center', background: 'white', color: '#0f2d5e', fontWeight: 700, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Soy propietario</Link>
+              <Link href="/inquilinos" style={{ display: 'inline-flex', alignItems: 'center', border: '1.5px solid rgba(255,255,255,0.5)', color: 'white', background: 'rgba(255,255,255,0.08)', fontWeight: 600, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Busco alojamiento</Link>
             </div>
           </div>
         </section>

@@ -4,8 +4,6 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = {
   title: 'Alquiler Temporal — Viviendas Virtuo',
   description: 'Habitaciones de alquiler temporal en Barcelona para trabajadores, estudiantes y profesionales. Estancias de 1 a 6 meses gestionadas profesionalmente.',
