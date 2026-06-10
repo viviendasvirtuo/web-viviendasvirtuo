@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-
     const { tipo, nombre, email, telefono, sistema, mensaje, created_at } = body;
 
     if (!nombre || !email) {
@@ -14,17 +12,29 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { error } = await supabase.from('leads').insert([
-      {
-        tipo,
-        nombre,
-        email,
-        telefono: telefono || null,
-        sistema: sistema || null,
-        mensaje: mensaje || null,
-        created_at,
-      },
-    ]);
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseKey) {
+      console.error('Faltan variables de entorno de Supabase');
+      return NextResponse.json(
+        { error: 'Error de configuracion del servidor' },
+        { status: 500 }
+      );
+    }
+
+    const { createClient } = await import('@supabase/supabase-js');
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const { error } = await supabase.from('leads').insert([{
+      tipo,
+      nombre,
+      email,
+      telefono: telefono || null,
+      sistema: sistema || null,
+      mensaje: mensaje || null,
+      created_at,
+    }]);
 
     if (error) {
       console.error('Supabase error:', error);
