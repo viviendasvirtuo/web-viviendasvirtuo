@@ -4,94 +4,95 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Preguntas Frecuentes — Viviendas Virtuo',
-  description: 'Respuestas a las dudas más habituales sobre la gestión de alquiler con Viviendas Virtuo. Para propietarios e inquilinos en Barcelona.',
+  title: 'Preguntas frecuentes — Viviendas Virtuo',
+  description: 'Respuestas a las dudas más comunes sobre la gestión de alquiler con Viviendas Virtuo: coliving, temporal y vacacional. Para propietarios e inquilinos.',
   openGraph: {
-    title: 'FAQ — Viviendas Virtuo',
-    description: 'Dudas frecuentes de propietarios e inquilinos sobre los sistemas Coliving, Temporal y Vacacional.',
-    url: 'https://www.viviendasvirtuo.com/faq',
+    title: 'Preguntas frecuentes — Viviendas Virtuo',
+    description: 'Resolvemos tus dudas sobre coliving, alquiler temporal y vacacional en Barcelona.',
+    url: 'https://viviendas-virtuo.es/faq',
   },
 };
 
-const secciones = [
+const faqs: { categoria: string; color: string; items: { q: string; a: string }[] }[] = [
   {
-    id: 'propietarios',
-    titulo: 'Para propietarios',
+    categoria: 'Para propietarios',
     color: '#1a4a8a',
-    faqs: [
+    items: [
       {
-        p: '¿Tengo que hacer algo después de firmar con vosotros?',
-        r: 'No. Una vez firmado el contrato de gestión, nosotros nos encargamos de todo: buscar inquilinos, firmar contratos, cobrar rentas, gestionar incidencias y coordinar salidas y entradas. Tú recibes el importe acordado cada mes.',
+        q: '¿Qué hace exactamente Virtuo con mi vivienda?',
+        a: 'Nos encargamos de todo el ciclo: publicar el anuncio con fotos profesionales, seleccionar y verificar inquilinos, redactar contratos, cobrar rentas, gestionar incidencias y mantenimiento, y enviarte un informe mensual con los resultados. Tú solo recibes la liquidación.',
       },
       {
-        p: '¿Cómo decidís qué sistema es el mejor para mi vivienda?',
-        r: 'Evaluamos la ubicación, el tamaño, el estado y tus objetivos (estabilidad o rentabilidad máxima). Con esos datos te recomendamos Coliving, Temporal o Vacacional y te mostramos la previsión de ingresos de cada opción.',
+        q: '¿Cuánto cobráis por la gestión?',
+        a: 'Nuestra comisión se aplica sobre los ingresos generados, sin cuotas fijas mensuales. El porcentaje exacto depende del sistema elegido (coliving, temporal o vacacional) y de las características de la vivienda. Te lo explicamos en detalle en la primera reunión, sin letra pequeña.',
       },
       {
-        p: '¿Cuánto tiempo tardáis en encontrar inquilinos?',
-        r: 'En Coliving y Temporal, menos de 15 días en la mayoría de casos. En Vacacional, la vivienda empieza a recibir reservas desde el primer día de publicación en plataformas.',
+        q: '¿Puedo recuperar mi vivienda cuando quiera?',
+        a: 'Sí. Los contratos de gestión incluyen un preaviso razonable para poder organizar la salida de los inquilinos de forma ordenada y legal. No hay penalizaciones desproporcionadas. Si necesitas la vivienda, hablamos y lo resolvemos.',
       },
       {
-        p: '¿Qué pasa si hay daños en la vivienda?',
-        r: 'Gestionamos la incidencia, evaluamos si corresponde al inquilino o al desgaste normal, y coordinamos la reparación. Tenemos proveedores de confianza con tiempos de respuesta garantizados.',
+        q: '¿Qué sistema me conviene más: coliving, temporal o vacacional?',
+        a: 'Depende de la ubicación, el tamaño y tus objetivos. El coliving funciona muy bien con viviendas de 3+ habitaciones en zonas universitarias o con buenas comunicaciones. El temporal es ideal para pisos de 1-3 habitaciones cerca de polígonos, hospitales o universidades. El vacacional requiere licencia turística y ubicación con alta demanda. En la visita gratuita analizamos qué encaja mejor con tu caso concreto.',
       },
       {
-        p: '¿Puedo recuperar mi vivienda cuando quiera?',
-        r: 'Sí, con el preaviso indicado en el contrato de gestión. Coordinamos la salida de los inquilinos y te devolvemos la vivienda en perfectas condiciones.',
+        q: '¿Virtuo hace las reparaciones o tengo que pagarlas yo?',
+        a: 'Las reparaciones por uso normal o desgaste se gestionan a través de Virtuo y su coste corre a cargo del propietario (como en cualquier arrendamiento). Lo que hacemos es encargarnos de toda la gestión: contactar con el técnico, supervisar el trabajo y descontarlo de la liquidación mensual. No tendrás que llamar a nadie ni organizar nada.',
       },
       {
-        p: '¿Cuál es vuestra comisión de gestión?',
-        r: 'Depende del sistema y el tipo de vivienda. Te lo explicamos en detalle en la primera reunión, sin compromisos. No hay costes ocultos.',
-      },
-    ],
-  },
-  {
-    id: 'inquilinos',
-    titulo: 'Para inquilinos',
-    color: '#1a6b52',
-    faqs: [
-      {
-        p: '¿Las habitaciones están amuebladas?',
-        r: 'Sí. Todas las habitaciones incluyen cama, colchón, ropa de cama, escritorio, silla y armario. Llegas con tu maleta y ya puedes entrar.',
-      },
-      {
-        p: '¿Los suministros están incluidos en el precio?',
-        r: 'En los sistemas Coliving y Temporal, sí: luz, agua, gas e internet están incluidos. El precio que ves es el precio que pagas.',
-      },
-      {
-        p: '¿Cuánto tiempo mínimo tengo que quedarme?',
-        r: 'En Coliving, el mínimo habitual es 3 meses. En Temporal, desde 1 mes. Si tienes una situación especial, consúltanos y buscamos solución.',
-      },
-      {
-        p: '¿Cómo se firma el contrato?',
-        r: 'Todo el proceso es digital: visita presencial o virtual, firma electrónica y pago del primer mes y fianza por transferencia. Sin papeles, sin desplazamientos innecesarios.',
-      },
-      {
-        p: '¿Qué hago si hay una avería en la habitación?',
-        r: 'Nos lo comunicas por nuestro canal de incidencias y lo gestionamos. El tiempo de respuesta garantizado es de 48h para incidencias no urgentes y el mismo día para urgencias.',
-      },
-      {
-        p: '¿Puedo ver la habitación antes de reservar?',
-        r: 'Siempre. Organizamos visita presencial o videollamada con la habitación real, no con fotos de archivo. Lo que ves es lo que hay.',
+        q: '¿Qué pasa si un inquilino no paga?',
+        a: 'Nuestro proceso de selección minimiza este riesgo. En caso de impago, activamos el protocolo legal correspondiente y gestionamos la situación. Dependiendo del contrato, también podemos ofrecerte coberturas adicionales frente a impagos.',
       },
     ],
   },
   {
-    id: 'sistemas',
-    titulo: 'Sobre los sistemas',
-    color: '#7c3d1a',
-    faqs: [
+    categoria: 'Para inquilinos',
+    color: '#0d3b2e',
+    items: [
       {
-        p: '¿Cuál es la diferencia entre Coliving y Temporal?',
-        r: 'El Coliving está pensado para estancias estables de 3 meses en adelante, con comunidad de residentes seleccionados y zonas comunes cuidadas. El Temporal es más flexible, desde 1 mes, orientado a trabajadores o estudiantes con una fecha de vuelta definida.',
+        q: '¿Cómo puedo ver una habitación o apartamento disponible?',
+        a: 'Entra en la sección de inquilinos, rellena el formulario con lo que buscas o escríbenos directamente. Te responderemos en menos de 24 horas con las opciones disponibles que se ajusten a tu perfil.',
       },
       {
-        p: '¿El sistema Vacacional es solo para apartamentos turísticos?',
-        r: 'Sí. El sistema Vacacional gestiona apartamentos completos en plataformas como Airbnb o Booking. No es compatible con habitaciones sueltas.',
+        q: '¿Qué documentación necesito para alquilar?',
+        a: 'En general pedimos DNI o pasaporte, número de cuenta bancaria y justificante de ingresos o situación laboral (contrato de trabajo, carta de admisión universitaria, etc.). El proceso es ágil y sin burocracia innecesaria.',
       },
       {
-        p: '¿Puedo tener una vivienda en dos sistemas a la vez?',
-        r: 'No, cada vivienda opera bajo un único sistema. Si tienes varios inmuebles, cada uno puede estar en un sistema diferente según sus características.',
+        q: '¿Cuánto es la fianza?',
+        a: 'La fianza equivale a una mensualidad, conforme a la Ley de Arrendamientos Urbanos. Se devuelve íntegra al finalizar el contrato si la habitación o apartamento está en buen estado.',
+      },
+      {
+        q: '¿Los suministros están incluidos en el precio?',
+        a: 'En el coliving, generalmente sí: agua, luz, gas, internet y comunidad están incluidos en la renta mensual. En el alquiler temporal y vacacional depende del contrato específico. Te lo indicamos siempre en el anuncio y antes de firmar.',
+      },
+      {
+        q: '¿A quién llamo si hay un problema en la vivienda?',
+        a: 'A nosotros, directamente. Virtuo es tu punto de contacto para cualquier incidencia: avería, problema con el edificio, consulta sobre el contrato. No tienes que buscar al propietario ni esperar días para tener respuesta.',
+      },
+      {
+        q: '¿Puedo quedarme más tiempo del acordado inicialmente?',
+        a: 'En muchos casos sí. Habla con nosotros antes de que venza tu contrato y buscamos la mejor solución según la disponibilidad de la vivienda y tus necesidades.',
+      },
+    ],
+  },
+  {
+    categoria: 'Sobre los sistemas',
+    color: '#7c3a00',
+    items: [
+      {
+        q: '¿En qué se diferencia el coliving del alquiler de piso compartido normal?',
+        a: 'En el coliving de Virtuo cada habitación tiene su propio contrato de arrendamiento individual. El inquilino no depende de que los demás paguen ni tiene responsabilidad sobre las zonas comunes más allá de su uso correcto. Nosotros coordinamos todo lo relativo a la vivienda.',
+      },
+      {
+        q: '¿Cuánto tiempo mínimo puedo alquilar con el sistema temporal?',
+        a: 'El alquiler temporal está pensado para estancias de entre 1 y 11 meses. Es ideal para trabajadores desplazados, estudiantes de ciclos cortos o personas en una transición vital. No requiere empadronamiento ni compromiso a largo plazo.',
+      },
+      {
+        q: '¿El apartamento vacacional necesita licencia turística?',
+        a: 'Sí. Para operar legalmente en el alquiler vacacional en Cataluña es imprescindible disponer de la HUTB (Habitatge d'Ús Turístic de Barcelona) o licencia equivalente según el municipio. Asesoramos al propietario en este proceso, aunque la licencia es responsabilidad del titular de la vivienda.',
+      },
+      {
+        q: '¿Virtuo solo trabaja en Barcelona?',
+        a: 'Actualmente operamos principalmente en Barcelona y área metropolitana (Badalona, Hospitalet, Sant Adrià, etc.). Si tienes una propiedad fuera de esta zona, consúltanos igualmente, ya que estamos ampliando nuestra cobertura.',
       },
     ],
   },
@@ -102,75 +103,50 @@ export default function FaqPage() {
     <>
       <Header />
       <main>
+
         {/* HERO */}
         <section style={{
+          background: 'linear-gradient(135deg, #0f2d5e 0%, #1a4a8a 60%, #1e5aa8 100%)',
           paddingTop: '140px',
           paddingBottom: '80px',
-          background: 'linear-gradient(160deg, #0f2d5e 0%, #1a4a8a 60%, #1e5ba8 100%)',
           position: 'relative',
           overflow: 'hidden',
         }}>
-          <div style={{
-            position: 'absolute', inset: 0,
-            backgroundImage: 'radial-gradient(circle at 70% 30%, rgba(144,202,249,0.07) 0%, transparent 50%)',
-            pointerEvents: 'none',
-          }} />
-          <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px', flexWrap: 'wrap' }}>
-              <Link href="/" style={{ color: 'rgba(255,255,255,0.5)', fontSize: 'var(--text-sm)', textDecoration: 'none' }}>Inicio</Link>
-              <span style={{ color: 'rgba(255,255,255,0.3)' }}>›</span>
-              <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'var(--text-sm)', fontWeight: 600 }}>Preguntas frecuentes</span>
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 50%)', pointerEvents: 'none' }} />
+          <div className="container">
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '999px', padding: '6px 16px', marginBottom: '32px' }}>
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#90caf9', display: 'inline-block' }} />
+              <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'var(--text-xs)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Preguntas frecuentes</span>
             </div>
-            <h1 style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(2rem, 4vw, 3.2rem)',
-              fontWeight: 900,
-              color: 'white',
-              lineHeight: 1.1,
-              marginBottom: '20px',
-              maxWidth: '600px',
-            }}>
-              Todo lo que necesitas saber antes de empezar
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, color: 'white', lineHeight: 1.1, marginBottom: '24px', maxWidth: '680px' }}>
+              Resolvemos tus dudas{' '}
+              <span style={{ color: '#90caf9' }}>sin rodeos.</span>
             </h1>
-            <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 'var(--text-lg)', maxWidth: '480px', lineHeight: 1.7, marginBottom: '36px' }}>
-              Preguntas habituales de propietarios, inquilinos y curiosos sobre cómo funciona Viviendas Virtuo.
+            <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 'var(--text-lg)', maxWidth: '540px', lineHeight: 1.7 }}>
+              Las preguntas que más nos hacen propietarios e inquilinos, respondidas con honestidad. Si no encuentras lo que buscas, escríbenos.
             </p>
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              {secciones.map(s => (
-                <a key={s.id} href={`#${s.id}`} style={{
-                  background: 'rgba(255,255,255,0.12)',
-                  border: '1px solid rgba(255,255,255,0.2)',
-                  color: 'white',
-                  borderRadius: 'var(--radius-full)',
-                  padding: '8px 18px',
-                  fontSize: 'var(--text-sm)',
-                  fontWeight: 600,
-                  textDecoration: 'none',
-                }}>{s.titulo}</a>
-              ))}
-            </div>
           </div>
         </section>
 
-        {/* FAQs */}
-        {secciones.map(sec => (
-          <section key={sec.id} id={sec.id} style={{ padding: 'clamp(60px,8vw,100px) 0', background: sec.id === 'inquilinos' ? '#f0f4fa' : 'var(--color-bg)' }}>
-            <div className="container">
-              <div style={{ maxWidth: '760px', margin: '0 auto' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '40px' }}>
-                  <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: sec.color, flexShrink: 0 }} />
-                  <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.4rem,2vw,1.8rem)', fontWeight: 800, color: 'var(--color-text)', margin: 0 }}>{sec.titulo}</h2>
+        {/* FAQ POR CATEGORÍAS */}
+        <section style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: 'var(--color-bg)' }}>
+          <div className="container" style={{ maxWidth: '820px' }}>
+            {faqs.map((cat) => (
+              <div key={cat.categoria} style={{ marginBottom: 'clamp(48px, 6vw, 72px)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '32px' }}>
+                  <div style={{ width: '4px', height: '32px', background: cat.color, borderRadius: '2px', flexShrink: 0 }} />
+                  <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.3rem, 2vw, 1.7rem)', fontWeight: 800, color: 'var(--color-text)', margin: 0 }}>{cat.categoria}</h2>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {sec.faqs.map((faq, i) => (
-                    <details key={i} style={{
-                      background: 'var(--color-surface)',
-                      border: '1px solid var(--color-border)',
-                      borderRadius: 'var(--radius-xl)',
-                      overflow: 'hidden',
-                    }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+                  {cat.items.map((item, i) => (
+                    <details
+                      key={i}
+                      style={{
+                        borderBottom: '1px solid var(--color-border)',
+                      }}
+                    >
                       <summary style={{
-                        padding: 'clamp(16px,2vw,22px) clamp(18px,2.5vw,28px)',
+                        padding: '20px 4px',
                         cursor: 'pointer',
                         fontFamily: 'var(--font-display)',
                         fontSize: 'var(--text-base)',
@@ -181,34 +157,44 @@ export default function FaqPage() {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         gap: '16px',
+                        userSelect: 'none',
                       }}>
-                        <span>{faq.p}</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ flexShrink: 0, color: 'var(--color-text-muted)' }} aria-hidden="true">
-                          <path d="M6 9l6 6 6-6"/>
+                        <span>{item.q}</span>
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
+                          <path d="M4 6.5L9 11.5L14 6.5" stroke={cat.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </summary>
-                      <div style={{
-                        padding: '0 clamp(18px,2.5vw,28px) clamp(16px,2vw,22px)',
-                        borderTop: '1px solid var(--color-border)',
-                      }}>
-                        <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.75, fontSize: 'var(--text-base)', margin: '16px 0 0' }}>{faq.r}</p>
-                      </div>
+                      <p style={{
+                        padding: '0 4px 20px',
+                        color: 'var(--color-text-muted)',
+                        fontSize: 'var(--text-base)',
+                        lineHeight: 1.75,
+                        margin: 0,
+                        maxWidth: '65ch',
+                      }}>{item.a}</p>
                     </details>
                   ))}
                 </div>
               </div>
-            </div>
-          </section>
-        ))}
-
-        {/* CTA */}
-        <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'linear-gradient(135deg, #0f2d5e, #1a4a8a)', textAlign: 'center' }}>
-          <div className="container">
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.4rem,2.5vw,2rem)', fontWeight: 800, color: 'white', marginBottom: '14px' }}>¿No encuentras tu respuesta?</h2>
-            <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 'var(--text-base)', maxWidth: '400px', margin: '0 auto 32px', lineHeight: 1.7 }}>Escríbenos directamente y te contestamos en menos de 24h.</p>
-            <Link href="/contacto" style={{ background: 'white', color: '#1a4a8a', fontWeight: 700, padding: '14px 32px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Contactar con el equipo</Link>
+            ))}
           </div>
         </section>
+
+        {/* ¿NO ENCUENTRAS TU DUDA? */}
+        <section style={{ padding: 'clamp(48px, 6vw, 80px) 0', background: '#f0f4fa' }}>
+          <div className="container" style={{ maxWidth: '640px', textAlign: 'center' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', fontWeight: 800, color: 'var(--color-text)', marginBottom: '14px' }}>
+              ¿No encuentras lo que buscas?
+            </h2>
+            <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-base)', lineHeight: 1.7, marginBottom: '32px' }}>
+              Escríbenos o llámanos. Respondemos todas las consultas en menos de 24 horas laborables.
+            </p>
+            <Link href="/contacto" className="btn btn-primary btn-lg">
+              Hacer una pregunta
+            </Link>
+          </div>
+        </section>
+
       </main>
       <Footer />
     </>
