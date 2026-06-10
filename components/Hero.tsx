@@ -74,7 +74,7 @@ export default function Hero() {
         />
       </div>
 
-      {/* Contenido principal */}
+      {/* Contenido principal — centrado horizontalmente en el 54% izquierdo */}
       <div
         style={{
           position: 'relative',
@@ -84,12 +84,13 @@ export default function Hero() {
           flex: 1,
           display: 'flex',
           alignItems: 'flex-start',
-          paddingLeft: 'clamp(2rem, 6vw, 7rem)',
+          justifyContent: 'center',
+          paddingLeft: 'clamp(1rem, 4vw, 3rem)',
           paddingRight: 'clamp(1rem, 4vw, 3rem)',
         }}
       >
-        {/* Caja de contenido — ocupa ~52% del viewport, las frases llegan casi al centro */}
-        <div style={{ width: '100%', maxWidth: '56ch' }}>
+        {/* Caja de texto centrada en la mitad izquierda del viewport */}
+        <div style={{ width: '56ch', maxWidth: '56ch', marginLeft: 'clamp(0px, 4vw, 6vw)', marginRight: 'auto' }}>
 
           {/* Badge */}
           <div
