@@ -62,20 +62,30 @@ export default function Hero() {
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #091525 0%, transparent 30%)' }} />
       </div>
 
-      {/* Contenido principal — mismo padding-inline que .container, SIN margin-inline auto */}
+      {/*
+        Columna izquierda: ocupa el 54% del ancho (lo que no es imagen).
+        El bloque de texto dentro tiene margin-left:auto para quedar
+        pegado al borde derecho de esa columna, rozando la imagen.
+        Padding derecho de seguridad: 3rem.
+      */}
       <div
         style={{
           position: 'relative',
           zIndex: 1,
           paddingTop: '130px',
           paddingBottom: '80px',
-          paddingInline: 'clamp(var(--space-4), 4vw, var(--space-12))',
+          paddingLeft: 'clamp(var(--space-4), 3vw, var(--space-8))',
+          paddingRight: 0,
+          width: '54%',
           flex: 1,
           display: 'flex',
-          alignItems: 'flex-start',
+          flexDirection: 'column',
+          justifyContent: 'center',
         }}
+        className="hero-col"
       >
-        <div style={{ width: '100%', maxWidth: '56ch' }}>
+        {/* margin-left:auto empuja el bloque hacia la derecha de la columna */}
+        <div style={{ marginLeft: 'auto', maxWidth: '58ch', paddingRight: 'clamp(var(--space-6), 3vw, var(--space-12))' }}>
 
           {/* Badge */}
           <div
@@ -233,6 +243,8 @@ export default function Hero() {
         }
         @media (max-width: 768px) {
           .hero-img-wrap { display: none; }
+          .hero-col { width: 100% !important; padding-right: var(--space-6) !important; }
+          .hero-col > div { margin-left: 0 !important; max-width: 100% !important; }
         }
       `}</style>
     </section>
