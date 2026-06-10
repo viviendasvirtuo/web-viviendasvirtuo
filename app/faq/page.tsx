@@ -88,7 +88,7 @@ const faqs: { categoria: string; color: string; items: { q: string; a: string }[
       },
       {
         q: '¿El apartamento vacacional necesita licencia turística?',
-        a: 'Sí. Para operar legalmente en el alquiler vacacional en Cataluña es imprescindible disponer de la HUTB (Habitatge d'Ús Turístic de Barcelona) o licencia equivalente según el municipio. Asesoramos al propietario en este proceso, aunque la licencia es responsabilidad del titular de la vivienda.',
+        a: "Sí. Para operar legalmente en el alquiler vacacional en Cataluña es imprescindible disponer de la HUTB (Habitatge d'Ús Turístic de Barcelona) o licencia equivalente según el municipio. Asesoramos al propietario en este proceso, aunque la licencia es responsabilidad del titular de la vivienda.",
       },
       {
         q: '¿Virtuo solo trabaja en Barcelona?',
