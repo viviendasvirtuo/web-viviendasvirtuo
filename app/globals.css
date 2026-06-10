@@ -20,6 +20,7 @@
   --color-bg:             #ffffff;
   --color-surface:        #f8f9fc;
   --color-surface-2:      #f0f4fa;
+  --color-surface-dark:   #0d1b2e;
   --color-border:         #e2e8f0;
   --color-divider:        #edf2f7;
 
@@ -72,6 +73,7 @@
 
   /* Transiciones */
   --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Anchos de contenido */
   --content-narrow:  640px;
