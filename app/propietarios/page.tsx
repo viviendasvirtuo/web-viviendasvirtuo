@@ -46,100 +46,112 @@ export default function PropietariosPage() {
           </div>
         </section>
 
-        {/* POR QUÉ VIRTUO — con foto */}
+        {/* POR QUÉ VIRTUO — foto + métricas */}
         <section style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: 'var(--color-bg)' }}>
           <div className="container">
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(480px, 100%), 1fr))',
-              gap: 'clamp(var(--space-10), 6vw, var(--space-20))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(460px, 100%), 1fr))',
+              gap: 'clamp(40px, 6vw, 80px)',
               alignItems: 'center',
             }}>
-              {/* Métricas + beneficios */}
+              {/* Texto + métricas izquierda */}
               <div>
                 <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Por qué Virtuo</p>
-                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '40px' }}>
-                  La diferencia entre gestionar<br />y preocuparse
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '20px' }}>
+                  La diferencia entre gestionar y preocuparse
                 </h2>
+                <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-base)', lineHeight: 1.75, marginBottom: '40px', maxWidth: '48ch' }}>
+                  Nos ocupamos de absolutamente todo: inquilinos, contratos, incidencias y cobros. Tú solo recibes la liquidación mensual.
+                </p>
 
                 {/* 3 métricas clave */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'var(--color-border)', borderRadius: 'var(--radius-xl)', overflow: 'hidden', marginBottom: '40px', border: '1px solid var(--color-border)' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
                   {[
-                    { num: '+30%', label: 'Más rentabilidad vs. alquiler tradicional' },
-                    { num: '72h', label: 'Tiempo medio hasta primera reserva' },
-                    { num: '100%', label: 'Gestión completa sin intervención tuya' },
-                  ].map((m, i) => (
-                    <div key={i} style={{ background: 'var(--color-surface)', padding: '24px 16px', textAlign: 'center' }}>
-                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: 900, color: 'var(--color-primary)', lineHeight: 1, marginBottom: '8px' }}>{m.num}</div>
-                      <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', lineHeight: 1.4 }}>{m.label}</div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* 3 beneficios */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                  {[
-                    { title: 'Ingresos optimizados', desc: 'Ajustamos precios en tiempo real según demanda, temporada y competencia para maximizar tu rentabilidad.' },
-                    { title: 'Inquilinos verificados', desc: 'Selección rigurosa: documentación, solvencia económica y referencias previas en cada caso.' },
-                    { title: 'Sin períodos vacíos', desc: 'Buscamos al siguiente inquilino antes de que el actual se vaya. Sin meses sin ingresos.' },
-                  ].map((b, i) => (
-                    <div key={i} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                      <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'var(--color-primary)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'var(--text-sm)', flexShrink: 0 }}>{i + 1}</div>
+                    { num: '+30%', label: 'Más rentabilidad vs alquiler tradicional', desc: 'Optimizamos precios y ocupación continuamente para que no pierdas ni un euro.' },
+                    { num: '72h', label: 'Tiempo medio hasta primera reserva', desc: 'Publicamos en todas las plataformas relevantes con fotos profesionales.' },
+                    { num: '100%', label: 'Gestión sin intervención tuya', desc: 'Contratos, selección de inquilinos, incidencias y cobros. Todo.' },
+                  ].map((m, i, arr) => (
+                    <div
+                      key={m.num}
+                      style={{
+                        display: 'flex',
+                        gap: '20px',
+                        alignItems: 'flex-start',
+                        padding: '24px 0',
+                        borderBottom: i < arr.length - 1 ? '1px solid var(--color-border)' : undefined,
+                      }}
+                    >
+                      <div style={{ flexShrink: 0, minWidth: '72px' }}>
+                        <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 2.5vw, 2.5rem)', fontWeight: 900, color: 'var(--color-primary)', lineHeight: 1 }}>{m.num}</div>
+                      </div>
                       <div>
-                        <div style={{ fontWeight: 700, fontSize: 'var(--text-base)', color: 'var(--color-text)', marginBottom: '4px' }}>{b.title}</div>
-                        <div style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.65 }}>{b.desc}</div>
+                        <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)', marginBottom: '4px' }}>{m.label}</div>
+                        <div style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.6 }}>{m.desc}</div>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '36px' }}>
-                  <Link href="/contacto" className="btn btn-primary">Solicitar análisis gratuito</Link>
-                  <a href="#sistemas" className="btn btn-ghost">Ver los 3 sistemas</a>
+                <div style={{ marginTop: '36px' }}>
+                  <Link href="/contacto" className="btn btn-primary">Solicitar análisis gratuito →</Link>
                 </div>
               </div>
 
-              {/* Foto real */}
-              <div style={{ position: 'relative', borderRadius: 'var(--radius-xl)', overflow: 'hidden', aspectRatio: '4/3', boxShadow: '0 20px 60px rgba(15,45,94,0.15)' }}>
+              {/* Foto derecha */}
+              <div style={{
+                position: 'relative',
+                borderRadius: 'var(--radius-xl)',
+                overflow: 'hidden',
+                aspectRatio: '3/4',
+                boxShadow: '0 24px 64px rgba(15,45,94,0.14)',
+              }}>
                 <Image
                   src="/images/propietarios.jpg"
-                  alt="Interior de vivienda gestionada por Viviendas Virtuo en Barcelona"
+                  alt="Piso gestionado por Viviendas Virtuo en Barcelona"
                   fill
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
                 />
-                {/* Badge encima de la foto */}
-                <div style={{ position: 'absolute', bottom: '20px', left: '20px', background: 'rgba(255,255,255,0.95)', borderRadius: 'var(--radius-lg)', padding: '12px 16px', boxShadow: '0 4px 20px rgba(0,0,0,0.12)', backdropFilter: 'blur(8px)' }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontWeight: 900, color: '#1a4a8a', lineHeight: 1 }}>+30%</div>
-                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>más rentabilidad</div>
+                {/* Badge flotante */}
+                <div style={{
+                  position: 'absolute',
+                  top: '20px',
+                  right: '20px',
+                  background: 'rgba(255,255,255,0.96)',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: '14px 18px',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+                  backdropFilter: 'blur(8px)',
+                }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', fontWeight: 900, color: '#1a4a8a', lineHeight: 1 }}>+30%</div>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '3px', whiteSpace: 'nowrap' }}>más rentabilidad</div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* SERVICIOS COMPLETOS */}
+        {/* QUÉ INCLUYE — 6 beneficios en grid */}
         <section style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: '#f0f4fa' }}>
           <div className="container">
-            <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-              <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Gestión completa</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>
-                Todo lo que hacemos por ti
-              </h2>
+            <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>Todo lo que gestionamos por ti</h2>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
               {[
-                { title: 'Contratos y legal', desc: 'Redactamos y firmamos todos los contratos. Cumplimiento legal garantizado en cada arrendamiento.' },
-                { title: 'Mantenimiento incluido', desc: 'Gestionamos reparaciones y pequeñas incidencias sin molestar al propietario.' },
-                { title: 'Comunicación directa', desc: 'Informe mensual con ingresos, ocupación y estado de tu vivienda. Siempre informado.' },
-                { title: 'Fotografía profesional', desc: 'Reportaje fotográfico incluido para publicar en todas las plataformas con máximo impacto.' },
-                { title: 'Publicación multicanal', desc: 'Tu propiedad visible en Airbnb, Booking, Idealista, Habitaclia y más desde el primer día.' },
-                { title: 'Sin períodos vacíos', desc: 'Buscamos al siguiente inquilino antes de que el actual se vaya. Sin meses sin ingresos.' },
+                { icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z', title: 'Ingresos optimizados', desc: 'Analizamos el mercado y ajustamos precios para maximizar tu rentabilidad en cada momento del año.' },
+                { icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', title: 'Inquilinos verificados', desc: 'Proceso de selección riguroso: documentación, solvencia económica y referencias previas.' },
+                { icon: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M16 13H8 M16 17H8 M10 9H8', title: 'Contratos y legal', desc: 'Redactamos y firmamos todos los contratos. Cumplimiento legal garantizado en cada arrendamiento.' },
+                { icon: 'M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z', title: 'Mantenimiento incluido', desc: 'Gestionamos reparaciones y pequeñas incidencias sin molestar al propietario.' },
+                { icon: 'M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z', title: 'Comunicación directa', desc: 'Informe mensual con ingresos, ocupación y estado de tu vivienda. Siempre informado.' },
+                { icon: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z', title: 'Sin períodos vacíos', desc: 'Buscamos al siguiente inquilino antes de que el actual se vaya. Sin meses sin ingresos.' },
               ].map((item, i) => (
-                <div key={i} style={{ background: 'white', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xl)', padding: '28px 24px' }}>
-                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-primary)', marginBottom: '14px' }} />
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-text)', marginBottom: '8px' }}>{item.title}</h3>
+                <div key={i} style={{ background: 'white', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xl)', padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.8" aria-hidden="true">
+                    <path d={item.icon} />
+                  </svg>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-text)', margin: 0 }}>{item.title}</h3>
                   <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)', lineHeight: 1.65, margin: 0 }}>{item.desc}</p>
                 </div>
               ))}

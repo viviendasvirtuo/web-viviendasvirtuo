@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const stats = [
   { num: '+30%', label: 'Más rentabilidad vs alquiler tradicional' },
@@ -38,31 +39,44 @@ export default function Hero() {
         }}
       />
 
-      {/* Círculo atmosférico derecho */}
+      {/* Imagen hero — visible solo en desktop, lado derecho */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
-          right: '-8%', top: '5%',
-          width: 'clamp(380px, 52vw, 800px)',
-          height: 'clamp(380px, 52vw, 800px)',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle at 40% 40%, rgba(26,74,138,0.35) 0%, transparent 65%)',
-          border: '1px solid rgba(255,255,255,0.04)',
+          right: 0,
+          top: 0,
+          bottom: 0,
+          width: '46%',
+          zIndex: 0,
         }}
-      />
-      {/* Anillo interior */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          right: '2%', top: '18%',
-          width: 'clamp(200px, 28vw, 440px)',
-          height: 'clamp(200px, 28vw, 440px)',
-          borderRadius: '50%',
-          border: '1px solid rgba(255,255,255,0.06)',
-        }}
-      />
+        className="hero-img-wrap"
+      >
+        <Image
+          src="/images/hero_virtuo.png"
+          alt=""
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+          sizes="46vw"
+          priority
+        />
+        {/* Degradado de fusión izquierda */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to right, #0f2d5e 0%, rgba(15,45,94,0.6) 40%, rgba(15,45,94,0) 100%)',
+          }}
+        />
+        {/* Degradado de fusión inferior */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to top, #091525 0%, transparent 30%)',
+          }}
+        />
+      </div>
 
       {/* Contenido principal */}
       <div
@@ -280,6 +294,11 @@ export default function Hero() {
         @keyframes fadeUp {
           from { opacity: 0; transform: translateX(-50%) translateY(10px); }
           to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        @media (max-width: 768px) {
+          .hero-img-wrap {
+            display: none;
+          }
         }
       `}</style>
     </section>
