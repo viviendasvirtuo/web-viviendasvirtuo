@@ -84,12 +84,12 @@ export default function Hero() {
           flex: 1,
           display: 'flex',
           alignItems: 'flex-start',
-          paddingInline: 'clamp(1rem, 4vw, 3rem)',
-          maxWidth: 'var(--content-wide)',
+          paddingLeft: 'clamp(2rem, 6vw, 7rem)',
+          paddingRight: 'clamp(1rem, 4vw, 3rem)',
         }}
       >
-        {/* Caja de contenido — ancho máximo, pegada a la izquierda */}
-        <div style={{ width: '100%', maxWidth: '620px' }}>
+        {/* Caja de contenido — ocupa ~52% del viewport, las frases llegan casi al centro */}
+        <div style={{ width: '100%', maxWidth: '56ch' }}>
 
           {/* Badge */}
           <div
@@ -133,7 +133,6 @@ export default function Hero() {
               fontSize: 'var(--text-lg)',
               color: 'rgba(255,255,255,0.65)',
               marginBottom: 'var(--space-10)',
-              maxWidth: '50ch',
               lineHeight: 1.7,
             }}
           >
