@@ -3,6 +3,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
   title: 'Preguntas Frecuentes — Viviendas Virtuo',
   description: 'Resolvemos las dudas más habituales sobre gestión de alquiler, coliving, alquiler temporal y vacacional en Barcelona. Propietarios e inquilinos.',
@@ -120,7 +122,7 @@ export default function FaqPage() {
           </div>
         </section>
 
-        {/* FAQs POR CATEGORÍA */}
+        {/* FAQs */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
           <div className="container" style={{ maxWidth: '860px' }}>
             {faqs.map((cat) => (
@@ -162,7 +164,7 @@ export default function FaqPage() {
           </div>
         </section>
 
-        {/* ¿NO ENCUENTRAS TU RESPUESTA? */}
+        {/* CTA */}
         <section style={{ padding: 'clamp(40px,6vw,80px) 0', background: '#f0f4fa' }}>
           <div className="container" style={{ textAlign: 'center', maxWidth: '560px' }}>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.4rem,2vw,1.8rem)', fontWeight: 800, color: 'var(--color-text)', marginBottom: '12px' }}>¿No encuentras tu respuesta?</h2>

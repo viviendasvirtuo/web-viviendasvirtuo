@@ -3,6 +3,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
   title: 'Sobre Nosotros — Viviendas Virtuo',
   description: 'Conoce Viviendas Virtuo: quiénes somos, cómo trabajamos y por qué somos diferentes a una inmobiliaria tradicional. Gestión profesional de alquiler en Barcelona.',
@@ -72,7 +74,7 @@ export default function SobreNosotrosPage() {
           </div>
         </section>
 
-        {/* NUESTRA FORMA DE TRABAJAR */}
+        {/* DIFERENCIAS */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: '#f0f4fa' }}>
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: '56px' }}>
@@ -81,30 +83,12 @@ export default function SobreNosotrosPage() {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px,1fr))', gap: '24px' }}>
               {[
-                {
-                  title: 'Gestión integral, no intermediación',
-                  desc: 'No ponemos a propietarios e inquilinos en contacto y nos vamos. Nos quedamos. Gestionamos el contrato, el mantenimiento, las incidencias y la relación diaria.',
-                },
-                {
-                  title: 'Tres sistemas, una sola empresa',
-                  desc: 'Coliving para convivencia organizada. Temporal para estancias cortas. Vacacional para máxima rentabilidad turística. Cada piso va al sistema que le va mejor.',
-                },
-                {
-                  title: 'Transparencia total con el propietario',
-                  desc: 'Informe mensual de ocupación, ingresos y gastos. Sin sorpresas, sin letra pequeña. El propietario sabe exactamente qué pasa con su vivienda.',
-                },
-                {
-                  title: 'Inquilinos verificados',
-                  desc: 'Proceso de selección propio: verificación de identidad, solvencia y referencias. Priorizamos la calidad de convivencia sobre la velocidad de cierre.',
-                },
-                {
-                  title: 'Equipo accesible',
-                  desc: 'Hay una persona real detrás de cada vivienda. Con nombre. Con teléfono. Que coge las llamadas y resuelve los problemas.',
-                },
-                {
-                  title: 'Barcelona como especialidad',
-                  desc: 'Conocemos el mercado barcelonés en profundidad: sus barrios, su normativa, su demanda real. No gestionamos en abstracto.',
-                },
+                { title: 'Gestión integral, no intermediación', desc: 'No ponemos a propietarios e inquilinos en contacto y nos vamos. Nos quedamos. Gestionamos el contrato, el mantenimiento, las incidencias y la relación diaria.' },
+                { title: 'Tres sistemas, una sola empresa', desc: 'Coliving para convivencia organizada. Temporal para estancias cortas. Vacacional para máxima rentabilidad turística. Cada piso va al sistema que le va mejor.' },
+                { title: 'Transparencia total con el propietario', desc: 'Informe mensual de ocupación, ingresos y gastos. Sin sorpresas, sin letra pequeña. El propietario sabe exactamente qué pasa con su vivienda.' },
+                { title: 'Inquilinos verificados', desc: 'Proceso de selección propio: verificación de identidad, solvencia y referencias. Priorizamos la calidad de convivencia sobre la velocidad de cierre.' },
+                { title: 'Equipo accesible', desc: 'Hay una persona real detrás de cada vivienda. Con nombre. Con teléfono. Que coge las llamadas y resuelve los problemas.' },
+                { title: 'Barcelona como especialidad', desc: 'Conocemos el mercado barcelonés en profundidad: sus barrios, su normativa, su demanda real. No gestionamos en abstracto.' },
               ].map((item, i) => (
                 <div key={i} style={{ background: 'white', borderRadius: 'var(--radius-xl)', padding: '28px 24px', border: '1px solid var(--color-border)' }}>
                   <div style={{ width: '32px', height: '3px', background: 'var(--color-primary)', borderRadius: '2px', marginBottom: '16px' }} />
@@ -116,7 +100,7 @@ export default function SobreNosotrosPage() {
           </div>
         </section>
 
-        {/* LOS TRES SISTEMAS */}
+        {/* SISTEMAS */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: '48px' }}>
