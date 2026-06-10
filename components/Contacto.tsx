@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import { supabase } from '@/lib/supabase';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
 
@@ -23,22 +22,26 @@ export default function Contacto() {
     setEstado('loading');
     setErrorMsg('');
 
-    const { error } = await supabase.from('leads').insert({
-      tipo,
-      sistema,
-      nombre: nombre.trim(),
-      telefono: telefono.trim(),
-      email: email.trim() || null,
-      mensaje: mensaje.trim() || null,
-      canal: 'web',
-    });
+    try {
+      const res = await fetch('/api/contacto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tipo,
+          sistema,
+          nombre: nombre.trim(),
+          telefono: telefono.trim(),
+          email: email.trim() || null,
+          mensaje: mensaje.trim() || null,
+          created_at: new Date().toISOString(),
+        }),
+      });
 
-    if (error) {
-      console.error(error);
+      if (!res.ok) throw new Error('Error al enviar');
+      setEstado('success');
+    } catch {
       setEstado('error');
       setErrorMsg('Algo salió mal. Inténtalo de nuevo o llámanos directamente.');
-    } else {
-      setEstado('success');
     }
   }
 
@@ -120,7 +123,6 @@ export default function Contacto() {
             border: '1px solid var(--color-border)',
           }}>
             <form onSubmit={handleSubmit} noValidate>
-              {/* Selector de tipo */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-2)', marginBottom: 'var(--space-6)' }}>
                 {(['propietario', 'inquilino'] as const).map(t => (
                   <button
@@ -130,11 +132,10 @@ export default function Contacto() {
                       padding: 'var(--space-3)',
                       borderRadius: 'var(--radius-md)',
                       border: `2px solid ${tipo === t ? 'var(--color-primary)' : 'var(--color-border)'}`,
-                      background: tipo === t ? 'var(--color-primary-light)' : 'transparent',
+                      background: tipo === t ? '#e8f0fa' : 'transparent',
                       color: tipo === t ? 'var(--color-primary)' : 'var(--color-text-muted)',
                       fontWeight: 700,
                       fontSize: 'var(--text-sm)',
-                      transition: 'all var(--transition)',
                       cursor: 'pointer',
                       textTransform: 'capitalize',
                     }}>
@@ -143,16 +144,12 @@ export default function Contacto() {
                 ))}
               </div>
 
-              {/* Sistema (solo propietarios) */}
               {tipo === 'propietario' && (
                 <div style={{ marginBottom: 'var(--space-4)' }}>
                   <label style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--color-text)', marginBottom: 'var(--space-2)' }}>
                     ¿Qué sistema te interesa?
                   </label>
-                  <select
-                    value={sistema}
-                    onChange={e => setSistema(e.target.value)}
-                    style={{ ...inputStyle }}>
+                  <select value={sistema} onChange={e => setSistema(e.target.value)} style={{ ...inputStyle }}>
                     <option value="sin_definir">No lo sé aún, me asesoran</option>
                     <option value="coliving">Coliving (habitaciones)</option>
                     <option value="temporal">Temporal (estancias cortas)</option>
@@ -161,64 +158,39 @@ export default function Contacto() {
                 </div>
               )}
 
-              {/* Nombre */}
               <div style={{ marginBottom: 'var(--space-4)' }}>
-                <label htmlFor="nombre" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, marginBottom: 'var(--space-2)', color: 'var(--color-text)' }}>
-                  Nombre *
-                </label>
-                <input
-                  id="nombre" type="text" required
-                  placeholder="Tu nombre"
-                  value={nombre} onChange={e => setNombre(e.target.value)}
-                  style={inputStyle}
+                <label htmlFor="nombre" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, marginBottom: 'var(--space-2)', color: 'var(--color-text)' }}>Nombre *</label>
+                <input id="nombre" type="text" required placeholder="Tu nombre" value={nombre} onChange={e => setNombre(e.target.value)} style={inputStyle}
                   onFocus={e => (e.target.style.borderColor = 'var(--color-primary)')}
-                  onBlur={e => (e.target.style.borderColor = 'var(--color-border)')}
-                />
+                  onBlur={e => (e.target.style.borderColor = 'var(--color-border)')} />
               </div>
 
-              {/* Teléfono */}
               <div style={{ marginBottom: 'var(--space-4)' }}>
-                <label htmlFor="telefono" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, marginBottom: 'var(--space-2)', color: 'var(--color-text)' }}>
-                  Teléfono *
-                </label>
-                <input
-                  id="telefono" type="tel" required
-                  placeholder="+34 600 000 000"
-                  value={telefono} onChange={e => setTelefono(e.target.value)}
-                  style={inputStyle}
+                <label htmlFor="telefono" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, marginBottom: 'var(--space-2)', color: 'var(--color-text)' }}>Teléfono *</label>
+                <input id="telefono" type="tel" required placeholder="+34 600 000 000" value={telefono} onChange={e => setTelefono(e.target.value)} style={inputStyle}
                   onFocus={e => (e.target.style.borderColor = 'var(--color-primary)')}
-                  onBlur={e => (e.target.style.borderColor = 'var(--color-border)')}
-                />
+                  onBlur={e => (e.target.style.borderColor = 'var(--color-border)')} />
               </div>
 
-              {/* Email */}
               <div style={{ marginBottom: 'var(--space-4)' }}>
                 <label htmlFor="email" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, marginBottom: 'var(--space-2)', color: 'var(--color-text)' }}>
                   Email <span style={{ color: 'var(--color-text-faint)', fontWeight: 400 }}>(opcional)</span>
                 </label>
-                <input
-                  id="email" type="email"
-                  placeholder="tu@email.com"
-                  value={email} onChange={e => setEmail(e.target.value)}
-                  style={inputStyle}
+                <input id="email" type="email" placeholder="tu@email.com" value={email} onChange={e => setEmail(e.target.value)} style={inputStyle}
                   onFocus={e => (e.target.style.borderColor = 'var(--color-primary)')}
-                  onBlur={e => (e.target.style.borderColor = 'var(--color-border)')}
-                />
+                  onBlur={e => (e.target.style.borderColor = 'var(--color-border)')} />
               </div>
 
-              {/* Mensaje */}
               <div style={{ marginBottom: 'var(--space-6)' }}>
                 <label htmlFor="mensaje" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, marginBottom: 'var(--space-2)', color: 'var(--color-text)' }}>
                   Cuéntanos algo <span style={{ color: 'var(--color-text-faint)', fontWeight: 400 }}>(opcional)</span>
                 </label>
-                <textarea
-                  id="mensaje" rows={3}
+                <textarea id="mensaje" rows={3}
                   placeholder={tipo === 'propietario' ? 'Tipo de piso, zona, situación actual...' : 'Zona que buscas, duración, presupuesto...'}
                   value={mensaje} onChange={e => setMensaje(e.target.value)}
                   style={{ ...inputStyle, resize: 'vertical' }}
                   onFocus={e => (e.target.style.borderColor = 'var(--color-primary)')}
-                  onBlur={e => (e.target.style.borderColor = 'var(--color-border)')}
-                />
+                  onBlur={e => (e.target.style.borderColor = 'var(--color-border)')} />
               </div>
 
               {errorMsg && (
@@ -227,18 +199,9 @@ export default function Contacto() {
                 </div>
               )}
 
-              <button
-                type="submit"
-                disabled={estado === 'loading'}
-                className="btn btn-primary btn-lg"
+              <button type="submit" disabled={estado === 'loading'} className="btn btn-primary btn-lg"
                 style={{ width: '100%', justifyContent: 'center', opacity: estado === 'loading' ? 0.7 : 1 }}>
-                {estado === 'loading' ? 'Enviando...' : 'Enviar mensaje'}
-                {estado !== 'loading' && (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                    <line x1="22" y1="2" x2="11" y2="13"/>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                  </svg>
-                )}
+                {estado === 'loading' ? 'Enviando...' : 'Enviar mensaje →'}
               </button>
 
               <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)', textAlign: 'center', marginTop: 'var(--space-3)' }}>
