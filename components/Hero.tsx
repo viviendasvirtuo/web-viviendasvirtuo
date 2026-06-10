@@ -153,21 +153,29 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Stats */}
-          <div style={{ display: 'flex', alignItems: 'stretch', gap: '0', marginTop: 'var(--space-16)', flexWrap: 'wrap' }}>
+          {/* Stats — nowrap para que siempre queden en una sola línea */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'stretch',
+            gap: 0,
+            marginTop: 'var(--space-16)',
+            flexWrap: 'nowrap',
+          }}>
             {stats.map((stat, i) => (
               <div
                 key={stat.label}
                 style={{
-                  paddingRight: 'var(--space-8)',
-                  paddingLeft: i > 0 ? 'var(--space-8)' : undefined,
+                  flex: '1 1 0',
+                  minWidth: 0,
+                  paddingRight: 'var(--space-6)',
+                  paddingLeft: i > 0 ? 'var(--space-6)' : undefined,
                   borderRight: i < stats.length - 1 ? '1px solid rgba(255,255,255,0.1)' : undefined,
                 }}
               >
                 <div style={{ fontSize: 'var(--text-2xl)', fontFamily: 'var(--font-display)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1 }}>
                   {stat.num}
                 </div>
-                <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)', marginTop: '6px', maxWidth: '18ch', lineHeight: 1.4 }}>
+                <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)', marginTop: '6px', lineHeight: 1.4 }}>
                   {stat.label}
                 </div>
               </div>
