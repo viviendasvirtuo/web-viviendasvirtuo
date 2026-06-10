@@ -4,8 +4,6 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = {
   title: 'Propietarios — Viviendas Virtuo',
   description: 'Rentabiliza tu vivienda en Barcelona sin preocupaciones. Elige entre coliving, alquiler temporal o vacacional. Gestión 100% profesional, ingresos garantizados.',
