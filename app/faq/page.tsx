@@ -3,6 +3,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Preguntas frecuentes — Viviendas Virtuo',
   description: 'Respuestas a las dudas más comunes sobre la gestión de alquiler con Viviendas Virtuo: coliving, temporal y vacacional. Para propietarios e inquilinos.',
@@ -88,7 +90,7 @@ const faqs: { categoria: string; color: string; items: { q: string; a: string }[
       },
       {
         q: '¿El apartamento vacacional necesita licencia turística?',
-        a: "Sí. Para operar legalmente en el alquiler vacacional en Cataluña es imprescindible disponer de la HUTB (Habitatge d'\u00fas Tur\u00edstic de Barcelona) o licencia equivalente seg\u00fan el municipio. Asesoramos al propietario en este proceso, aunque la licencia es responsabilidad del titular de la vivienda.",
+        a: "Sí. Para operar legalmente en el alquiler vacacional en Cataluña es imprescindible disponer de la HUTB (Habitatge d'Ús Turístic de Barcelona) o licencia equivalente según el municipio. Asesoramos al propietario en este proceso, aunque la licencia es responsabilidad del titular de la vivienda.",
       },
       {
         q: '¿Virtuo solo trabaja en Barcelona?',
