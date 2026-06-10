@@ -44,9 +44,7 @@ export default function Hero() {
         aria-hidden="true"
         style={{
           position: 'absolute',
-          right: 0,
-          top: 0,
-          bottom: 0,
+          right: 0, top: 0, bottom: 0,
           width: '46%',
           zIndex: 0,
         }}
@@ -60,34 +58,23 @@ export default function Hero() {
           sizes="46vw"
           priority
         />
-        <div
-          style={{
-            position: 'absolute', inset: 0,
-            background: 'linear-gradient(to right, #0f2d5e 0%, rgba(15,45,94,0.6) 40%, rgba(15,45,94,0) 100%)',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute', inset: 0,
-            background: 'linear-gradient(to top, #091525 0%, transparent 30%)',
-          }}
-        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #0f2d5e 0%, rgba(15,45,94,0.6) 40%, rgba(15,45,94,0) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #091525 0%, transparent 30%)' }} />
       </div>
 
-      {/* Contenido principal — mismo .container que el resto de secciones */}
+      {/* Contenido principal — mismo padding-inline que .container, SIN margin-inline auto */}
       <div
-        className="container"
         style={{
           position: 'relative',
           zIndex: 1,
           paddingTop: '130px',
           paddingBottom: '80px',
+          paddingInline: 'clamp(var(--space-4), 4vw, var(--space-12))',
           flex: 1,
           display: 'flex',
           alignItems: 'flex-start',
         }}
       >
-        {/* Bloque de texto — ocupa la mitad izquierda */}
         <div style={{ width: '100%', maxWidth: '56ch' }}>
 
           {/* Badge */}
@@ -157,15 +144,7 @@ export default function Hero() {
           </div>
 
           {/* Stats */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'stretch',
-              gap: '0',
-              marginTop: 'var(--space-16)',
-              flexWrap: 'wrap',
-            }}
-          >
+          <div style={{ display: 'flex', alignItems: 'stretch', gap: '0', marginTop: 'var(--space-16)', flexWrap: 'wrap' }}>
             {stats.map((stat, i) => (
               <div
                 key={stat.label}
@@ -230,35 +209,23 @@ export default function Hero() {
           100% { transform: translateX(-50%); }
         }
         .ticker-track {
-          display: flex;
-          gap: 0;
-          width: max-content;
+          display: flex; gap: 0; width: max-content;
           animation: ticker 28s linear infinite;
           will-change: transform;
         }
         .ticker-track:hover { animation-play-state: paused; }
         .ticker-item {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
+          display: inline-flex; align-items: center; gap: 10px;
           padding: 0 var(--space-8);
-          font-size: var(--text-xs);
-          font-weight: 600;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: rgba(255,255,255,0.45);
-          white-space: nowrap;
+          font-size: var(--text-xs); font-weight: 600;
+          letter-spacing: 0.08em; text-transform: uppercase;
+          color: rgba(255,255,255,0.45); white-space: nowrap;
         }
         .ticker-dot {
-          width: 4px; height: 4px;
-          border-radius: 50%;
-          background: rgba(255,255,255,0.25);
-          flex-shrink: 0;
+          width: 4px; height: 4px; border-radius: 50%;
+          background: rgba(255,255,255,0.25); flex-shrink: 0;
         }
-        .hero-scroll-arrow {
-          color: rgba(255,255,255,0.3);
-          transition: color 0.2s ease;
-        }
+        .hero-scroll-arrow { color: rgba(255,255,255,0.3); transition: color 0.2s ease; }
         .hero-scroll-arrow:hover { color: rgba(255,255,255,0.7); }
         @keyframes fadeUp {
           from { opacity: 0; transform: translateX(-50%) translateY(10px); }
