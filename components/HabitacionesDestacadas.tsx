@@ -146,14 +146,7 @@ export default function HabitacionesDestacadas() {
         </div>
 
         {/* Grid de cards: 4 columnas en desktop, 2 en tablet, 1 en móvil */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '20px',
-          }}
-          className="habitaciones-grid"
-        >
+        <div className="habitaciones-grid">
           {habitaciones.map((hab) => (
             <div
               key={hab.ref}
@@ -335,15 +328,6 @@ export default function HabitacionesDestacadas() {
           Todos los precios incluyen renta regulada según índice oficial y pack de servicios. Contratos conformes a la normativa catalana vigente.
         </p>
       </div>
-
-      <style>{`
-        @media (max-width: 1100px) {
-          .habitaciones-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 600px) {
-          .habitaciones-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </section>
   );
 }

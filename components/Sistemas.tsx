@@ -184,24 +184,6 @@ export default function Sistemas() {
           ))}
         </div>
 
-        <style>{`
-          .sistemas-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-5);
-            align-items: stretch;
-          }
-          .sistema-card {
-            transition: box-shadow 0.25s ease, transform 0.25s ease;
-          }
-          .sistema-card:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-3px);
-          }
-          @media (max-width: 900px) {
-            .sistemas-grid { grid-template-columns: 1fr; }
-          }
-        `}</style>
       </div>
     </section>
   );

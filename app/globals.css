@@ -210,3 +210,45 @@ button { cursor: pointer; background: none; border: none; }
 
 .btn-lg { padding: 14px 32px; font-size: var(--text-base); }
 .btn-sm { padding: 8px 16px; font-size: var(--text-xs); }
+
+/* ===== SISTEMAS GRID ===== */
+.sistemas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  align-items: stretch;
+}
+
+.sistema-card {
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.sistema-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 900px) {
+  .sistemas-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== HABITACIONES GRID ===== */
+.habitaciones-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1100px) {
+  .habitaciones-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .habitaciones-grid {
+    grid-template-columns: 1fr;
+  }
+}
