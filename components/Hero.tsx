@@ -1,5 +1,11 @@
 import Link from 'next/link';
 
+const stats = [
+  { num: '+30%', label: 'Más rentabilidad vs alquiler tradicional' },
+  { num: '72h',  label: 'Tiempo medio hasta primera reserva' },
+  { num: '100%', label: 'Gestión completa sin intervención tuya' },
+];
+
 export default function Hero() {
   return (
     <section
@@ -70,7 +76,6 @@ export default function Hero() {
               style={{
                 width: '7px', height: '7px', borderRadius: '50%',
                 background: '#4ade80', flexShrink: 0,
-                animation: 'pulse-dot 2s ease-in-out infinite',
               }}
             />
             <span
@@ -83,7 +88,7 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* Titular — sin gradient text */}
+          {/* Titular */}
           <h1
             style={{
               fontFamily: 'var(--font-display)',
@@ -138,26 +143,23 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Stats — más concretos y creíbles */}
+          {/* Stats */}
           <div
             style={{
-              display: 'flex', alignItems: 'stretch',
-              gap: 'var(--space-8)',
+              display: 'flex',
+              alignItems: 'stretch',
+              gap: '0',
               marginTop: 'var(--space-16)',
               flexWrap: 'wrap',
             }}
           >
-            {[
-              { num: '+30%', label: 'Más rentabilidad vs alquiler tradicional' },
-              { num: '72h', label: 'Tiempo medio hasta primera reserva' },
-              { num: '100%', label: 'Gestión completa sin intervención tuya' },
-            ].map(stat => (
+            {stats.map((stat, i) => (
               <div
                 key={stat.label}
                 style={{
                   paddingRight: 'var(--space-8)',
-                  borderRight: '1px solid rgba(255,255,255,0.1)',
-                  lastChild: 'none',
+                  paddingLeft: i > 0 ? 'var(--space-8)' : undefined,
+                  borderRight: i < stats.length - 1 ? '1px solid rgba(255,255,255,0.1)' : undefined,
                 }}
               >
                 <div
