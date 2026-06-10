@@ -9,7 +9,6 @@ const sistemas = [
     badgeClass: 'badge-coliving',
     title: 'Alquiler por habitaciones a largo plazo',
     desc: 'Ideal para viviendas compartidas. Gestionamos cada habitación de forma independiente con contratos estables, selección de perfiles compatibles y máxima ocupación garantizada.',
-    color: 'var(--color-coliving)',
     colorRaw: '#1a4a8a',
     features: [
       'Contratos individuales por habitación',
@@ -30,7 +29,6 @@ const sistemas = [
     badgeClass: 'badge-temporal',
     title: 'Estancias de 1 a 6 meses para trabajo y estudio',
     desc: 'Para trabajadores desplazados y estudiantes de ciclos cortos. Flexibilidad total en duración, máxima rotación controlada y precio por encima del alquiler tradicional.',
-    color: 'var(--color-temporal)',
     colorRaw: '#1e7a5a',
     features: [
       'Estancias de 1 a 6 meses',
@@ -51,7 +49,6 @@ const sistemas = [
     badgeClass: 'badge-vacacional',
     title: 'Apartamento completo para turismo',
     desc: 'Máxima rentabilidad por noche. Gestionamos la presencia en plataformas (Airbnb, Booking), comunicación con huéspedes, limpiezas y toda la operativa sin que intervengas.',
-    color: 'var(--color-vacacional)',
     colorRaw: '#c84820',
     features: [
       'Alta en Airbnb, Booking y más',
@@ -72,7 +69,7 @@ export default function Sistemas() {
     <section id="sistemas" className="section" style={{ background: 'var(--color-bg)' }}>
       <div className="container">
 
-        {/* Cabecera — alineada a la izquierda */}
+        {/* Cabecera */}
         <div style={{ marginBottom: 'var(--space-12)' }}>
           <p className="section-label">Nuestros sistemas</p>
           <div
@@ -84,33 +81,21 @@ export default function Sistemas() {
               gap: 'var(--space-4)',
             }}
           >
-            <h2
-              className="section-title"
-              style={{ margin: 0, maxWidth: '22ch' }}
-            >
+            <h2 className="section-title" style={{ margin: 0, maxWidth: '22ch' }}>
               Tres modelos. Una sola gestión.
             </h2>
-            <p
-              className="section-subtitle"
-              style={{ maxWidth: '44ch', margin: 0 }}
-            >
+            <p className="section-subtitle" style={{ maxWidth: '44ch', margin: 0 }}>
               No somos una inmobiliaria. Somos especialistas en gestión de alquiler con tres sistemas distintos para maximizar la rentabilidad de tu vivienda.
             </p>
           </div>
         </div>
 
-        {/* Grid asimétrico: 1 grande + 2 pequeñas */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gridTemplateRows: 'auto',
-            gap: 'var(--space-5)',
-          }}
-        >
+        {/* Grid asimétrico: 1 grande (span 2) + 2 pequeñas */}
+        <div className="sistemas-grid">
           {sistemas.map((s, i) => (
             <article
               key={s.id}
+              className={`sistema-card${i === 0 ? ' sistema-card--grande' : ''}`}
               style={{
                 gridColumn: i === 0 ? 'span 2' : 'span 1',
                 background: 'var(--color-surface)',
@@ -119,18 +104,7 @@ export default function Sistemas() {
                 overflow: 'hidden',
                 display: 'flex',
                 flexDirection: i === 0 ? 'row' : 'column',
-                transition: 'box-shadow var(--transition-slow), transform var(--transition-slow)',
                 boxShadow: 'var(--shadow-sm)',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.boxShadow = 'var(--shadow-lg)';
-                el.style.transform = 'translateY(-3px)';
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.boxShadow = 'var(--shadow-sm)';
-                el.style.transform = 'none';
               }}
             >
               {/* Franja de color lateral (grande) o superior (pequeñas) */}
@@ -145,14 +119,17 @@ export default function Sistemas() {
 
               <div
                 style={{
-                  padding: i === 0 ? 'var(--space-10) var(--space-10)' : 'var(--space-7) var(--space-7)',
+                  padding: i === 0 ? 'var(--space-10)' : 'var(--space-7)',
                   display: 'flex',
                   flexDirection: 'column',
                   flex: 1,
                 }}
               >
                 {/* Badge */}
-                <span className={`badge ${s.badgeClass}`} style={{ marginBottom: 'var(--space-4)', alignSelf: 'flex-start' }}>
+                <span
+                  className={`badge ${s.badgeClass}`}
+                  style={{ marginBottom: 'var(--space-4)', alignSelf: 'flex-start' }}
+                >
                   {s.badge}
                 </span>
 
@@ -193,6 +170,7 @@ export default function Sistemas() {
                       gridTemplateColumns: '1fr 1fr',
                       gap: 'var(--space-2)',
                       marginBottom: 'var(--space-8)',
+                      listStyle: 'none',
                     }}
                   >
                     {s.features.map(f => (
@@ -233,8 +211,22 @@ export default function Sistemas() {
                   <div style={{ display: 'flex', gap: 'var(--space-6)', flexWrap: 'wrap' }}>
                     {s.meta.map(m => (
                       <div key={m.label}>
-                        <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '3px' }}>{m.label}</div>
-                        <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: s.colorRaw }}>{m.val}</div>
+                        <div style={{
+                          fontSize: 'var(--text-xs)',
+                          color: 'var(--color-text-faint)',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.06em',
+                          marginBottom: '3px',
+                        }}>
+                          {m.label}
+                        </div>
+                        <div style={{
+                          fontSize: 'var(--text-sm)',
+                          fontWeight: 700,
+                          color: s.colorRaw,
+                        }}>
+                          {m.val}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -255,11 +247,32 @@ export default function Sistemas() {
           ))}
         </div>
 
-        {/* Responsive: stack en móvil */}
+        {/* CSS: grid + hover via CSS + responsive */}
         <style>{`
-          @media (max-width: 768px) {
-            #sistemas .sistemas-grid article { grid-column: span 3 !important; flex-direction: column !important; }
-            #sistemas .sistemas-grid article > div:first-child { width: auto !important; height: 4px !important; }
+          .sistemas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-5);
+          }
+          .sistema-card {
+            transition: box-shadow 0.25s ease, transform 0.25s ease;
+          }
+          .sistema-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+          }
+          @media (max-width: 900px) {
+            .sistemas-grid {
+              grid-template-columns: 1fr;
+            }
+            .sistema-card {
+              grid-column: span 1 !important;
+              flex-direction: column !important;
+            }
+            .sistema-card > div:first-child {
+              width: auto !important;
+              height: 4px !important;
+            }
           }
         `}</style>
       </div>
