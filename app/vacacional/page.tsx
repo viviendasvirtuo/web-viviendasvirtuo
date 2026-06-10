@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
 
@@ -41,28 +42,50 @@ export default function VacacionalPage() {
           </div>
         </section>
 
-        {/* SERVICIOS */}
+        {/* SERVICIOS — con foto */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
           <div className="container">
-            <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-              <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Gestión 360°</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>Todo lo que hacemos por tu apartamento</h2>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px,1fr))', gap: '24px' }}>
-              {[
-                { icon: '📸', title: 'Fotografía y anuncio profesional', desc: 'Fotos de calidad y descripción optimizada para cada plataforma.' },
-                { icon: '📊', title: 'Pricing dinámico', desc: 'Precios que se ajustan en tiempo real según demanda, temporada y eventos.' },
-                { icon: '🏨', title: 'Gestión en múltiples plataformas', desc: 'Airbnb, Booking, Vrbo y más. Máxima visibilidad, mínima vacancia.' },
-                { icon: '🤝', title: 'Check-in y check-out', desc: 'Recepción del viajero, entrega de llaves y asistencia durante su estancia.' },
-                { icon: '🧺e', title: 'Limpieza profesional', desc: 'Entre cada reserva: limpieza, cambio de ropa de cama y reposición.' },
-                { icon: '📞', title: 'Atención al huésped 24/7', desc: 'Resolvemos cualquier incidencia en tiempo real, sin molestar al propietario.' },
-              ].map((item, i) => (
-                <div key={i} style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xl)', padding: '24px' }}>
-                  <div style={{ fontSize: '1.6rem', marginBottom: '12px' }}>{item.icon}</div>
-                  <h3 style={{ fontWeight: 700, fontSize: 'var(--text-base)', color: 'var(--color-text)', marginBottom: '8px' }}>{item.title}</h3>
-                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.65, margin: 0 }}>{item.desc}</p>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(480px, 100%), 1fr))',
+              gap: 'clamp(40px, 6vw, 80px)',
+              alignItems: 'center',
+            }}>
+              <div>
+                <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Gestión 360°</p>
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '20px' }}>Todo lo que hacemos por tu apartamento</h2>
+                <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.75, marginBottom: '28px', fontSize: 'var(--text-base)' }}>Nos ocupamos de absolutamente todo: desde crear el anuncio perfecto hasta atender al huésped a las 3 de la mañana. Tú no mueves un dedo.</p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '32px' }}>
+                  {[
+                    'Fotografía y anuncio profesional optimizado para cada plataforma',
+                    'Pricing dinámico: precios ajustados en tiempo real',
+                    'Publicación en Airbnb, Booking, Vrbo y más',
+                    'Check-in y check-out gestionado en persona',
+                    'Limpieza profesional entre cada reserva',
+                    'Atención al huésped 24/7 sin molestar al propietario',
+                  ].map((item, i) => (
+                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2.5" style={{ flexShrink: 0, marginTop: '3px' }} aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                      <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.5 }}>{item}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+                <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-primary)', color: 'white', fontWeight: 700, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Pedir análisis gratuito →</Link>
+              </div>
+              {/* Foto real */}
+              <div style={{ position: 'relative', borderRadius: 'var(--radius-xl)', overflow: 'hidden', aspectRatio: '4/3', boxShadow: '0 20px 60px rgba(124,58,0,0.15)' }}>
+                <Image
+                  src="/images/vacacional.jpg"
+                  alt="Apartamento vacacional en Barcelona gestionado por Viviendas Virtuo"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div style={{ position: 'absolute', bottom: '20px', left: '20px', background: 'rgba(255,255,255,0.95)', borderRadius: 'var(--radius-lg)', padding: '12px 16px', boxShadow: '0 4px 20px rgba(0,0,0,0.12)' }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontWeight: 900, color: '#c45e00', lineHeight: 1 }}>+70%</div>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>más rentabilidad</div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -70,7 +93,7 @@ export default function VacacionalPage() {
         {/* RENTABILIDAD */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'linear-gradient(135deg, #7c3a00, #c45e00)' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'center' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(420px, 100%), 1fr))', gap: '64px', alignItems: 'center' }}>
               <div>
                 <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'white', lineHeight: 1.2, marginBottom: '20px' }}>¿Cuánto puedes ganar?</h2>
                 <p style={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.75, marginBottom: '24px', fontSize: 'var(--text-base)' }}>

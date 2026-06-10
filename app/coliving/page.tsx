@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
 
@@ -41,32 +42,49 @@ export default function ColivingPage() {
           </div>
         </section>
 
-        {/* QUÉ INCLUYE */}
+        {/* QUÉ ES — con foto */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'center' }}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(480px, 100%), 1fr))',
+              gap: 'clamp(40px, 6vw, 80px)',
+              alignItems: 'center',
+            }}>
               <div>
                 <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Qué es el coliving Virtuo</p>
                 <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '20px' }}>Tu habitación, tu espacio, tu comunidad</h2>
                 <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.75, marginBottom: '24px', fontSize: 'var(--text-base)' }}>Gestionamos viviendas completas divididas por habitaciones. Cada residente tiene su contrato independiente, su habitación privada y acceso a zonas comunes bien mantenidas.</p>
                 <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.75, marginBottom: '32px', fontSize: 'var(--text-base)' }}>Seleccionamos inquilinos compatibles para que la convivencia sea fácil y agradable. Sin sorpresas, sin conflictos sin resolver.</p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '32px' }}>
+                  {[
+                    'Habitación equipada: cama, escritorio, armario y wifi',
+                    'Suministros incluidos: luz, agua, gas e internet',
+                    'Limpieza de zonas comunes incluida',
+                    'Contrato individual, solo firmas por tu habitación',
+                    'Soporte ante incidencias en menos de 24h',
+                  ].map((item, i) => (
+                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2.5" style={{ flexShrink: 0, marginTop: '3px' }} aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                      <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.5 }}>{item}</span>
+                    </div>
+                  ))}
+                </div>
                 <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-primary)', color: 'white', fontWeight: 700, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Consultar disponibilidad →</Link>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                {[
-                  { icon: '🛏️', label: 'Habitación equipada', desc: 'Cama, escritorio, armario y wifi incluidos' },
-                  { icon: '🍳', label: 'Cocina compartida', desc: 'Totalmente equipada y limpia' },
-                  { icon: '🧹', label: 'Limpieza zonas comunes', desc: 'Incluida en el precio' },
-                  { icon: '📋', label: 'Contrato individual', desc: 'Solo firmas por tu habitación' },
-                  { icon: '💡', label: 'Suministros incluidos', desc: 'Luz, agua, gas e internet' },
-                  { icon: '🤝', label: 'Soporte 24/7', desc: 'Incidencias resueltas en horas' },
-                ].map((item, i) => (
-                  <div key={i} style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)', padding: '18px 16px' }}>
-                    <div style={{ fontSize: '1.4rem', marginBottom: '8px' }}>{item.icon}</div>
-                    <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)', marginBottom: '4px' }}>{item.label}</div>
-                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', lineHeight: 1.5 }}>{item.desc}</div>
-                  </div>
-                ))}
+              {/* Foto real */}
+              <div style={{ position: 'relative', borderRadius: 'var(--radius-xl)', overflow: 'hidden', aspectRatio: '4/3', boxShadow: '0 20px 60px rgba(15,45,94,0.12)' }}>
+                <Image
+                  src="/images/coliving01.jpg"
+                  alt="Habitación de coliving gestionada por Viviendas Virtuo en Barcelona"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div style={{ position: 'absolute', bottom: '20px', left: '20px', background: 'rgba(255,255,255,0.95)', borderRadius: 'var(--radius-lg)', padding: '12px 16px', boxShadow: '0 4px 20px rgba(0,0,0,0.12)' }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontWeight: 900, color: '#1a4a8a', lineHeight: 1 }}>+40%</div>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>más rentabilidad</div>
+                </div>
               </div>
             </div>
           </div>
@@ -80,13 +98,13 @@ export default function ColivingPage() {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px,1fr))', gap: '20px' }}>
               {[
-                { emoji: '🎓', tipo: 'Estudiantes universitarios', desc: 'Cerca de campus, precios ajustados, comunidad joven.' },
-                { emoji: '💼', tipo: 'Profesionales jóvenes', desc: 'Flexibilidad, sin compromisos largos, todo incluido.' },
-                { emoji: '✈️', tipo: 'Nómadas digitales', desc: 'Estancias de 1 a 12 meses, sin burocracia.' },
-                { emoji: '🏙️', tipo: 'Recién llegados a la ciudad', desc: 'La forma más fácil de instalarse en Barcelona.' },
+                { tipo: 'Estudiantes universitarios', desc: 'Cerca de campus, precios ajustados, comunidad joven.' },
+                { tipo: 'Profesionales jóvenes', desc: 'Flexibilidad, sin compromisos largos, todo incluido.' },
+                { tipo: 'Nómadas digitales', desc: 'Estancias de 1 a 12 meses, sin burocracia.' },
+                { tipo: 'Recién llegados a la ciudad', desc: 'La forma más fácil de instalarse en Barcelona.' },
               ].map((p, i) => (
-                <div key={i} style={{ background: 'white', borderRadius: 'var(--radius-xl)', padding: '28px 20px', textAlign: 'center', border: '1px solid var(--color-border)' }}>
-                  <div style={{ fontSize: '2rem', marginBottom: '12px' }}>{p.emoji}</div>
+                <div key={i} style={{ background: 'white', borderRadius: 'var(--radius-xl)', padding: '28px 20px', border: '1px solid var(--color-border)' }}>
+                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-primary)', marginBottom: '14px' }} />
                   <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-text)', marginBottom: '8px' }}>{p.tipo}</h3>
                   <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.6, margin: 0 }}>{p.desc}</p>
                 </div>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
 
@@ -41,28 +42,51 @@ export default function TemporalPage() {
           </div>
         </section>
 
-        {/* QUÉ INCLUYE */}
+        {/* QUÉ INCLUYE — con foto */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
           <div className="container">
-            <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-              <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Todo incluido</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>Una habitación lista para entrar</h2>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px,1fr))', gap: '24px' }}>
-              {[
-                { icon: '🛏️', title: 'Habitación equipada', desc: 'Cama, ropa de cama, escritorio, armario y wifi de alta velocidad.' },
-                { icon: '💡', title: 'Suministros incluidos', desc: 'Luz, agua, gas e internet en el precio. Sin sorpresas en la factura.' },
-                { icon: '🧹', title: 'Limpieza periódica', desc: 'Zonas comunes limpias semanalmente. Tú solo te ocupas de tu habitación.' },
-                { icon: '📝', title: 'Contrato ágil', desc: 'Desde 1 mes. Firma digital, sin burocracia innecesaria.' },
-                { icon: '🔧', title: 'Mantenimiento rápido', desc: 'Incidencia reportada y resuelta en menos de 48h.' },
-                { icon: '📞', title: 'Soporte real', desc: 'Una persona real al otro lado, no un chatbot.' },
-              ].map((item, i) => (
-                <div key={i} style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xl)', padding: '24px' }}>
-                  <div style={{ fontSize: '1.6rem', marginBottom: '12px' }}>{item.icon}</div>
-                  <h3 style={{ fontWeight: 700, fontSize: 'var(--text-base)', color: 'var(--color-text)', marginBottom: '8px' }}>{item.title}</h3>
-                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.65, margin: 0 }}>{item.desc}</p>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(480px, 100%), 1fr))',
+              gap: 'clamp(40px, 6vw, 80px)',
+              alignItems: 'center',
+            }}>
+              {/* Foto izquierda */}
+              <div style={{ position: 'relative', borderRadius: 'var(--radius-xl)', overflow: 'hidden', aspectRatio: '4/3', boxShadow: '0 20px 60px rgba(13,59,46,0.15)' }}>
+                <Image
+                  src="/images/temporal.jpg"
+                  alt="Habitación de alquiler temporal en Barcelona gestionada por Viviendas Virtuo"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div style={{ position: 'absolute', bottom: '20px', left: '20px', background: 'rgba(255,255,255,0.95)', borderRadius: 'var(--radius-lg)', padding: '12px 16px', boxShadow: '0 4px 20px rgba(0,0,0,0.12)' }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontWeight: 900, color: '#1a6b52', lineHeight: 1 }}>+35%</div>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>más rentabilidad</div>
                 </div>
-              ))}
+              </div>
+              {/* Texto derecha */}
+              <div>
+                <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Todo incluido</p>
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '20px' }}>Una habitación lista para entrar</h2>
+                <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.75, marginBottom: '28px', fontSize: 'var(--text-base)' }}>Sin muebles que comprar, sin contratos de suministros que dar de alta, sin perder tiempo. Llegas con tu maleta y ya está.</p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '32px' }}>
+                  {[
+                    'Habitación equipada: cama, ropa de cama, escritorio y armario',
+                    'Suministros incluidos: luz, agua, gas e internet',
+                    'Limpieza periódica de zonas comunes',
+                    'Contrato desde 1 mes, firma digital',
+                    'Incidencias resueltas en menos de 48h',
+                    'Soporte real — una persona, no un chatbot',
+                  ].map((item, i) => (
+                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2.5" style={{ flexShrink: 0, marginTop: '3px' }} aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                      <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.5 }}>{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-primary)', color: 'white', fontWeight: 700, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Ver disponibilidad →</Link>
+              </div>
             </div>
           </div>
         </section>
@@ -75,13 +99,13 @@ export default function TemporalPage() {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px,1fr))', gap: '20px' }}>
               {[
-                { emoji: '💼', tipo: 'Trabajadores desplazados', desc: 'Proyectos de 1 a 6 meses, sin compromiso de contrato largo.' },
-                { emoji: '🏫', tipo: 'Estudiantes de ciclos', desc: 'FP, másters o cursos de duración limitada.' },
-                { emoji: '🏥', tipo: 'Rotaciones médicas', desc: 'Residentes y sanitarios en rotación en Barcelona.' },
-                { emoji: '🖥️', tipo: 'Freelances y nómadas', desc: 'Estabilidad temporal sin atarse a un contrato largo.' },
+                { tipo: 'Trabajadores desplazados', desc: 'Proyectos de 1 a 6 meses, sin compromiso de contrato largo.' },
+                { tipo: 'Estudiantes de ciclos', desc: 'FP, másters o cursos de duración limitada.' },
+                { tipo: 'Rotaciones médicas', desc: 'Residentes y sanitarios en rotación en Barcelona.' },
+                { tipo: 'Freelances y nómadas', desc: 'Estabilidad temporal sin atarse a un contrato largo.' },
               ].map((p, i) => (
-                <div key={i} style={{ background: 'white', borderRadius: 'var(--radius-xl)', padding: '28px 20px', textAlign: 'center', border: '1px solid var(--color-border)' }}>
-                  <div style={{ fontSize: '2rem', marginBottom: '12px' }}>{p.emoji}</div>
+                <div key={i} style={{ background: 'white', borderRadius: 'var(--radius-xl)', padding: '28px 20px', border: '1px solid var(--color-border)' }}>
+                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-primary)', marginBottom: '14px' }} />
                   <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-text)', marginBottom: '8px' }}>{p.tipo}</h3>
                   <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.6, margin: 0 }}>{p.desc}</p>
                 </div>
