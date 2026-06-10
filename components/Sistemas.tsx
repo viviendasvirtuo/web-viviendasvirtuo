@@ -21,6 +21,7 @@ const sistemas = [
       { label: 'Rentabilidad', val: 'Alta' },
       { label: 'Estabilidad', val: 'Máxima' },
     ],
+    nota: null,
   },
   {
     id: 'temporal',
@@ -41,26 +42,28 @@ const sistemas = [
       { label: 'Rentabilidad', val: 'Muy alta' },
       { label: 'Estabilidad', val: 'Alta' },
     ],
+    nota: null,
   },
   {
     id: 'vacacional',
     href: '/vacacional',
     badge: 'Vacacional',
     badgeClass: 'badge-vacacional',
-    title: 'Apartamento completo para turismo',
-    desc: 'Máxima rentabilidad por noche. Gestionamos la presencia en plataformas (Airbnb, Booking), comunicación con huéspedes, limpiezas y toda la operativa sin que intervengas.',
+    title: 'Gestión de apartamentos turísticos con licencia',
+    desc: 'Máxima rentabilidad por noche para propietarios que ya disponen de licencia turística. Gestionamos plataformas, huéspedes, limpiezas y toda la operativa.',
     colorRaw: '#c84820',
     features: [
-      'Alta en Airbnb, Booking y más',
+      'Gestión en Airbnb, Booking y más',
       'Pricing dinámico por temporada',
       'Gestión completa de huéspedes',
-      'Rentabilidad máxima del mercado',
+      'Informes mensuales de rentabilidad',
     ],
     meta: [
-      { label: 'Ideal para', val: 'Apartamentos' },
+      { label: 'Requiere', val: 'Licencia turística' },
       { label: 'Rentabilidad', val: 'Máxima' },
-      { label: 'Estabilidad', val: 'Media' },
+      { label: 'Zonas', val: 'No BCN ciudad' },
     ],
+    nota: 'Disponible en municipios con licencias turísticas vigentes (Badalona, área metropolitana y otras localidades). Barcelona ciudad no concede nuevas licencias.',
   },
 ];
 
@@ -136,6 +139,19 @@ export default function Sistemas() {
                     </li>
                   ))}
                 </ul>
+
+                {/* Nota legal si existe */}
+                {s.nota && (
+                  <div style={{
+                    background: '#fef9ec', border: '1px solid #f5d77a',
+                    borderRadius: 'var(--radius-md)', padding: '10px 12px',
+                    marginBottom: 'var(--space-4)',
+                  }}>
+                    <p style={{ fontSize: 'var(--text-xs)', color: '#7c5800', lineHeight: 1.6, margin: 0 }}>
+                      ⚠️ {s.nota}
+                    </p>
+                  </div>
+                )}
 
                 {/* Meta + CTA */}
                 <div style={{

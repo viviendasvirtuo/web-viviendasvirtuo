@@ -15,6 +15,8 @@ interface ResultadoSistema {
   gestion: string;
   color: string;
   tag?: string;
+  disabled?: boolean;
+  disabledMsg?: string;
 }
 
 const MULTIPLICADORES: Record<Zona, { preciom2Base: number; turistico: number }> = {
@@ -23,29 +25,29 @@ const MULTIPLICADORES: Record<Zona, { preciom2Base: number; turistico: number }>
   otra:      { preciom2Base: 10.0, turistico: 65 },
 };
 
-const COMISION_VIRTUO = 0.20; // 20% gestión
+const COMISION_VIRTUO = 0.20;
 
 function calcularResultados(m2: number, zona: Zona): ResultadoSistema[] {
   const { preciom2Base, turistico } = MULTIPLICADORES[zona];
-
-  // Habitaciones estimadas según m²
   const nHab = m2 <= 50 ? 1 : m2 <= 80 ? 2 : m2 <= 110 ? 3 : m2 <= 140 ? 4 : 5;
 
-  // COLIVING — alquiler por habitaciones, 95% ocupación
+  // COLIVING
   const precioHabColiving = preciom2Base * 8 + (zona === 'barcelona' ? 80 : zona === 'badalona' ? 40 : 20);
   const brutoCo = Math.round(nHab * precioHabColiving * 0.95);
   const netoCo  = Math.round(brutoCo * (1 - COMISION_VIRTUO));
 
-  // TEMPORAL — precio intermedio, 80% ocupación
+  // TEMPORAL
   const precioHabTemporal = precioHabColiving * 1.35;
   const brutoTe = Math.round(nHab * precioHabTemporal * 0.80);
   const netoTe  = Math.round(brutoTe * (1 - COMISION_VIRTUO));
 
-  // VACACIONAL — precio noche por m², alta temporada avg
-  const noches = 22; // promedio mensual
+  // VACACIONAL — solo disponible si tiene licencia (no BCN ciudad)
+  const noches = 22;
   const precioNoche = (m2 / 10) * turistico / 10;
   const brutoVa = Math.round(noches * precioNoche);
-  const netoVa  = Math.round(brutoVa * (1 - COMISION_VIRTUO - 0.05)); // +5% plataformas
+  const netoVa  = Math.round(brutoVa * (1 - COMISION_VIRTUO - 0.05));
+
+  const vacacionalDisabled = zona === 'barcelona';
 
   return [
     {
@@ -72,13 +74,15 @@ function calcularResultados(m2: number, zona: Zona): ResultadoSistema[] {
     {
       nombre: 'Vacacional',
       slug: '/vacacional',
-      descripcion: `~${noches} noches/mes`,
-      ingresoBruto: brutoVa,
-      ingresoNeto: netoVa,
+      descripcion: vacacionalDisabled ? 'Sin licencias turísticas' : `~${noches} noches/mes`,
+      ingresoBruto: vacacionalDisabled ? 0 : brutoVa,
+      ingresoNeto: vacacionalDisabled ? 0 : netoVa,
       ocupacion: '~70%',
       gestion: 'Máxima rentabilidad',
-      color: '#0f2d5e',
-      tag: 'Mayor ingreso',
+      color: '#c84820',
+      tag: vacacionalDisabled ? undefined : 'Mayor ingreso',
+      disabled: vacacionalDisabled,
+      disabledMsg: 'Barcelona ciudad no concede licencias turísticas nuevas desde 2012. Si tienes licencia en vigor, consúltanos.',
     },
   ];
 }
@@ -104,7 +108,8 @@ export default function CalculadoraRentabilidad() {
     return Math.round(base * 0.85);
   })();
 
-  const maxNeto = resultados.length ? Math.max(...resultados.map(r => r.ingresoNeto)) : 1;
+  const activosNeto = resultados.filter(r => !r.disabled).map(r => r.ingresoNeto);
+  const maxNeto = activosNeto.length ? Math.max(...activosNeto) : 1;
 
   return (
     <section style={{
@@ -113,7 +118,6 @@ export default function CalculadoraRentabilidad() {
       position: 'relative',
       overflow: 'hidden',
     }}>
-      {/* Fondo decorativo sutil */}
       <div aria-hidden style={{
         position: 'absolute', inset: 0, opacity: 0.04,
         backgroundImage: 'radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)',
@@ -121,7 +125,6 @@ export default function CalculadoraRentabilidad() {
       }} />
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        {/* Cabecera */}
         <div style={{ textAlign: 'center', marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
           <span style={{
             display: 'inline-block', background: 'rgba(255,255,255,0.1)',
@@ -151,26 +154,20 @@ export default function CalculadoraRentabilidad() {
           maxWidth: '760px',
           margin: '0 auto',
         }}>
-
-          {/* Inputs */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
             gap: '1.25rem',
             marginBottom: '2rem',
           }}>
-
-            {/* m² con slider */}
+            {/* m² */}
             <div>
               <label style={{
                 display: 'block', fontSize: 'var(--text-xs)', fontWeight: 700,
                 color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase',
                 letterSpacing: '0.08em', marginBottom: '0.75rem',
               }}>Superficie</label>
-              <div style={{
-                background: 'rgba(255,255,255,0.08)', borderRadius: '12px',
-                padding: '1rem 1.25rem',
-              }}>
+              <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: '12px', padding: '1rem 1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.75rem' }}>
                   <span style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 800, color: 'white' }}>{m2}</span>
                   <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 'var(--text-sm)' }}>m²</span>
@@ -197,7 +194,7 @@ export default function CalculadoraRentabilidad() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {([
                   { value: 'badalona', label: 'Badalona', sub: 'Barcelonès Nord' },
-                  { value: 'barcelona', label: 'Barcelona ciudad', sub: 'Alta demanda' },
+                  { value: 'barcelona', label: 'Barcelona ciudad', sub: 'Sin nuevas lic. turísticas' },
                   { value: 'otra', label: 'Otra zona', sub: 'Área metropolitana' },
                 ] as { value: Zona; label: string; sub: string }[]).map(opt => (
                   <button key={opt.value} onClick={() => { setZona(opt.value); setCalculado(false); }}
@@ -215,7 +212,7 @@ export default function CalculadoraRentabilidad() {
               </div>
             </div>
 
-            {/* Sistema actual */}
+            {/* Situación actual */}
             <div>
               <label style={{
                 display: 'block', fontSize: 'var(--text-xs)', fontWeight: 700,
@@ -244,7 +241,6 @@ export default function CalculadoraRentabilidad() {
             </div>
           </div>
 
-          {/* Botón calcular */}
           <button onClick={handleCalcular} style={{
             width: '100%', padding: '1rem 2rem',
             background: 'linear-gradient(135deg, #2d6bc4 0%, #1a4a8a 100%)',
@@ -263,22 +259,14 @@ export default function CalculadoraRentabilidad() {
 
         {/* Resultados */}
         {calculado && (
-          <div style={{
-            marginTop: '2.5rem',
-            animation: 'fadeUp 400ms cubic-bezier(0.16,1,0.3,1) both',
-          }}>
-            {/* Ingreso actual vs Virtuo */}
+          <div style={{ marginTop: '2.5rem', animation: 'fadeUp 400ms cubic-bezier(0.16,1,0.3,1) both' }}>
             {sistemaActual !== 'sin_alquilar' && (
-              <div style={{
-                textAlign: 'center', marginBottom: '1.5rem',
-                color: 'rgba(255,255,255,0.55)', fontSize: 'var(--text-sm)',
-              }}>
+              <div style={{ textAlign: 'center', marginBottom: '1.5rem', color: 'rgba(255,255,255,0.55)', fontSize: 'var(--text-sm)' }}>
                 Tu ingreso estimado actual:{' '}
                 <span style={{ color: 'rgba(255,255,255,0.8)', fontWeight: 600 }}>{ingresoActual.toLocaleString('es-ES')}€/mes</span>
               </div>
             )}
 
-            {/* Cards de sistemas */}
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
@@ -287,22 +275,22 @@ export default function CalculadoraRentabilidad() {
               margin: '0 auto',
             }}>
               {resultados.map((r, i) => {
-                const esMejor = r.ingresoNeto === maxNeto;
-                const mejora = ingresoActual > 0
+                const esMejor = !r.disabled && r.ingresoNeto === maxNeto;
+                const mejora = !r.disabled && ingresoActual > 0
                   ? Math.round(((r.ingresoNeto - ingresoActual) / ingresoActual) * 100)
                   : null;
-                const barWidth = Math.round((r.ingresoNeto / maxNeto) * 100);
+                const barWidth = r.disabled ? 0 : Math.round((r.ingresoNeto / maxNeto) * 100);
 
                 return (
                   <div key={i} style={{
-                    background: esMejor ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.05)',
-                    border: `1px solid ${esMejor ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.1)'}`,
+                    background: r.disabled ? 'rgba(255,255,255,0.02)' : esMejor ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.05)',
+                    border: `1px solid ${r.disabled ? 'rgba(255,255,255,0.06)' : esMejor ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.1)'}`,
                     borderRadius: '16px',
                     padding: '1.5rem',
                     position: 'relative',
-                    transition: 'transform 200ms',
+                    opacity: r.disabled ? 0.55 : 1,
                   }}>
-                    {r.tag && (
+                    {r.tag && !r.disabled && (
                       <span style={{
                         position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)',
                         background: esMejor ? '#4a9eff' : '#2d6bc4',
@@ -313,66 +301,74 @@ export default function CalculadoraRentabilidad() {
                     )}
 
                     <div style={{ marginBottom: '1rem' }}>
-                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'var(--text-lg)', color: 'white', marginBottom: '2px' }}>{r.nombre}</div>
-                      <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)' }}>{r.descripcion}</div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'var(--text-lg)', color: r.disabled ? 'rgba(255,255,255,0.4)' : 'white', marginBottom: '2px' }}>{r.nombre}</div>
+                      <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.35)' }}>{r.descripcion}</div>
                     </div>
 
-                    {/* Ingreso neto */}
-                    <div style={{ marginBottom: '1rem' }}>
-                      <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)', marginBottom: '4px' }}>Ingreso neto estimado</div>
-                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
-                        <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.75rem', fontWeight: 800, color: esMejor ? '#7ec8ff' : 'white' }}>
-                          {r.ingresoNeto.toLocaleString('es-ES')}
-                        </span>
-                        <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 'var(--text-sm)' }}>€/mes</span>
-                      </div>
-                      {mejora !== null && (
-                        <div style={{
-                          fontSize: 'var(--text-xs)', fontWeight: 600, marginTop: '4px',
-                          color: mejora > 0 ? '#5ddc8a' : mejora < 0 ? '#ff7b7b' : 'rgba(255,255,255,0.4)',
-                        }}>
-                          {mejora > 0 ? `+${mejora}% vs. tu situación actual` : mejora < 0 ? `${mejora}% vs. tu situación actual` : 'Similar a tu situación actual'}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Barra visual */}
-                    <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: '100px', height: '4px', marginBottom: '1rem' }}>
+                    {r.disabled ? (
                       <div style={{
-                        height: '100%', borderRadius: '100px',
-                        width: `${barWidth}%`,
-                        background: esMejor ? 'linear-gradient(90deg, #4a9eff, #7ec8ff)' : 'rgba(255,255,255,0.3)',
-                        transition: 'width 600ms cubic-bezier(0.16,1,0.3,1)',
-                      }} />
-                    </div>
-
-                    {/* Datos clave */}
-                    <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.25rem' }}>
-                      <div>
-                        <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.35)' }}>Ocupación</div>
-                        <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'rgba(255,255,255,0.75)' }}>{r.ocupacion}</div>
+                        background: 'rgba(252,211,77,0.08)', border: '1px solid rgba(252,211,77,0.2)',
+                        borderRadius: '8px', padding: '10px 12px', marginBottom: '1rem',
+                      }}>
+                        <p style={{ fontSize: 'var(--text-xs)', color: 'rgba(252,211,77,0.8)', lineHeight: 1.6, margin: 0 }}>
+                          ⚠️ {r.disabledMsg}
+                        </p>
                       </div>
-                      <div>
-                        <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.35)' }}>Gestión</div>
-                        <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'rgba(255,255,255,0.75)' }}>{r.gestion}</div>
-                      </div>
-                    </div>
+                    ) : (
+                      <>
+                        <div style={{ marginBottom: '1rem' }}>
+                          <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)', marginBottom: '4px' }}>Ingreso neto estimado</div>
+                          <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
+                            <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.75rem', fontWeight: 800, color: esMejor ? '#7ec8ff' : 'white' }}>
+                              {r.ingresoNeto.toLocaleString('es-ES')}
+                            </span>
+                            <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 'var(--text-sm)' }}>€/mes</span>
+                          </div>
+                          {mejora !== null && (
+                            <div style={{
+                              fontSize: 'var(--text-xs)', fontWeight: 600, marginTop: '4px',
+                              color: mejora > 0 ? '#5ddc8a' : mejora < 0 ? '#ff7b7b' : 'rgba(255,255,255,0.4)',
+                            }}>
+                              {mejora > 0 ? `+${mejora}% vs. tu situación actual` : mejora < 0 ? `${mejora}% vs. tu situación actual` : 'Similar a tu situación actual'}
+                            </div>
+                          )}
+                        </div>
+                        <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: '100px', height: '4px', marginBottom: '1rem' }}>
+                          <div style={{
+                            height: '100%', borderRadius: '100px',
+                            width: `${barWidth}%`,
+                            background: esMejor ? 'linear-gradient(90deg, #4a9eff, #7ec8ff)' : 'rgba(255,255,255,0.3)',
+                            transition: 'width 600ms cubic-bezier(0.16,1,0.3,1)',
+                          }} />
+                        </div>
+                        <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.25rem' }}>
+                          <div>
+                            <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.35)' }}>Ocupación</div>
+                            <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'rgba(255,255,255,0.75)' }}>{r.ocupacion}</div>
+                          </div>
+                          <div>
+                            <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.35)' }}>Gestión</div>
+                            <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'rgba(255,255,255,0.75)' }}>{r.gestion}</div>
+                          </div>
+                        </div>
+                      </>
+                    )}
 
                     <Link href={r.slug} style={{
                       display: 'block', textAlign: 'center',
                       padding: '8px 16px', borderRadius: '8px',
-                      background: esMejor ? 'rgba(74,158,255,0.2)' : 'rgba(255,255,255,0.07)',
-                      border: `1px solid ${esMejor ? 'rgba(74,158,255,0.4)' : 'rgba(255,255,255,0.1)'}`,
-                      color: esMejor ? '#7ec8ff' : 'rgba(255,255,255,0.6)',
+                      background: r.disabled ? 'rgba(255,255,255,0.04)' : esMejor ? 'rgba(74,158,255,0.2)' : 'rgba(255,255,255,0.07)',
+                      border: `1px solid ${r.disabled ? 'rgba(255,255,255,0.07)' : esMejor ? 'rgba(74,158,255,0.4)' : 'rgba(255,255,255,0.1)'}`,
+                      color: r.disabled ? 'rgba(255,255,255,0.3)' : esMejor ? '#7ec8ff' : 'rgba(255,255,255,0.6)',
                       fontSize: 'var(--text-sm)', fontWeight: 600, textDecoration: 'none',
                       transition: 'all 150ms',
+                      pointerEvents: r.disabled ? 'none' : 'auto',
                     }}>Ver sistema →</Link>
                   </div>
                 );
               })}
             </div>
 
-            {/* CTA final */}
             <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
               <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 'var(--text-xs)', marginBottom: '1.25rem' }}>
                 * Estimación orientativa basada en datos de mercado de la zona. Solicita un análisis personalizado gratuito.
