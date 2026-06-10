@@ -6,6 +6,15 @@ const stats = [
   { num: '100%', label: 'Gestión completa sin intervención tuya' },
 ];
 
+const tickerItems = [
+  'Coliving · alquiler por habitaciones',
+  'Temporal · estancias de 1 a 6 meses',
+  'Vacacional · apartamento completo',
+  'Sin preocupaciones · máxima rentabilidad',
+  'Gestión profesional · Barcelona',
+  'Selección de inquilinos · garantía de cobro',
+];
+
 export default function Hero() {
   return (
     <section
@@ -13,7 +22,8 @@ export default function Hero() {
         position: 'relative',
         minHeight: '100dvh',
         display: 'flex',
-        alignItems: 'center',
+        flexDirection: 'column',
+        alignItems: 'stretch',
         background: 'linear-gradient(160deg, #091525 0%, #0f2d5e 45%, #1a4a8a 100%)',
         overflow: 'hidden',
       }}
@@ -54,9 +64,10 @@ export default function Hero() {
         }}
       />
 
+      {/* Contenido principal */}
       <div
         className="container"
-        style={{ position: 'relative', zIndex: 1, paddingTop: '130px', paddingBottom: '100px' }}
+        style={{ position: 'relative', zIndex: 1, paddingTop: '130px', paddingBottom: '80px', flex: 1 }}
       >
         <div style={{ maxWidth: '780px' }}>
 
@@ -185,13 +196,37 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Flecha scroll — CSS hover, sin onMouseEnter/Leave */}
+      {/* Ticker giratorio — en la parte inferior del hero */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          width: '100%',
+          overflow: 'hidden',
+          borderTop: '1px solid rgba(255,255,255,0.08)',
+          background: 'rgba(255,255,255,0.03)',
+          backdropFilter: 'blur(8px)',
+          padding: '14px 0',
+        }}
+      >
+        <div className="ticker-track">
+          {[...tickerItems, ...tickerItems].map((item, i) => (
+            <span key={i} className="ticker-item">
+              <span className="ticker-dot" />
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Flecha scroll */}
       <a
         href="#sistemas"
         aria-label="Ver sistemas"
         className="hero-scroll-arrow"
         style={{
-          position: 'absolute', bottom: '2.5rem', left: '50%',
+          position: 'absolute', bottom: '4.5rem', left: '50%',
           transform: 'translateX(-50%)',
           animation: 'fadeUp 1s 1s both',
         }}
@@ -202,12 +237,49 @@ export default function Hero() {
       </a>
 
       <style>{`
+        @keyframes ticker {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .ticker-track {
+          display: flex;
+          gap: 0;
+          width: max-content;
+          animation: ticker 28s linear infinite;
+          will-change: transform;
+        }
+        .ticker-track:hover {
+          animation-play-state: paused;
+        }
+        .ticker-item {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 0 var(--space-8);
+          font-size: var(--text-xs);
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.45);
+          white-space: nowrap;
+        }
+        .ticker-dot {
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.25);
+          flex-shrink: 0;
+        }
         .hero-scroll-arrow {
           color: rgba(255,255,255,0.3);
           transition: color 0.2s ease;
         }
         .hero-scroll-arrow:hover {
           color: rgba(255,255,255,0.7);
+        }
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+          to   { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
       `}</style>
     </section>

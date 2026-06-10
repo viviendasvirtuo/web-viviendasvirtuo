@@ -90,40 +90,30 @@ export default function Sistemas() {
           </div>
         </div>
 
-        {/* Grid asimétrico: 1 grande (span 2) + 2 pequeñas */}
+        {/* Grid asimétrico: usa clases CSS, NO style inline para grid-column */}
         <div className="sistemas-grid">
           {sistemas.map((s, i) => (
             <article
               key={s.id}
-              className={`sistema-card${i === 0 ? ' sistema-card--grande' : ''}`}
+              className={`sistema-card${i === 0 ? ' sistema-card--grande' : ' sistema-card--pequena'}`}
               style={{
-                gridColumn: i === 0 ? 'span 2' : 'span 1',
                 background: 'var(--color-surface)',
                 borderRadius: 'var(--radius-xl)',
                 border: '1px solid var(--color-border)',
                 overflow: 'hidden',
                 display: 'flex',
-                flexDirection: i === 0 ? 'row' : 'column',
                 boxShadow: 'var(--shadow-sm)',
               }}
             >
-              {/* Franja de color lateral (grande) o superior (pequeñas) */}
+              {/* Franja de color: lateral (grande) o superior (pequeñas) — controlada por CSS */}
               <div
-                style={{
-                  background: s.colorRaw,
-                  width: i === 0 ? '6px' : 'auto',
-                  height: i === 0 ? 'auto' : '4px',
-                  flexShrink: 0,
-                }}
+                className={i === 0 ? 'franja-lateral' : 'franja-superior'}
+                style={{ background: s.colorRaw, flexShrink: 0 }}
               />
 
               <div
-                style={{
-                  padding: i === 0 ? 'var(--space-10)' : 'var(--space-7)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  flex: 1,
-                }}
+                className={i === 0 ? 'card-inner--grande' : 'card-inner--pequena'}
+                style={{ display: 'flex', flexDirection: 'column', flex: 1 }}
               >
                 {/* Badge */}
                 <span
@@ -162,7 +152,7 @@ export default function Sistemas() {
                   {s.desc}
                 </p>
 
-                {/* Features — solo en la card grande */}
+                {/* Features — solo card grande */}
                 {i === 0 && (
                   <ul
                     style={{
@@ -247,13 +237,40 @@ export default function Sistemas() {
           ))}
         </div>
 
-        {/* CSS: grid + hover via CSS + responsive */}
         <style>{`
+          /* Grid desktop */
           .sistemas-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: var(--space-5);
           }
+          /* Card grande ocupa 2 columnas */
+          .sistema-card--grande {
+            grid-column: span 2;
+            flex-direction: row;
+          }
+          /* Card pequeña: 1 columna */
+          .sistema-card--pequena {
+            grid-column: span 1;
+            flex-direction: column;
+          }
+          /* Franjas de color */
+          .franja-lateral {
+            width: 6px;
+            height: auto;
+          }
+          .franja-superior {
+            width: auto;
+            height: 4px;
+          }
+          /* Padding inner */
+          .card-inner--grande {
+            padding: var(--space-10);
+          }
+          .card-inner--pequena {
+            padding: var(--space-7);
+          }
+          /* Hover */
           .sistema-card {
             transition: box-shadow 0.25s ease, transform 0.25s ease;
           }
@@ -261,17 +278,22 @@ export default function Sistemas() {
             box-shadow: var(--shadow-lg);
             transform: translateY(-3px);
           }
+          /* ── MOBILE ── */
           @media (max-width: 900px) {
             .sistemas-grid {
               grid-template-columns: 1fr;
             }
-            .sistema-card {
-              grid-column: span 1 !important;
-              flex-direction: column !important;
+            .sistema-card--grande,
+            .sistema-card--pequena {
+              grid-column: span 1;
+              flex-direction: column;
             }
-            .sistema-card > div:first-child {
-              width: auto !important;
-              height: 4px !important;
+            .franja-lateral {
+              width: auto;
+              height: 4px;
+            }
+            .card-inner--grande {
+              padding: var(--space-7);
             }
           }
         `}</style>
