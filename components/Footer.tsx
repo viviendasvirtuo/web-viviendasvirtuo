@@ -3,6 +3,14 @@ import Link from 'next/link';
 export default function Footer() {
   const year = new Date().getFullYear();
 
+  const plataformas = [
+    { name: 'Airbnb', label: 'Airbnb' },
+    { name: 'Booking.com', label: 'Booking.com' },
+    { name: 'Idealista', label: 'idealista' },
+    { name: 'Fotocasa', label: 'fotocasa' },
+    { name: 'Habitaclia', label: 'habitaclia' },
+  ];
+
   return (
     <footer
       style={{
@@ -55,14 +63,11 @@ export default function Footer() {
               Gestión profesional de alquiler en Barcelona. Coliving, temporal y vacacional.
             </p>
             {/* Contacto rápido */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', marginBottom: 'var(--space-6)' }}>
               <a
                 href="tel:+34900000000"
                 className="footer-link"
-                style={{
-                  fontSize: 'var(--text-sm)', display: 'flex',
-                  alignItems: 'center', gap: 'var(--space-2)',
-                }}
+                style={{ fontSize: 'var(--text-sm)', display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.46 16z"/>
@@ -72,10 +77,7 @@ export default function Footer() {
               <a
                 href="mailto:hola@viviendasvirtuo.com"
                 className="footer-link"
-                style={{
-                  fontSize: 'var(--text-sm)', display: 'flex',
-                  alignItems: 'center', gap: 'var(--space-2)',
-                }}
+                style={{ fontSize: 'var(--text-sm)', display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -83,6 +85,35 @@ export default function Footer() {
                 </svg>
                 hola@viviendasvirtuo.com
               </a>
+            </div>
+            {/* Publicamos en — dentro de la columna de marca */}
+            <div>
+              <p style={{
+                fontSize: 'var(--text-xs)', fontWeight: 600,
+                color: 'rgba(255,255,255,0.3)',
+                letterSpacing: '0.1em', textTransform: 'uppercase',
+                marginBottom: 'var(--space-3)',
+              }}>
+                Publicamos en
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)' }}>
+                {plataformas.map(p => (
+                  <span
+                    key={p.name}
+                    style={{
+                      fontSize: 'var(--text-xs)',
+                      color: 'rgba(255,255,255,0.45)',
+                      background: 'rgba(255,255,255,0.06)',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      borderRadius: 'var(--radius-full)',
+                      padding: '3px 10px',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {p.label}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -185,24 +216,19 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* CSS hover sin JS — compatible con Server Components */}
         <style>{`
           .footer-link {
             color: rgba(255,255,255,0.55);
             text-decoration: none;
             transition: color 0.2s ease;
           }
-          .footer-link:hover {
-            color: #fff;
-          }
+          .footer-link:hover { color: #fff; }
           .footer-link-legal {
             color: rgba(255,255,255,0.55);
             text-decoration: none;
             transition: color 0.2s ease;
           }
-          .footer-link-legal:hover {
-            color: rgba(255,255,255,0.8);
-          }
+          .footer-link-legal:hover { color: rgba(255,255,255,0.8); }
           @media (max-width: 900px) {
             footer .container > div:first-child {
               grid-template-columns: 1fr 1fr;
