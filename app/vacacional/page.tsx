@@ -3,6 +3,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Alquiler Vacacional — Viviendas Virtuo',
   description: 'Gestión profesional de apartamentos vacacionales en Barcelona. Maximiza tu rentabilidad en Airbnb, Booking y más con pricing dinámico.',
@@ -52,7 +54,7 @@ export default function VacacionalPage() {
                 { icon: '📊', title: 'Pricing dinámico', desc: 'Precios que se ajustan en tiempo real según demanda, temporada y eventos.' },
                 { icon: '🏨', title: 'Gestión en múltiples plataformas', desc: 'Airbnb, Booking, Vrbo y más. Máxima visibilidad, mínima vacancia.' },
                 { icon: '🤝', title: 'Check-in y check-out', desc: 'Recepción del viajero, entrega de llaves y asistencia durante su estancia.' },
-                { icon: '🧺', title: 'Limpieza profesional', desc: 'Entre cada reserva: limpieza, cambio de ropa de cama y reposición.' },
+                { icon: '🧺e', title: 'Limpieza profesional', desc: 'Entre cada reserva: limpieza, cambio de ropa de cama y reposición.' },
                 { icon: '📞', title: 'Atención al huésped 24/7', desc: 'Resolvemos cualquier incidencia en tiempo real, sin molestar al propietario.' },
               ].map((item, i) => (
                 <div key={i} style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xl)', padding: '24px' }}>
