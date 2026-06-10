@@ -30,7 +30,12 @@ const sistemas = [
     title: 'Estancias de 1 a 6 meses para trabajo y estudio',
     desc: 'Para trabajadores desplazados y estudiantes de ciclos cortos. Flexibilidad total en duración, máxima rotación controlada y precio por encima del alquiler tradicional.',
     colorRaw: '#1e7a5a',
-    features: [],
+    features: [
+      'Estancias de 1 a 6 meses',
+      'Check-in y check-out incluidos',
+      'Limpieza y mantenimiento',
+      'Precio superior al mercado',
+    ],
     meta: [
       { label: 'Ideal para', val: 'Pisos céntricos' },
       { label: 'Rentabilidad', val: 'Muy alta' },
@@ -45,7 +50,12 @@ const sistemas = [
     title: 'Apartamento completo para turismo',
     desc: 'Máxima rentabilidad por noche. Gestionamos la presencia en plataformas (Airbnb, Booking), comunicación con huéspedes, limpiezas y toda la operativa sin que intervengas.',
     colorRaw: '#c84820',
-    features: [],
+    features: [
+      'Alta en Airbnb, Booking y más',
+      'Pricing dinámico por temporada',
+      'Gestión completa de huéspedes',
+      'Rentabilidad máxima del mercado',
+    ],
     meta: [
       { label: 'Ideal para', val: 'Apartamentos' },
       { label: 'Rentabilidad', val: 'Máxima' },
@@ -72,9 +82,9 @@ export default function Sistemas() {
           </div>
         </div>
 
-        {/* 3 tarjetas en fila, misma altura */}
+        {/* 3 tarjetas en fila */}
         <div className="sistemas-grid">
-          {sistemas.map((s, i) => (
+          {sistemas.map((s) => (
             <article
               key={s.id}
               className="sistema-card"
@@ -88,66 +98,50 @@ export default function Sistemas() {
                 boxShadow: 'var(--shadow-sm)',
               }}
             >
-              {/* Franja superior de color */}
+              {/* Franja de color superior */}
               <div style={{ height: '4px', background: s.colorRaw, flexShrink: 0 }} />
 
               <div style={{ display: 'flex', flexDirection: 'column', flex: 1, padding: 'var(--space-8)' }}>
+
                 {/* Badge */}
-                <span
-                  className={`badge ${s.badgeClass}`}
-                  style={{ marginBottom: 'var(--space-4)', alignSelf: 'flex-start' }}
-                >
+                <span className={`badge ${s.badgeClass}`} style={{ marginBottom: 'var(--space-4)', alignSelf: 'flex-start' }}>
                   {s.badge}
                 </span>
 
                 {/* Título */}
                 <h3 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'var(--text-lg)',
-                  fontWeight: 800,
-                  color: 'var(--color-text)',
-                  marginBottom: 'var(--space-3)',
-                  lineHeight: 1.2,
-                  letterSpacing: '-0.01em',
+                  fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)',
+                  fontWeight: 800, color: 'var(--color-text)',
+                  marginBottom: 'var(--space-3)', lineHeight: 1.2, letterSpacing: '-0.01em',
                 }}>
                   {s.title}
                 </h3>
 
                 {/* Descripción */}
                 <p style={{
-                  fontSize: 'var(--text-sm)',
-                  color: 'var(--color-text-muted)',
-                  lineHeight: 1.7,
-                  marginBottom: 'var(--space-6)',
-                  flex: 1,
+                  fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)',
+                  lineHeight: 1.7, marginBottom: 'var(--space-6)',
                 }}>
                   {s.desc}
                 </p>
 
-                {/* Features — solo coliving */}
-                {i === 0 && (
-                  <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', marginBottom: 'var(--space-6)', listStyle: 'none' }}>
-                    {sistemas[0].features.map(f => (
-                      <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 'var(--space-2)', fontSize: 'var(--text-sm)' }}>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={s.colorRaw} strokeWidth="3" style={{ flexShrink: 0, marginTop: '3px' }} aria-hidden="true">
-                          <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        <span style={{ color: 'var(--color-text-muted)' }}>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                {/* Features */}
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', marginBottom: 'var(--space-6)', listStyle: 'none', flex: 1 }}>
+                  {s.features.map(f => (
+                    <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 'var(--space-2)', fontSize: 'var(--text-sm)' }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={s.colorRaw} strokeWidth="3" style={{ flexShrink: 0, marginTop: '3px' }} aria-hidden="true">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                      <span style={{ color: 'var(--color-text-muted)' }}>{f}</span>
+                    </li>
+                  ))}
+                </ul>
 
                 {/* Meta + CTA */}
                 <div style={{
-                  marginTop: 'auto',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  flexWrap: 'wrap',
-                  gap: 'var(--space-4)',
-                  paddingTop: 'var(--space-5)',
-                  borderTop: '1px solid var(--color-border)',
+                  marginTop: 'auto', display: 'flex', alignItems: 'center',
+                  justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--space-4)',
+                  paddingTop: 'var(--space-5)', borderTop: '1px solid var(--color-border)',
                 }}>
                   <div style={{ display: 'flex', gap: 'var(--space-5)', flexWrap: 'wrap' }}>
                     {s.meta.map(m => (
@@ -161,11 +155,7 @@ export default function Sistemas() {
                       </div>
                     ))}
                   </div>
-                  <Link
-                    href={s.href}
-                    className="btn btn-outline btn-sm"
-                    style={{ borderColor: `${s.colorRaw}40`, color: s.colorRaw, whiteSpace: 'nowrap' }}
-                  >
+                  <Link href={s.href} className="btn btn-outline btn-sm" style={{ borderColor: `${s.colorRaw}40`, color: s.colorRaw, whiteSpace: 'nowrap' }}>
                     Ver sistema
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                       <line x1="5" y1="12" x2="19" y2="12"/>
@@ -193,9 +183,7 @@ export default function Sistemas() {
             transform: translateY(-3px);
           }
           @media (max-width: 900px) {
-            .sistemas-grid {
-              grid-template-columns: 1fr;
-            }
+            .sistemas-grid { grid-template-columns: 1fr; }
           }
         `}</style>
       </div>
