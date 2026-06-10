@@ -2,6 +2,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import LogoBar from '@/components/LogoBar';
 import Sistemas from '@/components/Sistemas';
+import CalculadoraRentabilidad from '@/components/CalculadoraRentabilidad';
 import Propietarios from '@/components/Propietarios';
 import Inquilinos from '@/components/Inquilinos';
 import ComoFunciona from '@/components/ComoFunciona';
@@ -17,6 +18,7 @@ export default function Home() {
         <Hero />
         <LogoBar />
         <Sistemas />
+        <CalculadoraRentabilidad />
         <Propietarios />
         <Inquilinos />
         <ComoFunciona />
