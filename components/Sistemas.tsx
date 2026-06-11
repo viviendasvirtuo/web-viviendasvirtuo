@@ -61,9 +61,9 @@ const sistemas = [
     meta: [
       { label: 'Requiere', val: 'Licencia turística' },
       { label: 'Rentabilidad', val: 'Máxima' },
-      { label: 'Zonas', val: 'No BCN ciudad' },
+      { label: 'Zona', val: 'Área metropolitana' },
     ],
-    nota: 'Disponible en municipios con licencias turísticas vigentes (Badalona, área metropolitana y otras localidades). Barcelona ciudad no concede nuevas licencias.',
+    nota: null,
   },
 ];
 
@@ -154,21 +154,6 @@ export default function Sistemas() {
                     </li>
                   ))}
                 </ul>
-
-                {/* Nota legal si existe */}
-                {s.nota && (
-                  <div style={{
-                    background: 'rgba(0,0,0,0.2)',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    borderRadius: 'var(--radius-md)',
-                    padding: '10px 12px',
-                    marginBottom: 'var(--space-4)',
-                  }}>
-                    <p style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6, margin: 0 }}>
-                      ⚠️ {s.nota}
-                    </p>
-                  </div>
-                )}
 
                 {/* Meta + CTA */}
                 <div style={{
