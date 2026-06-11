@@ -11,12 +11,6 @@ const VIDEOS = [
 const DURATION = 10000;
 const FADE = 800;
 
-const stats = [
-  { num: '+30%', label: 'Más rentabilidad vs alquiler tradicional' },
-  { num: '72h',  label: 'Tiempo medio hasta primera reserva' },
-  { num: '100%', label: 'Gestión completa sin intervención tuya' },
-];
-
 const tickerItems = [
   'Coliving · alquiler por habitaciones',
   'Temporal · estancias de 1 a 6 meses',
@@ -154,23 +148,9 @@ export default function Hero() {
         </p>
 
         {/* CTAs */}
-        <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <div className="hero-ctas">
           <Link href="/contacto" className="btn btn-white btn-lg">Soy propietario</Link>
           <a href="#inquilinos" className="btn btn-ghost-white btn-lg">Busco habitación</a>
-        </div>
-
-        {/* Stats */}
-        <div className="hero-stats">
-          {stats.map((stat, i) => (
-            <div key={stat.label} className={`hero-stat${i < stats.length - 1 ? ' hero-stat-border' : ''}`}>
-              <div style={{ fontSize: 'clamp(1.5rem, 1rem + 1.5vw, 2.75rem)', fontFamily: 'var(--font-display)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1 }}>
-                {stat.num}
-              </div>
-              <div style={{ fontSize: 'clamp(0.7rem, 0.65rem + 0.2vw, 0.8rem)', color: 'rgba(255,255,255,0.5)', marginTop: '4px', lineHeight: 1.35 }}>
-                {stat.label}
-              </div>
-            </div>
-          ))}
         </div>
       </div>
 
@@ -229,13 +209,10 @@ export default function Hero() {
         .ticker-track:hover { animation-play-state:paused; }
         .ticker-item { display:inline-flex; align-items:center; gap:10px; padding:0 2rem; font-size:clamp(0.7rem,0.65rem + 0.2vw,0.8rem); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.5); white-space:nowrap; }
         .ticker-dot { width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,0.25); flex-shrink:0; }
-        .hero-stats { display:flex; flex-direction:row; gap:0; margin-top:2rem; flex-wrap:nowrap; justify-content:center; }
-        .hero-stat { flex:0 1 auto; min-width:0; padding-right:1.25rem; text-align:center; }
-        .hero-stat-border { border-right:1px solid rgba(255,255,255,0.12); margin-right:1.25rem; }
-        @media (max-width:768px) {
-          .hero-stats { flex-direction:column; gap:1rem; margin-top:1.5rem; align-items:center; }
-          .hero-stat { padding-right:0; }
-          .hero-stat-border { border-right:none; margin-right:0; padding-bottom:1rem; border-bottom:1px solid rgba(255,255,255,0.08); }
+        .hero-ctas { display:flex; flex-direction:row; gap:0.65rem; flex-wrap:wrap; justify-content:center; }
+        @media (max-width:600px) {
+          .hero-ctas { flex-direction:column; align-items:center; width:100%; max-width:280px; }
+          .hero-ctas .btn { width:100%; justify-content:center; }
         }
       `}</style>
     </section>
