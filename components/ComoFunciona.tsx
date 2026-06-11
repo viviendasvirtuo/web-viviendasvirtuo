@@ -39,28 +39,10 @@ export default function ComoFunciona() {
           </p>
         </div>
 
-        {/* Timeline horizontal */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: 'var(--space-4)',
-            position: 'relative',
-          }}
-        >
-          {/* Línea conectora */}
-          <div
-            aria-hidden="true"
-            style={{
-              position: 'absolute',
-              top: '28px',
-              left: 'calc(12.5% + 20px)',
-              right: 'calc(12.5% + 20px)',
-              height: '1px',
-              background: 'linear-gradient(90deg, var(--color-primary) 0%, rgba(26,74,138,0.15) 100%)',
-              zIndex: 0,
-            }}
-          />
+        {/* Timeline */}
+        <div className="cf-grid">
+          {/* Línea conectora — solo desktop */}
+          <div className="cf-linea" aria-hidden="true" />
 
           {pasos.map((paso, i) => (
             <div
@@ -75,7 +57,6 @@ export default function ComoFunciona() {
                 zIndex: 1,
               }}
             >
-              {/* Número como dot */}
               <div
                 style={{
                   width: '40px', height: '40px',
@@ -115,6 +96,7 @@ export default function ComoFunciona() {
                   fontSize: 'var(--text-sm)',
                   color: 'var(--color-text-muted)',
                   lineHeight: 1.65,
+                  margin: 0,
                 }}
               >
                 {paso.desc}
@@ -122,23 +104,6 @@ export default function ComoFunciona() {
             </div>
           ))}
         </div>
-
-        {/* Responsive: 2 cols en tablet, 1 col en móvil */}
-        <style>{`
-          @media (max-width: 900px) {
-            #como-funciona .container > div:nth-child(2) {
-              grid-template-columns: 1fr 1fr;
-            }
-            #como-funciona .container > div:nth-child(2) > div:first-child {
-              display: none;
-            }
-          }
-          @media (max-width: 540px) {
-            #como-funciona .container > div:nth-child(2) {
-              grid-template-columns: 1fr;
-            }
-          }
-        `}</style>
 
         {/* CTA */}
         <div style={{ textAlign: 'center', marginTop: 'var(--space-12)' }}>
@@ -151,6 +116,37 @@ export default function ComoFunciona() {
           </Link>
         </div>
       </div>
+
+      <style>{`
+        .cf-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: var(--space-4);
+          position: relative;
+        }
+        .cf-linea {
+          position: absolute;
+          top: 28px;
+          left: calc(12.5% + 20px);
+          right: calc(12.5% + 20px);
+          height: 1px;
+          background: linear-gradient(90deg, var(--color-primary) 0%, rgba(26,74,138,0.15) 100%);
+          z-index: 0;
+        }
+        @media (max-width: 900px) {
+          .cf-grid {
+            grid-template-columns: 1fr 1fr;
+          }
+          .cf-linea {
+            display: none;
+          }
+        }
+        @media (max-width: 540px) {
+          .cf-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
     </section>
   );
 }

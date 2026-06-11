@@ -68,16 +68,10 @@ export default function Footer() {
       }}
     >
       <div className="container">
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '2fr 1fr 1fr 1fr',
-            gap: 'var(--space-10)',
-            marginBottom: 'var(--space-12)',
-          }}
-        >
+        <div className="footer-grid">
+
           {/* Marca + contacto */}
-          <div style={{ gridColumn: '1', minWidth: 0 }}>
+          <div className="footer-col-brand">
             <Link
               href="/"
               style={{
@@ -101,12 +95,10 @@ export default function Footer() {
               Espacios que conectan, hogares que inspiran.
             </p>
 
-            {/* Dirección */}
             <div style={{ marginBottom: 'var(--space-5)' }}>
               <a
                 href="https://maps.google.com/?q=Gran+Via+de+les+Corts+Catalanes+613+Barcelona"
-                target="_blank"
-                rel="noopener noreferrer"
+                target="_blank" rel="noopener noreferrer"
                 className="footer-link"
                 style={{ fontSize: 'var(--text-xs)', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.5 }}
               >
@@ -117,7 +109,6 @@ export default function Footer() {
               </a>
             </div>
 
-            {/* Teléfono */}
             <div style={{ marginBottom: 'var(--space-3)' }}>
               <a href="tel:+34611806603" className="footer-link"
                 style={{ fontSize: 'var(--text-sm)', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 600, color: 'rgba(255,255,255,0.8)' }}>
@@ -128,7 +119,6 @@ export default function Footer() {
               </a>
             </div>
 
-            {/* Emails */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: 'var(--space-6)' }}>
               {emails.map(e => (
                 <a key={e.addr} href={`mailto:${e.addr}`} className="footer-link"
@@ -141,7 +131,6 @@ export default function Footer() {
               ))}
             </div>
 
-            {/* RRSS */}
             <div style={{ display: 'flex', gap: '12px', marginBottom: 'var(--space-6)' }}>
               {rrss.map(r => (
                 <a key={r.label} href={r.href} target="_blank" rel="noopener noreferrer"
@@ -160,7 +149,6 @@ export default function Footer() {
               ))}
             </div>
 
-            {/* Publicamos en */}
             <div>
               <p style={{
                 fontSize: 'var(--text-xs)', fontWeight: 600,
@@ -265,7 +253,6 @@ export default function Footer() {
               background: 'rgba(255,255,255,0.05)',
               border: '1px solid rgba(255,255,255,0.1)',
               borderRadius: '12px',
-              overflow: 'hidden',
             }}>
               <p style={{
                 fontSize: '11px',
@@ -295,9 +282,8 @@ export default function Footer() {
                   width: '100%',
                   boxSizing: 'border-box',
                   textAlign: 'center',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
+                  whiteSpace: 'normal',
+                  wordBreak: 'break-word',
                 }}
                 onMouseEnter={e => (e.currentTarget.style.background = '#0f2d5e')}
                 onMouseLeave={e => (e.currentTarget.style.background = '#1a4a8a')}
@@ -306,6 +292,7 @@ export default function Footer() {
               </a>
             </div>
           </div>
+
         </div>
 
         {/* Divisor + legal */}
@@ -330,15 +317,35 @@ export default function Footer() {
         <style>{`
           .footer-link { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s ease; }
           .footer-link:hover { color: #fff; }
-          .footer-link-legal { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s ease; }
+          .footer-link-legal { color: rgba(255,255,255,0.55); text-decoration: none; }
           .footer-link-legal:hover { color: rgba(255,255,255,0.8); }
+
+          .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-10);
+            margin-bottom: var(--space-12);
+          }
+          .footer-col-brand {
+            min-width: 0;
+            grid-column: 1;
+          }
+
           @media (max-width: 900px) {
-            footer .container > div:first-child { grid-template-columns: 1fr 1fr !important; }
-            footer .container > div:first-child > div:first-child { grid-column: span 2; }
+            .footer-grid {
+              grid-template-columns: 1fr 1fr;
+            }
+            .footer-col-brand {
+              grid-column: span 2;
+            }
           }
           @media (max-width: 540px) {
-            footer .container > div:first-child { grid-template-columns: 1fr !important; }
-            footer .container > div:first-child > div:first-child { grid-column: span 1; }
+            .footer-grid {
+              grid-template-columns: 1fr;
+            }
+            .footer-col-brand {
+              grid-column: span 1;
+            }
           }
         `}</style>
       </div>
