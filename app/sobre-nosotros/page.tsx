@@ -1,21 +1,19 @@
-import type { Metadata } from 'next';
+'use client';
+
+import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
-export const dynamic = 'force-static';
-
-export const metadata: Metadata = {
-  title: 'Sobre Nosotros — Viviendas Virtuo',
-  description: 'Conoce Viviendas Virtuo: quiénes somos, cómo trabajamos y por qué somos diferentes a una inmobiliaria tradicional. Gestión profesional de alquiler en Barcelona.',
-  openGraph: {
-    title: 'Sobre Nosotros — Viviendas Virtuo',
-    description: 'Gestión profesional de alquiler en Barcelona. Coliving, temporal y vacacional con un equipo que se implica de verdad.',
-    url: 'https://viviendasvirtuo.com/sobre-nosotros',
-  },
-};
-
 export default function SobreNosotrosPage() {
+  const [rentaMensual, setRentaMensual] = useState(800);
+  const [sistema, setSistema] = useState<'coliving' | 'temporal' | 'vacacional'>('coliving');
+
+  const multiplicadores = { coliving: 1.18, temporal: 1.28, vacacional: 1.55 };
+  const etiquetas = { coliving: 'Coliving', temporal: 'Temporal', vacacional: 'Vacacional' };
+  const estimado = Math.round(rentaMensual * multiplicadores[sistema]);
+  const diferencia = estimado - rentaMensual;
+
   return (
     <>
       <Header />
@@ -123,7 +121,92 @@ export default function SobreNosotrosPage() {
           </div>
         </section>
 
-        {/* CTA */}
+        {/* CALCULADORA DE RENTABILIDAD */}
+        <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: '#f0f4fa' }}>
+          <div className="container">
+            <div style={{ maxWidth: '680px', margin: '0 auto' }}>
+              <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+                <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Herramienta gratuita</p>
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem,2.5vw,2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '12px' }}>¿Cuánto podría rendir tu vivienda?</h2>
+                <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-base)', lineHeight: 1.7 }}>Ajusta los parámetros y obtén una estimación orientativa según el sistema de gestión.</p>
+              </div>
+
+              <div style={{ background: 'white', borderRadius: 'var(--radius-xl)', padding: 'clamp(28px,5vw,48px)', border: '1px solid var(--color-border)', boxShadow: '0 8px 32px rgba(15,45,94,0.07)' }}>
+
+                {/* Selector de sistema */}
+                <div style={{ marginBottom: '32px' }}>
+                  <label style={{ display: 'block', fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)', marginBottom: '12px' }}>Sistema de gestión</label>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '10px' }}>
+                    {(['coliving', 'temporal', 'vacacional'] as const).map((s) => (
+                      <button
+                        key={s}
+                        onClick={() => setSistema(s)}
+                        style={{
+                          padding: '10px 8px',
+                          borderRadius: 'var(--radius-lg)',
+                          border: sistema === s ? '2px solid var(--color-primary)' : '1.5px solid var(--color-border)',
+                          background: sistema === s ? 'var(--color-primary)' : 'var(--color-surface)',
+                          color: sistema === s ? 'white' : 'var(--color-text)',
+                          fontWeight: 700,
+                          fontSize: 'var(--text-sm)',
+                          cursor: 'pointer',
+                          transition: 'all 180ms ease',
+                        }}
+                      >
+                        {etiquetas[s]}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Slider renta */}
+                <div style={{ marginBottom: '32px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '12px' }}>
+                    <label style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)' }}>Renta mensual actual (o estimada)</label>
+                    <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontWeight: 900, color: 'var(--color-primary)' }}>{rentaMensual.toLocaleString('es-ES')} €</span>
+                  </div>
+                  <input
+                    type="range"
+                    min={400}
+                    max={3000}
+                    step={50}
+                    value={rentaMensual}
+                    onChange={(e) => setRentaMensual(Number(e.target.value))}
+                    style={{ width: '100%', accentColor: 'var(--color-primary)', cursor: 'pointer', height: '6px' }}
+                  />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '6px' }}>
+                    <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>400 €</span>
+                    <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>3.000 €</span>
+                  </div>
+                </div>
+
+                {/* Resultado */}
+                <div style={{ background: 'linear-gradient(135deg, #0f2d5e, #1a4a8a)', borderRadius: 'var(--radius-lg)', padding: '24px 28px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', alignItems: 'center' }}>
+                  <div>
+                    <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.6)', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Estimación con Virtuo</div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem,4vw,2.8rem)', fontWeight: 900, color: 'white', lineHeight: 1 }}>{estimado.toLocaleString('es-ES')} €</div>
+                    <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.55)', marginTop: '4px' }}>al mes · sistema {etiquetas[sistema].toLowerCase()}</div>
+                  </div>
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.6)', marginBottom: '4px' }}>Diferencia estimada</div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.4rem,3vw,2rem)', fontWeight: 900, color: '#90caf9', lineHeight: 1 }}>+{diferencia.toLocaleString('es-ES')} €</div>
+                    <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.55)', marginTop: '4px' }}>más al mes</div>
+                  </div>
+                </div>
+
+                <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '16px', lineHeight: 1.6, textAlign: 'center' }}>
+                  Estimación orientativa. Los resultados reales dependen de la vivienda, la zona y las condiciones del mercado. Contáctanos para un análisis personalizado.
+                </p>
+
+                <div style={{ marginTop: '24px', textAlign: 'center' }}>
+                  <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-primary)', color: 'white', fontWeight: 700, padding: '13px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Quiero un análisis real →</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA — HABLAMOS */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'linear-gradient(135deg, #0f2d5e, #1a4a8a)', textAlign: 'center' }}>
           <div className="container">
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,3vw,2.2rem)', fontWeight: 800, color: 'white', marginBottom: '16px' }}>¿Hablamos?</h2>
