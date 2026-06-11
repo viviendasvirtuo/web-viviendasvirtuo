@@ -83,7 +83,7 @@ const habitaciones = [
     ref: 'PEspaña_2026_03',
     titulo: 'Habitación Pl. España',
     zona: 'Tarragona',
-    imagen: '/images/zonas_plaza_españa.jpg',
+    imagen: '/images/zonas_plaza_espa%C3%B1a.jpg',
     detalles: ['5 habitaciones', '3 baños'],
     extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
     precio: 900,
