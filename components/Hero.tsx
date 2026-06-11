@@ -90,20 +90,25 @@ export default function Hero() {
         />
       ))}
 
-      {/* Overlays */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'linear-gradient(to right, rgba(9,21,37,0.82) 0%, rgba(9,21,37,0.45) 55%, rgba(9,21,37,0.05) 85%)' }} />
-      <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'linear-gradient(to top, rgba(9,21,37,0.65) 0%, transparent 18%)' }} />
+      {/* Overlay uniforme */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'rgba(9,21,37,0.55)' }} />
+      <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'linear-gradient(to top, rgba(9,21,37,0.65) 0%, transparent 25%)' }} />
 
       {/* Contenido central */}
       <div style={{
         position: 'relative', zIndex: 4,
         flex: 1,
-        display: 'flex', flexDirection: 'column', justifyContent: 'center',
+        display: 'flex', flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
         paddingTop: '100px',
         paddingBottom: '1rem',
         paddingLeft: 'clamp(1.25rem, 4vw, 3rem)',
         paddingRight: 'clamp(1.25rem, 4vw, 3rem)',
-        maxWidth: '660px',
+        maxWidth: '800px',
+        marginInline: 'auto',
+        width: '100%',
       }}>
 
         {/* Badge */}
@@ -115,7 +120,6 @@ export default function Hero() {
           padding: '0.3rem 1rem 0.3rem 0.6rem',
           marginBottom: '1.25rem',
           backdropFilter: 'blur(12px)',
-          width: 'fit-content',
         }}>
           <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4ade80', flexShrink: 0 }} />
           <span style={{ fontSize: 'clamp(0.7rem, 0.65rem + 0.2vw, 0.8rem)', fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.05em' }}>
@@ -142,14 +146,15 @@ export default function Hero() {
         <p style={{
           fontSize: 'clamp(0.95rem, 0.85rem + 0.5vw, 1.15rem)',
           color: 'rgba(255,255,255,0.72)',
-          marginBottom: '1.5rem', lineHeight: 1.6, maxWidth: '46ch',
+          marginBottom: '1.5rem', lineHeight: 1.6,
+          maxWidth: '46ch', marginInline: 'auto',
           textShadow: '0 1px 8px rgba(0,0,0,0.3)',
         }}>
           Tres sistemas de alquiler adaptados a tu propiedad. Sin esfuerzo, con rentabilidad máxima.
         </p>
 
         {/* CTAs */}
-        <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <Link href="/contacto" className="btn btn-white btn-lg">Soy propietario</Link>
           <a href="#inquilinos" className="btn btn-ghost-white btn-lg">Busco habitación</a>
         </div>
@@ -224,11 +229,11 @@ export default function Hero() {
         .ticker-track:hover { animation-play-state:paused; }
         .ticker-item { display:inline-flex; align-items:center; gap:10px; padding:0 2rem; font-size:clamp(0.7rem,0.65rem + 0.2vw,0.8rem); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.5); white-space:nowrap; }
         .ticker-dot { width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,0.25); flex-shrink:0; }
-        .hero-stats { display:flex; flex-direction:row; gap:0; margin-top:2rem; flex-wrap:nowrap; }
-        .hero-stat { flex:1 1 0; min-width:0; padding-right:1.25rem; }
+        .hero-stats { display:flex; flex-direction:row; gap:0; margin-top:2rem; flex-wrap:nowrap; justify-content:center; }
+        .hero-stat { flex:0 1 auto; min-width:0; padding-right:1.25rem; text-align:center; }
         .hero-stat-border { border-right:1px solid rgba(255,255,255,0.12); margin-right:1.25rem; }
         @media (max-width:768px) {
-          .hero-stats { flex-direction:column; gap:1rem; margin-top:1.5rem; }
+          .hero-stats { flex-direction:column; gap:1rem; margin-top:1.5rem; align-items:center; }
           .hero-stat { padding-right:0; }
           .hero-stat-border { border-right:none; margin-right:0; padding-bottom:1rem; border-bottom:1px solid rgba(255,255,255,0.08); }
         }
