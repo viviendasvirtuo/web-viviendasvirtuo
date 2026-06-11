@@ -3,12 +3,11 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { tipo, nombre, email, telefono, sistema, mensaje } = body;
+    const { tipo, nombre, email, telefono, sistema, mensaje, created_at } = body;
 
-    // Solo nombre y teléfono son obligatorios (email es opcional)
-    if (!nombre?.trim() || !telefono?.trim()) {
+    if (!nombre || !email) {
       return NextResponse.json(
-        { error: 'Nombre y teléfono son obligatorios' },
+        { error: 'Nombre y email son obligatorios' },
         { status: 400 }
       );
     }
@@ -19,7 +18,7 @@ export async function POST(req: NextRequest) {
     if (!supabaseUrl || !supabaseKey) {
       console.error('Faltan variables de entorno de Supabase');
       return NextResponse.json(
-        { error: 'Error de configuración del servidor' },
+        { error: 'Error de configuracion del servidor' },
         { status: 500 }
       );
     }
@@ -28,13 +27,13 @@ export async function POST(req: NextRequest) {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     const { error } = await supabase.from('leads').insert([{
-      tipo: tipo || 'propietario',
-      nombre: nombre.trim(),
-      email: email?.trim() || null,
-      telefono: telefono.trim(),
+      tipo,
+      nombre,
+      email,
+      telefono: telefono || null,
       sistema: sistema || null,
-      mensaje: mensaje?.trim() || null,
-      fecha_alta: new Date().toISOString(),
+      mensaje: mensaje || null,
+      created_at,
     }]);
 
     if (error) {
