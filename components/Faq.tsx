@@ -63,7 +63,7 @@ const tabs: Tab[] = [
           'El vacacional exige licencias y altos costes. El modelo temporal es la alternativa inteligente: ofrece rentabilidades superiores sin licencias y con una gestión segura de perfiles corporativos de corta estancia.',
       },
       {
-        pregunta: '¿Es legal el alquiler por meses en 2026?',
+        pregunta: '¿Es legal el alquiler por meses desde el año 2026?',
         respuesta:
           'Totalmente legal. Se regula como "uso distinto del de vivienda", lo que nos permite contratos de 32 días a 11 meses. En Viviendas Virtuo blindamos legalmente la causa de temporalidad para que el contrato sea inatacable.',
       },
@@ -141,7 +141,6 @@ export default function Faq() {
   return (
     <section className="faq-section" id="faq">
       <div className="faq-container">
-        {/* Cabecera */}
         <div className="faq-header">
           <span className="faq-eyebrow">Preguntas frecuentes</span>
           <h2 className="faq-title">Todo lo que necesitas saber</h2>
@@ -150,7 +149,6 @@ export default function Faq() {
           </p>
         </div>
 
-        {/* Tabs */}
         <div className="faq-tabs" role="tablist" aria-label="Modalidades de alquiler">
           {tabs.map((tab) => (
             <button
@@ -168,7 +166,6 @@ export default function Faq() {
           ))}
         </div>
 
-        {/* Acordeón */}
         <div
           role="tabpanel"
           id={`panel-${currentTab.id}`}
@@ -188,16 +185,7 @@ export default function Faq() {
                 >
                   <span>{faq.pregunta}</span>
                   <span className="faq-chevron" aria-hidden="true">
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="6 9 12 15 18 9" />
                     </svg>
                   </span>
@@ -216,237 +204,47 @@ export default function Faq() {
           })}
         </div>
 
-        {/* CTA inferior */}
         <div className="faq-cta">
           <p>¿Tienes una pregunta específica que no aparece aquí?</p>
-          <a href="#contacto" className="faq-cta-btn">
-            Habla con un asesor
-          </a>
+          <a href="#contacto" className="faq-cta-btn">Habla con un asesor</a>
         </div>
       </div>
 
       <style jsx>{`
-        .faq-section {
-          padding: 80px 0;
-          background: #f8f9fc;
-        }
-
-        .faq-container {
-          max-width: 780px;
-          margin: 0 auto;
-          padding: 0 24px;
-        }
-
-        .faq-header {
-          text-align: center;
-          margin-bottom: 48px;
-        }
-
-        .faq-eyebrow {
-          display: inline-block;
-          font-size: 0.75rem;
-          font-weight: 600;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: #1a4a8a;
-          margin-bottom: 12px;
-        }
-
-        .faq-title {
-          font-size: clamp(1.75rem, 4vw, 2.5rem);
-          font-weight: 700;
-          color: #0f2d5e;
-          margin-bottom: 16px;
-          line-height: 1.2;
-        }
-
-        .faq-subtitle {
-          font-size: 1.0625rem;
-          color: #5a6a80;
-          max-width: 520px;
-          margin: 0 auto;
-          line-height: 1.6;
-        }
-
-        .faq-tabs {
-          display: flex;
-          gap: 8px;
-          justify-content: center;
-          margin-bottom: 40px;
-          background: #fff;
-          padding: 6px;
-          border-radius: 14px;
-          border: 1px solid #e2e8f0;
-          box-shadow: 0 1px 3px rgba(15, 45, 94, 0.06);
-        }
-
-        .faq-tab {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          padding: 10px 24px;
-          border-radius: 10px;
-          border: none;
-          background: transparent;
-          cursor: pointer;
-          font-size: 0.9375rem;
-          font-weight: 500;
-          color: #5a6a80;
-          transition: all 200ms ease;
-          white-space: nowrap;
-        }
-
-        .faq-tab:hover {
-          background: #f0f4fa;
-          color: #1a4a8a;
-        }
-
-        .faq-tab--active {
-          background: #1a4a8a;
-          color: #fff;
-          box-shadow: 0 2px 8px rgba(26, 74, 138, 0.25);
-        }
-
-        .faq-tab--active:hover {
-          background: #0f2d5e;
-          color: #fff;
-        }
-
-        .faq-tab-icon {
-          font-size: 1rem;
-          line-height: 1;
-        }
-
-        .faq-panel {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-
-        .faq-item {
-          background: #fff;
-          border: 1px solid #e2e8f0;
-          border-radius: 12px;
-          overflow: hidden;
-          transition: border-color 200ms ease, box-shadow 200ms ease;
-        }
-
-        .faq-item:hover {
-          border-color: #c7d7ee;
-        }
-
-        .faq-item--open {
-          border-color: #1a4a8a;
-          box-shadow: 0 2px 12px rgba(26, 74, 138, 0.08);
-        }
-
-        .faq-question {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 16px;
-          padding: 20px 24px;
-          background: transparent;
-          border: none;
-          cursor: pointer;
-          text-align: left;
-          font-size: 0.9375rem;
-          font-weight: 600;
-          color: #0f2d5e;
-          line-height: 1.4;
-          transition: color 200ms ease;
-        }
-
-        .faq-question:hover {
-          color: #1a4a8a;
-        }
-
-        .faq-item--open .faq-question {
-          color: #1a4a8a;
-        }
-
-        .faq-chevron {
-          flex-shrink: 0;
-          color: #9ab0cc;
-          transition: transform 250ms ease;
-        }
-
-        .faq-item--open .faq-chevron {
-          transform: rotate(180deg);
-          color: #1a4a8a;
-        }
-
-        .faq-answer {
-          padding: 0 24px 20px;
-          border-top: 1px solid #f0f4fa;
-        }
-
-        .faq-answer p {
-          font-size: 0.9375rem;
-          color: #4a5a6e;
-          line-height: 1.7;
-          padding-top: 16px;
-        }
-
-        .faq-cta {
-          text-align: center;
-          margin-top: 48px;
-          padding-top: 40px;
-          border-top: 1px solid #e2e8f0;
-        }
-
-        .faq-cta p {
-          font-size: 0.9375rem;
-          color: #5a6a80;
-          margin-bottom: 16px;
-        }
-
-        .faq-cta-btn {
-          display: inline-flex;
-          align-items: center;
-          padding: 12px 28px;
-          background: #1a4a8a;
-          color: #fff;
-          border-radius: 8px;
-          font-size: 0.9375rem;
-          font-weight: 600;
-          text-decoration: none;
-          transition: background 200ms ease, transform 200ms ease;
-        }
-
-        .faq-cta-btn:hover {
-          background: #0f2d5e;
-          transform: translateY(-1px);
-        }
-
+        .faq-section { padding: 80px 0; background: #f8f9fc; }
+        .faq-container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+        .faq-header { text-align: center; margin-bottom: 48px; }
+        .faq-eyebrow { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #1a4a8a; margin-bottom: 12px; }
+        .faq-title { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; color: #0f2d5e; margin-bottom: 16px; line-height: 1.2; }
+        .faq-subtitle { font-size: 1.0625rem; color: #5a6a80; max-width: 520px; margin: 0 auto; line-height: 1.6; }
+        .faq-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 40px; background: #fff; padding: 6px; border-radius: 14px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(15,45,94,0.06); }
+        .faq-tab { display: flex; align-items: center; gap: 8px; padding: 10px 24px; border-radius: 10px; border: none; background: transparent; cursor: pointer; font-size: 0.9375rem; font-weight: 500; color: #5a6a80; transition: all 200ms ease; white-space: nowrap; }
+        .faq-tab:hover { background: #f0f4fa; color: #1a4a8a; }
+        .faq-tab--active { background: #1a4a8a; color: #fff; box-shadow: 0 2px 8px rgba(26,74,138,0.25); }
+        .faq-tab--active:hover { background: #0f2d5e; color: #fff; }
+        .faq-tab-icon { font-size: 1rem; line-height: 1; }
+        .faq-panel { display: flex; flex-direction: column; gap: 8px; }
+        .faq-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; transition: border-color 200ms ease, box-shadow 200ms ease; }
+        .faq-item:hover { border-color: #c7d7ee; }
+        .faq-item--open { border-color: #1a4a8a; box-shadow: 0 2px 12px rgba(26,74,138,0.08); }
+        .faq-question { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; background: transparent; border: none; cursor: pointer; text-align: left; font-size: 0.9375rem; font-weight: 600; color: #0f2d5e; line-height: 1.4; transition: color 200ms ease; }
+        .faq-question:hover { color: #1a4a8a; }
+        .faq-item--open .faq-question { color: #1a4a8a; }
+        .faq-chevron { flex-shrink: 0; color: #9ab0cc; transition: transform 250ms ease; }
+        .faq-item--open .faq-chevron { transform: rotate(180deg); color: #1a4a8a; }
+        .faq-answer { padding: 0 24px 20px; border-top: 1px solid #f0f4fa; }
+        .faq-answer p { font-size: 0.9375rem; color: #4a5a6e; line-height: 1.7; padding-top: 16px; }
+        .faq-cta { text-align: center; margin-top: 48px; padding-top: 40px; border-top: 1px solid #e2e8f0; }
+        .faq-cta p { font-size: 0.9375rem; color: #5a6a80; margin-bottom: 16px; }
+        .faq-cta-btn { display: inline-flex; align-items: center; padding: 12px 28px; background: #1a4a8a; color: #fff; border-radius: 8px; font-size: 0.9375rem; font-weight: 600; text-decoration: none; transition: background 200ms ease, transform 200ms ease; }
+        .faq-cta-btn:hover { background: #0f2d5e; transform: translateY(-1px); }
         @media (max-width: 600px) {
-          .faq-section {
-            padding: 60px 0;
-          }
-
-          .faq-tabs {
-            gap: 4px;
-            padding: 4px;
-          }
-
-          .faq-tab {
-            padding: 9px 16px;
-            font-size: 0.875rem;
-          }
-
-          .faq-question {
-            padding: 16px 18px;
-            font-size: 0.875rem;
-          }
-
-          .faq-answer {
-            padding: 0 18px 16px;
-          }
-
-          .faq-answer p {
-            font-size: 0.875rem;
-          }
+          .faq-section { padding: 60px 0; }
+          .faq-tabs { gap: 4px; padding: 4px; }
+          .faq-tab { padding: 9px 16px; font-size: 0.875rem; }
+          .faq-question { padding: 16px 18px; font-size: 0.875rem; }
+          .faq-answer { padding: 0 18px 16px; }
+          .faq-answer p { font-size: 0.875rem; }
         }
       `}</style>
     </section>
