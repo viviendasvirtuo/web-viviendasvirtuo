@@ -106,7 +106,7 @@ export default function Hero() {
         paddingBottom: '1rem',
         paddingLeft: 'clamp(1.25rem, 4vw, 3rem)',
         paddingRight: 'clamp(1.25rem, 4vw, 3rem)',
-        maxWidth: '800px',
+        maxWidth: '860px',
         marginInline: 'auto',
         width: '100%',
       }}>
@@ -122,7 +122,7 @@ export default function Hero() {
           backdropFilter: 'blur(12px)',
         }}>
           <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4ade80', flexShrink: 0 }} />
-          <span style={{ fontSize: 'clamp(0.7rem, 0.65rem + 0.2vw, 0.8rem)', fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.05em' }}>
+          <span style={{ fontSize: 'clamp(0.7rem, 0.65rem + 0.2vw, 0.9rem)', fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.05em' }}>
             Gestión profesional de alquiler · Barcelona
           </span>
         </div>
@@ -130,7 +130,7 @@ export default function Hero() {
         {/* Titular */}
         <h1 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2rem, 1.2rem + 3.5vw, 3.5rem)',
+          fontSize: 'clamp(2rem, 1.2rem + 3.5vw, 4.5rem)',
           fontWeight: 900, color: '#ffffff',
           lineHeight: 1.1, marginBottom: '1rem',
           letterSpacing: '-0.025em',
@@ -144,7 +144,7 @@ export default function Hero() {
 
         {/* Subtítulo */}
         <p style={{
-          fontSize: 'clamp(0.95rem, 0.85rem + 0.5vw, 1.15rem)',
+          fontSize: 'clamp(0.95rem, 0.85rem + 0.5vw, 1.35rem)',
           color: 'rgba(255,255,255,0.72)',
           marginBottom: '1.5rem', lineHeight: 1.6,
           maxWidth: '46ch', marginInline: 'auto',
@@ -163,7 +163,7 @@ export default function Hero() {
         <div className="hero-stats">
           {stats.map((stat, i) => (
             <div key={stat.label} className={`hero-stat${i < stats.length - 1 ? ' hero-stat-border' : ''}`}>
-              <div style={{ fontSize: 'clamp(1.5rem, 1rem + 1.5vw, 2.25rem)', fontFamily: 'var(--font-display)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1 }}>
+              <div style={{ fontSize: 'clamp(1.5rem, 1rem + 1.5vw, 2.75rem)', fontFamily: 'var(--font-display)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1 }}>
                 {stat.num}
               </div>
               <div style={{ fontSize: 'clamp(0.7rem, 0.65rem + 0.2vw, 0.8rem)', color: 'rgba(255,255,255,0.5)', marginTop: '4px', lineHeight: 1.35 }}>
