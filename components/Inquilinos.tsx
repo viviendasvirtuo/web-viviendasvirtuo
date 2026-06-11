@@ -62,7 +62,7 @@ export default function Inquilinos() {
               <br />Sin complicaciones.
             </h2>
             <p className="section-subtitle" style={{ marginBottom: 'var(--space-8)' }}>
-              Habitaciones y apartamentos bien gestionados en Barcelona. Proceso sencillo, contratos en regla y soporte real cuando lo necesitas.
+              Habitaciones y apartamentos bien gestionados en Barcelona y área metropolitana. Proceso sencillo, contratos en regla y soporte real cuando lo necesitas.
             </p>
             <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
               <Link href="/contacto" className="btn btn-primary btn-lg">

@@ -22,7 +22,7 @@ const tickerItems = [
   'Temporal · estancias de 1 a 6 meses',
   'Vacacional · apartamento completo',
   'Sin preocupaciones · máxima rentabilidad',
-  'Gestión profesional · Barcelona',
+  'Gestión profesional · Barcelona y área metropolitana',
   'Selección de inquilinos · garantía de cobro',
 ];
 
@@ -123,7 +123,7 @@ export default function Hero() {
         }}>
           <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4ade80', flexShrink: 0 }} />
           <span style={{ fontSize: 'clamp(0.7rem, 0.65rem + 0.2vw, 0.9rem)', fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.05em' }}>
-            Gestión profesional de alquiler · Barcelona
+            Gestión profesional de alquiler · Barcelona y área metropolitana
           </span>
         </div>
 
