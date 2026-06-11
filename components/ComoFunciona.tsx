@@ -65,28 +65,10 @@ export default function ComoFunciona() {
           </p>
         </div>
 
-        {/* Grid 2x2 — mismo formato que tarjetas de Inquilinos */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 'var(--space-4)',
-            maxWidth: '800px',
-            margin: '0 auto',
-          }}
-        >
+        {/* Grid 2x2 desktop / 1 columna móvil */}
+        <div className="proceso-grid">
           {pasos.map(paso => (
-            <div
-              key={paso.num}
-              style={{
-                background: 'var(--color-surface)',
-                borderRadius: 'var(--radius-lg)',
-                padding: 'var(--space-6)',
-                border: '1px solid var(--color-border)',
-                boxShadow: 'var(--shadow-sm)',
-                minWidth: 0,
-              }}
-            >
+            <div key={paso.num} className="proceso-card">
               <div style={{ color: 'var(--color-primary)', marginBottom: 'var(--space-3)', lineHeight: 0 }}>
                 {paso.icon}
               </div>
@@ -125,6 +107,29 @@ export default function ComoFunciona() {
           </Link>
         </div>
       </div>
+
+      <style>{`
+        .proceso-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-4);
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        .proceso-card {
+          background: var(--color-surface);
+          border-radius: var(--radius-lg);
+          padding: var(--space-6);
+          border: 1px solid var(--color-border);
+          box-shadow: var(--shadow-sm);
+          min-width: 0;
+        }
+        @media (max-width: 600px) {
+          .proceso-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
     </section>
   );
 }

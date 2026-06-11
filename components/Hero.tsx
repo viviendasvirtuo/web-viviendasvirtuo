@@ -39,10 +39,16 @@ export default function Hero() {
         }}
       />
 
-      {/* Imagen hero */}
+      {/* Imagen hero — desktop: absoluta a la derecha / móvil: debajo del texto */}
       <div
         aria-hidden="true"
         className="hero-img-wrap"
+        style={{
+          position: 'absolute',
+          right: 0, top: 0, bottom: 0,
+          width: '46%',
+          zIndex: 0,
+        }}
       >
         <Image
           src="/images/hero_virtuo.png"
@@ -52,11 +58,12 @@ export default function Hero() {
           sizes="(max-width: 768px) 100vw, 46vw"
           priority
         />
-        <div className="hero-fade hero-fade--side" />
-        <div className="hero-fade hero-fade--bottom" />
-        <div className="hero-fade hero-fade--top" />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #0f2d5e 0%, rgba(15,45,94,0.6) 40%, rgba(15,45,94,0) 100%)' }} className="hero-fade-side" />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #091525 0%, transparent 30%)' }} className="hero-fade-bottom" />
+        <div className="hero-fade-top" style={{ position: 'absolute', inset: 0, display: 'none' }} />
       </div>
 
+      {/* Contenido texto */}
       <div
         style={{
           position: 'relative',
@@ -141,7 +148,7 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Stats — en móvil: columna vertical, sin separador */}
+          {/* Stats */}
           <div className="hero-stats">
             {stats.map((stat, i) => (
               <div key={stat.label} className={`hero-stat${i < stats.length - 1 ? ' hero-stat-border' : ''}`}>
@@ -154,6 +161,21 @@ export default function Hero() {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Bloque imagen móvil — se muestra solo en móvil debajo del texto */}
+      <div className="hero-img-mobile-slot" aria-hidden="true">
+        <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: 'var(--radius-xl)', overflow: 'hidden' }}>
+          <Image
+            src="/images/hero_virtuo.png"
+            alt=""
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            sizes="100vw"
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #091525 0%, rgba(9,21,37,0.3) 25%, rgba(9,21,37,0) 60%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #091525 0%, rgba(9,21,37,0.5) 30%, rgba(9,21,37,0) 65%)' }} />
         </div>
       </div>
 
@@ -223,69 +245,33 @@ export default function Hero() {
           to   { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
-        /* Stats desktop: fila horizontal con separadores */
         .hero-stats {
-          display: flex;
-          flex-direction: row;
-          align-items: stretch;
-          gap: 0;
-          margin-top: var(--space-16);
-          flex-wrap: nowrap;
+          display: flex; flex-direction: row; align-items: stretch;
+          gap: 0; margin-top: var(--space-16); flex-wrap: nowrap;
         }
-        .hero-stat {
-          flex: 1 1 0;
-          min-width: 0;
-          padding-right: var(--space-6);
-        }
+        .hero-stat { flex: 1 1 0; min-width: 0; padding-right: var(--space-6); }
         .hero-stat-border {
           border-right: 1px solid rgba(255,255,255,0.1);
           margin-right: var(--space-6);
         }
 
-        /* Imagen hero — desktop: posición absoluta derecha */
-        .hero-img-wrap {
-          position: absolute;
-          right: 0; top: 0; bottom: 0;
-          width: 46%;
-          z-index: 0;
-        }
-        .hero-fade {
-          position: absolute;
-          inset: 0;
-        }
-        .hero-fade--side {
-          background: linear-gradient(to right, #0f2d5e 0%, rgba(15,45,94,0.6) 40%, rgba(15,45,94,0) 100%);
-        }
-        .hero-fade--bottom {
-          background: linear-gradient(to top, #091525 0%, transparent 30%);
-        }
-        .hero-fade--top { display: none; }
+        /* Slot móvil — oculto en desktop */
+        .hero-img-mobile-slot { display: none; }
 
-        /* Imagen hero — móvil: debajo del texto, difuminada */
         @media (max-width: 768px) {
-          .hero-img-wrap {
-            position: relative !important;
-            right: auto !important;
-            top: auto !important;
-            bottom: auto !important;
-            width: 100% !important;
-            height: clamp(220px, 56vw, 340px);
-            z-index: 0;
-            overflow: hidden;
-            border-radius: var(--radius-xl);
-            margin: 0 var(--space-4) var(--space-2);
-            width: calc(100% - var(--space-8)) !important;
+          /* Ocultar imagen absoluta de desktop */
+          .hero-img-wrap { display: none !important; }
+
+          /* Mostrar slot móvil debajo del texto */
+          .hero-img-mobile-slot {
+            display: block;
+            position: relative;
+            zIndex: 1;
+            width: calc(100% - var(--space-8));
+            height: clamp(200px, 52vw, 320px);
+            margin: 0 var(--space-4) var(--space-4);
           }
-          .hero-fade--side {
-            background: linear-gradient(to bottom, rgba(9,21,37,0.55) 0%, rgba(9,21,37,0.1) 40%, rgba(9,21,37,0) 70%) !important;
-          }
-          .hero-fade--bottom {
-            background: linear-gradient(to top, #091525 0%, rgba(9,21,37,0.55) 30%, rgba(9,21,37,0) 65%) !important;
-          }
-          .hero-fade--top {
-            display: block !important;
-            background: linear-gradient(to bottom, #091525 0%, rgba(9,21,37,0.4) 20%, rgba(9,21,37,0) 55%) !important;
-          }
+
           .hero-col {
             width: 100% !important;
             padding-right: var(--space-6) !important;
@@ -299,9 +285,7 @@ export default function Hero() {
             gap: var(--space-5);
             margin-top: var(--space-10);
           }
-          .hero-stat {
-            padding-right: 0;
-          }
+          .hero-stat { padding-right: 0; }
           .hero-stat-border {
             border-right: none;
             margin-right: 0;
