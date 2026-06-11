@@ -28,20 +28,23 @@ export default function Contacto() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           tipo,
-          sistema,
+          sistema: tipo === 'propietario' ? sistema : null,
           nombre: nombre.trim(),
           telefono: telefono.trim(),
           email: email.trim() || null,
           mensaje: mensaje.trim() || null,
-          created_at: new Date().toISOString(),
         }),
       });
 
-      if (!res.ok) throw new Error('Error al enviar');
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Error al enviar');
+      }
       setEstado('success');
-    } catch {
+    } catch (err: unknown) {
       setEstado('error');
-      setErrorMsg('Algo salió mal. Inténtalo de nuevo o llámanos directamente.');
+      const msg = err instanceof Error ? err.message : 'Error desconocido';
+      setErrorMsg(msg || 'Algo salió mal. Inténtalo de nuevo o llámanos directamente.');
     }
   }
 
@@ -123,6 +126,7 @@ export default function Contacto() {
             border: '1px solid var(--color-border)',
           }}>
             <form onSubmit={handleSubmit} noValidate>
+              {/* Toggle propietario / inquilino */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-2)', marginBottom: 'var(--space-6)' }}>
                 {(['propietario', 'inquilino'] as const).map(t => (
                   <button
