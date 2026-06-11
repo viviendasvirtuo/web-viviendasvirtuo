@@ -28,9 +28,9 @@ export default function Hero() {
         overflow: 'hidden',
       }}
     >
-      {/* Imagen de fondo — visible al 100% */}
+      {/* Imagen de fondo */}
       <Image
-        src="/images/hero_virtuo.png"
+        src="/images/hero_virtuo.jpg"
         alt=""
         fill
         style={{ objectFit: 'cover', objectPosition: 'center' }}
@@ -38,7 +38,7 @@ export default function Hero() {
         priority
       />
 
-      {/* Overlay SOLO donde va el texto: gradiente desde izquierda hacia transparente */}
+      {/* Overlay solo en zona izquierda del texto */}
       <div style={{
         position: 'absolute', inset: 0,
         background: 'linear-gradient(to right, rgba(9,21,37,0.82) 0%, rgba(9,21,37,0.55) 45%, rgba(9,21,37,0.0) 75%)',
