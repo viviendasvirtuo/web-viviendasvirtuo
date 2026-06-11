@@ -5,7 +5,6 @@ import Hero from '@/components/Hero';
 import LogoBar from '@/components/LogoBar';
 import Sistemas from '@/components/Sistemas';
 import HabitacionesDestacadas from '@/components/HabitacionesDestacadas';
-import CalculadoraRentabilidad from '@/components/CalculadoraRentabilidad';
 import Propietarios from '@/components/Propietarios';
 import Inquilinos from '@/components/Inquilinos';
 import ComoFunciona from '@/components/ComoFunciona';
@@ -22,7 +21,6 @@ export default function Home() {
         <LogoBar />
         <Sistemas />
         <HabitacionesDestacadas />
-        <CalculadoraRentabilidad />
         <Propietarios />
         <Inquilinos />
         <ComoFunciona />

@@ -68,10 +68,12 @@ export default function Footer() {
       }}
     >
       <div className="container">
+
+        {/* Grid principal — controlado 100% por CSS classes */}
         <div className="footer-grid">
 
-          {/* Marca + contacto */}
-          <div className="footer-col-brand">
+          {/* Columna 1: Marca */}
+          <div className="footer-brand">
             <Link
               href="/"
               style={{
@@ -176,15 +178,9 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Sistemas */}
-          <div style={{ minWidth: 0 }}>
-            <h3 style={{
-              fontSize: 'var(--text-xs)', fontWeight: 700,
-              color: 'rgba(255,255,255,0.3)', marginBottom: 'var(--space-5)',
-              letterSpacing: '0.1em', textTransform: 'uppercase',
-            }}>
-              Sistemas
-            </h3>
+          {/* Columna 2: Sistemas */}
+          <div className="footer-col">
+            <h3 className="footer-heading">Sistemas</h3>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
               {[
                 { href: '/coliving', label: 'Coliving' },
@@ -200,15 +196,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Empresa */}
-          <div style={{ minWidth: 0 }}>
-            <h3 style={{
-              fontSize: 'var(--text-xs)', fontWeight: 700,
-              color: 'rgba(255,255,255,0.3)', marginBottom: 'var(--space-5)',
-              letterSpacing: '0.1em', textTransform: 'uppercase',
-            }}>
-              Empresa
-            </h3>
+          {/* Columna 3: Empresa */}
+          <div className="footer-col">
+            <h3 className="footer-heading">Empresa</h3>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
               {[
                 { href: '/sobre-nosotros', label: 'Sobre nosotros' },
@@ -224,15 +214,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Para ti */}
-          <div style={{ minWidth: 0 }}>
-            <h3 style={{
-              fontSize: 'var(--text-xs)', fontWeight: 700,
-              color: 'rgba(255,255,255,0.3)', marginBottom: 'var(--space-5)',
-              letterSpacing: '0.1em', textTransform: 'uppercase',
-            }}>
-              Para ti
-            </h3>
+          {/* Columna 4: Para ti */}
+          <div className="footer-col">
+            <h3 className="footer-heading">Para ti</h3>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
               {[
                 { href: '/propietarios', label: 'Soy propietario' },
@@ -314,41 +298,54 @@ export default function Footer() {
           </div>
         </div>
 
-        <style>{`
-          .footer-link { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s ease; }
-          .footer-link:hover { color: #fff; }
-          .footer-link-legal { color: rgba(255,255,255,0.55); text-decoration: none; }
-          .footer-link-legal:hover { color: rgba(255,255,255,0.8); }
-
-          .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: var(--space-10);
-            margin-bottom: var(--space-12);
-          }
-          .footer-col-brand {
-            min-width: 0;
-            grid-column: 1;
-          }
-
-          @media (max-width: 900px) {
-            .footer-grid {
-              grid-template-columns: 1fr 1fr;
-            }
-            .footer-col-brand {
-              grid-column: span 2;
-            }
-          }
-          @media (max-width: 540px) {
-            .footer-grid {
-              grid-template-columns: 1fr;
-            }
-            .footer-col-brand {
-              grid-column: span 1;
-            }
-          }
-        `}</style>
       </div>
+
+      <style>{`
+        .footer-link { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s ease; }
+        .footer-link:hover { color: #fff; }
+        .footer-link-legal { color: rgba(255,255,255,0.55); text-decoration: none; }
+        .footer-link-legal:hover { color: rgba(255,255,255,0.8); }
+        .footer-heading {
+          font-size: var(--text-xs);
+          font-weight: 700;
+          color: rgba(255,255,255,0.3);
+          margin-bottom: var(--space-5);
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+        }
+
+        /* Desktop: 2fr 1fr 1fr 1fr */
+        .footer-grid {
+          display: grid;
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+          gap: var(--space-10);
+          margin-bottom: var(--space-12);
+        }
+        .footer-brand { grid-column: 1; }
+        .footer-col { min-width: 0; }
+
+        /* Tablet ≤900px: 2 columnas, marca ocupa las 2 */
+        @media screen and (max-width: 900px) {
+          .footer-grid {
+            grid-template-columns: 1fr 1fr !important;
+            gap: var(--space-8) !important;
+          }
+          .footer-brand {
+            grid-column: 1 / -1 !important;
+          }
+        }
+
+        /* Móvil ≤540px: 1 columna, todo apilado */
+        @media screen and (max-width: 540px) {
+          .footer-grid {
+            grid-template-columns: 1fr !important;
+            gap: var(--space-8) !important;
+          }
+          .footer-brand {
+            grid-column: 1 !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 }

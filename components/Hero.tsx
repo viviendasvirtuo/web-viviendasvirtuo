@@ -39,7 +39,7 @@ export default function Hero() {
         }}
       />
 
-      {/* Imagen hero — solo desktop, lado derecho */}
+      {/* Imagen hero — solo desktop */}
       <div
         aria-hidden="true"
         style={{
@@ -62,12 +62,6 @@ export default function Hero() {
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #091525 0%, transparent 30%)' }} />
       </div>
 
-      {/*
-        Columna izquierda: ocupa el 54% del ancho (lo que no es imagen).
-        El bloque de texto dentro tiene margin-left:auto para quedar
-        pegado al borde derecho de esa columna, rozando la imagen.
-        Padding derecho de seguridad: 3rem.
-      */}
       <div
         style={{
           position: 'relative',
@@ -84,7 +78,6 @@ export default function Hero() {
         }}
         className="hero-col"
       >
-        {/* margin-left:auto empuja el bloque hacia la derecha de la columna */}
         <div style={{ marginLeft: 'auto', maxWidth: '58ch', paddingRight: 'clamp(var(--space-6), 3vw, var(--space-12))' }}>
 
           {/* Badge */}
@@ -153,25 +146,10 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Stats — nowrap para que siempre queden en una sola línea */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'stretch',
-            gap: 0,
-            marginTop: 'var(--space-16)',
-            flexWrap: 'nowrap',
-          }}>
+          {/* Stats — en móvil: columna vertical, sin separador */}
+          <div className="hero-stats">
             {stats.map((stat, i) => (
-              <div
-                key={stat.label}
-                style={{
-                  flex: '1 1 0',
-                  minWidth: 0,
-                  paddingRight: 'var(--space-6)',
-                  paddingLeft: i > 0 ? 'var(--space-6)' : undefined,
-                  borderRight: i < stats.length - 1 ? '1px solid rgba(255,255,255,0.1)' : undefined,
-                }}
-              >
+              <div key={stat.label} className={`hero-stat${i < stats.length - 1 ? ' hero-stat-border' : ''}`}>
                 <div style={{ fontSize: 'var(--text-2xl)', fontFamily: 'var(--font-display)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1 }}>
                   {stat.num}
                 </div>
@@ -249,10 +227,45 @@ export default function Hero() {
           from { opacity: 0; transform: translateX(-50%) translateY(10px); }
           to   { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
+
+        /* Stats desktop: fila horizontal con separadores */
+        .hero-stats {
+          display: flex;
+          flex-direction: row;
+          align-items: stretch;
+          gap: 0;
+          margin-top: var(--space-16);
+          flex-wrap: nowrap;
+        }
+        .hero-stat {
+          flex: 1 1 0;
+          min-width: 0;
+          padding-right: var(--space-6);
+        }
+        .hero-stat-border {
+          border-right: 1px solid rgba(255,255,255,0.1);
+          margin-right: var(--space-6);
+        }
+
+        /* Stats móvil: columna vertical, sin separadores */
         @media (max-width: 768px) {
           .hero-img-wrap { display: none; }
           .hero-col { width: 100% !important; padding-right: var(--space-6) !important; }
           .hero-col > div { margin-left: 0 !important; max-width: 100% !important; }
+          .hero-stats {
+            flex-direction: column;
+            gap: var(--space-5);
+            margin-top: var(--space-10);
+          }
+          .hero-stat {
+            padding-right: 0;
+          }
+          .hero-stat-border {
+            border-right: none;
+            margin-right: 0;
+            padding-bottom: var(--space-5);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+          }
         }
       `}</style>
     </section>

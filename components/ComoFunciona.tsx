@@ -133,17 +133,21 @@ export default function ComoFunciona() {
           background: linear-gradient(90deg, var(--color-primary) 0%, rgba(26,74,138,0.15) 100%);
           z-index: 0;
         }
-        @media (max-width: 900px) {
+
+        /* Tablet: 2 columnas */
+        @media screen and (max-width: 900px) {
           .cf-grid {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr !important;
           }
           .cf-linea {
-            display: none;
+            display: none !important;
           }
         }
-        @media (max-width: 540px) {
+
+        /* Móvil: 1 columna */
+        @media screen and (max-width: 540px) {
           .cf-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>
