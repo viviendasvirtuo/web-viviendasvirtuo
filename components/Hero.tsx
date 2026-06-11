@@ -8,7 +8,7 @@ const VIDEOS = [
   '/videos/Hero_Video_3.mp4',
 ];
 
-const DURATION = 7000;
+const DURATION = 10000;
 const FADE = 800;
 
 const stats = [
@@ -123,7 +123,7 @@ export default function Hero() {
           </span>
         </div>
 
-        {/* Titular — máx 3.5rem */}
+        {/* Titular */}
         <h1 style={{
           fontFamily: 'var(--font-display)',
           fontSize: 'clamp(2rem, 1.2rem + 3.5vw, 3.5rem)',
@@ -138,7 +138,7 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Subtítulo — más compacto */}
+        {/* Subtítulo */}
         <p style={{
           fontSize: 'clamp(0.95rem, 0.85rem + 0.5vw, 1.15rem)',
           color: 'rgba(255,255,255,0.72)',
@@ -154,7 +154,7 @@ export default function Hero() {
           <a href="#inquilinos" className="btn btn-ghost-white btn-lg">Busco habitación</a>
         </div>
 
-        {/* Stats — más compactos */}
+        {/* Stats */}
         <div className="hero-stats">
           {stats.map((stat, i) => (
             <div key={stat.label} className={`hero-stat${i < stats.length - 1 ? ' hero-stat-border' : ''}`}>
