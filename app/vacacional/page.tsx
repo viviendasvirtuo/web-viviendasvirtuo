@@ -36,28 +36,15 @@ export default function VacacionalPage() {
             </div>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '999px', padding: '6px 16px', marginBottom: '24px' }}>
               <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#fcd34d', display: 'inline-block' }} />
-              <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'var(--text-xs)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Sistema Vacacional — Requiere licencia turística</span>
+              <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'var(--text-xs)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Sistema Vacacional</span>
             </div>
             <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)', fontWeight: 900, color: 'white', lineHeight: 1.1, marginBottom: '20px', maxWidth: '700px' }}>
               Tienes licencia turística.<br />
               <span style={{ color: '#fcd34d' }}>Nosotros la hacemos rendir al máximo.</span>
             </h1>
-            <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 'var(--text-lg)', maxWidth: '560px', lineHeight: 1.7, marginBottom: '24px' }}>
+            <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 'var(--text-lg)', maxWidth: '560px', lineHeight: 1.7, marginBottom: '36px' }}>
               Si ya dispones de licencia de apartamento turístico, gestionamos todo: plataformas, reservas, check-ins, limpieza y atención al viajero. Tú solo cobras.
             </p>
-            {/* Aviso legal claro */}
-            <div style={{
-              display: 'inline-flex', alignItems: 'flex-start', gap: '10px',
-              background: 'rgba(252,211,77,0.12)', border: '1px solid rgba(252,211,77,0.35)',
-              borderRadius: '12px', padding: '12px 16px', marginBottom: '36px', maxWidth: '560px',
-            }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fcd34d" strokeWidth="2" style={{ flexShrink: 0, marginTop: '2px' }} aria-hidden>
-                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-              </svg>
-              <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 'var(--text-xs)', lineHeight: 1.6, margin: 0 }}>
-                Barcelona ciudad no concede licencias turísticas nuevas desde 2012. Este sistema está disponible para propietarios que ya disponen de licencia en vigor, principalmente en Badalona, municipios del área metropolitana y otras localidades que lo permitan.
-              </p>
-            </div>
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
               <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'white', color: '#7c3a00', fontWeight: 700, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Tengo licencia — hablemos</Link>
               <Link href="/propietarios" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', border: '1.5px solid rgba(255,255,255,0.4)', color: 'white', background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)', fontWeight: 600, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Ver otros sistemas</Link>
@@ -79,7 +66,7 @@ export default function VacacionalPage() {
                   { icon: '🏷️', title: 'Ya gestionas tú solo', desc: 'Quieres delegar sin perder el control ni la propiedad.' },
                   { icon: '📉', title: 'Bajada de ingresos', desc: 'Las plataformas penalizan la gestión amateur. Nosotros optimizamos.' },
                   { icon: '🗓️', title: 'Falta de tiempo', desc: 'Gestionar huéspedes, limpiezas y check-ins es un trabajo a jornada completa.' },
-                  { icon: '📍', title: 'Fuera de Barcelona ciudad', desc: 'Operas en Badalona, Hospitalet, Mataró u otra localidad con licencias vigentes.' },
+                  { icon: '📈', title: 'Quieres escalar', desc: 'Tienes más de un inmueble y necesitas un socio de confianza que lo gestione todo.' },
                 ].map((item, i) => (
                   <div key={i} style={{
                     background: 'var(--color-bg)', border: '1px solid var(--color-border)',
