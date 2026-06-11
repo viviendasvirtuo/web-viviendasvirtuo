@@ -28,7 +28,7 @@ export default function Hero() {
         overflow: 'hidden',
       }}
     >
-      {/* Imagen de fondo */}
+      {/* Imagen de fondo — visible al 100% */}
       <Image
         src="/images/hero_virtuo.png"
         alt=""
@@ -38,23 +38,18 @@ export default function Hero() {
         priority
       />
 
-      {/* Overlay oscuro */}
+      {/* Overlay SOLO donde va el texto: gradiente desde izquierda hacia transparente */}
       <div style={{
         position: 'absolute', inset: 0,
-        background: 'linear-gradient(135deg, #091525e8 0%, #0f2d5ecc 100%)',
+        background: 'linear-gradient(to right, rgba(9,21,37,0.82) 0%, rgba(9,21,37,0.55) 45%, rgba(9,21,37,0.0) 75%)',
+      }} />
+      {/* Gradiente inferior para ticker */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(to top, rgba(9,21,37,0.65) 0%, transparent 18%)',
       }} />
 
-      {/* Grano sutil */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute', inset: 0, opacity: 0.025,
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-          backgroundSize: '256px',
-        }}
-      />
-
-      {/* Contenido principal */}
+      {/* Contenido */}
       <div
         style={{
           position: 'relative',
@@ -67,15 +62,15 @@ export default function Hero() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          maxWidth: '720px',
+          maxWidth: '680px',
         }}
       >
         {/* Badge */}
         <div
           style={{
             display: 'inline-flex', alignItems: 'center', gap: '8px',
-            background: 'rgba(255,255,255,0.07)',
-            border: '1px solid rgba(255,255,255,0.14)',
+            background: 'rgba(255,255,255,0.10)',
+            border: '1px solid rgba(255,255,255,0.18)',
             borderRadius: 'var(--radius-full)',
             padding: '0.35rem 1rem 0.35rem 0.6rem',
             marginBottom: 'var(--space-8)',
@@ -84,7 +79,7 @@ export default function Hero() {
           }}
         >
           <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4ade80', flexShrink: 0 }} />
-          <span style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'rgba(255,255,255,0.8)', letterSpacing: '0.05em' }}>
+          <span style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.05em' }}>
             Gestión profesional de alquiler · Barcelona
           </span>
         </div>
@@ -99,10 +94,11 @@ export default function Hero() {
             lineHeight: 1.07,
             marginBottom: 'var(--space-6)',
             letterSpacing: '-0.025em',
+            textShadow: '0 2px 16px rgba(0,0,0,0.35)',
           }}
         >
           Tu vivienda genera ingresos.
-          <span style={{ display: 'block', color: 'rgba(255,255,255,0.45)', fontWeight: 700 }}>
+          <span style={{ display: 'block', color: 'rgba(255,255,255,0.5)', fontWeight: 700 }}>
             Nosotros lo gestionamos todo.
           </span>
         </h1>
@@ -111,10 +107,11 @@ export default function Hero() {
         <p
           style={{
             fontSize: 'var(--text-lg)',
-            color: 'rgba(255,255,255,0.65)',
+            color: 'rgba(255,255,255,0.72)',
             marginBottom: 'var(--space-10)',
             lineHeight: 1.7,
-            maxWidth: '52ch',
+            maxWidth: '48ch',
+            textShadow: '0 1px 8px rgba(0,0,0,0.3)',
           }}
         >
           Tres sistemas de alquiler adaptados a tu propiedad. Sin esfuerzo de tu parte, con rentabilidad máxima garantizada.
@@ -137,7 +134,7 @@ export default function Hero() {
               <div style={{ fontSize: 'var(--text-2xl)', fontFamily: 'var(--font-display)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1 }}>
                 {stat.num}
               </div>
-              <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)', marginTop: '6px', lineHeight: 1.4 }}>
+              <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.5)', marginTop: '6px', lineHeight: 1.4 }}>
                 {stat.label}
               </div>
             </div>
@@ -150,8 +147,8 @@ export default function Hero() {
         aria-hidden="true"
         style={{
           position: 'relative', zIndex: 2, width: '100%', overflow: 'hidden',
-          borderTop: '1px solid rgba(255,255,255,0.08)',
-          background: 'rgba(255,255,255,0.03)',
+          borderTop: '1px solid rgba(255,255,255,0.10)',
+          background: 'rgba(9,21,37,0.45)',
           backdropFilter: 'blur(8px)',
           padding: '14px 0',
         }}
@@ -173,6 +170,7 @@ export default function Hero() {
         className="hero-scroll-arrow"
         style={{
           position: 'absolute', bottom: '4.5rem', right: 'clamp(var(--space-8), 4vw, var(--space-16))',
+          zIndex: 3,
         }}
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -196,21 +194,21 @@ export default function Hero() {
           padding: 0 var(--space-8);
           font-size: var(--text-xs); font-weight: 600;
           letter-spacing: 0.08em; text-transform: uppercase;
-          color: rgba(255,255,255,0.45); white-space: nowrap;
+          color: rgba(255,255,255,0.5); white-space: nowrap;
         }
         .ticker-dot {
           width: 4px; height: 4px; border-radius: 50%;
           background: rgba(255,255,255,0.25); flex-shrink: 0;
         }
-        .hero-scroll-arrow { color: rgba(255,255,255,0.3); transition: color 0.2s ease; }
-        .hero-scroll-arrow:hover { color: rgba(255,255,255,0.7); }
+        .hero-scroll-arrow { color: rgba(255,255,255,0.35); transition: color 0.2s ease; }
+        .hero-scroll-arrow:hover { color: rgba(255,255,255,0.8); }
         .hero-stats {
           display: flex; flex-direction: row; align-items: stretch;
           gap: 0; margin-top: var(--space-16); flex-wrap: nowrap;
         }
         .hero-stat { flex: 1 1 0; min-width: 0; padding-right: var(--space-6); }
         .hero-stat-border {
-          border-right: 1px solid rgba(255,255,255,0.1);
+          border-right: 1px solid rgba(255,255,255,0.12);
           margin-right: var(--space-6);
         }
         @media (max-width: 768px) {
