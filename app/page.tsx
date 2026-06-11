@@ -9,6 +9,7 @@ import Propietarios from '@/components/Propietarios';
 import Inquilinos from '@/components/Inquilinos';
 import ComoFunciona from '@/components/ComoFunciona';
 import Testimonios from '@/components/Testimonios';
+import Faq from '@/components/Faq';
 import Contacto from '@/components/Contacto';
 import Footer from '@/components/Footer';
 
@@ -25,6 +26,7 @@ export default function Home() {
         <Inquilinos />
         <ComoFunciona />
         <Testimonios />
+        <Faq />
         <Contacto />
       </main>
       <Footer />
