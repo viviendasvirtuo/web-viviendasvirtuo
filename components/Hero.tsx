@@ -25,10 +25,25 @@ export default function Hero() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'stretch',
-        background: 'linear-gradient(160deg, #091525 0%, #0f2d5e 45%, #1a4a8a 100%)',
         overflow: 'hidden',
       }}
     >
+      {/* Imagen de fondo */}
+      <Image
+        src="/images/hero_virtuo.png"
+        alt=""
+        fill
+        style={{ objectFit: 'cover', objectPosition: 'center' }}
+        sizes="100vw"
+        priority
+      />
+
+      {/* Overlay oscuro */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(135deg, #091525e8 0%, #0f2d5ecc 100%)',
+      }} />
+
       {/* Grano sutil */}
       <div
         aria-hidden="true"
@@ -39,31 +54,7 @@ export default function Hero() {
         }}
       />
 
-      {/* Imagen hero — desktop: absoluta a la derecha / móvil: debajo del texto */}
-      <div
-        aria-hidden="true"
-        className="hero-img-wrap"
-        style={{
-          position: 'absolute',
-          right: 0, top: 0, bottom: 0,
-          width: '46%',
-          zIndex: 0,
-        }}
-      >
-        <Image
-          src="/images/hero_virtuo.png"
-          alt=""
-          fill
-          style={{ objectFit: 'cover', objectPosition: 'center' }}
-          sizes="(max-width: 768px) 100vw, 46vw"
-          priority
-        />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #0f2d5e 0%, rgba(15,45,94,0.6) 40%, rgba(15,45,94,0) 100%)' }} className="hero-fade-side" />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #091525 0%, transparent 30%)' }} className="hero-fade-bottom" />
-        <div className="hero-fade-top" style={{ position: 'absolute', inset: 0, display: 'none' }} />
-      </div>
-
-      {/* Contenido texto */}
+      {/* Contenido principal */}
       <div
         style={{
           position: 'relative',
@@ -71,111 +62,86 @@ export default function Hero() {
           paddingTop: '130px',
           paddingBottom: '80px',
           paddingLeft: 'clamp(var(--space-4), 3vw, var(--space-8))',
-          paddingRight: 0,
-          width: '54%',
+          paddingRight: 'clamp(var(--space-4), 3vw, var(--space-8))',
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          maxWidth: '720px',
         }}
-        className="hero-col"
       >
-        <div style={{ marginLeft: 'auto', maxWidth: '58ch', paddingRight: 'clamp(var(--space-6), 3vw, var(--space-12))' }}>
-
-          {/* Badge */}
-          <div
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: '8px',
-              background: 'rgba(255,255,255,0.07)',
-              border: '1px solid rgba(255,255,255,0.14)',
-              borderRadius: 'var(--radius-full)',
-              padding: '0.35rem 1rem 0.35rem 0.6rem',
-              marginBottom: 'var(--space-8)',
-              backdropFilter: 'blur(12px)',
-            }}
-          >
-            <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4ade80', flexShrink: 0 }} />
-            <span style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'rgba(255,255,255,0.8)', letterSpacing: '0.05em' }}>
-              Gestión profesional de alquiler · Barcelona
-            </span>
-          </div>
-
-          {/* Titular */}
-          <h1
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'var(--text-hero)',
-              fontWeight: 900,
-              color: '#ffffff',
-              lineHeight: 1.07,
-              marginBottom: 'var(--space-6)',
-              letterSpacing: '-0.025em',
-            }}
-          >
-            Tu vivienda genera ingresos.
-            <span style={{ display: 'block', color: 'rgba(255,255,255,0.45)', fontWeight: 700 }}>
-              Nosotros lo gestionamos todo.
-            </span>
-          </h1>
-
-          {/* Subtítulo */}
-          <p
-            style={{
-              fontSize: 'var(--text-lg)',
-              color: 'rgba(255,255,255,0.65)',
-              marginBottom: 'var(--space-10)',
-              lineHeight: 1.7,
-            }}
-          >
-            Tres sistemas de alquiler adaptados a tu propiedad. Sin esfuerzo de tu parte, con rentabilidad máxima garantizada.
-          </p>
-
-          {/* CTAs */}
-          <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
-            <Link href="/contacto" className="btn btn-white btn-lg">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                <polyline points="9 22 9 12 15 12 15 22"/>
-              </svg>
-              Soy propietario
-            </Link>
-            <a href="#inquilinos" className="btn btn-ghost-white btn-lg">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-              </svg>
-              Busco habitación
-            </a>
-          </div>
-
-          {/* Stats */}
-          <div className="hero-stats">
-            {stats.map((stat, i) => (
-              <div key={stat.label} className={`hero-stat${i < stats.length - 1 ? ' hero-stat-border' : ''}`}>
-                <div style={{ fontSize: 'var(--text-2xl)', fontFamily: 'var(--font-display)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1 }}>
-                  {stat.num}
-                </div>
-                <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)', marginTop: '6px', lineHeight: 1.4 }}>
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
+        {/* Badge */}
+        <div
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: '8px',
+            background: 'rgba(255,255,255,0.07)',
+            border: '1px solid rgba(255,255,255,0.14)',
+            borderRadius: 'var(--radius-full)',
+            padding: '0.35rem 1rem 0.35rem 0.6rem',
+            marginBottom: 'var(--space-8)',
+            backdropFilter: 'blur(12px)',
+            width: 'fit-content',
+          }}
+        >
+          <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4ade80', flexShrink: 0 }} />
+          <span style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'rgba(255,255,255,0.8)', letterSpacing: '0.05em' }}>
+            Gestión profesional de alquiler · Barcelona
+          </span>
         </div>
-      </div>
 
-      {/* Bloque imagen móvil — se muestra solo en móvil debajo del texto */}
-      <div className="hero-img-mobile-slot" aria-hidden="true">
-        <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: 'var(--radius-xl)', overflow: 'hidden' }}>
-          <Image
-            src="/images/hero_virtuo.png"
-            alt=""
-            fill
-            style={{ objectFit: 'cover', objectPosition: 'center' }}
-            sizes="100vw"
-          />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #091525 0%, rgba(9,21,37,0.3) 25%, rgba(9,21,37,0) 60%)' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #091525 0%, rgba(9,21,37,0.5) 30%, rgba(9,21,37,0) 65%)' }} />
+        {/* Titular */}
+        <h1
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'var(--text-hero)',
+            fontWeight: 900,
+            color: '#ffffff',
+            lineHeight: 1.07,
+            marginBottom: 'var(--space-6)',
+            letterSpacing: '-0.025em',
+          }}
+        >
+          Tu vivienda genera ingresos.
+          <span style={{ display: 'block', color: 'rgba(255,255,255,0.45)', fontWeight: 700 }}>
+            Nosotros lo gestionamos todo.
+          </span>
+        </h1>
+
+        {/* Subtítulo */}
+        <p
+          style={{
+            fontSize: 'var(--text-lg)',
+            color: 'rgba(255,255,255,0.65)',
+            marginBottom: 'var(--space-10)',
+            lineHeight: 1.7,
+            maxWidth: '52ch',
+          }}
+        >
+          Tres sistemas de alquiler adaptados a tu propiedad. Sin esfuerzo de tu parte, con rentabilidad máxima garantizada.
+        </p>
+
+        {/* CTAs */}
+        <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
+          <Link href="/contacto" className="btn btn-white btn-lg">
+            Soy propietario
+          </Link>
+          <a href="#inquilinos" className="btn btn-ghost-white btn-lg">
+            Busco habitación
+          </a>
+        </div>
+
+        {/* Stats */}
+        <div className="hero-stats">
+          {stats.map((stat, i) => (
+            <div key={stat.label} className={`hero-stat${i < stats.length - 1 ? ' hero-stat-border' : ''}`}>
+              <div style={{ fontSize: 'var(--text-2xl)', fontFamily: 'var(--font-display)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1 }}>
+                {stat.num}
+              </div>
+              <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)', marginTop: '6px', lineHeight: 1.4 }}>
+                {stat.label}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -206,9 +172,7 @@ export default function Hero() {
         aria-label="Ver sistemas"
         className="hero-scroll-arrow"
         style={{
-          position: 'absolute', bottom: '4.5rem', left: '50%',
-          transform: 'translateX(-50%)',
-          animation: 'fadeUp 1s 1s both',
+          position: 'absolute', bottom: '4.5rem', right: 'clamp(var(--space-8), 4vw, var(--space-16))',
         }}
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -222,7 +186,7 @@ export default function Hero() {
           100% { transform: translateX(-50%); }
         }
         .ticker-track {
-          display: flex; gap: 0; width: max-content;
+          display: flex; width: max-content;
           animation: ticker 28s linear infinite;
           will-change: transform;
         }
@@ -240,11 +204,6 @@ export default function Hero() {
         }
         .hero-scroll-arrow { color: rgba(255,255,255,0.3); transition: color 0.2s ease; }
         .hero-scroll-arrow:hover { color: rgba(255,255,255,0.7); }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateX(-50%) translateY(10px); }
-          to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
-
         .hero-stats {
           display: flex; flex-direction: row; align-items: stretch;
           gap: 0; margin-top: var(--space-16); flex-wrap: nowrap;
@@ -254,41 +213,13 @@ export default function Hero() {
           border-right: 1px solid rgba(255,255,255,0.1);
           margin-right: var(--space-6);
         }
-
-        /* Slot móvil — oculto en desktop */
-        .hero-img-mobile-slot { display: none; }
-
         @media (max-width: 768px) {
-          /* Ocultar imagen absoluta de desktop */
-          .hero-img-wrap { display: none !important; }
-
-          /* Mostrar slot móvil debajo del texto */
-          .hero-img-mobile-slot {
-            display: block;
-            position: relative;
-            zIndex: 1;
-            width: calc(100% - var(--space-8));
-            height: clamp(200px, 52vw, 320px);
-            margin: 0 var(--space-4) var(--space-4);
-          }
-
-          .hero-col {
-            width: 100% !important;
-            padding-right: var(--space-6) !important;
-          }
-          .hero-col > div {
-            margin-left: 0 !important;
-            max-width: 100% !important;
-          }
           .hero-stats {
-            flex-direction: column;
-            gap: var(--space-5);
-            margin-top: var(--space-10);
+            flex-direction: column; gap: var(--space-5); margin-top: var(--space-10);
           }
           .hero-stat { padding-right: 0; }
           .hero-stat-border {
-            border-right: none;
-            margin-right: 0;
+            border-right: none; margin-right: 0;
             padding-bottom: var(--space-5);
             border-bottom: 1px solid rgba(255,255,255,0.08);
           }
