@@ -6,10 +6,10 @@ const sistemas = [
     id: 'coliving',
     href: '/coliving',
     badge: 'Coliving',
-    badgeClass: 'badge-coliving',
     title: 'Alquiler por habitaciones a largo plazo',
     desc: 'Ideal para viviendas compartidas. Gestionamos cada habitación de forma independiente con contratos estables, selección de perfiles compatibles y máxima ocupación garantizada.',
-    colorRaw: '#1a4a8a',
+    bg: '#1a4a8a',
+    bgDark: '#0f2d5e',
     features: [
       'Contratos individuales por habitación',
       'Selección y verificación de inquilinos',
@@ -27,10 +27,10 @@ const sistemas = [
     id: 'temporal',
     href: '/temporal',
     badge: 'Temporal',
-    badgeClass: 'badge-temporal',
     title: 'Estancias de 1 a 6 meses para trabajo y estudio',
     desc: 'Para trabajadores desplazados y estudiantes de ciclos cortos. Flexibilidad total en duración, máxima rotación controlada y precio por encima del alquiler tradicional.',
-    colorRaw: '#1e7a5a',
+    bg: '#0d9e6e',
+    bgDark: '#0a7a54',
     features: [
       'Estancias de 1 a 6 meses',
       'Check-in y check-out incluidos',
@@ -48,10 +48,10 @@ const sistemas = [
     id: 'vacacional',
     href: '/vacacional',
     badge: 'Vacacional',
-    badgeClass: 'badge-vacacional',
     title: 'Gestión de apartamentos turísticos con licencia',
     desc: 'Máxima rentabilidad por noche para propietarios que ya disponen de licencia turística. Gestionamos plataformas, huéspedes, limpiezas y toda la operativa.',
-    colorRaw: '#c84820',
+    bg: '#c45e00',
+    bgDark: '#9a4900',
     features: [
       'Gestión en Airbnb, Booking y más',
       'Pricing dinámico por temporada',
@@ -92,38 +92,53 @@ export default function Sistemas() {
               key={s.id}
               className="sistema-card"
               style={{
-                background: 'var(--color-surface)',
+                background: s.bg,
                 borderRadius: 'var(--radius-xl)',
-                border: '1px solid var(--color-border)',
                 overflow: 'hidden',
                 display: 'flex',
                 flexDirection: 'column',
-                boxShadow: 'var(--shadow-sm)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
               }}
             >
-              {/* Franja de color superior */}
-              <div style={{ height: '4px', background: s.colorRaw, flexShrink: 0 }} />
-
               <div style={{ display: 'flex', flexDirection: 'column', flex: 1, padding: 'var(--space-8)' }}>
 
                 {/* Badge */}
-                <span className={`badge ${s.badgeClass}`} style={{ marginBottom: 'var(--space-4)', alignSelf: 'flex-start' }}>
+                <span style={{
+                  display: 'inline-block',
+                  alignSelf: 'flex-start',
+                  marginBottom: 'var(--space-5)',
+                  fontSize: 'var(--text-xs)',
+                  fontWeight: 700,
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(255,255,255,0.7)',
+                  background: 'rgba(255,255,255,0.15)',
+                  border: '1px solid rgba(255,255,255,0.25)',
+                  borderRadius: 'var(--radius-full)',
+                  padding: '4px 12px',
+                }}>
                   {s.badge}
                 </span>
 
                 {/* Título */}
                 <h3 style={{
-                  fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)',
-                  fontWeight: 800, color: 'var(--color-text)',
-                  marginBottom: 'var(--space-3)', lineHeight: 1.2, letterSpacing: '-0.01em',
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'var(--text-lg)',
+                  fontWeight: 800,
+                  color: '#ffffff',
+                  marginBottom: 'var(--space-3)',
+                  lineHeight: 1.2,
+                  letterSpacing: '-0.01em',
                 }}>
                   {s.title}
                 </h3>
 
                 {/* Descripción */}
                 <p style={{
-                  fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)',
-                  lineHeight: 1.7, marginBottom: 'var(--space-6)',
+                  fontSize: 'var(--text-sm)',
+                  color: 'rgba(255,255,255,0.80)',
+                  lineHeight: 1.7,
+                  marginBottom: 'var(--space-6)',
                 }}>
                   {s.desc}
                 </p>
@@ -132,10 +147,10 @@ export default function Sistemas() {
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', marginBottom: 'var(--space-6)', listStyle: 'none', flex: 1 }}>
                   {s.features.map(f => (
                     <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 'var(--space-2)', fontSize: 'var(--text-sm)' }}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={s.colorRaw} strokeWidth="3" style={{ flexShrink: 0, marginTop: '3px' }} aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="3" style={{ flexShrink: 0, marginTop: '3px' }} aria-hidden="true">
                         <polyline points="20 6 9 17 4 12"/>
                       </svg>
-                      <span style={{ color: 'var(--color-text-muted)' }}>{f}</span>
+                      <span style={{ color: 'rgba(255,255,255,0.85)' }}>{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -143,11 +158,13 @@ export default function Sistemas() {
                 {/* Nota legal si existe */}
                 {s.nota && (
                   <div style={{
-                    background: '#fef9ec', border: '1px solid #f5d77a',
-                    borderRadius: 'var(--radius-md)', padding: '10px 12px',
+                    background: 'rgba(0,0,0,0.2)',
+                    border: '1px solid rgba(255,255,255,0.15)',
+                    borderRadius: 'var(--radius-md)',
+                    padding: '10px 12px',
                     marginBottom: 'var(--space-4)',
                   }}>
-                    <p style={{ fontSize: 'var(--text-xs)', color: '#7c5800', lineHeight: 1.6, margin: 0 }}>
+                    <p style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6, margin: 0 }}>
                       ⚠️ {s.nota}
                     </p>
                   </div>
@@ -155,23 +172,57 @@ export default function Sistemas() {
 
                 {/* Meta + CTA */}
                 <div style={{
-                  marginTop: 'auto', display: 'flex', alignItems: 'center',
-                  justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--space-4)',
-                  paddingTop: 'var(--space-5)', borderTop: '1px solid var(--color-border)',
+                  marginTop: 'auto',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                  gap: 'var(--space-4)',
+                  paddingTop: 'var(--space-5)',
+                  borderTop: '1px solid rgba(255,255,255,0.2)',
                 }}>
                   <div style={{ display: 'flex', gap: 'var(--space-5)', flexWrap: 'wrap' }}>
                     {s.meta.map(m => (
                       <div key={m.label}>
-                        <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '3px' }}>
+                        <div style={{
+                          fontSize: 'var(--text-xs)',
+                          color: 'rgba(255,255,255,0.55)',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.06em',
+                          marginBottom: '3px',
+                        }}>
                           {m.label}
                         </div>
-                        <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: s.colorRaw }}>
+                        <div style={{
+                          fontSize: 'var(--text-sm)',
+                          fontWeight: 700,
+                          color: '#ffffff',
+                        }}>
                           {m.val}
                         </div>
                       </div>
                     ))}
                   </div>
-                  <Link href={s.href} className="btn btn-outline btn-sm" style={{ borderColor: `${s.colorRaw}40`, color: s.colorRaw, whiteSpace: 'nowrap' }}>
+                  <Link
+                    href={s.href}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      fontSize: 'var(--text-sm)',
+                      fontWeight: 700,
+                      color: '#ffffff',
+                      textDecoration: 'none',
+                      background: 'rgba(255,255,255,0.15)',
+                      border: '1px solid rgba(255,255,255,0.3)',
+                      borderRadius: 'var(--radius-lg)',
+                      padding: '8px 16px',
+                      whiteSpace: 'nowrap',
+                      transition: 'background 0.2s ease',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.25)')}
+                    onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.15)')}
+                  >
                     Ver sistema
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                       <line x1="5" y1="12" x2="19" y2="12"/>
