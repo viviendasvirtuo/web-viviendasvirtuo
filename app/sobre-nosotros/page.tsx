@@ -18,7 +18,7 @@ const PRECIOS_CIUDAD: Record<string, { nombre: string; precioM2: number }> = {
 const MULTIPLICADORES = {
   coliving:    { factor: 1.20, label: 'Coliving',    desc: 'Habitaciones a medio-largo plazo' },
   temporal:    { factor: 1.32, label: 'Temporal',    desc: 'Estancias de 1 a 6 meses' },
-  vacacional:  { factor: 1.58, label: 'Vacacional',  desc: 'Apartamento turístico completo' },
+  vacacional:  { factor: 1.65, label: 'Vacacional',  desc: 'Apartamento turístico completo' },
 };
 
 type Ciudad = keyof typeof PRECIOS_CIUDAD;
@@ -34,7 +34,6 @@ export default function SobreNosotrosPage() {
 
   const calculo = useMemo(() => {
     const { precioM2 } = PRECIOS_CIUDAD[ciudad];
-    // Para habitación: precio por m² * metros de la habitación (aprox 12m² por hab)
     const metrosCalculo = tipo === 'habitacion' ? Math.max(metros, 10) : metros;
     const rentaTrad = Math.round(precioM2 * metrosCalculo);
     const { factor } = MULTIPLICADORES[sistema];
@@ -166,8 +165,6 @@ export default function SobreNosotrosPage() {
         <section style={{ padding: 'clamp(60px,8vw,110px) 0', background: '#f0f4fa' }}>
           <div className="container">
             <div style={{ maxWidth: '780px', margin: '0 auto' }}>
-
-              {/* Cabecera */}
               <div style={{ textAlign: 'center', marginBottom: '48px' }}>
                 <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Herramienta gratuita</p>
                 <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.8vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '14px' }}>¿Cuánto puede rendir tu vivienda?</h2>
@@ -178,73 +175,33 @@ export default function SobreNosotrosPage() {
 
               <div style={{ background: 'white', borderRadius: 'var(--radius-xl)', padding: 'clamp(28px,5vw,52px)', border: '1px solid var(--color-border)', boxShadow: '0 8px 40px rgba(15,45,94,0.09)' }}>
 
-                {/* FILA 1: Ciudad + Tipo inmueble */}
+                {/* FILA 1: Ciudad + Tipo */}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px,1fr))', gap: '24px', marginBottom: '28px' }}>
-
-                  {/* Ciudad */}
                   <div>
                     <label style={{ display: 'block', fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)', marginBottom: '10px' }}>Ciudad</label>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                       {Object.entries(PRECIOS_CIUDAD).map(([key, val]) => (
-                        <button
-                          key={key}
-                          onClick={() => setCiudad(key as Ciudad)}
-                          style={{
-                            ...btnBase,
-                            border: ciudad === key ? '2px solid var(--color-primary)' : '1.5px solid var(--color-border)',
-                            background: ciudad === key ? 'var(--color-primary)' : 'var(--color-surface)',
-                            color: ciudad === key ? 'white' : 'var(--color-text)',
-                          }}
-                        >
+                        <button key={key} onClick={() => setCiudad(key as Ciudad)} style={{ ...btnBase, border: ciudad === key ? '2px solid var(--color-primary)' : '1.5px solid var(--color-border)', background: ciudad === key ? 'var(--color-primary)' : 'var(--color-surface)', color: ciudad === key ? 'white' : 'var(--color-text)' }}>
                           {val.nombre}
                         </button>
                       ))}
                     </div>
                   </div>
-
-                  {/* Tipo */}
                   <div>
                     <label style={{ display: 'block', fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)', marginBottom: '10px' }}>Tipo de inmueble</label>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                       {([['piso', '🏠 Piso completo'], ['habitacion', '🛏 Habitación']] as const).map(([key, lbl]) => (
-                        <button
-                          key={key}
-                          onClick={() => setTipo(key)}
-                          style={{
-                            ...btnBase,
-                            padding: '12px 8px',
-                            border: tipo === key ? '2px solid var(--color-primary)' : '1.5px solid var(--color-border)',
-                            background: tipo === key ? 'var(--color-primary)' : 'var(--color-surface)',
-                            color: tipo === key ? 'white' : 'var(--color-text)',
-                          }}
-                        >
+                        <button key={key} onClick={() => setTipo(key)} style={{ ...btnBase, padding: '12px 8px', border: tipo === key ? '2px solid var(--color-primary)' : '1.5px solid var(--color-border)', background: tipo === key ? 'var(--color-primary)' : 'var(--color-surface)', color: tipo === key ? 'white' : 'var(--color-text)' }}>
                           {lbl}
                         </button>
                       ))}
                     </div>
-
-                    {/* Habitaciones (solo si piso) */}
                     {tipo === 'piso' && (
                       <div style={{ marginTop: '16px' }}>
                         <label style={{ display: 'block', fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)', marginBottom: '10px' }}>Número de habitaciones</label>
                         <div style={{ display: 'flex', gap: '8px' }}>
-                          {[1, 2, 3, 4, 5].map((n) => (
-                            <button
-                              key={n}
-                              onClick={() => setHabitaciones(n)}
-                              style={{
-                                width: '44px', height: '44px',
-                                borderRadius: 'var(--radius-lg)',
-                                border: habitaciones === n ? '2px solid var(--color-primary)' : '1.5px solid var(--color-border)',
-                                background: habitaciones === n ? 'var(--color-primary)' : 'var(--color-surface)',
-                                color: habitaciones === n ? 'white' : 'var(--color-text)',
-                                fontWeight: 700,
-                                fontSize: 'var(--text-sm)',
-                                cursor: 'pointer',
-                                transition: 'all 180ms ease',
-                                flexShrink: 0,
-                              }}
-                            >
+                          {[1,2,3,4,5].map((n) => (
+                            <button key={n} onClick={() => setHabitaciones(n)} style={{ width: '44px', height: '44px', borderRadius: 'var(--radius-lg)', border: habitaciones === n ? '2px solid var(--color-primary)' : '1.5px solid var(--color-border)', background: habitaciones === n ? 'var(--color-primary)' : 'var(--color-surface)', color: habitaciones === n ? 'white' : 'var(--color-text)', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer', transition: 'all 180ms ease', flexShrink: 0 }}>
                               {n === 5 ? '5+' : n}
                             </button>
                           ))}
@@ -254,23 +211,13 @@ export default function SobreNosotrosPage() {
                   </div>
                 </div>
 
-                {/* FILA 2: Metros cuadrados */}
+                {/* FILA 2: Metros */}
                 <div style={{ marginBottom: '28px', paddingTop: '24px', borderTop: '1px solid var(--color-border)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '12px' }}>
-                    <label style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)' }}>
-                      {tipo === 'habitacion' ? 'Metros cuadrados de la habitación' : 'Metros cuadrados del piso'}
-                    </label>
+                    <label style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)' }}>{tipo === 'habitacion' ? 'Metros cuadrados de la habitación' : 'Metros cuadrados del piso'}</label>
                     <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', fontWeight: 900, color: 'var(--color-primary)' }}>{metros} m²</span>
                   </div>
-                  <input
-                    type="range"
-                    min={tipo === 'habitacion' ? 8 : 30}
-                    max={tipo === 'habitacion' ? 30 : 200}
-                    step={tipo === 'habitacion' ? 1 : 5}
-                    value={metros}
-                    onChange={(e) => setMetros(Number(e.target.value))}
-                    style={{ width: '100%', accentColor: 'var(--color-primary)', cursor: 'pointer', height: '6px' }}
-                  />
+                  <input type="range" min={tipo === 'habitacion' ? 8 : 30} max={tipo === 'habitacion' ? 30 : 200} step={tipo === 'habitacion' ? 1 : 5} value={metros} onChange={(e) => setMetros(Number(e.target.value))} style={{ width: '100%', accentColor: 'var(--color-primary)', cursor: 'pointer', height: '6px' }} />
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '6px' }}>
                     <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>{tipo === 'habitacion' ? '8 m²' : '30 m²'}</span>
                     <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>{tipo === 'habitacion' ? '30 m²' : '200 m²'}</span>
@@ -282,17 +229,7 @@ export default function SobreNosotrosPage() {
                   <label style={{ display: 'block', fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)', marginBottom: '12px' }}>Sistema de gestión Virtuo</label>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '10px' }}>
                     {(Object.entries(MULTIPLICADORES) as [Sistema, typeof MULTIPLICADORES[Sistema]][]).map(([key, val]) => (
-                      <button
-                        key={key}
-                        onClick={() => setSistema(key)}
-                        style={{
-                          ...btnBase,
-                          padding: '12px 8px',
-                          border: sistema === key ? '2px solid var(--color-primary)' : '1.5px solid var(--color-border)',
-                          background: sistema === key ? 'var(--color-primary)' : 'var(--color-surface)',
-                          color: sistema === key ? 'white' : 'var(--color-text)',
-                        }}
-                      >
+                      <button key={key} onClick={() => setSistema(key)} style={{ ...btnBase, padding: '12px 8px', border: sistema === key ? '2px solid var(--color-primary)' : '1.5px solid var(--color-border)', background: sistema === key ? 'var(--color-primary)' : 'var(--color-surface)', color: sistema === key ? 'white' : 'var(--color-text)' }}>
                         <div style={{ fontWeight: 800, marginBottom: '2px' }}>{val.label}</div>
                         <div style={{ fontSize: 'var(--text-xs)', opacity: 0.8 }}>{val.desc}</div>
                       </button>
@@ -303,36 +240,22 @@ export default function SobreNosotrosPage() {
                 {/* RESULTADO */}
                 <div style={{ background: 'linear-gradient(135deg, #0f2d5e, #1a4a8a)', borderRadius: 'var(--radius-xl)', padding: 'clamp(24px,4vw,36px)', marginBottom: '16px' }}>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px,1fr))', gap: '20px', marginBottom: '20px' }}>
-
-                    {/* Alquiler tradicional */}
                     <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: 'var(--radius-lg)', padding: '20px 16px', border: '1px solid rgba(255,255,255,0.12)' }}>
                       <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.55)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Alquiler tradicional</div>
-                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem,3vw,2rem)', fontWeight: 900, color: 'rgba(255,255,255,0.75)', lineHeight: 1 }}>
-                        {calculo.rentaTrad.toLocaleString('es-ES')} €
-                      </div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem,3vw,2rem)', fontWeight: 900, color: 'rgba(255,255,255,0.75)', lineHeight: 1 }}>{calculo.rentaTrad.toLocaleString('es-ES')} €</div>
                       <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.4)', marginTop: '4px' }}>al mes · referencia mercado</div>
                     </div>
-
-                    {/* Con Virtuo */}
                     <div style={{ background: 'rgba(255,255,255,0.14)', borderRadius: 'var(--radius-lg)', padding: '20px 16px', border: '1px solid rgba(255,255,255,0.25)' }}>
                       <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.7)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Con Virtuo · {MULTIPLICADORES[sistema].label}</div>
-                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem,3vw,2rem)', fontWeight: 900, color: 'white', lineHeight: 1 }}>
-                        {calculo.rentaVirtuo.toLocaleString('es-ES')} €
-                      </div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem,3vw,2rem)', fontWeight: 900, color: 'white', lineHeight: 1 }}>{calculo.rentaVirtuo.toLocaleString('es-ES')} €</div>
                       <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.55)', marginTop: '4px' }}>al mes estimado</div>
                     </div>
-
-                    {/* Extra al año */}
                     <div style={{ background: 'rgba(144,202,249,0.15)', borderRadius: 'var(--radius-lg)', padding: '20px 16px', border: '1px solid rgba(144,202,249,0.3)' }}>
                       <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(144,202,249,0.8)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Extra al año</div>
-                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem,3vw,2rem)', fontWeight: 900, color: '#90caf9', lineHeight: 1 }}>
-                        +{calculo.diferenciaAnio.toLocaleString('es-ES')} €
-                      </div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem,3vw,2rem)', fontWeight: 900, color: '#90caf9', lineHeight: 1 }}>+{calculo.diferenciaAnio.toLocaleString('es-ES')} €</div>
                       <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(144,202,249,0.6)', marginTop: '4px' }}>+{calculo.porcentaje}% sobre alquiler trad.</div>
                     </div>
                   </div>
-
-                  {/* Barra comparativa */}
                   <div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
                       <span style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.55)' }}>Alquiler tradicional</span>
@@ -348,12 +271,8 @@ export default function SobreNosotrosPage() {
                 <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', lineHeight: 1.65, textAlign: 'center', marginBottom: '24px' }}>
                   Estimación basada en precios de referencia del mercado de alquiler en Cataluña (2024–2025). Los resultados reales dependen de la ubicación exacta, el estado de la vivienda y las condiciones del mercado.
                 </p>
-
                 <div style={{ textAlign: 'center' }}>
-                  <Link
-                    href="/contacto"
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-primary)', color: 'white', fontWeight: 700, padding: '14px 32px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}
-                  >
+                  <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-primary)', color: 'white', fontWeight: 700, padding: '14px 32px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>
                     Quiero un análisis personalizado →
                   </Link>
                 </div>
@@ -361,7 +280,6 @@ export default function SobreNosotrosPage() {
             </div>
           </div>
         </section>
-        {/* ======================== FIN CALCULADORA ======================== */}
 
         {/* CTA — HABLAMOS */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'linear-gradient(135deg, #0f2d5e, #1a4a8a)', textAlign: 'center' }}>
