@@ -8,8 +8,8 @@ const VIDEOS = [
   '/videos/Hero_Video_3.mp4',
 ];
 
-const DURATION = 7000; // ms por vídeo
-const FADE = 800;     // ms de crossfade
+const DURATION = 7000;
+const FADE = 800;
 
 const stats = [
   { num: '+30%', label: 'Más rentabilidad vs alquiler tradicional' },
@@ -47,63 +47,63 @@ export default function Hero() {
   useEffect(() => {
     const schedule = () => {
       timerRef.current = setTimeout(() => {
-        const nextIdx = (current + 1) % VIDEOS.length;
-        goTo(nextIdx);
+        goTo((current + 1) % VIDEOS.length);
       }, DURATION);
     };
     schedule();
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [current]);
 
-  // Autoplay del vídeo activo
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
       if (!v) return;
-      if (i === current) {
-        v.currentTime = 0;
-        v.play().catch(() => {});
-      } else {
-        v.pause();
-      }
+      if (i === current) { v.currentTime = 0; v.play().catch(() => {}); }
+      else { v.pause(); }
     });
   }, [current]);
 
   return (
-    <section style={{ position: 'relative', minHeight: '100dvh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <section style={{
+      position: 'relative',
+      height: '100dvh',
+      display: 'flex',
+      flexDirection: 'column',
+      overflow: 'hidden',
+    }}>
 
-      {/* Capa de vídeos */}
+      {/* Vídeos */}
       {VIDEOS.map((src, i) => (
         <video
           key={src}
           ref={el => { videoRefs.current[i] = el; }}
           src={src}
-          muted
-          playsInline
-          loop
+          muted playsInline loop
           preload={i === 0 ? 'auto' : 'none'}
           style={{
             position: 'absolute', inset: 0,
             width: '100%', height: '100%',
             objectFit: 'cover',
             transition: `opacity ${FADE}ms ease`,
-            opacity: i === current ? 1 : (i === next ? 0 : 0),
+            opacity: i === current ? 1 : 0,
             zIndex: i === current ? 1 : (i === next ? 2 : 0),
           }}
         />
       ))}
 
-      {/* Overlay gradiente izquierda + inferior */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'linear-gradient(to right, rgba(9,21,37,0.80) 0%, rgba(9,21,37,0.45) 50%, rgba(9,21,37,0.05) 80%)' }} />
-      <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'linear-gradient(to top, rgba(9,21,37,0.70) 0%, transparent 20%)' }} />
+      {/* Overlays */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'linear-gradient(to right, rgba(9,21,37,0.82) 0%, rgba(9,21,37,0.45) 55%, rgba(9,21,37,0.05) 85%)' }} />
+      <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'linear-gradient(to top, rgba(9,21,37,0.65) 0%, transparent 18%)' }} />
 
-      {/* Contenido */}
+      {/* Contenido central */}
       <div style={{
         position: 'relative', zIndex: 4,
-        paddingTop: '130px', paddingBottom: '80px',
-        paddingLeft: 'clamp(1rem, 3vw, 2rem)',
-        paddingRight: 'clamp(1rem, 3vw, 2rem)',
-        flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center',
-        maxWidth: '680px',
+        flex: 1,
+        display: 'flex', flexDirection: 'column', justifyContent: 'center',
+        paddingTop: '100px',
+        paddingBottom: '1rem',
+        paddingLeft: 'clamp(1.25rem, 4vw, 3rem)',
+        paddingRight: 'clamp(1.25rem, 4vw, 3rem)',
+        maxWidth: '660px',
       }}>
 
         {/* Badge */}
@@ -112,23 +112,23 @@ export default function Hero() {
           background: 'rgba(255,255,255,0.10)',
           border: '1px solid rgba(255,255,255,0.18)',
           borderRadius: '9999px',
-          padding: '0.35rem 1rem 0.35rem 0.6rem',
-          marginBottom: '2rem',
+          padding: '0.3rem 1rem 0.3rem 0.6rem',
+          marginBottom: '1.25rem',
           backdropFilter: 'blur(12px)',
           width: 'fit-content',
         }}>
           <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4ade80', flexShrink: 0 }} />
-          <span style={{ fontSize: 'clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)', fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.05em' }}>
+          <span style={{ fontSize: 'clamp(0.7rem, 0.65rem + 0.2vw, 0.8rem)', fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.05em' }}>
             Gestión profesional de alquiler · Barcelona
           </span>
         </div>
 
-        {/* Titular */}
+        {/* Titular — máx 3.5rem */}
         <h1 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(3rem, 0.5rem + 7vw, 8rem)',
+          fontSize: 'clamp(2rem, 1.2rem + 3.5vw, 3.5rem)',
           fontWeight: 900, color: '#ffffff',
-          lineHeight: 1.07, marginBottom: '1.5rem',
+          lineHeight: 1.1, marginBottom: '1rem',
           letterSpacing: '-0.025em',
           textShadow: '0 2px 16px rgba(0,0,0,0.35)',
         }}>
@@ -138,30 +138,30 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Subtítulo */}
+        {/* Subtítulo — más compacto */}
         <p style={{
-          fontSize: 'clamp(1.125rem, 1rem + 0.75vw, 1.5rem)',
+          fontSize: 'clamp(0.95rem, 0.85rem + 0.5vw, 1.15rem)',
           color: 'rgba(255,255,255,0.72)',
-          marginBottom: '2.5rem', lineHeight: 1.7, maxWidth: '48ch',
+          marginBottom: '1.5rem', lineHeight: 1.6, maxWidth: '46ch',
           textShadow: '0 1px 8px rgba(0,0,0,0.3)',
         }}>
-          Tres sistemas de alquiler adaptados a tu propiedad. Sin esfuerzo de tu parte, con rentabilidad máxima garantizada.
+          Tres sistemas de alquiler adaptados a tu propiedad. Sin esfuerzo, con rentabilidad máxima.
         </p>
 
         {/* CTAs */}
-        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
           <Link href="/contacto" className="btn btn-white btn-lg">Soy propietario</Link>
           <a href="#inquilinos" className="btn btn-ghost-white btn-lg">Busco habitación</a>
         </div>
 
-        {/* Stats */}
+        {/* Stats — más compactos */}
         <div className="hero-stats">
           {stats.map((stat, i) => (
             <div key={stat.label} className={`hero-stat${i < stats.length - 1 ? ' hero-stat-border' : ''}`}>
-              <div style={{ fontSize: 'clamp(2rem, 1.2rem + 2.5vw, 3.5rem)', fontFamily: 'var(--font-display)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1 }}>
+              <div style={{ fontSize: 'clamp(1.5rem, 1rem + 1.5vw, 2.25rem)', fontFamily: 'var(--font-display)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1 }}>
                 {stat.num}
               </div>
-              <div style={{ fontSize: 'clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)', color: 'rgba(255,255,255,0.5)', marginTop: '6px', lineHeight: 1.4 }}>
+              <div style={{ fontSize: 'clamp(0.7rem, 0.65rem + 0.2vw, 0.8rem)', color: 'rgba(255,255,255,0.5)', marginTop: '4px', lineHeight: 1.35 }}>
                 {stat.label}
               </div>
             </div>
@@ -169,10 +169,10 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Indicadores de vídeo */}
+      {/* Indicadores vídeo */}
       <div style={{
-        position: 'absolute', bottom: '5.5rem', right: 'clamp(2rem, 4vw, 4rem)',
-        zIndex: 5, display: 'flex', flexDirection: 'column', gap: '8px',
+        position: 'absolute', bottom: '4.5rem', right: 'clamp(1.5rem, 3vw, 3rem)',
+        zIndex: 5, display: 'flex', flexDirection: 'column', gap: '7px',
       }}>
         {VIDEOS.map((_, i) => (
           <button
@@ -180,7 +180,7 @@ export default function Hero() {
             onClick={() => goTo(i)}
             aria-label={`Vídeo ${i + 1}`}
             style={{
-              width: '3px', height: i === current ? '32px' : '16px',
+              width: '3px', height: i === current ? '28px' : '14px',
               background: i === current ? '#ffffff' : 'rgba(255,255,255,0.3)',
               border: 'none', borderRadius: '2px', cursor: 'pointer',
               transition: 'all 0.3s ease', padding: 0,
@@ -195,7 +195,7 @@ export default function Hero() {
         borderTop: '1px solid rgba(255,255,255,0.10)',
         background: 'rgba(9,21,37,0.45)',
         backdropFilter: 'blur(8px)',
-        padding: '14px 0',
+        padding: '12px 0',
       }}>
         <div className="ticker-track">
           {[...tickerItems, ...tickerItems].map((item, i) => (
@@ -208,12 +208,12 @@ export default function Hero() {
 
       {/* Flecha scroll */}
       <a href="#sistemas" aria-label="Ver sistemas" style={{
-        position: 'absolute', bottom: '4.5rem',
+        position: 'absolute', bottom: '3.5rem',
         left: '50%', transform: 'translateX(-50%)',
         zIndex: 5, color: 'rgba(255,255,255,0.4)',
         transition: 'color 0.2s ease',
       }}>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
           <path d="M12 5v14M5 12l7 7 7-7"/>
         </svg>
       </a>
@@ -222,15 +222,15 @@ export default function Hero() {
         @keyframes ticker { 0% { transform:translateX(0) } 100% { transform:translateX(-50%) } }
         .ticker-track { display:flex; width:max-content; animation:ticker 28s linear infinite; }
         .ticker-track:hover { animation-play-state:paused; }
-        .ticker-item { display:inline-flex; align-items:center; gap:10px; padding:0 2rem; font-size:clamp(0.75rem,0.7rem + 0.25vw,0.875rem); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.5); white-space:nowrap; }
+        .ticker-item { display:inline-flex; align-items:center; gap:10px; padding:0 2rem; font-size:clamp(0.7rem,0.65rem + 0.2vw,0.8rem); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.5); white-space:nowrap; }
         .ticker-dot { width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,0.25); flex-shrink:0; }
-        .hero-stats { display:flex; flex-direction:row; gap:0; margin-top:4rem; flex-wrap:nowrap; }
-        .hero-stat { flex:1 1 0; min-width:0; padding-right:1.5rem; }
-        .hero-stat-border { border-right:1px solid rgba(255,255,255,0.12); margin-right:1.5rem; }
+        .hero-stats { display:flex; flex-direction:row; gap:0; margin-top:2rem; flex-wrap:nowrap; }
+        .hero-stat { flex:1 1 0; min-width:0; padding-right:1.25rem; }
+        .hero-stat-border { border-right:1px solid rgba(255,255,255,0.12); margin-right:1.25rem; }
         @media (max-width:768px) {
-          .hero-stats { flex-direction:column; gap:1.25rem; margin-top:2.5rem; }
+          .hero-stats { flex-direction:column; gap:1rem; margin-top:1.5rem; }
           .hero-stat { padding-right:0; }
-          .hero-stat-border { border-right:none; margin-right:0; padding-bottom:1.25rem; border-bottom:1px solid rgba(255,255,255,0.08); }
+          .hero-stat-border { border-right:none; margin-right:0; padding-bottom:1rem; border-bottom:1px solid rgba(255,255,255,0.08); }
         }
       `}</style>
     </section>
