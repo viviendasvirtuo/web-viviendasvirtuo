@@ -39,15 +39,9 @@ export default function Hero() {
         }}
       />
 
-      {/* Imagen hero — solo desktop */}
+      {/* Imagen hero */}
       <div
         aria-hidden="true"
-        style={{
-          position: 'absolute',
-          right: 0, top: 0, bottom: 0,
-          width: '46%',
-          zIndex: 0,
-        }}
         className="hero-img-wrap"
       >
         <Image
@@ -55,11 +49,12 @@ export default function Hero() {
           alt=""
           fill
           style={{ objectFit: 'cover', objectPosition: 'center' }}
-          sizes="46vw"
+          sizes="(max-width: 768px) 100vw, 46vw"
           priority
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #0f2d5e 0%, rgba(15,45,94,0.6) 40%, rgba(15,45,94,0) 100%)' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #091525 0%, transparent 30%)' }} />
+        <div className="hero-fade hero-fade--side" />
+        <div className="hero-fade hero-fade--bottom" />
+        <div className="hero-fade hero-fade--top" />
       </div>
 
       <div
@@ -247,11 +242,58 @@ export default function Hero() {
           margin-right: var(--space-6);
         }
 
-        /* Stats móvil: columna vertical, sin separadores */
+        /* Imagen hero — desktop: posición absoluta derecha */
+        .hero-img-wrap {
+          position: absolute;
+          right: 0; top: 0; bottom: 0;
+          width: 46%;
+          z-index: 0;
+        }
+        .hero-fade {
+          position: absolute;
+          inset: 0;
+        }
+        .hero-fade--side {
+          background: linear-gradient(to right, #0f2d5e 0%, rgba(15,45,94,0.6) 40%, rgba(15,45,94,0) 100%);
+        }
+        .hero-fade--bottom {
+          background: linear-gradient(to top, #091525 0%, transparent 30%);
+        }
+        .hero-fade--top { display: none; }
+
+        /* Imagen hero — móvil: debajo del texto, difuminada */
         @media (max-width: 768px) {
-          .hero-img-wrap { display: none; }
-          .hero-col { width: 100% !important; padding-right: var(--space-6) !important; }
-          .hero-col > div { margin-left: 0 !important; max-width: 100% !important; }
+          .hero-img-wrap {
+            position: relative !important;
+            right: auto !important;
+            top: auto !important;
+            bottom: auto !important;
+            width: 100% !important;
+            height: clamp(220px, 56vw, 340px);
+            z-index: 0;
+            overflow: hidden;
+            border-radius: var(--radius-xl);
+            margin: 0 var(--space-4) var(--space-2);
+            width: calc(100% - var(--space-8)) !important;
+          }
+          .hero-fade--side {
+            background: linear-gradient(to bottom, rgba(9,21,37,0.55) 0%, rgba(9,21,37,0.1) 40%, rgba(9,21,37,0) 70%) !important;
+          }
+          .hero-fade--bottom {
+            background: linear-gradient(to top, #091525 0%, rgba(9,21,37,0.55) 30%, rgba(9,21,37,0) 65%) !important;
+          }
+          .hero-fade--top {
+            display: block !important;
+            background: linear-gradient(to bottom, #091525 0%, rgba(9,21,37,0.4) 20%, rgba(9,21,37,0) 55%) !important;
+          }
+          .hero-col {
+            width: 100% !important;
+            padding-right: var(--space-6) !important;
+          }
+          .hero-col > div {
+            margin-left: 0 !important;
+            max-width: 100% !important;
+          }
           .hero-stats {
             flex-direction: column;
             gap: var(--space-5);
