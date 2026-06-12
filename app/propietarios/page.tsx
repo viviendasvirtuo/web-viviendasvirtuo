@@ -65,7 +65,7 @@ export default function PropietariosPage() {
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
                   {[
-                    { num: '+30%', label: 'Más rentabilidad vs alquiler tradicional', desc: 'Optimizamos precios y ocupación continuamente para que no pierdas ni un euro.' },
+                    { num: '+40%', label: 'Más rentabilidad vs alquiler tradicional', desc: 'Optimizamos precios y ocupación continuamente para que no pierdas ni un euro.' },
                     { num: '72h', label: 'Tiempo medio hasta primera reserva', desc: 'Publicamos en todas las plataformas relevantes con fotos profesionales.' },
                     { num: '100%', label: 'Gestión sin intervención tuya', desc: 'Contratos, selección de inquilinos, incidencias y cobros. Todo.' },
                   ].map((m, i, arr) => (
@@ -118,7 +118,7 @@ export default function PropietariosPage() {
                   boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
                   backdropFilter: 'blur(8px)',
                 }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', fontWeight: 900, color: '#1a4a8a', lineHeight: 1 }}>+30%</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', fontWeight: 900, color: '#1a4a8a', lineHeight: 1 }}>+40%</div>
                   <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '3px', whiteSpace: 'nowrap' }}>más rentabilidad</div>
                 </div>
               </div>
