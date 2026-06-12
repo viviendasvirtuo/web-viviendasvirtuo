@@ -13,7 +13,7 @@ const pasos = [
   {
     num: '01',
     title: 'Análisis y licencia',
-    desc: 'Evaluamos el potencial turístico de tu apartamento y verificamos o tramitamos la licencia de Habitatge d'Ús Turístic (HUT) necesaria en Barcelona.',
+    desc: "Evaluamos el potencial turístico de tu apartamento y verificamos o tramitamos la licencia de Habitatge d'Ús Turístic (HUT) necesaria en Barcelona.",
   },
   {
     num: '02',
@@ -81,7 +81,7 @@ const ventajas = [
 const faqs = [
   {
     q: '¿Necesito licencia turística para alquilar mi apartamento?',
-    a: 'Sí. En Barcelona es obligatoria la Habilitación de Habitatge d'Ús Turístic (HUT) para alquilar por noches en plataformas como Airbnb o Booking. Virtuo te asesora sobre el proceso y requisitos actuales.',
+    a: "Sí. En Barcelona es obligatoria la Habilitación de Habitatge d'Ús Turístic (HUT) para alquilar por noches en plataformas como Airbnb o Booking. Virtuo te asesora sobre el proceso y requisitos actuales.",
   },
   {
     q: '¿Cuánto puedo ganar con mi apartamento?',
