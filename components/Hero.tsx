@@ -12,12 +12,12 @@ const DURATION = 10000;
 const FADE = 800;
 
 const tickerItems = [
-  'Coliving · alquiler por habitaciones',
-  'Temporal · estancias de 1 a 6 meses',
-  'Vacacional · apartamento completo',
-  'Sin preocupaciones · máxima rentabilidad',
-  'Gestión profesional · Barcelona y área metropolitana',
-  'Selección de inquilinos · garantía de cobro',
+  'Coliving \u00b7 alquiler por habitaciones',
+  'Temporal \u00b7 estancias de 1 a 6 meses',
+  'Vacacional \u00b7 apartamento completo',
+  'Sin preocupaciones \u00b7 m\u00e1xima rentabilidad',
+  'Gesti\u00f3n profesional \u00b7 Barcelona y \u00e1rea metropolitana',
+  'Selecci\u00f3n de inquilinos \u00b7 garant\u00eda de cobro',
 ];
 
 export default function Hero() {
@@ -54,24 +54,34 @@ export default function Hero() {
     }, FADE);
   };
 
+  // Avance autom\u00e1tico
   useEffect(() => {
-    const schedule = () => {
-      timerRef.current = setTimeout(() => {
-        goTo((current + 1) % VIDEOS.length);
-      }, DURATION);
-    };
-    schedule();
+    timerRef.current = setTimeout(() => {
+      goTo((current + 1) % VIDEOS.length);
+    }, DURATION);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [current, ready]);
 
+  // Arrancar/pausar videos cuando cambia current
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
       if (!v) return;
-      if (i === current) { v.currentTime = 0; v.play().catch(() => {}); }
-      else { v.pause(); }
+      if (i === current) {
+        if (ready[i]) { v.currentTime = 0; v.play().catch(() => {}); }
+      } else {
+        v.pause();
+      }
     });
   }, [current]);
 
+  // Clave: cuando ready[current] pasa a true, arrancar el play inmediatamente
+  useEffect(() => {
+    if (!ready[current]) return;
+    const v = videoRefs.current[current];
+    if (v) { v.currentTime = 0; v.play().catch(() => {}); }
+  }, [ready, current]);
+
+  // Registrar listeners canplay en todos los videos
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
       if (!v) return;
@@ -97,7 +107,6 @@ export default function Hero() {
       backgroundPosition: 'center',
     }}>
 
-      {/* Vídeos — se superponen encima del poster cuando están listos */}
       {VIDEOS.map((src, i) => (
         <video
           key={src}
@@ -116,10 +125,8 @@ export default function Hero() {
         />
       ))}
 
-      {/* Solo degradado inferior */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'linear-gradient(to top, rgba(9,21,37,0.50) 0%, transparent 25%)' }} />
 
-      {/* Contenido central */}
       <div style={{
         position: 'relative', zIndex: 4,
         flex: 1,
@@ -136,7 +143,6 @@ export default function Hero() {
         width: '100%',
       }}>
 
-        {/* Badge */}
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: '8px',
           background: 'rgba(255,255,255,0.10)',
@@ -148,12 +154,11 @@ export default function Hero() {
         }}>
           <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4ade80', flexShrink: 0 }} />
           <span className="badge-text" style={{ fontSize: 'clamp(0.7rem, 0.65rem + 0.2vw, 0.9rem)', fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.05em' }}>
-            <span className="badge-desktop">Gestión profesional de alquiler · Barcelona y área metropolitana</span>
-            <span className="badge-mobile"><span>Gestión profesional de alquiler</span><span>Barcelona y área metropolitana</span></span>
+            <span className="badge-desktop">Gesti\u00f3n profesional de alquiler \u00b7 Barcelona y \u00e1rea metropolitana</span>
+            <span className="badge-mobile"><span>Gesti\u00f3n profesional de alquiler</span><span>Barcelona y \u00e1rea metropolitana</span></span>
           </span>
         </div>
 
-        {/* Titular */}
         <h1 style={{
           fontFamily: 'var(--font-display)',
           fontSize: 'clamp(2rem, 1.2rem + 3.5vw, 4.5rem)',
@@ -168,7 +173,6 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Subtítulo */}
         <p style={{
           fontSize: 'clamp(0.95rem, 0.85rem + 0.5vw, 1.35rem)',
           fontWeight: 700,
@@ -177,17 +181,15 @@ export default function Hero() {
           maxWidth: '46ch', marginInline: 'auto',
           textShadow: '0 1px 8px rgba(0,0,0,0.3)',
         }}>
-          Tres sistemas de alquiler adaptados a tu propiedad. Sin esfuerzo, con rentabilidad máxima.
+          Tres sistemas de alquiler adaptados a tu propiedad. Sin esfuerzo, con rentabilidad m\u00e1xima.
         </p>
 
-        {/* CTAs */}
         <div className="hero-ctas">
           <Link href="/contacto" className="btn btn-white btn-lg">Soy propietario</Link>
-          <a href="#inquilinos" className="btn btn-ghost-white btn-lg">Busco habitación</a>
+          <a href="#inquilinos" className="btn btn-ghost-white btn-lg">Busco habitaci\u00f3n</a>
         </div>
       </div>
 
-      {/* Indicadores vídeo */}
       <div style={{
         position: 'absolute', bottom: '4.5rem', right: 'clamp(1.5rem, 3vw, 3rem)',
         zIndex: 5, display: 'flex', flexDirection: 'column', gap: '7px',
@@ -196,7 +198,7 @@ export default function Hero() {
           <button
             key={i}
             onClick={() => goTo(i)}
-            aria-label={`Vídeo ${i + 1}`}
+            aria-label={`V\u00eddeo ${i + 1}`}
             style={{
               width: '3px', height: i === current ? '28px' : '14px',
               background: i === current ? '#ffffff' : 'rgba(255,255,255,0.3)',
@@ -207,7 +209,6 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Ticker inferior */}
       <div aria-hidden="true" style={{
         position: 'relative', zIndex: 4, width: '100%', overflow: 'hidden',
         borderTop: '1px solid rgba(255,255,255,0.10)',
@@ -224,7 +225,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Flecha scroll */}
       <a href="#sistemas" aria-label="Ver sistemas" style={{
         position: 'absolute', bottom: '3.5rem',
         left: '50%', transform: 'translateX(-50%)',
