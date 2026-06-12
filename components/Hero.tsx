@@ -181,8 +181,8 @@ export default function Hero() {
         </p>
 
         <div className="hero-ctas">
-          <Link href="/contacto" className="btn btn-white btn-lg">Soy propietario</Link>
-          <a href="#inquilinos" className="btn btn-ghost-white btn-lg">Busco habitación</a>
+          <Link href="/propietarios" className="btn btn-white btn-lg">Soy propietario</Link>
+          <Link href="/inquilinos" className="btn btn-ghost-white btn-lg">Busco habitación</Link>
         </div>
       </div>
 
