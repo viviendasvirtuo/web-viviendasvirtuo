@@ -30,7 +30,6 @@ export default function Hero() {
 
   const goTo = (idx: number) => {
     if (fading) return;
-    // Si el siguiente vídeo aún no está listo, esperar hasta que lo esté
     if (!ready[idx]) {
       const check = setInterval(() => {
         if (ready[idx]) {
@@ -73,7 +72,6 @@ export default function Hero() {
     });
   }, [current]);
 
-  // Precargar todos los vídeos en segundo plano al montar
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
       if (!v) return;
@@ -82,7 +80,6 @@ export default function Hero() {
       };
       if (v.readyState >= 3) { markReady(); return; }
       v.addEventListener('canplay', markReady, { once: true });
-      // Forzar carga iniciando la descarga
       v.load();
     });
   }, []);
@@ -94,10 +91,14 @@ export default function Hero() {
       display: 'flex',
       flexDirection: 'column',
       overflow: 'hidden',
+      /* Poster como fondo: visible instantáneamente mientras carga el vídeo */
       background: 'rgb(9,21,37)',
+      backgroundImage: 'url(/images/hero-poster.jpg)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
     }}>
 
-      {/* Vídeos — todos con preload=auto para descarga paralela */}
+      {/* Vídeos — se superponen encima del poster cuando están listos */}
       {VIDEOS.map((src, i) => (
         <video
           key={src}
@@ -110,7 +111,7 @@ export default function Hero() {
             width: '100%', height: '100%',
             objectFit: 'cover',
             transition: `opacity ${FADE}ms ease`,
-            opacity: i === current ? 1 : 0,
+            opacity: i === current && ready[i] ? 1 : 0,
             zIndex: i === current ? 1 : (i === next ? 2 : 0),
           }}
         />
