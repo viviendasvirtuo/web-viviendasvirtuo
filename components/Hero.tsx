@@ -63,6 +63,7 @@ export default function Hero() {
       display: 'flex',
       flexDirection: 'column',
       overflow: 'hidden',
+      background: 'rgb(9,21,37)', /* fondo azul oscuro: evita flash blanco entre transiciones */
     }}>
 
       {/* Vídeos */}
@@ -136,7 +137,7 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Subtítulo — ahora en negrita */}
+        {/* Subtítulo */}
         <p style={{
           fontSize: 'clamp(0.95rem, 0.85rem + 0.5vw, 1.35rem)',
           fontWeight: 700,
