@@ -91,9 +91,8 @@ export default function Hero() {
       display: 'flex',
       flexDirection: 'column',
       overflow: 'hidden',
-      /* Poster como fondo: visible instantáneamente mientras carga el vídeo */
       background: 'rgb(9,21,37)',
-      backgroundImage: 'url(/images/hero-poster.jpg)',
+      backgroundImage: 'url(/images/hero-poster.webp)',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}>

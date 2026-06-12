@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es">
       <head>
         {/* Preload hero poster — máxima prioridad, visible antes que cualquier otra cosa */}
-        <link rel="preload" href="/images/hero-poster.jpg" as="image" fetchPriority="high" />
+        <link rel="preload" href="/images/hero-poster.webp" as="image" fetchPriority="high" />
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
         <link
           href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&f[]=cabinet-grotesk@400,500,700,800,900&display=swap"
