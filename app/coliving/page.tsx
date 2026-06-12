@@ -121,9 +121,9 @@ export default function ColivingPage() {
           </div>
         </section>
 
-        {/* HABITACIONES DISPONIBLES */}
+        {/* HABITACIONES COLIVING */}
         <div id="habitaciones">
-          <HabitacionesDestacadas />
+          <HabitacionesDestacadas sistema="coliving" />
         </div>
 
         {/* OTROS SISTEMAS */}

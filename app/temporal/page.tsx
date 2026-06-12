@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import HabitacionesDestacadas from '@/components/HabitacionesDestacadas';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -47,7 +48,7 @@ export default function TemporalPage() {
               Habitaciones para estancias de 1 a 6 meses. Todo incluido, contratos ágiles, gestión profesional. Para quien viene a Barcelona con un proyecto.
             </p>
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-              <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'white', color: TEMPORAL_GREEN_DARK, fontWeight: 700, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Ver habitaciones disponibles</Link>
+              <a href="#habitaciones" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'white', color: TEMPORAL_GREEN_DARK, fontWeight: 700, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Ver habitaciones disponibles</a>
               <Link href="/inquilinos" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', border: '1.5px solid rgba(255,255,255,0.4)', color: 'white', background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)', fontWeight: 600, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Soy inquilino</Link>
             </div>
           </div>
@@ -89,7 +90,7 @@ export default function TemporalPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: TEMPORAL_GREEN, color: 'white', fontWeight: 700, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Ver disponibilidad →</Link>
+                <a href="#habitaciones" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: TEMPORAL_GREEN, color: 'white', fontWeight: 700, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Ver disponibilidad →</a>
               </div>
             </div>
           </div>
@@ -117,6 +118,11 @@ export default function TemporalPage() {
             </div>
           </div>
         </section>
+
+        {/* HABITACIONES TEMPORAL */}
+        <div id="habitaciones">
+          <HabitacionesDestacadas sistema="temporal" />
+        </div>
 
         {/* OTROS SISTEMAS */}
         <section style={{ padding: 'clamp(40px,6vw,80px) 0', background: 'var(--color-bg)' }}>

@@ -1,9 +1,13 @@
 'use client';
 import Image from 'next/image';
 
+type Sistema = 'coliving' | 'temporal';
+
 const habitaciones = [
+  // ── COLIVING ──────────────────────────────────────────
   {
     ref: 'Mora_2026_01',
+    sistema: 'coliving' as Sistema,
     titulo: 'Habitación Port BDN',
     zona: 'Eduard Maristany · Badalona',
     imagen: '/images/eduard_maristany_bdn.png',
@@ -14,7 +18,45 @@ const habitaciones = [
     mesesDisponible: 0,
   },
   {
+    ref: 'Dmar_2026_02',
+    sistema: 'coliving' as Sistema,
+    titulo: 'Habitación Poblenou',
+    zona: 'Diagonal Mar',
+    imagen: '/images/zona_poblenou.png',
+    detalles: ['4 habitaciones', '2 baños'],
+    extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
+    precio: 1000,
+    tallyUrl: 'https://tally.so/r/pbO1lV?inmueble=Dmar_2026_02&precio_hab=1000',
+    mesesDisponible: 1,
+  },
+  {
+    ref: 'PEspaña_2026_03',
+    sistema: 'coliving' as Sistema,
+    titulo: 'Habitación Pl. España',
+    zona: 'Tarragona',
+    imagen: '/images/zonas_plaza_espa%C3%B1a.jpg',
+    detalles: ['5 habitaciones', '3 baños'],
+    extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
+    precio: 900,
+    tallyUrl: 'https://tally.so/r/pbO1lV?inmueble=PEspa%C3%B1a_2026_03&precio_hab=900',
+    mesesDisponible: 3,
+  },
+  {
+    ref: 'Ramblas_2026_02',
+    sistema: 'coliving' as Sistema,
+    titulo: 'Habitación Ramblas',
+    zona: 'Canaletas',
+    imagen: '/images/zona_ramblas.png',
+    detalles: ['5 habitaciones', '3 baños'],
+    extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
+    precio: 1100,
+    tallyUrl: 'https://tally.so/r/pbO1lV?inmueble=Ramblas_2026_02&precio_hab=1100',
+    mesesDisponible: 1,
+  },
+  // ── TEMPORAL ──────────────────────────────────────────
+  {
     ref: 'Eixam_2026_01',
+    sistema: 'temporal' as Sistema,
     titulo: 'Habitación Eixample',
     zona: 'Passeig de Gràcia / Provença',
     imagen: '/images/eixample01.jpg',
@@ -25,7 +67,20 @@ const habitaciones = [
     mesesDisponible: 0,
   },
   {
+    ref: 'Sagrada_2026_03',
+    sistema: 'temporal' as Sistema,
+    titulo: 'Habitación Sagrada Família',
+    zona: 'Marina',
+    imagen: '/images/zona_sagrada_familia.png',
+    detalles: ['6 habitaciones', '3 baños nuevos'],
+    extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
+    precio: 950,
+    tallyUrl: 'https://tally.so/r/pbO1lV?inmueble=Sagrada_2026_03&precio_hab=950',
+    mesesDisponible: 3,
+  },
+  {
     ref: 'Gracia_2026_01',
+    sistema: 'temporal' as Sistema,
     titulo: 'Habitación Gràcia',
     zona: 'Vila de Gràcia / Lesseps',
     imagen: '/images/piso_gracia.avif',
@@ -37,6 +92,7 @@ const habitaciones = [
   },
   {
     ref: 'Sants_2026_01',
+    sistema: 'temporal' as Sistema,
     titulo: 'Habitación Sants',
     zona: 'Sants-Badal / Plaça Sants',
     imagen: '/images/sants01.png',
@@ -46,50 +102,6 @@ const habitaciones = [
     tallyUrl: 'https://tally.so/r/pbO1lV?inmueble=Sants_2026_01&precio_hab=750',
     mesesDisponible: 0,
   },
-  {
-    ref: 'Dmar_2026_02',
-    titulo: 'Habitación Poblenou',
-    zona: 'Diagonal Mar',
-    imagen: '/images/zona_poblenou.png',
-    detalles: ['4 habitaciones', '2 baños'],
-    extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
-    precio: 1000,
-    tallyUrl: 'https://tally.so/r/pbO1lV?inmueble=Dmar_2026_02&precio_hab=1000',
-    mesesDisponible: 1,
-  },
-  {
-    ref: 'Ramblas_2026_02',
-    titulo: 'Habitación Ramblas',
-    zona: 'Canaletas',
-    imagen: '/images/zona_ramblas.png',
-    detalles: ['5 habitaciones', '3 baños'],
-    extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
-    precio: 1100,
-    tallyUrl: 'https://tally.so/r/pbO1lV?inmueble=Ramblas_2026_02&precio_hab=1100',
-    mesesDisponible: 1,
-  },
-  {
-    ref: 'Sagrada_2026_03',
-    titulo: 'Habitación Sagrada Família',
-    zona: 'Marina',
-    imagen: '/images/zona_sagrada_familia.png',
-    detalles: ['6 habitaciones', '3 baños nuevos'],
-    extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
-    precio: 950,
-    tallyUrl: 'https://tally.so/r/pbO1lV?inmueble=Sagrada_2026_03&precio_hab=950',
-    mesesDisponible: 3,
-  },
-  {
-    ref: 'PEspaña_2026_03',
-    titulo: 'Habitación Pl. España',
-    zona: 'Tarragona',
-    imagen: '/images/zonas_plaza_espa%C3%B1a.jpg',
-    detalles: ['5 habitaciones', '3 baños'],
-    extras: ['Cerradura inteligente', 'Suministros incluidos', 'WiFi'],
-    precio: 900,
-    tallyUrl: 'https://tally.so/r/pbO1lV?inmueble=PEspa%C3%B1a_2026_03&precio_hab=900',
-    mesesDisponible: 3,
-  },
 ];
 
 function getFechaDisponible(mesesExtra: number): string {
@@ -98,23 +110,26 @@ function getFechaDisponible(mesesExtra: number): string {
   return fecha.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' });
 }
 
-export default function HabitacionesDestacadas() {
+interface Props {
+  sistema: Sistema;
+}
+
+export default function HabitacionesDestacadas({ sistema }: Props) {
+  const lista = habitaciones.filter((h) => h.sistema === sistema);
+
+  const accentColor = sistema === 'coliving' ? '#0453ab' : '#008f58';
+  const labelSistema = sistema === 'coliving' ? 'Coliving' : 'Temporal';
+
   return (
-    <section style={{
-      background: '#f8f9fc',
-      padding: '80px 0',
-    }}>
-      <div style={{
-        maxWidth: '1400px',
-        margin: '0 auto',
-        padding: '0 24px',
-      }}>
+    <section style={{ background: '#f8f9fc', padding: '80px 0' }}>
+      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px' }}>
+
         {/* Cabecera */}
         <div style={{ textAlign: 'center', marginBottom: '56px' }}>
           <span style={{
             display: 'inline-block',
             background: '#e8f0fb',
-            color: '#1a4a8a',
+            color: accentColor,
             fontSize: '13px',
             fontWeight: 600,
             letterSpacing: '0.08em',
@@ -123,7 +138,7 @@ export default function HabitacionesDestacadas() {
             borderRadius: '999px',
             marginBottom: '16px',
           }}>
-            Habitaciones disponibles
+            Habitaciones {labelSistema}
           </span>
           <h2 style={{
             fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
@@ -145,9 +160,9 @@ export default function HabitacionesDestacadas() {
           </p>
         </div>
 
-        {/* Grid de cards: 4 columnas en desktop, 2 en tablet, 1 en móvil */}
+        {/* Grid de cards */}
         <div className="habitaciones-grid">
-          {habitaciones.map((hab) => (
+          {lista.map((hab) => (
             <div
               key={hab.ref}
               style={{
@@ -169,7 +184,7 @@ export default function HabitacionesDestacadas() {
                 (e.currentTarget as HTMLDivElement).style.boxShadow = '0 2px 8px rgba(26,74,138,0.07), 0 8px 24px rgba(26,74,138,0.05)';
               }}
             >
-              {/* Imagen superior */}
+              {/* Imagen */}
               <div style={{ position: 'relative', width: '100%', height: '180px', flexShrink: 0 }}>
                 <Image
                   src={hab.imagen}
@@ -178,32 +193,19 @@ export default function HabitacionesDestacadas() {
                   style={{ objectFit: 'cover' }}
                   sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 25vw"
                 />
-                {/* Badge disponibilidad sobre la imagen */}
                 <div style={{
-                  position: 'absolute',
-                  top: '10px',
-                  left: '10px',
-                  background: 'rgba(255,255,255,0.95)',
-                  backdropFilter: 'blur(4px)',
-                  color: '#2e7d32',
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  padding: '4px 10px',
-                  borderRadius: '999px',
+                  position: 'absolute', top: '10px', left: '10px',
+                  background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(4px)',
+                  color: '#2e7d32', fontSize: '11px', fontWeight: 600,
+                  padding: '4px 10px', borderRadius: '999px',
                 }}>
                   ● Disponible {getFechaDisponible(hab.mesesDisponible)}
                 </div>
-                {/* Ref discreta */}
                 <div style={{
-                  position: 'absolute',
-                  bottom: '8px',
-                  right: '10px',
-                  background: 'rgba(0,0,0,0.45)',
-                  color: '#fff',
-                  fontSize: '10px',
-                  fontFamily: 'monospace',
-                  padding: '2px 7px',
-                  borderRadius: '6px',
+                  position: 'absolute', bottom: '8px', right: '10px',
+                  background: 'rgba(0,0,0,0.45)', color: '#fff',
+                  fontSize: '10px', fontFamily: 'monospace',
+                  padding: '2px 7px', borderRadius: '6px',
                 }}>
                   {hab.ref}
                 </div>
@@ -211,82 +213,39 @@ export default function HabitacionesDestacadas() {
 
               {/* Contenido */}
               <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px', flex: 1 }}>
-
-                {/* Título y zona */}
                 <div>
-                  <h3 style={{
-                    fontSize: '1.05rem',
-                    fontWeight: 700,
-                    color: '#0f2d5e',
-                    marginBottom: '4px',
-                  }}>
+                  <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#0f2d5e', marginBottom: '4px' }}>
                     {hab.titulo}
                   </h3>
-                  <p style={{
-                    fontSize: '0.85rem',
-                    color: '#5a6a7e',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px',
-                  }}>
+                  <p style={{ fontSize: '0.85rem', color: '#5a6a7e', display: 'flex', alignItems: 'center', gap: '4px' }}>
                     <span>📍</span> {hab.zona}
                   </p>
                 </div>
 
-                {/* Detalles de la vivienda */}
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                   {hab.detalles.map((d) => (
                     <span key={d} style={{
-                      background: '#f0f4fa',
-                      color: '#1a4a8a',
-                      fontSize: '11px',
-                      fontWeight: 500,
-                      padding: '3px 10px',
-                      borderRadius: '8px',
-                    }}>
-                      {d}
-                    </span>
+                      background: '#f0f4fa', color: accentColor,
+                      fontSize: '11px', fontWeight: 500,
+                      padding: '3px 10px', borderRadius: '8px',
+                    }}>{d}</span>
                   ))}
                 </div>
 
-                {/* Servicios incluidos */}
-                <div style={{
-                  borderTop: '1px solid rgba(26,74,138,0.08)',
-                  paddingTop: '10px',
-                }}>
-                  <p style={{ fontSize: '10px', color: '#9aa5b4', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>
-                    Todo incluido
-                  </p>
+                <div style={{ borderTop: '1px solid rgba(26,74,138,0.08)', paddingTop: '10px' }}>
+                  <p style={{ fontSize: '10px', color: '#9aa5b4', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>Todo incluido</p>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
                     {hab.extras.map((e) => (
-                      <span key={e} style={{
-                        fontSize: '11px',
-                        color: '#3d6b9e',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '3px',
-                      }}>
+                      <span key={e} style={{ fontSize: '11px', color: '#3d6b9e', display: 'flex', alignItems: 'center', gap: '3px' }}>
                         ✓ {e}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                {/* Precio y CTA */}
-                <div style={{
-                  marginTop: 'auto',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  paddingTop: '8px',
-                }}>
+                <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '8px' }}>
                   <div>
-                    <span style={{
-                      fontSize: '1.5rem',
-                      fontWeight: 800,
-                      color: '#1a4a8a',
-                      lineHeight: 1,
-                    }}>
+                    <span style={{ fontSize: '1.5rem', fontWeight: 800, color: accentColor, lineHeight: 1 }}>
                       {hab.precio.toLocaleString('es-ES')}€
                     </span>
                     <span style={{ fontSize: '0.8rem', color: '#9aa5b4', marginLeft: '4px' }}>/mes</span>
@@ -297,7 +256,7 @@ export default function HabitacionesDestacadas() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
-                      background: '#1a4a8a',
+                      background: accentColor,
                       color: '#ffffff',
                       fontSize: '0.85rem',
                       fontWeight: 600,
@@ -305,10 +264,7 @@ export default function HabitacionesDestacadas() {
                       borderRadius: '10px',
                       textDecoration: 'none',
                       whiteSpace: 'nowrap',
-                      transition: 'background 0.2s ease',
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.background = '#0f2d5e')}
-                    onMouseLeave={(e) => (e.currentTarget.style.background = '#1a4a8a')}
                   >
                     Reservar →
                   </a>
@@ -319,12 +275,7 @@ export default function HabitacionesDestacadas() {
         </div>
 
         {/* Nota legal */}
-        <p style={{
-          textAlign: 'center',
-          fontSize: '12px',
-          color: '#9aa5b4',
-          marginTop: '40px',
-        }}>
+        <p style={{ textAlign: 'center', fontSize: '12px', color: '#9aa5b4', marginTop: '40px' }}>
           Todos los precios incluyen renta regulada según índice oficial y pack de servicios. Contratos conformes a la normativa catalana vigente.
         </p>
       </div>
