@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import HabitacionesDestacadas from '@/components/HabitacionesDestacadas';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -49,7 +50,7 @@ export default function ColivingPage() {
               Coliving gestionado al detalle: habitaciones equipadas, zonas comunes cuidadas y una comunidad de residentes seleccionados.
             </p>
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-              <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'white', color: COLIVING_BLUE, fontWeight: 700, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Ver habitaciones disponibles</Link>
+              <a href="#habitaciones" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'white', color: COLIVING_BLUE, fontWeight: 700, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Ver habitaciones disponibles</a>
               <Link href="/propietarios#sistemas" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', border: '1.5px solid rgba(255,255,255,0.4)', color: 'white', background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)', fontWeight: 600, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Soy propietario</Link>
             </div>
           </div>
@@ -78,7 +79,7 @@ export default function ColivingPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: COLIVING_BLUE, color: 'white', fontWeight: 700, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Consultar disponibilidad →</Link>
+                <a href="#habitaciones" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: COLIVING_BLUE, color: 'white', fontWeight: 700, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Ver disponibilidad →</a>
               </div>
               <div style={{ position: 'relative', borderRadius: 'var(--radius-xl)', overflow: 'hidden', aspectRatio: '4/3', boxShadow: `0 20px 60px ${COLIVING_BLUE}1f` }}>
                 <Image
@@ -119,6 +120,11 @@ export default function ColivingPage() {
             </div>
           </div>
         </section>
+
+        {/* HABITACIONES DISPONIBLES */}
+        <div id="habitaciones">
+          <HabitacionesDestacadas />
+        </div>
 
         {/* OTROS SISTEMAS */}
         <section style={{ padding: 'clamp(40px,6vw,80px) 0', background: 'var(--color-bg)' }}>
