@@ -53,18 +53,25 @@ export default function Header() {
   const isInquilinosActive = pathname.startsWith('/inquilinos');
   const isSistemasActive = ['/coliving', '/temporal', '/vacacional'].includes(pathname);
 
-  const dropdownStyle = {
+  // El panel empieza justo debajo del botón sin gap real.
+  // El padding-top del panel absorbe el espacio visual y evita que el mouse
+  // "cruce el vacío" y dispare onMouseLeave.
+  const dropdownPanel = {
     position: 'absolute' as const,
-    top: 'calc(100% + 8px)',
+    top: '100%',           // pegado al borde inferior del wrapper
     left: '50%',
     transform: 'translateX(-50%)',
+    paddingTop: '8px',     // espacio visual entre botón y caja — NO es gap, es padding del panel
+    zIndex: 100,
+  };
+
+  const dropdownBox = {
     background: 'white',
     border: '1px solid var(--color-border)',
     borderRadius: 'var(--radius-xl)',
     boxShadow: '0 16px 40px rgba(13,27,46,0.12)',
     padding: '8px',
     minWidth: '240px',
-    zIndex: 100,
   };
 
   const dropdownLinkBase = {
@@ -74,6 +81,20 @@ export default function Header() {
     textDecoration: 'none',
     transition: 'background 150ms',
   };
+
+  const navBtnStyle = (active: boolean) => ({
+    fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', fontWeight: 500,
+    color: active ? activeColor : textColor,
+    padding: '0.5rem 0.85rem', borderRadius: 'var(--radius-md)',
+    transition: 'all var(--transition)', background: 'transparent', border: 'none',
+    cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px',
+  });
+
+  const chevron = (open: boolean) => (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 200ms' }}>
+      <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  );
 
   return (
     <>
@@ -101,112 +122,83 @@ export default function Header() {
           {/* Nav desktop */}
           <nav aria-label="Navegación principal" style={{ display: 'flex', gap: '2px', alignItems: 'center' }} className="nav-desktop">
 
-            {/* Sistemas — dropdown */}
+            {/* Sistemas */}
             <div style={{ position: 'relative' }}
               onMouseEnter={() => setSistemasOpen(true)}
               onMouseLeave={() => setSistemasOpen(false)}>
-              <button style={{
-                fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', fontWeight: 500,
-                color: isSistemasActive ? activeColor : textColor,
-                padding: '0.5rem 0.85rem', borderRadius: 'var(--radius-md)',
-                transition: 'all var(--transition)', background: 'transparent', border: 'none',
-                cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px',
-              }}>
-                Sistemas
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ transform: sistemasOpen ? 'rotate(180deg)' : 'none', transition: 'transform 200ms' }}>
-                  <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
+              <button style={navBtnStyle(isSistemasActive)}>
+                Sistemas {chevron(sistemasOpen)}
               </button>
               {sistemasOpen && (
-                <div style={{ ...dropdownStyle, minWidth: '220px' }}>
-                  {sistemas.map(s => (
-                    <Link key={s.href} href={s.href} style={dropdownLinkBase}
-                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#f0f4fa'}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}>
-                      <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--color-primary)' }}>{s.label}</div>
-                      <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>{s.desc}</div>
-                    </Link>
-                  ))}
+                <div style={{ ...dropdownPanel, minWidth: '220px' }}>
+                  <div style={{ ...dropdownBox, minWidth: '220px' }}>
+                    {sistemas.map(s => (
+                      <Link key={s.href} href={s.href} style={dropdownLinkBase}
+                        onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#f0f4fa'}
+                        onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}>
+                        <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--color-primary)' }}>{s.label}</div>
+                        <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>{s.desc}</div>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
 
-            {/* Propietarios — dropdown */}
+            {/* Propietarios */}
             <div style={{ position: 'relative' }}
               onMouseEnter={() => setPropietariosOpen(true)}
               onMouseLeave={() => setPropietariosOpen(false)}>
-              <button style={{
-                fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', fontWeight: 500,
-                color: isPropietariosActive ? activeColor : textColor,
-                padding: '0.5rem 0.85rem', borderRadius: 'var(--radius-md)',
-                transition: 'all var(--transition)', background: 'transparent', border: 'none',
-                cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px',
-              }}>
-                Propietarios
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ transform: propietariosOpen ? 'rotate(180deg)' : 'none', transition: 'transform 200ms' }}>
-                  <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
+              <button style={navBtnStyle(isPropietariosActive)}>
+                Propietarios {chevron(propietariosOpen)}
               </button>
               {propietariosOpen && (
-                <div style={dropdownStyle}>
-                  <Link href="/propietarios" style={{
-                    ...dropdownLinkBase,
-                    borderBottom: '1px solid var(--color-border)',
-                    marginBottom: '4px',
-                  }}
-                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#f0f4fa'}
-                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}>
-                    <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-primary)' }}>Vista general</div>
-                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>Compara los 3 sistemas</div>
-                  </Link>
-                  {propietariosSub.map(s => (
-                    <Link key={s.href} href={s.href} style={dropdownLinkBase}
-                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#f0f4fa'}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}>
-                      <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--color-primary)' }}>{s.label}</div>
-                      <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>{s.desc}</div>
+                <div style={dropdownPanel}>
+                  <div style={dropdownBox}>
+                    <Link href="/propietarios" style={{ ...dropdownLinkBase, borderBottom: '1px solid var(--color-border)', marginBottom: '4px' }}
+                      onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#f0f4fa'}
+                      onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}>
+                      <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-primary)' }}>Vista general</div>
+                      <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>Compara los 3 sistemas</div>
                     </Link>
-                  ))}
+                    {propietariosSub.map(s => (
+                      <Link key={s.href} href={s.href} style={dropdownLinkBase}
+                        onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#f0f4fa'}
+                        onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}>
+                        <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--color-primary)' }}>{s.label}</div>
+                        <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>{s.desc}</div>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
 
-            {/* Inquilinos — dropdown */}
+            {/* Inquilinos */}
             <div style={{ position: 'relative' }}
               onMouseEnter={() => setInquilinosOpen(true)}
               onMouseLeave={() => setInquilinosOpen(false)}>
-              <button style={{
-                fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', fontWeight: 500,
-                color: isInquilinosActive ? activeColor : textColor,
-                padding: '0.5rem 0.85rem', borderRadius: 'var(--radius-md)',
-                transition: 'all var(--transition)', background: 'transparent', border: 'none',
-                cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px',
-              }}>
-                Inquilinos
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ transform: inquilinosOpen ? 'rotate(180deg)' : 'none', transition: 'transform 200ms' }}>
-                  <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
+              <button style={navBtnStyle(isInquilinosActive)}>
+                Inquilinos {chevron(inquilinosOpen)}
               </button>
               {inquilinosOpen && (
-                <div style={dropdownStyle}>
-                  <Link href="/inquilinos" style={{
-                    ...dropdownLinkBase,
-                    borderBottom: '1px solid var(--color-border)',
-                    marginBottom: '4px',
-                  }}
-                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#f0f4fa'}
-                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}>
-                    <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-primary)' }}>Vista general</div>
-                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>Encuentra tu habitación ideal</div>
-                  </Link>
-                  {inquilinosSub.map(s => (
-                    <Link key={s.href} href={s.href} style={dropdownLinkBase}
-                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#f0f4fa'}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}>
-                      <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--color-primary)' }}>{s.label}</div>
-                      <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>{s.desc}</div>
+                <div style={dropdownPanel}>
+                  <div style={dropdownBox}>
+                    <Link href="/inquilinos" style={{ ...dropdownLinkBase, borderBottom: '1px solid var(--color-border)', marginBottom: '4px' }}
+                      onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#f0f4fa'}
+                      onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}>
+                      <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-primary)' }}>Vista general</div>
+                      <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>Encuentra tu habitación ideal</div>
                     </Link>
-                  ))}
+                    {inquilinosSub.map(s => (
+                      <Link key={s.href} href={s.href} style={dropdownLinkBase}
+                        onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#f0f4fa'}
+                        onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}>
+                        <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--color-primary)' }}>{s.label}</div>
+                        <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>{s.desc}</div>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -257,24 +249,9 @@ export default function Header() {
               background: 'transparent', border: 'none', cursor: 'pointer',
             }}
           >
-            <span style={{
-              display: 'block', width: '22px', height: '2px', background: 'currentColor',
-              borderRadius: '2px',
-              transform: menuOpen ? 'rotate(45deg) translate(5px,5px)' : 'none',
-              transition: 'transform 250ms cubic-bezier(0.16,1,0.3,1)',
-            }}/>
-            <span style={{
-              display: 'block', width: '22px', height: '2px', background: 'currentColor',
-              borderRadius: '2px',
-              opacity: menuOpen ? 0 : 1,
-              transition: 'opacity 200ms',
-            }}/>
-            <span style={{
-              display: 'block', width: '22px', height: '2px', background: 'currentColor',
-              borderRadius: '2px',
-              transform: menuOpen ? 'rotate(-45deg) translate(5px,-5px)' : 'none',
-              transition: 'transform 250ms cubic-bezier(0.16,1,0.3,1)',
-            }}/>
+            <span style={{ display: 'block', width: '22px', height: '2px', background: 'currentColor', borderRadius: '2px', transform: menuOpen ? 'rotate(45deg) translate(5px,5px)' : 'none', transition: 'transform 250ms cubic-bezier(0.16,1,0.3,1)' }}/>
+            <span style={{ display: 'block', width: '22px', height: '2px', background: 'currentColor', borderRadius: '2px', opacity: menuOpen ? 0 : 1, transition: 'opacity 200ms' }}/>
+            <span style={{ display: 'block', width: '22px', height: '2px', background: 'currentColor', borderRadius: '2px', transform: menuOpen ? 'rotate(-45deg) translate(5px,-5px)' : 'none', transition: 'transform 250ms cubic-bezier(0.16,1,0.3,1)' }}/>
           </button>
         </div>
       </header>
@@ -286,133 +263,57 @@ export default function Header() {
         aria-label="Menú de navegación"
         aria-modal="true"
         style={{
-          position: 'fixed',
-          top: '72px',
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'rgba(255,255,255,0.98)',
-          backdropFilter: 'blur(20px)',
-          zIndex: 999,
-          padding: 'var(--space-6)',
-          display: menuOpen ? 'flex' : 'none',
-          flexDirection: 'column',
-          gap: 'var(--space-1)',
-          borderTop: '1px solid var(--color-border)',
-          overflowY: 'auto',
-          WebkitOverflowScrolling: 'touch',
+          position: 'fixed', top: '72px', left: 0, right: 0, bottom: 0,
+          background: 'rgba(255,255,255,0.98)', backdropFilter: 'blur(20px)',
+          zIndex: 999, padding: 'var(--space-6)',
+          display: menuOpen ? 'flex' : 'none', flexDirection: 'column', gap: 'var(--space-1)',
+          borderTop: '1px solid var(--color-border)', overflowY: 'auto', WebkitOverflowScrolling: 'touch',
         }}
       >
-        <p style={{
-          fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.1em',
-          textTransform: 'uppercase', color: 'var(--color-text-muted)',
-          padding: 'var(--space-2) 0', marginBottom: '4px',
-        }}>Sistemas de alquiler</p>
-
+        <p style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-text-muted)', padding: 'var(--space-2) 0', marginBottom: '4px' }}>Sistemas de alquiler</p>
         {sistemas.map(s => (
-          <Link key={s.href} href={s.href} onClick={() => setMenuOpen(false)} style={{
-            display: 'flex', flexDirection: 'column',
-            padding: 'var(--space-3) var(--space-3)',
-            borderRadius: 'var(--radius-lg)',
-            background: '#f0f4fa',
-            textDecoration: 'none', marginBottom: '6px',
-          }}>
+          <Link key={s.href} href={s.href} onClick={() => setMenuOpen(false)} style={{ display: 'flex', flexDirection: 'column', padding: 'var(--space-3)', borderRadius: 'var(--radius-lg)', background: '#f0f4fa', textDecoration: 'none', marginBottom: '6px' }}>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-primary)' }}>{s.label}</span>
             <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', marginTop: '2px' }}>{s.desc}</span>
           </Link>
         ))}
 
         <div style={{ height: '1px', background: 'var(--color-border)', margin: 'var(--space-3) 0' }} />
-
-        <p style={{
-          fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.1em',
-          textTransform: 'uppercase', color: 'var(--color-text-muted)',
-          padding: 'var(--space-2) 0', marginBottom: '4px',
-        }}>Para propietarios</p>
-
-        <Link href="/propietarios" onClick={() => setMenuOpen(false)} style={{
-          display: 'flex', flexDirection: 'column',
-          padding: 'var(--space-3) var(--space-3)',
-          borderRadius: 'var(--radius-lg)',
-          background: '#edf2fb',
-          textDecoration: 'none', marginBottom: '6px',
-        }}>
+        <p style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-text-muted)', padding: 'var(--space-2) 0', marginBottom: '4px' }}>Para propietarios</p>
+        <Link href="/propietarios" onClick={() => setMenuOpen(false)} style={{ display: 'flex', flexDirection: 'column', padding: 'var(--space-3)', borderRadius: 'var(--radius-lg)', background: '#edf2fb', textDecoration: 'none', marginBottom: '6px' }}>
           <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-primary)' }}>Vista general</span>
           <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', marginTop: '2px' }}>Compara los 3 sistemas</span>
         </Link>
-
         {propietariosSub.map(s => (
-          <Link key={s.href} href={s.href} onClick={() => setMenuOpen(false)} style={{
-            display: 'flex', flexDirection: 'column',
-            padding: 'var(--space-3) var(--space-3)',
-            borderRadius: 'var(--radius-lg)',
-            background: '#f0f4fa',
-            textDecoration: 'none', marginBottom: '6px',
-          }}>
+          <Link key={s.href} href={s.href} onClick={() => setMenuOpen(false)} style={{ display: 'flex', flexDirection: 'column', padding: 'var(--space-3)', borderRadius: 'var(--radius-lg)', background: '#f0f4fa', textDecoration: 'none', marginBottom: '6px' }}>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-primary)' }}>{s.label}</span>
             <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', marginTop: '2px' }}>{s.desc}</span>
           </Link>
         ))}
 
         <div style={{ height: '1px', background: 'var(--color-border)', margin: 'var(--space-3) 0' }} />
-
-        <p style={{
-          fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.1em',
-          textTransform: 'uppercase', color: 'var(--color-text-muted)',
-          padding: 'var(--space-2) 0', marginBottom: '4px',
-        }}>Para inquilinos</p>
-
-        <Link href="/inquilinos" onClick={() => setMenuOpen(false)} style={{
-          display: 'flex', flexDirection: 'column',
-          padding: 'var(--space-3) var(--space-3)',
-          borderRadius: 'var(--radius-lg)',
-          background: '#edf2fb',
-          textDecoration: 'none', marginBottom: '6px',
-        }}>
+        <p style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-text-muted)', padding: 'var(--space-2) 0', marginBottom: '4px' }}>Para inquilinos</p>
+        <Link href="/inquilinos" onClick={() => setMenuOpen(false)} style={{ display: 'flex', flexDirection: 'column', padding: 'var(--space-3)', borderRadius: 'var(--radius-lg)', background: '#edf2fb', textDecoration: 'none', marginBottom: '6px' }}>
           <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-primary)' }}>Vista general</span>
           <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', marginTop: '2px' }}>Encuentra tu habitación ideal</span>
         </Link>
-
         {inquilinosSub.map(s => (
-          <Link key={s.href} href={s.href} onClick={() => setMenuOpen(false)} style={{
-            display: 'flex', flexDirection: 'column',
-            padding: 'var(--space-3) var(--space-3)',
-            borderRadius: 'var(--radius-lg)',
-            background: '#f0f4fa',
-            textDecoration: 'none', marginBottom: '6px',
-          }}>
+          <Link key={s.href} href={s.href} onClick={() => setMenuOpen(false)} style={{ display: 'flex', flexDirection: 'column', padding: 'var(--space-3)', borderRadius: 'var(--radius-lg)', background: '#f0f4fa', textDecoration: 'none', marginBottom: '6px' }}>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-primary)' }}>{s.label}</span>
             <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', marginTop: '2px' }}>{s.desc}</span>
           </Link>
         ))}
 
         <div style={{ height: '1px', background: 'var(--color-border)', margin: 'var(--space-3) 0' }} />
-
         {[
           { href: '/sobre-nosotros', label: 'Sobre nosotros' },
           { href: '/faq',            label: 'Preguntas frecuentes' },
           { href: '/contacto',       label: 'Contacto' },
         ].map(link => (
-          <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)} style={{
-            fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontWeight: 700,
-            color: pathname === link.href ? 'var(--color-primary)' : 'var(--color-text)',
-            padding: 'var(--space-3) 0',
-            borderBottom: '1px solid var(--color-border)',
-            display: 'block', textDecoration: 'none',
-          }}>{link.label}</Link>
+          <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)} style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontWeight: 700, color: pathname === link.href ? 'var(--color-primary)' : 'var(--color-text)', padding: 'var(--space-3) 0', borderBottom: '1px solid var(--color-border)', display: 'block', textDecoration: 'none' }}>{link.label}</Link>
         ))}
 
-        <Link
-          href="/contacto"
-          onClick={() => setMenuOpen(false)}
-          className="btn btn-primary btn-lg"
-          style={{
-            marginTop: 'var(--space-6)',
-            textAlign: 'center',
-            justifyContent: 'center',
-            textDecoration: 'none',
-          }}
-        >
+        <Link href="/contacto" onClick={() => setMenuOpen(false)} className="btn btn-primary btn-lg" style={{ marginTop: 'var(--space-6)', textAlign: 'center', justifyContent: 'center', textDecoration: 'none' }}>
           Hablar con un experto
         </Link>
       </div>
@@ -420,7 +321,6 @@ export default function Header() {
       <style>{`
         .nav-desktop { display: flex !important; }
         .nav-mobile-btn { display: none !important; }
-
         @media (max-width: 768px) {
           .nav-desktop { display: none !important; }
           .nav-mobile-btn { display: flex !important; }
