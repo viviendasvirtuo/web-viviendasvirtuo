@@ -4,8 +4,30 @@ import { useState } from 'react';
 const TALLY_PROPIETARIO = 'https://tally.so/r/n0NyGB';
 const TALLY_INQUILINO   = 'https://tally.so/r/2EaJNe';
 
+const INFO = {
+  propietario: {
+    telefono: '+34 611 806 603',
+    telefonoHref: 'tel:+34611806603',
+    email: 'propietarios@viviendasvirtuo.com',
+    emailHref: 'mailto:propietarios@viviendasvirtuo.com',
+    tituloFormulario: 'Auditoría Técnica de Viabilidad Residencial',
+    descripcion: 'Analizamos tu propiedad y te decimos qué sistema maximiza tu rentabilidad. Sin compromiso.',
+    cta: 'Iniciar auditoría gratuita →',
+  },
+  inquilino: {
+    telefono: '+34 611 806 603',
+    telefonoHref: 'tel:+34611806603',
+    email: 'inquilinos@viviendasvirtuo.com',
+    emailHref: 'mailto:inquilinos@viviendasvirtuo.com',
+    tituloFormulario: 'Solicitud de Estancia',
+    descripcion: 'Cuéntanos qué buscas: zona, duración y presupuesto. Te encontramos la opción ideal.',
+    cta: 'Solicitar estancia →',
+  },
+};
+
 export default function Contacto() {
   const [tipo, setTipo] = useState<'propietario' | 'inquilino'>('propietario');
+  const info = INFO[tipo];
 
   function handleClick() {
     const url = tipo === 'propietario' ? TALLY_PROPIETARIO : TALLY_INQUILINO;
@@ -21,6 +43,7 @@ export default function Contacto() {
           gap: 'var(--space-16)',
           alignItems: 'start',
         }}>
+
           {/* Info lateral */}
           <div>
             <p className="section-label">Contacto</p>
@@ -30,19 +53,29 @@ export default function Contacto() {
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-              {[
-                { icon: '📞', label: 'Teléfono', val: '+34 900 000 000' },
-                { icon: '✉️', label: 'Email', val: 'hola@viviendasvirtuo.com' },
-                { icon: '📍', label: 'Zona de actuación', val: 'Barcelona y área metropolitana' },
-              ].map(c => (
-                <div key={c.label} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', fontSize: 'var(--text-base)' }}>
-                  <span style={{ fontSize: '1.5rem' }}>{c.icon}</span>
-                  <div>
-                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{c.label}</div>
-                    <div style={{ fontWeight: 600, color: 'var(--color-text)' }}>{c.val}</div>
-                  </div>
+              <a href={info.telefonoHref} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', textDecoration: 'none' }}>
+                <span style={{ fontSize: '1.5rem' }}>📞</span>
+                <div>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Teléfono</div>
+                  <div style={{ fontWeight: 600, color: 'var(--color-primary)', fontSize: 'var(--text-base)' }}>{info.telefono}</div>
                 </div>
-              ))}
+              </a>
+
+              <a href={info.emailHref} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', textDecoration: 'none' }}>
+                <span style={{ fontSize: '1.5rem' }}>✉️</span>
+                <div>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Email</div>
+                  <div style={{ fontWeight: 600, color: 'var(--color-primary)', fontSize: 'var(--text-sm)', wordBreak: 'break-all' }}>{info.email}</div>
+                </div>
+              </a>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+                <span style={{ fontSize: '1.5rem' }}>📍</span>
+                <div>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Zona de actuación</div>
+                  <div style={{ fontWeight: 600, color: 'var(--color-text)', fontSize: 'var(--text-base)' }}>Barcelona y área metropolitana</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -91,21 +124,10 @@ export default function Contacto() {
               color: 'var(--color-text-muted)',
               lineHeight: 1.6,
             }}>
-              {tipo === 'propietario' ? (
-                <>
-                  <strong style={{ color: 'var(--color-text)', display: 'block', marginBottom: 'var(--space-1)' }}>
-                    Auditoría Técnica de Viabilidad Residencial
-                  </strong>
-                  Te haremos unas preguntas sobre tu propiedad para analizar qué sistema de gestión maximiza tu rentabilidad.
-                </>
-              ) : (
-                <>
-                  <strong style={{ color: 'var(--color-text)', display: 'block', marginBottom: 'var(--space-1)' }}>
-                    Solicitud de Estancia
-                  </strong>
-                  Cuéntanos qué buscas: zona, duración y presupuesto. Te encontramos la habitación o apartamento ideal.
-                </>
-              )}
+              <strong style={{ color: 'var(--color-text)', display: 'block', marginBottom: 'var(--space-1)' }}>
+                {info.tituloFormulario}
+              </strong>
+              {info.descripcion}
             </div>
 
             {/* CTA */}
@@ -114,13 +136,14 @@ export default function Contacto() {
               onClick={handleClick}
               className="btn btn-primary btn-lg"
               style={{ width: '100%', justifyContent: 'center' }}>
-              {tipo === 'propietario' ? 'Iniciar auditoría gratuita →' : 'Solicitar estancia →'}
+              {info.cta}
             </button>
 
             <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)', textAlign: 'center', marginTop: 'var(--space-3)' }}>
               Sin compromiso · Te respondemos en menos de 24h
             </p>
           </div>
+
         </div>
       </div>
     </section>
