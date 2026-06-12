@@ -24,11 +24,28 @@ export default function Hero() {
   const [current, setCurrent] = useState(0);
   const [next, setNext]       = useState<number | null>(null);
   const [fading, setFading]   = useState(false);
+  const [ready, setReady]     = useState<boolean[]>([false, false, false]);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const goTo = (idx: number) => {
     if (fading) return;
+    // Si el siguiente vídeo aún no está listo, esperar hasta que lo esté
+    if (!ready[idx]) {
+      const check = setInterval(() => {
+        if (ready[idx]) {
+          clearInterval(check);
+          setNext(idx);
+          setFading(true);
+          setTimeout(() => {
+            setCurrent(idx);
+            setNext(null);
+            setFading(false);
+          }, FADE);
+        }
+      }, 100);
+      return;
+    }
     setNext(idx);
     setFading(true);
     setTimeout(() => {
@@ -46,7 +63,7 @@ export default function Hero() {
     };
     schedule();
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [current]);
+  }, [current, ready]);
 
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
@@ -56,6 +73,20 @@ export default function Hero() {
     });
   }, [current]);
 
+  // Precargar todos los vídeos en segundo plano al montar
+  useEffect(() => {
+    videoRefs.current.forEach((v, i) => {
+      if (!v) return;
+      const markReady = () => {
+        setReady(prev => { const n = [...prev]; n[i] = true; return n; });
+      };
+      if (v.readyState >= 3) { markReady(); return; }
+      v.addEventListener('canplay', markReady, { once: true });
+      // Forzar carga iniciando la descarga
+      v.load();
+    });
+  }, []);
+
   return (
     <section style={{
       position: 'relative',
@@ -63,17 +94,17 @@ export default function Hero() {
       display: 'flex',
       flexDirection: 'column',
       overflow: 'hidden',
-      background: 'rgb(9,21,37)', /* fondo azul oscuro: evita flash blanco entre transiciones */
+      background: 'rgb(9,21,37)',
     }}>
 
-      {/* Vídeos */}
+      {/* Vídeos — todos con preload=auto para descarga paralela */}
       {VIDEOS.map((src, i) => (
         <video
           key={src}
           ref={el => { videoRefs.current[i] = el; }}
           src={src}
           muted playsInline loop
-          preload={i === 0 ? 'auto' : 'none'}
+          preload="auto"
           style={{
             position: 'absolute', inset: 0,
             width: '100%', height: '100%',
@@ -85,7 +116,7 @@ export default function Hero() {
         />
       ))}
 
-      {/* Solo degradado inferior — overlay uniforme eliminado */}
+      {/* Solo degradado inferior */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'linear-gradient(to top, rgba(9,21,37,0.50) 0%, transparent 25%)' }} />
 
       {/* Contenido central */}
