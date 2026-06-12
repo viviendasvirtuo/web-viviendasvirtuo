@@ -14,6 +14,7 @@ type Tab = {
   color: string;
   colorHover: string;
   colorShadow: string;
+  colorBg: string;
   faqs: FaqItem[];
 };
 
@@ -25,6 +26,7 @@ const tabs: Tab[] = [
     color: '#1a4a8a',
     colorHover: '#0f2d5e',
     colorShadow: 'rgba(26,74,138,0.25)',
+    colorBg: '#eef3fb',
     faqs: [
       {
         pregunta: '¿Qué es exactamente el modelo Coliving de Viviendas Virtuo?',
@@ -65,6 +67,7 @@ const tabs: Tab[] = [
     color: '#1a7a4a',
     colorHover: '#0f5233',
     colorShadow: 'rgba(26,122,74,0.25)',
+    colorBg: '#eef7f2',
     faqs: [
       {
         pregunta: '¿Vacacional o Alquiler Temporal?',
@@ -100,6 +103,7 @@ const tabs: Tab[] = [
     color: '#e07020',
     colorHover: '#b85a10',
     colorShadow: 'rgba(224,112,32,0.25)',
+    colorBg: '#fdf3eb',
     faqs: [
       {
         pregunta: '¿En qué consiste exactamente el alquiler vacacional?',
@@ -169,15 +173,11 @@ export default function Faq() {
               aria-selected={activeTab === tab.id}
               aria-controls={`panel-${tab.id}`}
               id={`tab-${tab.id}`}
-              className={`faq-tab faq-tab--${tab.id} ${activeTab === tab.id ? 'faq-tab--active' : ''}`}
+              className={`faq-tab ${activeTab === tab.id ? 'faq-tab--active' : ''}`}
               onClick={() => handleTabChange(tab.id)}
               style={
                 activeTab === tab.id
-                  ? {
-                      background: tab.color,
-                      color: '#fff',
-                      boxShadow: `0 2px 8px ${tab.colorShadow}`,
-                    }
+                  ? { background: tab.color, color: '#fff', boxShadow: `0 2px 8px ${tab.colorShadow}` }
                   : {}
               }
             >
@@ -199,7 +199,7 @@ export default function Faq() {
               <div
                 key={i}
                 className={`faq-item ${isOpen ? 'faq-item--open' : ''}`}
-                style={isOpen ? { borderColor: currentTab.color } : {}}
+                style={isOpen ? { borderColor: currentTab.color, boxShadow: `0 2px 12px ${currentTab.colorShadow}` } : {}}
               >
                 <button
                   className="faq-question"
@@ -207,13 +207,13 @@ export default function Faq() {
                   aria-expanded={isOpen}
                   aria-controls={`answer-${currentTab.id}-${i}`}
                   id={`question-${currentTab.id}-${i}`}
-                  style={isOpen ? { color: currentTab.color } : {}}
+                  style={{ color: currentTab.color }}
                 >
                   <span>{faq.pregunta}</span>
                   <span
                     className="faq-chevron"
                     aria-hidden="true"
-                    style={isOpen ? { transform: 'rotate(180deg)', color: currentTab.color } : {}}
+                    style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', color: currentTab.color }}
                   >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="6 9 12 15 18 9" />
@@ -250,16 +250,13 @@ export default function Faq() {
         .faq-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 40px; background: #fff; padding: 6px; border-radius: 14px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(15,45,94,0.06); }
         .faq-tab { display: flex; align-items: center; gap: 8px; padding: 10px 24px; border-radius: 10px; border: none; background: transparent; cursor: pointer; font-size: 0.9375rem; font-weight: 600; color: #5a6a80; transition: all 200ms ease; white-space: nowrap; }
         .faq-tab:not(.faq-tab--active):hover { background: #f0f4fa; color: #1a4a8a; }
-        .faq-tab--coliving:not(.faq-tab--active):hover { background: #eef3fb; color: #1a4a8a; }
-        .faq-tab--temporal:not(.faq-tab--active):hover { background: #eef7f2; color: #1a7a4a; }
-        .faq-tab--vacacional:not(.faq-tab--active):hover { background: #fdf3eb; color: #e07020; }
         .faq-tab-icon { font-size: 1rem; line-height: 1; }
         .faq-panel { display: flex; flex-direction: column; gap: 8px; }
         .faq-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; transition: border-color 200ms ease, box-shadow 200ms ease; }
-        .faq-item:hover { border-color: #c7d7ee; }
-        .faq-item--open { box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
-        .faq-question { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; background: transparent; border: none; cursor: pointer; text-align: left; font-size: 0.9375rem; font-weight: 600; color: #0f2d5e; line-height: 1.4; transition: color 200ms ease; }
-        .faq-chevron { flex-shrink: 0; color: #9ab0cc; transition: transform 250ms ease, color 250ms ease; }
+        .faq-item:hover { filter: brightness(0.98); }
+        .faq-question { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; background: transparent; border: none; cursor: pointer; text-align: left; font-size: 0.9375rem; font-weight: 600; line-height: 1.4; transition: opacity 150ms ease; }
+        .faq-question:hover { opacity: 0.8; }
+        .faq-chevron { flex-shrink: 0; transition: transform 250ms ease, color 250ms ease; }
         .faq-answer { padding: 0 24px 20px; border-top: 1px solid #f0f4fa; }
         .faq-answer p { font-size: 0.9375rem; color: #4a5a6e; line-height: 1.7; padding-top: 16px; }
         .faq-cta { text-align: center; margin-top: 48px; padding-top: 40px; border-top: 1px solid #e2e8f0; }
