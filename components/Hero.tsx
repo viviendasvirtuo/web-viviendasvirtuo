@@ -84,9 +84,7 @@ export default function Hero() {
         />
       ))}
 
-      {/* Overlay uniforme — reducido a 0.38 */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'rgba(9,21,37,0.38)' }} />
-      {/* Degradado inferior — reducido a 0.50 */}
+      {/* Solo degradado inferior — overlay uniforme eliminado */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'linear-gradient(to top, rgba(9,21,37,0.50) 0%, transparent 25%)' }} />
 
       {/* Contenido central */}
@@ -138,10 +136,11 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Subtítulo */}
+        {/* Subtítulo — ahora en negrita */}
         <p style={{
           fontSize: 'clamp(0.95rem, 0.85rem + 0.5vw, 1.35rem)',
-          color: 'rgba(255,255,255,0.72)',
+          fontWeight: 700,
+          color: 'rgba(255,255,255,0.90)',
           marginBottom: '1.5rem', lineHeight: 1.6,
           maxWidth: '46ch', marginInline: 'auto',
           textShadow: '0 1px 8px rgba(0,0,0,0.3)',
