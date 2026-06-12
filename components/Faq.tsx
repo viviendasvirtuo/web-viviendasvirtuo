@@ -14,7 +14,6 @@ type Tab = {
   color: string;
   colorHover: string;
   colorShadow: string;
-  colorBg: string;
   faqs: FaqItem[];
 };
 
@@ -26,7 +25,6 @@ const tabs: Tab[] = [
     color: '#1a4a8a',
     colorHover: '#0f2d5e',
     colorShadow: 'rgba(26,74,138,0.25)',
-    colorBg: '#eef3fb',
     faqs: [
       {
         pregunta: '¿Qué es exactamente el modelo Coliving de Viviendas Virtuo?',
@@ -67,7 +65,6 @@ const tabs: Tab[] = [
     color: '#1a7a4a',
     colorHover: '#0f5233',
     colorShadow: 'rgba(26,122,74,0.25)',
-    colorBg: '#eef7f2',
     faqs: [
       {
         pregunta: '¿Vacacional o Alquiler Temporal?',
@@ -103,7 +100,6 @@ const tabs: Tab[] = [
     color: '#e07020',
     colorHover: '#b85a10',
     colorShadow: 'rgba(224,112,32,0.25)',
-    colorBg: '#fdf3eb',
     faqs: [
       {
         pregunta: '¿En qué consiste exactamente el alquiler vacacional?',
@@ -199,21 +195,25 @@ export default function Faq() {
               <div
                 key={i}
                 className={`faq-item ${isOpen ? 'faq-item--open' : ''}`}
-                style={isOpen ? { borderColor: currentTab.color, boxShadow: `0 2px 12px ${currentTab.colorShadow}` } : {}}
+                style={isOpen ? { borderColor: currentTab.color } : {}}
               >
+                {/* Cabecera con fondo de color siempre */}
                 <button
                   className="faq-question"
                   onClick={() => toggle(i)}
                   aria-expanded={isOpen}
                   aria-controls={`answer-${currentTab.id}-${i}`}
                   id={`question-${currentTab.id}-${i}`}
-                  style={{ color: currentTab.color }}
+                  style={{
+                    background: currentTab.color,
+                    color: '#ffffff',
+                  }}
                 >
                   <span>{faq.pregunta}</span>
                   <span
                     className="faq-chevron"
                     aria-hidden="true"
-                    style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', color: currentTab.color }}
+                    style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
                   >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="6 9 12 15 18 9" />
@@ -252,12 +252,12 @@ export default function Faq() {
         .faq-tab:not(.faq-tab--active):hover { background: #f0f4fa; color: #1a4a8a; }
         .faq-tab-icon { font-size: 1rem; line-height: 1; }
         .faq-panel { display: flex; flex-direction: column; gap: 8px; }
-        .faq-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; transition: border-color 200ms ease, box-shadow 200ms ease; }
-        .faq-item:hover { filter: brightness(0.98); }
-        .faq-question { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; background: transparent; border: none; cursor: pointer; text-align: left; font-size: 0.9375rem; font-weight: 600; line-height: 1.4; transition: opacity 150ms ease; }
-        .faq-question:hover { opacity: 0.8; }
-        .faq-chevron { flex-shrink: 0; transition: transform 250ms ease, color 250ms ease; }
-        .faq-answer { padding: 0 24px 20px; border-top: 1px solid #f0f4fa; }
+        .faq-item { border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; transition: border-color 200ms ease, box-shadow 200ms ease; }
+        .faq-item--open { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .faq-question { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 24px; border: none; cursor: pointer; text-align: left; font-size: 0.9375rem; font-weight: 600; line-height: 1.4; transition: filter 150ms ease; }
+        .faq-question:hover { filter: brightness(0.92); }
+        .faq-chevron { flex-shrink: 0; transition: transform 250ms ease; color: #fff; }
+        .faq-answer { padding: 0 24px 20px; background: #fff; border-top: 1px solid #f0f4fa; }
         .faq-answer p { font-size: 0.9375rem; color: #4a5a6e; line-height: 1.7; padding-top: 16px; }
         .faq-cta { text-align: center; margin-top: 48px; padding-top: 40px; border-top: 1px solid #e2e8f0; }
         .faq-cta p { font-size: 0.9375rem; color: #5a6a80; margin-bottom: 16px; }
@@ -267,7 +267,7 @@ export default function Faq() {
           .faq-section { padding: 60px 0; }
           .faq-tabs { gap: 4px; padding: 4px; }
           .faq-tab { padding: 9px 16px; font-size: 0.875rem; }
-          .faq-question { padding: 16px 18px; font-size: 0.875rem; }
+          .faq-question { padding: 14px 18px; font-size: 0.875rem; }
           .faq-answer { padding: 0 18px 16px; }
           .faq-answer p { font-size: 0.875rem; }
         }
