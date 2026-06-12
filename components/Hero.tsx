@@ -12,12 +12,12 @@ const DURATION = 10000;
 const FADE = 800;
 
 const tickerItems = [
-  'Coliving \u00b7 alquiler por habitaciones',
-  'Temporal \u00b7 estancias de 1 a 6 meses',
-  'Vacacional \u00b7 apartamento completo',
-  'Sin preocupaciones \u00b7 m\u00e1xima rentabilidad',
-  'Gesti\u00f3n profesional \u00b7 Barcelona y \u00e1rea metropolitana',
-  'Selecci\u00f3n de inquilinos \u00b7 garant\u00eda de cobro',
+  'Coliving · alquiler por habitaciones',
+  'Temporal · estancias de 1 a 6 meses',
+  'Vacacional · apartamento completo',
+  'Sin preocupaciones · máxima rentabilidad',
+  'Gestión profesional · Barcelona y área metropolitana',
+  'Selección de inquilinos · garantía de cobro',
 ];
 
 export default function Hero() {
@@ -54,7 +54,6 @@ export default function Hero() {
     }, FADE);
   };
 
-  // Avance autom\u00e1tico
   useEffect(() => {
     timerRef.current = setTimeout(() => {
       goTo((current + 1) % VIDEOS.length);
@@ -62,7 +61,6 @@ export default function Hero() {
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [current, ready]);
 
-  // Arrancar/pausar videos cuando cambia current
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
       if (!v) return;
@@ -74,14 +72,12 @@ export default function Hero() {
     });
   }, [current]);
 
-  // Clave: cuando ready[current] pasa a true, arrancar el play inmediatamente
   useEffect(() => {
     if (!ready[current]) return;
     const v = videoRefs.current[current];
     if (v) { v.currentTime = 0; v.play().catch(() => {}); }
   }, [ready, current]);
 
-  // Registrar listeners canplay en todos los videos
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
       if (!v) return;
@@ -153,9 +149,9 @@ export default function Hero() {
           backdropFilter: 'blur(12px)',
         }}>
           <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4ade80', flexShrink: 0 }} />
-          <span className="badge-text" style={{ fontSize: 'clamp(0.7rem, 0.65rem + 0.2vw, 0.9rem)', fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.05em' }}>
-            <span className="badge-desktop">Gesti\u00f3n profesional de alquiler \u00b7 Barcelona y \u00e1rea metropolitana</span>
-            <span className="badge-mobile"><span>Gesti\u00f3n profesional de alquiler</span><span>Barcelona y \u00e1rea metropolitana</span></span>
+          <span style={{ fontSize: 'clamp(0.7rem, 0.65rem + 0.2vw, 0.9rem)', fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.05em' }}>
+            <span className="badge-desktop">Gestión profesional de alquiler · Barcelona y área metropolitana</span>
+            <span className="badge-mobile"><span>Gestión profesional de alquiler</span><span>Barcelona y área metropolitana</span></span>
           </span>
         </div>
 
@@ -181,12 +177,12 @@ export default function Hero() {
           maxWidth: '46ch', marginInline: 'auto',
           textShadow: '0 1px 8px rgba(0,0,0,0.3)',
         }}>
-          Tres sistemas de alquiler adaptados a tu propiedad. Sin esfuerzo, con rentabilidad m\u00e1xima.
+          Tres sistemas de alquiler adaptados a tu propiedad. Sin esfuerzo, con rentabilidad máxima.
         </p>
 
         <div className="hero-ctas">
           <Link href="/contacto" className="btn btn-white btn-lg">Soy propietario</Link>
-          <a href="#inquilinos" className="btn btn-ghost-white btn-lg">Busco habitaci\u00f3n</a>
+          <a href="#inquilinos" className="btn btn-ghost-white btn-lg">Busco habitación</a>
         </div>
       </div>
 
@@ -198,7 +194,7 @@ export default function Hero() {
           <button
             key={i}
             onClick={() => goTo(i)}
-            aria-label={`V\u00eddeo ${i + 1}`}
+            aria-label={`Vídeo ${i + 1}`}
             style={{
               width: '3px', height: i === current ? '28px' : '14px',
               background: i === current ? '#ffffff' : 'rgba(255,255,255,0.3)',
