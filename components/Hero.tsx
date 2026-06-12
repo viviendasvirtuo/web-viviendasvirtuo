@@ -116,8 +116,9 @@ export default function Hero() {
           backdropFilter: 'blur(12px)',
         }}>
           <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4ade80', flexShrink: 0 }} />
-          <span style={{ fontSize: 'clamp(0.7rem, 0.65rem + 0.2vw, 0.9rem)', fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.05em' }}>
-            Gestión profesional de alquiler · Barcelona y área metropolitana
+          <span className="badge-text" style={{ fontSize: 'clamp(0.7rem, 0.65rem + 0.2vw, 0.9rem)', fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.05em' }}>
+            <span className="badge-desktop">Gestión profesional de alquiler · Barcelona y área metropolitana</span>
+            <span className="badge-mobile"><span>Gestión profesional de alquiler</span><span>Barcelona y área metropolitana</span></span>
           </span>
         </div>
 
@@ -210,9 +211,13 @@ export default function Hero() {
         .ticker-item { display:inline-flex; align-items:center; gap:10px; padding:0 2rem; font-size:clamp(0.7rem,0.65rem + 0.2vw,0.8rem); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.5); white-space:nowrap; }
         .ticker-dot { width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,0.25); flex-shrink:0; }
         .hero-ctas { display:flex; flex-direction:row; gap:0.65rem; flex-wrap:wrap; justify-content:center; }
+        .badge-mobile { display:none; }
+        .badge-desktop { display:inline; }
         @media (max-width:600px) {
           .hero-ctas { flex-direction:column; align-items:center; width:100%; max-width:280px; }
           .hero-ctas .btn { width:100%; justify-content:center; }
+          .badge-desktop { display:none; }
+          .badge-mobile { display:flex; flex-direction:column; align-items:center; line-height:1.5; }
         }
       `}</style>
     </section>
