@@ -84,9 +84,10 @@ export default function Hero() {
         />
       ))}
 
-      {/* Overlay uniforme */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'rgba(9,21,37,0.55)' }} />
-      <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'linear-gradient(to top, rgba(9,21,37,0.65) 0%, transparent 25%)' }} />
+      {/* Overlay uniforme — reducido a 0.38 */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'rgba(9,21,37,0.38)' }} />
+      {/* Degradado inferior — reducido a 0.50 */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'linear-gradient(to top, rgba(9,21,37,0.50) 0%, transparent 25%)' }} />
 
       {/* Contenido central */}
       <div style={{
