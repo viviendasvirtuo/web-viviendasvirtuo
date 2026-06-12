@@ -7,6 +7,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [sistemasOpen, setSistemasOpen] = useState(false);
+  const [propietariosOpen, setPropietariosOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === '/';
 
@@ -21,7 +22,6 @@ export default function Header() {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
-  // Cerrar menú al cambiar de página
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
@@ -35,6 +35,15 @@ export default function Header() {
     { href: '/temporal',   label: 'Temporal',    desc: 'Estancias de 1 a 6 meses' },
     { href: '/vacacional', label: 'Vacacional',  desc: 'Apartamento completo para turistas' },
   ];
+
+  const propietariosSub = [
+    { href: '/propietarios/coliving',   label: 'Coliving',    desc: 'Alquiler por habitaciones' },
+    { href: '/propietarios/temporal',   label: 'Temporal',    desc: 'Estancias cortas gestionadas' },
+    { href: '/propietarios/vacacional', label: 'Vacacional',  desc: 'Máxima rentabilidad turística' },
+  ];
+
+  const isPropietariosActive = pathname.startsWith('/propietarios');
+  const isSistemasActive = ['/coliving', '/temporal', '/vacacional'].includes(pathname);
 
   return (
     <>
@@ -68,7 +77,7 @@ export default function Header() {
               onMouseLeave={() => setSistemasOpen(false)}>
               <button style={{
                 fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', fontWeight: 500,
-                color: ['/coliving','/temporal','/vacacional'].includes(pathname) ? activeColor : textColor,
+                color: isSistemasActive ? activeColor : textColor,
                 padding: '0.5rem 0.85rem', borderRadius: 'var(--radius-md)',
                 transition: 'all var(--transition)', background: 'transparent', border: 'none',
                 cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px',
@@ -99,11 +108,57 @@ export default function Header() {
               )}
             </div>
 
+            {/* Propietarios — dropdown */}
+            <div style={{ position: 'relative' }}
+              onMouseEnter={() => setPropietariosOpen(true)}
+              onMouseLeave={() => setPropietariosOpen(false)}>
+              <button style={{
+                fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', fontWeight: 500,
+                color: isPropietariosActive ? activeColor : textColor,
+                padding: '0.5rem 0.85rem', borderRadius: 'var(--radius-md)',
+                transition: 'all var(--transition)', background: 'transparent', border: 'none',
+                cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px',
+              }}>
+                Propietarios
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ transform: propietariosOpen ? 'rotate(180deg)' : 'none', transition: 'transform 200ms' }}>
+                  <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </button>
+              {propietariosOpen && (
+                <div style={{
+                  position: 'absolute', top: 'calc(100% + 8px)', left: '50%', transform: 'translateX(-50%)',
+                  background: 'white', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xl)',
+                  boxShadow: '0 16px 40px rgba(13,27,46,0.12)', padding: '8px', minWidth: '240px', zIndex: 100,
+                }}>
+                  <Link href="/propietarios" style={{
+                    display: 'block', padding: '10px 14px', borderRadius: 'var(--radius-lg)',
+                    textDecoration: 'none', transition: 'background 150ms',
+                    borderBottom: '1px solid var(--color-border)', marginBottom: '4px',
+                  }}
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#f0f4fa'}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}>
+                    <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-primary)' }}>Vista general</div>
+                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>Compara los 3 sistemas</div>
+                  </Link>
+                  {propietariosSub.map(s => (
+                    <Link key={s.href} href={s.href} style={{
+                      display: 'block', padding: '10px 14px', borderRadius: 'var(--radius-lg)',
+                      textDecoration: 'none', transition: 'background 150ms',
+                    }}
+                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#f0f4fa'}
+                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}>
+                      <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--color-primary)' }}>{s.label}</div>
+                      <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>{s.desc}</div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
             {[
-              { href: '/propietarios', label: 'Propietarios' },
-              { href: '/inquilinos',   label: 'Inquilinos' },
+              { href: '/inquilinos',     label: 'Inquilinos' },
               { href: '/sobre-nosotros', label: 'Nosotros' },
-              { href: '/contacto',     label: 'Contacto' },
+              { href: '/contacto',       label: 'Contacto' },
             ].map(link => (
               <Link key={link.href} href={link.href} style={{
                 fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', fontWeight: 500,
@@ -134,7 +189,7 @@ export default function Header() {
             Hablar con un experto
           </Link>
 
-          {/* Botón hamburguesa — visible solo en móvil via CSS */}
+          {/* Botón hamburguesa */}
           <button
             className="nav-mobile-btn"
             aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
@@ -169,7 +224,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Menú móvil — fuera del <header> para evitar z-index issues */}
+      {/* Menú móvil */}
       <div
         id="mobile-menu"
         role="dialog"
@@ -214,8 +269,39 @@ export default function Header() {
 
         <div style={{ height: '1px', background: 'var(--color-border)', margin: 'var(--space-3) 0' }} />
 
+        <p style={{
+          fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.1em',
+          textTransform: 'uppercase', color: 'var(--color-text-muted)',
+          padding: 'var(--space-2) 0', marginBottom: '4px',
+        }}>Para propietarios</p>
+
+        <Link href="/propietarios" onClick={() => setMenuOpen(false)} style={{
+          display: 'flex', flexDirection: 'column',
+          padding: 'var(--space-3) var(--space-3)',
+          borderRadius: 'var(--radius-lg)',
+          background: '#edf2fb',
+          textDecoration: 'none', marginBottom: '6px',
+        }}>
+          <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-primary)' }}>Vista general</span>
+          <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', marginTop: '2px' }}>Compara los 3 sistemas</span>
+        </Link>
+
+        {propietariosSub.map(s => (
+          <Link key={s.href} href={s.href} onClick={() => setMenuOpen(false)} style={{
+            display: 'flex', flexDirection: 'column',
+            padding: 'var(--space-3) var(--space-3)',
+            borderRadius: 'var(--radius-lg)',
+            background: '#f0f4fa',
+            textDecoration: 'none', marginBottom: '6px',
+          }}>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-primary)' }}>{s.label}</span>
+            <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', marginTop: '2px' }}>{s.desc}</span>
+          </Link>
+        ))}
+
+        <div style={{ height: '1px', background: 'var(--color-border)', margin: 'var(--space-3) 0' }} />
+
         {[
-          { href: '/propietarios',   label: 'Propietarios' },
           { href: '/inquilinos',     label: 'Inquilinos' },
           { href: '/sobre-nosotros', label: 'Sobre nosotros' },
           { href: '/faq',            label: 'Preguntas frecuentes' },
