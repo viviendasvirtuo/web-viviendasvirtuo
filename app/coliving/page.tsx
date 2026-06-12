@@ -16,6 +16,10 @@ const COLIVING_BLUE = '#0453ab';
 const COLIVING_BLUE_DARK = '#033d82';
 const COLIVING_ACCENT = '#6dbcdb';
 
+// Colores de los otros sistemas para los botones de enlace cruzado
+const TEMPORAL_GREEN = '#008f58';
+const VACACIONAL_ORANGE = '#c45e00';
+
 export default function ColivingPage() {
   return (
     <>
@@ -131,8 +135,38 @@ export default function ColivingPage() {
           <div className="container">
             <p style={{ textAlign: 'center', color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)', marginBottom: '24px' }}>¿Buscas otro tipo de alojamiento?</p>
             <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/temporal" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)', padding: '12px 24px', textDecoration: 'none', color: 'var(--color-text)', fontWeight: 600, fontSize: 'var(--text-sm)' }}>Ver Alquiler Temporal →</Link>
-              <Link href="/vacacional" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)', padding: '12px 24px', textDecoration: 'none', color: 'var(--color-text)', fontWeight: 600, fontSize: 'var(--text-sm)' }}>Ver Alquiler Vacacional →</Link>
+              <Link
+                href="/temporal"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '8px',
+                  background: TEMPORAL_GREEN,
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: '12px 24px',
+                  textDecoration: 'none',
+                  fontWeight: 600,
+                  fontSize: 'var(--text-sm)',
+                }}
+              >
+                Ver Alquiler Temporal →
+              </Link>
+              <Link
+                href="/vacacional"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '8px',
+                  background: VACACIONAL_ORANGE,
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: '12px 24px',
+                  textDecoration: 'none',
+                  fontWeight: 600,
+                  fontSize: 'var(--text-sm)',
+                }}
+              >
+                Ver Alquiler Vacacional →
+              </Link>
             </div>
           </div>
         </section>

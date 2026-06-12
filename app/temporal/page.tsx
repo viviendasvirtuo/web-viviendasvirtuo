@@ -14,6 +14,10 @@ const TEMPORAL_GREEN = '#00c47a';
 const TEMPORAL_GREEN_DARK = '#008f58';
 const TEMPORAL_ACCENT = '#6effc0';
 
+// Colores de los otros sistemas para los botones de enlace cruzado
+const COLIVING_BLUE = '#0453ab';
+const VACACIONAL_ORANGE = '#c45e00';
+
 export default function TemporalPage() {
   return (
     <>
@@ -129,8 +133,38 @@ export default function TemporalPage() {
           <div className="container">
             <p style={{ textAlign: 'center', color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)', marginBottom: '24px' }}>¿Buscas otro tipo de estancia?</p>
             <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/coliving" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)', padding: '12px 24px', textDecoration: 'none', color: 'var(--color-text)', fontWeight: 600, fontSize: 'var(--text-sm)' }}>Ver Coliving →</Link>
-              <Link href="/vacacional" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)', padding: '12px 24px', textDecoration: 'none', color: 'var(--color-text)', fontWeight: 600, fontSize: 'var(--text-sm)' }}>Ver Vacacional →</Link>
+              <Link
+                href="/coliving"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '8px',
+                  background: COLIVING_BLUE,
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: '12px 24px',
+                  textDecoration: 'none',
+                  fontWeight: 600,
+                  fontSize: 'var(--text-sm)',
+                }}
+              >
+                Ver Coliving →
+              </Link>
+              <Link
+                href="/vacacional"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '8px',
+                  background: VACACIONAL_ORANGE,
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: '12px 24px',
+                  textDecoration: 'none',
+                  fontWeight: 600,
+                  fontSize: 'var(--text-sm)',
+                }}
+              >
+                Ver Vacacional →
+              </Link>
             </div>
           </div>
         </section>
