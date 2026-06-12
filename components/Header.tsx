@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [sistemasOpen, setSistemasOpen] = useState(false);
   const [propietariosOpen, setPropietariosOpen] = useState(false);
   const [inquilinosOpen, setInquilinosOpen] = useState(false);
   const pathname = usePathname();
@@ -31,16 +30,10 @@ export default function Header() {
   const textColor = isTransparent ? 'rgba(255,255,255,0.85)' : 'var(--color-text-muted)';
   const activeColor = isTransparent ? 'white' : 'var(--color-primary)';
 
-  const sistemas = [
-    { href: '/coliving',   label: 'Coliving',    desc: 'Habitaciones a medio-largo plazo' },
-    { href: '/temporal',   label: 'Temporal',    desc: 'Estancias de 1 a 6 meses' },
-    { href: '/vacacional', label: 'Vacacional',  desc: 'Apartamento completo para turistas' },
-  ];
-
   const propietariosSub = [
-    { href: '/propietarios/coliving',   label: 'Coliving',    desc: 'Alquiler por habitaciones' },
-    { href: '/propietarios/temporal',   label: 'Temporal',    desc: 'Estancias cortas gestionadas' },
-    { href: '/propietarios/vacacional', label: 'Vacacional',  desc: 'Máxima rentabilidad turística' },
+    { href: '/propietarios/coliving',   label: 'Coliving',   desc: 'Alquiler por habitaciones' },
+    { href: '/propietarios/temporal',   label: 'Temporal',   desc: 'Estancias cortas gestionadas' },
+    { href: '/propietarios/vacacional', label: 'Vacacional', desc: 'Máxima rentabilidad turística' },
   ];
 
   const inquilinosSub = [
@@ -51,17 +44,13 @@ export default function Header() {
 
   const isPropietariosActive = pathname.startsWith('/propietarios');
   const isInquilinosActive = pathname.startsWith('/inquilinos');
-  const isSistemasActive = ['/coliving', '/temporal', '/vacacional'].includes(pathname);
 
-  // El panel empieza justo debajo del botón sin gap real.
-  // El padding-top del panel absorbe el espacio visual y evita que el mouse
-  // "cruce el vacío" y dispare onMouseLeave.
   const dropdownPanel = {
     position: 'absolute' as const,
-    top: '100%',           // pegado al borde inferior del wrapper
+    top: '100%',
     left: '50%',
     transform: 'translateX(-50%)',
-    paddingTop: '8px',     // espacio visual entre botón y caja — NO es gap, es padding del panel
+    paddingTop: '8px',
     zIndex: 100,
   };
 
@@ -121,29 +110,6 @@ export default function Header() {
 
           {/* Nav desktop */}
           <nav aria-label="Navegación principal" style={{ display: 'flex', gap: '2px', alignItems: 'center' }} className="nav-desktop">
-
-            {/* Sistemas */}
-            <div style={{ position: 'relative' }}
-              onMouseEnter={() => setSistemasOpen(true)}
-              onMouseLeave={() => setSistemasOpen(false)}>
-              <button style={navBtnStyle(isSistemasActive)}>
-                Sistemas {chevron(sistemasOpen)}
-              </button>
-              {sistemasOpen && (
-                <div style={{ ...dropdownPanel, minWidth: '220px' }}>
-                  <div style={{ ...dropdownBox, minWidth: '220px' }}>
-                    {sistemas.map(s => (
-                      <Link key={s.href} href={s.href} style={dropdownLinkBase}
-                        onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#f0f4fa'}
-                        onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}>
-                        <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--color-primary)' }}>{s.label}</div>
-                        <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '2px' }}>{s.desc}</div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
 
             {/* Propietarios */}
             <div style={{ position: 'relative' }}
@@ -270,15 +236,6 @@ export default function Header() {
           borderTop: '1px solid var(--color-border)', overflowY: 'auto', WebkitOverflowScrolling: 'touch',
         }}
       >
-        <p style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-text-muted)', padding: 'var(--space-2) 0', marginBottom: '4px' }}>Sistemas de alquiler</p>
-        {sistemas.map(s => (
-          <Link key={s.href} href={s.href} onClick={() => setMenuOpen(false)} style={{ display: 'flex', flexDirection: 'column', padding: 'var(--space-3)', borderRadius: 'var(--radius-lg)', background: '#f0f4fa', textDecoration: 'none', marginBottom: '6px' }}>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-primary)' }}>{s.label}</span>
-            <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', marginTop: '2px' }}>{s.desc}</span>
-          </Link>
-        ))}
-
-        <div style={{ height: '1px', background: 'var(--color-border)', margin: 'var(--space-3) 0' }} />
         <p style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-text-muted)', padding: 'var(--space-2) 0', marginBottom: '4px' }}>Para propietarios</p>
         <Link href="/propietarios" onClick={() => setMenuOpen(false)} style={{ display: 'flex', flexDirection: 'column', padding: 'var(--space-3)', borderRadius: 'var(--radius-lg)', background: '#edf2fb', textDecoration: 'none', marginBottom: '6px' }}>
           <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-primary)' }}>Vista general</span>
