@@ -112,7 +112,7 @@ export default function Home() {
        {/* 4. POR QUÉ VIVIENDAS VIRTUO */}
 <section style={{ padding: 'clamp(60px,8vw,100px) 0', backgroundImage: 'url(/images/habitacion-fondo.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
   <div className="container">
-    <div style={{ background: 'rgba(26, 74, 138, 0.78)', borderRadius: 'var(--radius-xl)', padding: 'clamp(40px,6vw,72px)', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', color: 'white', backdropFilter: 'blur(8px)' }}>
+    <div style={{ background: 'rgba(26, 74, 138, 0.60)', borderRadius: 'var(--radius-xl)', padding: 'clamp(40px,6vw,72px)', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', color: 'white', backdropFilter: 'blur(8px)' }}>
       <p style={{ fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px', opacity: 0.75 }}>¿Por qué Viviendas Virtuo?</p>
       <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.75rem,3vw,2.8rem)', fontWeight: 900, lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '20px', maxWidth: '680px' }}>Hasta <span style={{ color: '#6effc0' }}>400€ menos al mes</span> que un alquiler tradicional</h2>
       <p style={{ fontSize: 'clamp(0.95rem,0.85rem + 0.5vw,1.1rem)', opacity: 0.85, lineHeight: 1.75, maxWidth: '520px', marginBottom: '36px' }}>
