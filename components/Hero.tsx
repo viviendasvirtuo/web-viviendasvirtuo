@@ -163,9 +163,9 @@ export default function Hero() {
           letterSpacing: '-0.025em',
           textShadow: '0 2px 16px rgba(0,0,0,0.35)',
         }}>
-          Tu vivienda genera ingresos.
+          Tu próximo hogar en Barcelona,
           <span style={{ display: 'block', color: 'rgba(255,255,255,0.45)', fontWeight: 700 }}>
-            Nosotros lo gestionamos todo.
+            gestionado de verdad.
           </span>
         </h1>
 
@@ -177,7 +177,7 @@ export default function Hero() {
           maxWidth: '46ch', marginInline: 'auto',
           textShadow: '0 1px 8px rgba(0,0,0,0.3)',
         }}>
-          Tres sistemas de alquiler adaptados a tu propiedad. Sin esfuerzo, con rentabilidad máxima.
+          Habitaciones y apartamentos con gestión profesional. Sin pisos mal mantenidos, sin propietarios que no cogen el teléfono. Solo calidad y tranquilidad.
         </p>
 
         <div className="hero-ctas">
