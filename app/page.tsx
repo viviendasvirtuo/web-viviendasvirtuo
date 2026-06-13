@@ -139,13 +139,53 @@ export default function Home() {
         {/* 5. EVENTOS Y COMUNIDAD */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: '#f0f4fa' }}>
           <div className="container">
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', maxWidth: '640px', margin: '0 auto' }}>
-              <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '16px' }}>Eventos y comunidad</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.75rem,2.5vw,2.6rem)', fontWeight: 900, color: 'var(--color-text)', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '20px' }}>Comunidad, también incluida</h2>
-              <p style={{ fontSize: 'clamp(0.95rem,0.85rem + 0.5vw,1.1rem)', color: 'var(--color-text-muted)', lineHeight: 1.75, marginBottom: '36px' }}>Cuidamos la convivencia para que tu experiencia funcione desde el primer día. En Viviendas Virtuo filtramos los perfiles según afinidades, estilos de vida y ritmos profesionales para asegurar un ambiente de respeto y productividad. Facilitamos conexiones orgánicas entre miembros, organizamos actividades exclusivas y creamos grupos de interés para que aterrices en Barcelona en la mejor compañía. Todo ello respaldado por normas de convivencia claras y un equipo operativo siempre presente a través de tu portal.</p>
-              <Link href="/coliving" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-primary)', color: 'white', fontWeight: 700, fontSize: 'var(--text-base)', padding: '13px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none' }}>Conoce la comunidad <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></Link>
+            <div className="comunidad-grid">
+              {/* Columna izquierda — imagen */}
+              <div className="comunidad-imagen">
+                <img
+                  src="/images/comunidad-alegre.jpg"
+                  alt="Comunidad de residentes Viviendas Virtuo"
+                  loading="lazy"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    borderRadius: 'var(--radius-xl)',
+                    boxShadow: '0 8px 32px rgba(26,74,138,0.15)',
+                    display: 'block',
+                    minHeight: '320px',
+                  }}
+                />
+              </div>
+              {/* Columna derecha — texto */}
+              <div className="comunidad-texto">
+                <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '16px' }}>Eventos y comunidad</p>
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.75rem,2.5vw,2.6rem)', fontWeight: 900, color: 'var(--color-text)', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '20px' }}>Comunidad, también incluida</h2>
+                <p style={{ fontSize: 'clamp(0.95rem,0.85rem + 0.5vw,1.1rem)', color: 'var(--color-text-muted)', lineHeight: 1.75, marginBottom: '36px' }}>Cuidamos la convivencia para que tu experiencia funcione desde el primer día. En Viviendas Virtuo filtramos los perfiles según afinidades, estilos de vida y ritmos profesionales para asegurar un ambiente de respeto y productividad. Facilitamos conexiones orgánicas entre miembros, organizamos actividades exclusivas y creamos grupos de interés para que aterrices en Barcelona en la mejor compañía. Todo ello respaldado por normas de convivencia claras y un equipo operativo siempre presente a través de tu portal.</p>
+                <Link href="/coliving" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-primary)', color: 'white', fontWeight: 700, fontSize: 'var(--text-base)', padding: '13px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none' }}>Conoce la comunidad <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></Link>
+              </div>
             </div>
           </div>
+          <style>{`
+            .comunidad-grid {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: clamp(32px, 5vw, 64px);
+              align-items: center;
+            }
+            @media (max-width: 768px) {
+              .comunidad-grid {
+                grid-template-columns: 1fr;
+              }
+              .comunidad-imagen {
+                order: 1;
+              }
+              .comunidad-texto {
+                order: 2;
+                text-align: left;
+              }
+            }
+          `}</style>
         </section>
 
         {/* 6. CÓMO FUNCIONA */}
