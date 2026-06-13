@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import SistemaCards from '@/components/SistemaCards';
 import Testimonios from '@/components/Testimonios';
 import HabitacionesDestacadas from '@/components/HabitacionesDestacadas';
@@ -29,6 +30,16 @@ export default function Home() {
               <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>¿Qué tipo de alojamiento necesitas?</h2>
             </div>
             <SistemaCards />
+            <div style={{ marginTop: '48px', borderRadius: 'var(--radius-xl)', overflow: 'hidden', lineHeight: 0 }}>
+              <Image
+                src="/images/comunidad_gente.jpg"
+                alt="Comunidad de residentes Viviendas Virtuo"
+                width={1400}
+                height={600}
+                style={{ width: '100%', height: 'clamp(260px,40vw,600px)', objectFit: 'cover' }}
+                priority={false}
+              />
+            </div>
           </div>
         </section>
 
@@ -173,54 +184,6 @@ export default function Home() {
                 ))}
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* 11. LO QUE OPINAN — TESTIMONIOS */}
-        <Testimonios />
-
-        {/* 12. SOSTENIBILIDAD */}
-        <section style={{ padding: 'clamp(60px,8vw,96px) 0', background: '#f0faf5' }}>
-          <div className="container">
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
-              <div style={{ fontSize: '2.5rem', marginBottom: '20px' }}>🌱</div>
-              <p style={{ color: '#008f58', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Sostenibilidad</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.4rem)', fontWeight: 900, color: 'var(--color-text)', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '20px' }}>Por cada reserva, plantamos un árbol</h2>
-              <p style={{ fontSize: 'clamp(0.95rem,0.85rem + 0.5vw,1.1rem)', color: 'var(--color-text-muted)', lineHeight: 1.75 }}>Colaboramos con proyectos de reforestación en la Península Ibérica. Cada nuevo inquilino Virtuo contribuye directamente a recuperar el ecosistema local.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* 13. FAQs */}
-        <section style={{ padding: 'clamp(60px,8vw,96px) 0', background: 'var(--color-bg)' }}>
-          <div className="container" style={{ maxWidth: '760px' }}>
-            <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-              <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Preguntas frecuentes</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>Resolvemos tus dudas</h2>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {[{ q: '¿Qué incluye el precio?', a: 'Todos los suministros (agua, luz, gas), WiFi de alta velocidad, limpieza de zonas comunes y mantenimiento. Sin sorpresas a fin de mes.' }, { q: '¿Cuánto tiempo mínimo me puedo quedar?', a: 'En Coliving desde 1 mes. En Temporal desde 1 semana. En Vacacional desde 1 noche. Cada sistema tiene sus propias condiciones.' }, { q: '¿Necesito aval o garantía?', a: 'No exigimos aval. Solicitamos una fianza equivalente a 1 mes de renta, conforme a la normativa catalana.' }].map((faq, i) => (
-                <details key={i} style={{ background: '#f8f9fc', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)', overflow: 'hidden' }}>
-                  <summary style={{ padding: '20px 24px', fontWeight: 700, fontSize: 'var(--text-base)', color: 'var(--color-text)', cursor: 'pointer', listStyle: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    {faq.q}
-                    <span style={{ color: 'var(--color-primary)', fontSize: '1.2rem', flexShrink: 0, marginLeft: '16px' }}>+</span>
-                  </summary>
-                  <p style={{ padding: '0 24px 20px', fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.7, margin: 0 }}>{faq.a}</p>
-                </details>
-              ))}
-            </div>
-            <div style={{ textAlign: 'center', marginTop: '32px' }}>
-              <Link href="/faq" style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', textDecoration: 'underline' }}>Ver todas las preguntas frecuentes →</Link>
-            </div>
-          </div>
-        </section>
-
-        {/* 14. FORMULARIO / CTA FINAL */}
-        <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'linear-gradient(135deg,#1a2540 0%,#2a3f6e 100%)', textAlign: 'center' }}>
-          <div className="container">
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,3vw,2.2rem)', fontWeight: 800, color: 'white', marginBottom: '16px' }}>¿Listo para encontrar tu hogar?</h2>
-            <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 'var(--text-lg)', maxWidth: '460px', margin: '0 auto 36px', lineHeight: 1.7 }}>Escríbenos y te ayudamos a encontrar la opción perfecta para ti en Barcelona.</p>
-            <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', background: 'white', color: '#1a2540', fontWeight: 700, padding: '14px 32px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Contactar ahora</Link>
           </div>
         </section>
 
