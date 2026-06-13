@@ -6,7 +6,7 @@ import Link from 'next/link';
 import SistemaCards from '@/components/SistemaCards';
 import Testimonios from '@/components/Testimonios';
 import Ahorro from '@/components/Ahorro';
-import AlojamientosDestacados from '@/components/AlojamientosDestacados';
+import Comunidad from '@/components/Comunidad';
 
 export const metadata: Metadata = {
   title: 'Viviendas Virtuo — Gestión profesional de alquiler en Barcelona',
@@ -18,12 +18,11 @@ export default function Home() {
     <>
       <Header />
       <main>
+
+        {/* 1. HERO */}
         <Hero />
 
-        {/* ESPACIOS DESTACADOS */}
-        <AlojamientosDestacados />
-
-        {/* ELIGE TU OPCIÓN */}
+        {/* 2. NUESTROS SISTEMAS */}
         <section id="opciones" style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: '56px' }}>
@@ -34,13 +33,16 @@ export default function Home() {
           </div>
         </section>
 
-        {/* TESTIMONIOS */}
+        {/* 3. COMUNIDAD VIRTUO */}
+        <Comunidad />
+
+        {/* 4. TESTIMONIOS */}
         <Testimonios />
 
-        {/* AHORRO */}
+        {/* 5. AHORRO */}
         <Ahorro />
 
-        {/* LA DIFERENCIA VIRTUO */}
+        {/* 6. LA DIFERENCIA VIRTUO */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: '#f0f4fa' }}>
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: '56px' }}>
@@ -64,7 +66,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* PROCESO */}
+        {/* 7. CÓMO FUNCIONA */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: '56px' }}>
@@ -88,7 +90,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA FINAL */}
+        {/* 8. CTA FINAL */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'linear-gradient(135deg, #1a2540 0%, #2a3f6e 100%)', textAlign: 'center' }}>
           <div className="container">
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,3vw,2.2rem)', fontWeight: 800, color: 'white', marginBottom: '16px' }}>¿Listo para encontrar tu hogar?</h2>
@@ -96,6 +98,7 @@ export default function Home() {
             <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', background: 'white', color: '#1a2540', fontWeight: 700, padding: '14px 32px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Contactar ahora</Link>
           </div>
         </section>
+
       </main>
       <Footer />
     </>
