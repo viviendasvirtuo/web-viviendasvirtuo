@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 
 const testimonios = [
@@ -99,7 +100,6 @@ export default function Testimonios() {
 
               {/* Autor */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', paddingTop: '8px', borderTop: '1px solid #f0f2f5' }}>
-                {/* Avatar con iniciales */}
                 <div style={{
                   width: '42px',
                   height: '42px',
@@ -120,7 +120,6 @@ export default function Testimonios() {
                   <p style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)', margin: 0 }}>{t.nombre}</p>
                   <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', margin: 0 }}>{t.lugar}</p>
                 </div>
-                {/* Badge sistema */}
                 <span style={{
                   fontSize: '0.65rem',
                   fontWeight: 700,
@@ -140,7 +139,6 @@ export default function Testimonios() {
           ))}
         </div>
 
-        {/* Link Google Reviews */}
         <div style={{ textAlign: 'center', marginTop: '40px' }}>
           <Link href="#" style={{
             display: 'inline-flex',
