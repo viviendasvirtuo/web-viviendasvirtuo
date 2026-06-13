@@ -41,66 +41,72 @@ export default function Home() {
         </section>
 
         {/* 3. QUÉ OFRECEMOS */}
-        <section id="que-ofrecemos" className="py-16 md:py-24 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <section id="que-ofrecemos" style={{ padding: 'clamp(60px,8vw,96px) 0', background: '#f0f4fa' }}>
+          <div className="container">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px,1fr))', gap: '48px', alignItems: 'center' }}>
+
               {/* Columna izquierda - Texto */}
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-4">
-                  ¿Qué ofrecemos?
-                </h2>
-                <div className="w-20 h-1 bg-[#1e3a8a] mb-6"></div>
-                <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                  Habitaciones privadas y viviendas completas con todo incluido. Mucho mejor que un alquiler tradicional. En Viviendas Virtuo accedes a espacios totalmente equipados, con suministros, WiFi, limpieza profesional y flexibilidad total. Sin papeleos interminables, sin permanencia obligatoria, sin sorpresas en la factura. Privacidad, comodidad y precios justos. ¿Qué más se puede pedir?
-                </p>
-                <a
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.4rem)', fontWeight: 900, color: '#1a4a8a', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '16px' }}>¿Qué ofrecemos?</h2>
+                <div style={{ width: '64px', height: '4px', background: '#1a4a8a', borderRadius: '2px', marginBottom: '24px' }} />
+                <p style={{ fontSize: 'clamp(0.95rem,0.85rem + 0.5vw,1.1rem)', color: '#4b5563', lineHeight: 1.75, marginBottom: '32px' }}>Viviendas totalmente equipadas, sin preocupaciones. Nos ocupamos de todo para que solo te centres en vivir.</p>
+                <Link
                   href="/#todo-incluido"
-                  className="inline-flex items-center gap-2 bg-[#1e3a8a] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#1e40af] transition-colors"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#1a4a8a', color: 'white', fontWeight: 700, fontSize: 'var(--text-base)', padding: '13px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none' }}
                 >
                   Todo incluido
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
-                </a>
+                </Link>
               </div>
 
               {/* Columna derecha - Grid de tarjetas con imágenes */}
-              <div className="grid grid-cols-2 gap-4">
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 {[
                   { img: '/images/servicio-wifi.jpg', label: 'WiFi alta velocidad' },
                   { img: '/images/servicio-suministros.jpg', label: 'Suministros incluidos' },
                   { img: '/images/servicio-limpieza.jpg', label: 'Limpieza profesional' },
                   { img: '/images/servicio-flexibilidad.jpg', label: 'Flexibilidad total' },
-                  { img: '/images/servicio-precios-regulados.jpg', label: 'Precios regulados' },
+                  { img: '/images/servicio-precios-regulados.jpg', label: 'Precios regulados INCASóL' },
                   { img: '/images/servicio-espacios-comunes.jpg', label: 'Espacios comunes equipados' },
                 ].map((servicio, index) => (
                   <div
                     key={index}
-                    className="relative rounded-xl overflow-hidden shadow-md hover:shadow-lg hover:scale-[1.03] transition-all duration-300 cursor-pointer group"
-                    style={{ aspectRatio: '4/3' }}
+                    className="servicio-card"
+                    style={{
+                      position: 'relative',
+                      aspectRatio: '4/3',
+                      borderRadius: 'var(--radius-xl)',
+                      overflow: 'hidden',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.10)',
+                      cursor: 'pointer',
+                    }}
                   >
                     <img
                       src={servicio.img}
                       alt={servicio.label}
                       loading="lazy"
-                      style={{
-                        position: 'absolute',
-                        inset: 0,
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        display: 'block',
-                      }}
+                      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
                     />
-                    <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors" />
-                    <span className="absolute inset-0 flex items-center justify-center text-white font-semibold text-sm md:text-base text-center px-3 leading-snug">
-                      {servicio.label}
-                    </span>
+                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.50)' }} />
+                    <span style={{
+                      position: 'absolute', inset: 0,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      color: 'white', fontWeight: 600,
+                      fontSize: 'clamp(0.75rem,0.7rem + 0.3vw,0.95rem)',
+                      textAlign: 'center', padding: '0 12px',
+                      lineHeight: 1.3,
+                    }}>{servicio.label}</span>
                   </div>
                 ))}
               </div>
             </div>
           </div>
+          <style>{`
+            .servicio-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+            .servicio-card:hover { transform: scale(1.03); box-shadow: 0 8px 24px rgba(0,0,0,0.16); }
+          `}</style>
         </section>
 
         {/* 4. POR QUÉ VIVIENDAS VIRTUO */}
