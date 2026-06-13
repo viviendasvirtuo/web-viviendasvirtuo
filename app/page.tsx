@@ -49,7 +49,7 @@ export default function Home() {
               <div>
                 <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.4rem)', fontWeight: 900, color: '#1a4a8a', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '16px' }}>¿Qué ofrecemos?</h2>
                 <div style={{ width: '64px', height: '4px', background: '#1a4a8a', borderRadius: '2px', marginBottom: '24px' }} />
-                <p style={{ fontSize: 'clamp(0.95rem,0.85rem + 0.5vw,1.1rem)', color: '#4b5563', lineHeight: 1.75, marginBottom: '32px' }}>Viviendas totalmente equipadas, sin preocupaciones. Nos ocupamos de todo para que solo te centres en vivir.</p>
+                <p style={{ fontSize: 'clamp(0.95rem,0.85rem + 0.5vw,1.1rem)', color: '#4b5563', lineHeight: 1.75, marginBottom: '32px' }}>Habitaciones privadas y viviendas completas con todo incluido. Mucho mejor que un alquiler tradicional. En Viviendas Virtuo accedes a espacios totalmente equipados, con suministros, WiFi, limpieza profesional y flexibilidad total. Sin papeleos interminables, sin permanencia obligatoria, sin sorpresas en la factura. Privacidad, comodidad y precios justos. ¿Qué más se puede pedir?</p>
                 <Link
                   href="/#todo-incluido"
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#1a4a8a', color: 'white', fontWeight: 700, fontSize: 'var(--text-base)', padding: '13px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none' }}
@@ -68,7 +68,7 @@ export default function Home() {
                   { img: '/images/servicio-suministros.jpg', label: 'Suministros incluidos' },
                   { img: '/images/servicio-limpieza.jpg', label: 'Limpieza profesional' },
                   { img: '/images/servicio-flexibilidad.jpg', label: 'Flexibilidad total' },
-                  { img: '/images/servicio-precios-regulados.jpg', label: 'Precios regulados INCASóL' },
+                  { img: '/images/servicio-precios-regulados.jpg', label: 'Precios regulados' },
                   { img: '/images/servicio-espacios-comunes.jpg', label: 'Espacios comunes equipados' },
                 ].map((servicio, index) => (
                   <div
