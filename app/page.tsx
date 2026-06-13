@@ -6,6 +6,7 @@ import Link from 'next/link';
 import SistemaCards from '@/components/SistemaCards';
 import Testimonios from '@/components/Testimonios';
 import Ahorro from '@/components/Ahorro';
+import AlojamientosDestacados from '@/components/AlojamientosDestacados';
 
 export const metadata: Metadata = {
   title: 'Viviendas Virtuo — Gestión profesional de alquiler en Barcelona',
@@ -18,6 +19,9 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+
+        {/* ESPACIOS DESTACADOS */}
+        <AlojamientosDestacados />
 
         {/* ELIGE TU OPCIÓN */}
         <section id="opciones" style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
