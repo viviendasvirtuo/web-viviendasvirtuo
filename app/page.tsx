@@ -1,40 +1,23 @@
+export const dynamic = 'force-dynamic';
+
 import type { Metadata } from 'next';
 import Header from '@/components/Header';
+import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import SistemaCards from '@/components/SistemaCards';
 
 export const metadata: Metadata = {
-  title: 'Inquilinos — Viviendas Virtuo',
-  description: 'Encuentra tu habitación ideal en Barcelona. Coliving, alquiler temporal y vacacional gestionados por profesionales. Entra y vive.',
+  title: 'Viviendas Virtuo — Gestión profesional de alquiler en Barcelona',
+  description: 'Gestión profesional de alquiler en Barcelona. Coliving, temporal y vacacional. Máxima rentabilidad sin preocupaciones.',
 };
 
-export default function InquilinosPage() {
+export default function Home() {
   return (
     <>
       <Header />
       <main>
-        {/* HERO */}
-        <section style={{ background: 'linear-gradient(135deg, #1a2540 0%, #2a3f6e 100%)', paddingTop: '140px', paddingBottom: '80px', position: 'relative', overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 65% 45%, rgba(144,202,249,0.1) 0%, transparent 60%)', pointerEvents: 'none' }} />
-          <div className="container">
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '999px', padding: '6px 16px', marginBottom: '32px' }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#90caf9', display: 'inline-block' }} />
-              <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'var(--text-xs)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Para inquilinos</span>
-            </div>
-            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)', fontWeight: 900, color: 'white', lineHeight: 1.1, marginBottom: '20px', maxWidth: '680px' }}>
-              Tu próximo hogar en Barcelona,{' '}
-              <span style={{ color: '#90caf9' }}>gestionado de verdad</span>
-            </h1>
-            <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 'var(--text-lg)', maxWidth: '540px', lineHeight: 1.7, marginBottom: '40px' }}>
-              Habitaciones y apartamentos con gestión profesional. Sin pisos mal mantenidos, sin propietarios que no cogen el teléfono. Solo calidad y tranquilidad.
-            </p>
-            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-              <a href="#opciones" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'white', color: '#1a2540', fontWeight: 700, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Ver opciones disponibles</a>
-              <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', border: '1.5px solid rgba(255,255,255,0.4)', color: 'white', background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)', fontWeight: 600, padding: '14px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Contáctanos</Link>
-            </div>
-          </div>
-        </section>
+        <Hero />
 
         {/* ELIGE TU OPCIÓN */}
         <section id="opciones" style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
@@ -99,7 +82,7 @@ export default function InquilinosPage() {
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'linear-gradient(135deg, #1a2540 0%, #2a3f6e 100%)', textAlign: 'center' }}>
           <div className="container">
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,3vw,2.2rem)', fontWeight: 800, color: 'white', marginBottom: '16px' }}>¿Listo para encontrar tu hogar?</h2>
-            <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 'var(--text-lg)', maxWidth: '460px', margin: '0 auto 36px', lineHeight: 1.7 }}>Escríbenos y te ayudamos a encontrar la opción perfecta para ti en Barcelona.</p>
+            <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 'var(--text-lg)', maxWidth: '460px', margin: '0 auto 36px', lineHeight: 1.7 }}>Eschíbenos y te ayudamos a encontrar la opción perfecta para ti en Barcelona.</p>
             <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', background: 'white', color: '#1a2540', fontWeight: 700, padding: '14px 32px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Contactar ahora</Link>
           </div>
         </section>
