@@ -164,7 +164,7 @@ export default function Hero() {
           textShadow: '0 2px 16px rgba(0,0,0,0.35)',
         }}>
           Tu próximo hogar en Barcelona,
-          <span style={{ display: 'block', color: 'rgba(255,255,255,0.45)', fontWeight: 700 }}>
+          <span style={{ display: 'block', color: '#ffffff', fontWeight: 700 }}>
             gestionado de verdad.
           </span>
         </h1>
