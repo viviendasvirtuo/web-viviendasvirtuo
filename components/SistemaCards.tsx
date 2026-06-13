@@ -7,7 +7,7 @@ const SISTEMAS = [
     badge: 'Coliving',
     title: 'Habitación a largo plazo',
     desc: 'Comunidad de convivencia, suministros incluidos, zonas comunes cuidadas. Ideal si te quedas 3+ meses.',
-    bg: '#1a4a8a',
+    bg: 'rgba(26, 74, 138, 0.45)',
     features: [
       'Suministros incluidos',
       'Contratos estables',
@@ -20,7 +20,7 @@ const SISTEMAS = [
     badge: 'Temporal',
     title: 'Estancia de 1 a 6 meses',
     desc: 'Perfecto para proyectos, másters o rotaciones. Flexibilidad sin sacrificar comodidad.',
-    bg: '#0d9e6e',
+    bg: 'rgba(13, 158, 110, 0.45)',
     features: [
       'Estancias de 1 a 6 meses',
       'Check-in y check-out incluidos',
@@ -33,7 +33,7 @@ const SISTEMAS = [
     badge: 'Vacacional',
     title: 'Apartamento completo',
     desc: 'Para turistas o visitas puntuales. Apartamento íntegro, equipado y listo para disfrutar.',
-    bg: '#c45e00',
+    bg: 'rgba(196, 94, 0, 0.45)',
     features: [
       'Apartamento completo para ti',
       'Totalmente equipado',
