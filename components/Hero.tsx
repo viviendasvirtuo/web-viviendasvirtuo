@@ -218,9 +218,7 @@ export default function Hero() {
 
       <div aria-hidden="true" style={{
         position: 'relative', zIndex: 4, width: '100%', overflow: 'hidden',
-        borderTop: '1px solid rgba(255,255,255,0.10)',
-        background: 'rgba(9,21,37,0.45)',
-        backdropFilter: 'blur(8px)',
+        background: '#ffffff',
         padding: '12px 0',
       }}>
         <div className="ticker-track">
@@ -247,8 +245,8 @@ export default function Hero() {
         @keyframes ticker { 0% { transform:translateX(0) } 100% { transform:translateX(-50%) } }
         .ticker-track { display:flex; width:max-content; animation:ticker 28s linear infinite; }
         .ticker-track:hover { animation-play-state:paused; }
-        .ticker-item { display:inline-flex; align-items:center; gap:10px; padding:0 2rem; font-size:clamp(0.7rem,0.65rem + 0.2vw,0.8rem); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.5); white-space:nowrap; }
-        .ticker-dot { width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,0.25); flex-shrink:0; }
+        .ticker-item { display:inline-flex; align-items:center; gap:10px; padding:0 2rem; font-size:clamp(0.7rem,0.65rem + 0.2vw,0.8rem); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#1a4a8a; white-space:nowrap; }
+        .ticker-dot { width:4px; height:4px; border-radius:50%; background:#1a4a8a; opacity:0.35; flex-shrink:0; }
 
         .badge-mobile { display:none; }
         .badge-desktop { display:inline; }
