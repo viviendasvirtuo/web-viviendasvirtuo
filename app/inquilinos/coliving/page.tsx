@@ -18,6 +18,8 @@ const COLIVING_ACCENT = '#6dbcdb';
 const TEMPORAL_GREEN = '#008f58';
 const VACACIONAL_ORANGE = '#c45e00';
 
+const TALLY_INQUILINO = 'https://tally.so/r/2EaJNe';
+
 export default function InquilinosColivingPage() {
   return (
     <>
@@ -143,12 +145,46 @@ export default function InquilinosColivingPage() {
           </div>
         </section>
 
+        {/* FORMULARIO CONTACTO */}
+        <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: '#f0f4fa' }}>
+          <div className="container" style={{ maxWidth: '640px' }}>
+            <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+              <p style={{ color: COLIVING_BLUE, fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>¿Te interesa?</p>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '16px' }}>Solicita información sobre coliving</h2>
+              <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-base)', lineHeight: 1.7 }}>Cuéntanos qué buscas y te respondemos en menos de 24h con lo que tenemos disponible ahora mismo.</p>
+            </div>
+            <div style={{ background: 'white', borderRadius: 'var(--radius-xl)', border: '1px solid var(--color-border)', padding: 'clamp(28px,5vw,48px)', boxShadow: 'var(--shadow-md)', display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {[
+                  'Cuestionario rápido (3 min)',
+                  'Te presentamos opciones disponibles',
+                  'Respuesta en menos de 24h',
+                ].map(item => (
+                  <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)' }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={COLIVING_BLUE} strokeWidth="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={TALLY_INQUILINO}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: COLIVING_BLUE, color: 'white', fontWeight: 700, fontSize: 'var(--text-base)', padding: '15px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', width: '100%', textAlign: 'center' }}
+              >
+                Solicitar información →
+              </a>
+              <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)', textAlign: 'center', margin: 0 }}>Sin compromiso · Abre en nueva pestaña</p>
+            </div>
+          </div>
+        </section>
+
         {/* CTA */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: `linear-gradient(135deg, ${COLIVING_BLUE_DARK}, ${COLIVING_BLUE})`, textAlign: 'center' }}>
           <div className="container">
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,3vw,2.2rem)', fontWeight: 800, color: 'white', marginBottom: '16px' }}>¿Buscas habitación en Barcelona?</h2>
             <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 'var(--text-lg)', maxWidth: '460px', margin: '0 auto 36px', lineHeight: 1.7 }}>Cuéntanos cuándo quieres entrar y te mostramos lo que tenemos disponible ahora mismo.</p>
-            <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', background: 'white', color: COLIVING_BLUE, fontWeight: 700, padding: '14px 32px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Ver disponibilidad</Link>
+            <a href={TALLY_INQUILINO} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', background: 'white', color: COLIVING_BLUE, fontWeight: 700, padding: '14px 32px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Ver disponibilidad</a>
           </div>
         </section>
       </main>
