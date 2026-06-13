@@ -1,13 +1,9 @@
+'use client';
 import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
-
-export const metadata: Metadata = {
-  title: 'Coliving para Propietarios — Viviendas Virtuo',
-  description: 'Gestión profesional de alquiler por habitaciones en Barcelona. Hasta +40% más rentabilidad que el alquiler tradicional. Análisis gratuito sin compromiso.',
-};
 
 const pasos = [
   {
@@ -85,7 +81,7 @@ const faqs = [
   },
   {
     q: '¿Qué tipo de piso es el más adecuado?',
-    a: 'Viviendas de 3 o más habitaciones en Barcelona y área metropolitana. Cuantas más habitaciones independientes, mayor es la rentabilidad. Lo ideal: salón convertible, 2+ baños y buena conexión de transporte.',
+    a: 'Viviendas de 4 o más habitaciones en las principales capitales y nodos de alta rentabilidad. Cuantas más habitaciones independientes, mayor es la rentabilidad. Lo ideal: 2 baños completos y buena conexión de transporte.',
   },
   {
     q: '¿Quién selecciona a los inquilinos?',
@@ -193,7 +189,7 @@ export default function PropietariosColivingPage() {
                   Virtuo se ocupa de todo: desde preparar el espacio hasta seleccionar residentes compatibles, gestionar cobros e incidencias. Tú solo recibes la liquidación mensual.
                 </p>
                 <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                  {['3+ habitaciones', 'Barcelona y área metropolitana', 'Gestión 100% incluida'].map((tag) => (
+                  {['4+ habitaciones', 'Principales capitales', 'Gestión 100% incluida'].map((tag) => (
                     <span key={tag} style={{ background: '#f0f4fa', border: '1px solid rgba(4,83,171,0.15)', borderRadius: '999px', padding: '6px 16px', fontSize: 'var(--text-xs)', fontWeight: 600, color: '#0453ab' }}>{tag}</span>
                   ))}
                 </div>
@@ -207,20 +203,19 @@ export default function PropietariosColivingPage() {
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: '48px' }}>
               <p style={{ color: '#0453ab', fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>¿Tu piso encaja?</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>Perfil ideal de vivienda para Coliving</h2>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>¿Cómo debe ser tu vivienda?</h2>
               <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-base)', maxWidth: '480px', margin: '16px auto 0', lineHeight: 1.7 }}>
-                No todas las propiedades son iguales. Estos son los criterios que maximizan la rentabilidad en coliving.
+                Estos son los criterios que maximizan la rentabilidad en coliving.
               </p>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', maxWidth: '900px', margin: '0 auto' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', maxWidth: '720px', margin: '0 auto' }}>
               {[
-                { icon: '🛏️', req: 'Mínimo 3 habitaciones', detail: 'Lo ideal: 4-5 hab. independientes. Cada una es un contrato adicional.' },
-                { icon: '🚿', req: 'Al menos 2 baños', detail: 'La ratio baño/habitación afecta directamente al precio por habitación.' },
-                { icon: '🏙️', req: 'Barcelona o área metropolitana', detail: 'Badalona, Hospitalet, Cornellà, Sant Cugat. Alta demanda de profesionales.' },
-                { icon: '📐', req: 'Sala común funcional', detail: 'Un salón o zona compartida bien equipada aumenta el valor percibido.' },
+                { icon: '🏙️', req: 'Principales capitales', detail: 'Presencia en principales capitales y nodos de alta rentabilidad.' },
+                { icon: '🛏️', req: 'Mínimo 4 dormitorios', detail: 'Cada habitación independiente es un contrato adicional y más ingresos.' },
+                { icon: '🚿', req: 'Mínimo 2 baños completos', detail: 'La ratio baño/habitación afecta directamente al precio por habitación.' },
               ].map((item) => (
-                <div key={item.req} style={{ background: 'white', borderRadius: 'var(--radius-xl)', border: '1px solid var(--color-border)', padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: '12px', textAlign: 'center' }}>
-                  <div style={{ fontSize: '2.2rem', lineHeight: 1 }}>{item.icon}</div>
+                <div key={item.req} style={{ background: 'white', borderRadius: 'var(--radius-xl)', border: '1px solid var(--color-border)', padding: '36px 28px', display: 'flex', flexDirection: 'column', gap: '12px', textAlign: 'center' }}>
+                  <div style={{ fontSize: '2.4rem', lineHeight: 1 }}>{item.icon}</div>
                   <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-base)', color: 'var(--color-text)' }}>{item.req}</div>
                   <div style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.6 }}>{item.detail}</div>
                 </div>
