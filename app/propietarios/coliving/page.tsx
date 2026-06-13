@@ -296,7 +296,7 @@ export default function PropietariosColivingPage() {
                 Por qué el coliving Virtuo es diferente
               </h2>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
+            <div className="ventajas-grid">
               {ventajas.map((v, i) => (
                 <div key={i} style={{ background: '#f8f9fc', borderRadius: 'var(--radius-xl)', border: '1px solid rgba(4,83,171,0.08)', padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0453ab" strokeWidth="1.8" aria-hidden="true">
@@ -308,6 +308,18 @@ export default function PropietariosColivingPage() {
               ))}
             </div>
           </div>
+          <style>{`
+            .ventajas-grid {
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 20px;
+            }
+            @media (max-width: 767px) {
+              .ventajas-grid {
+                grid-template-columns: 1fr;
+              }
+            }
+          `}</style>
         </section>
 
         {/* ── FAQ ──────────────────────────────────────────── */}
@@ -351,10 +363,10 @@ export default function PropietariosColivingPage() {
               <Link href="/contacto" className="btn btn-primary btn-lg" style={{ background: 'white', color: '#0453ab' }}>
                 Solicitar análisis gratuito →
               </Link>
-              <Link href="/propietarios/temporal" className="btn btn-lg" style={{ border: '1.5px solid rgba(255,255,255,0.4)', color: 'white', background: 'rgba(255,255,255,0.08)' }}>
+              <Link href="/propietarios/temporal" className="btn btn-lg" style={{ border: '1.5px solid rgba(255,255,255,0.4)', color: 'white', background: 'rgba(255,255,255,0.08)', color: '#008f58' }}>
                 Ver Temporal
               </Link>
-              <Link href="/propietarios/vacacional" className="btn btn-lg" style={{ border: '1.5px solid rgba(255,255,255,0.4)', color: 'white', background: 'rgba(255,255,255,0.08)' }}>
+              <Link href="/propietarios/vacacional" className="btn btn-lg" style={{ border: '1.5px solid rgba(255,255,255,0.4)', color: 'white', background: 'rgba(255,255,255,0.08)', color: '#c45e00' }}>
                 Ver Vacacional
               </Link>
             </div>
