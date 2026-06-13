@@ -180,9 +180,20 @@ export default function Hero() {
           Cuando llegues a Barcelona, nosotros ya lo tenemos todo listo.
         </p>
 
+        {/* 3 CTAs */}
         <div className="hero-ctas">
-          <Link href="/contacto" className="btn btn-white btn-lg">Soy propietario</Link>
-          <a href="#inquilinos" className="btn btn-ghost-white btn-lg">Busco habitación</a>
+          <Link href="/coliving" className="hero-btn hero-btn--coliving">
+            <span className="hero-btn-label">Coliving</span>
+            <span className="hero-btn-sub">Habitaciones · largo plazo</span>
+          </Link>
+          <Link href="/temporal" className="hero-btn hero-btn--temporal">
+            <span className="hero-btn-label">Temporal</span>
+            <span className="hero-btn-sub">1 a 6 meses</span>
+          </Link>
+          <Link href="/vacacional" className="hero-btn hero-btn--vacacional">
+            <span className="hero-btn-label">Vacacional</span>
+            <span className="hero-btn-sub">Apartamento completo</span>
+          </Link>
         </div>
       </div>
 
@@ -238,14 +249,79 @@ export default function Hero() {
         .ticker-track:hover { animation-play-state:paused; }
         .ticker-item { display:inline-flex; align-items:center; gap:10px; padding:0 2rem; font-size:clamp(0.7rem,0.65rem + 0.2vw,0.8rem); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.5); white-space:nowrap; }
         .ticker-dot { width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,0.25); flex-shrink:0; }
-        .hero-ctas { display:flex; flex-direction:row; gap:0.65rem; flex-wrap:wrap; justify-content:center; }
+
         .badge-mobile { display:none; }
         .badge-desktop { display:inline; }
-        @media (max-width:600px) {
-          .hero-ctas { flex-direction:column; align-items:center; width:100%; max-width:280px; }
-          .hero-ctas .btn { width:100%; justify-content:center; }
+
+        /* --- Hero CTAs --- */
+        .hero-ctas {
+          display: flex;
+          flex-direction: row;
+          gap: 0.65rem;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .hero-btn {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 2px;
+          padding: 0.7rem 1.4rem;
+          border-radius: 9999px;
+          border: 1.5px solid rgba(255,255,255,0.25);
+          backdrop-filter: blur(10px);
+          text-decoration: none;
+          transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+          min-width: 140px;
+        }
+        .hero-btn:hover {
+          transform: translateY(-2px);
+          border-color: rgba(255,255,255,0.55);
+          box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .hero-btn-label {
+          font-size: clamp(0.9rem, 0.8rem + 0.4vw, 1.05rem);
+          font-weight: 700;
+          color: #ffffff;
+          letter-spacing: 0.01em;
+        }
+        .hero-btn-sub {
+          font-size: clamp(0.65rem, 0.6rem + 0.2vw, 0.75rem);
+          font-weight: 500;
+          color: rgba(255,255,255,0.65);
+          letter-spacing: 0.03em;
+        }
+
+        /* Colores por sistema */
+        .hero-btn--coliving  { background: rgba(4, 83, 171, 0.45); }
+        .hero-btn--coliving:hover  { background: rgba(4, 83, 171, 0.70); }
+
+        .hero-btn--temporal  { background: rgba(0, 143, 88, 0.45); }
+        .hero-btn--temporal:hover  { background: rgba(0, 143, 88, 0.70); }
+
+        .hero-btn--vacacional { background: rgba(196, 94, 0, 0.45); }
+        .hero-btn--vacacional:hover { background: rgba(196, 94, 0, 0.70); }
+
+        /* Mobile: 2+1 */
+        @media (max-width: 600px) {
           .badge-desktop { display:none; }
           .badge-mobile { display:flex; flex-direction:column; align-items:center; line-height:1.5; }
+
+          .hero-ctas {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.55rem;
+            width: 100%;
+            max-width: 320px;
+          }
+          .hero-btn--vacacional {
+            grid-column: 1 / -1;
+          }
+          .hero-btn {
+            min-width: unset;
+          }
         }
       `}</style>
     </section>
