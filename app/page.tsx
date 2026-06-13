@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import SistemaCards from '@/components/SistemaCards';
+import Testimonios from '@/components/Testimonios';
 
 export const metadata: Metadata = {
   title: 'Viviendas Virtuo — Gestión profesional de alquiler en Barcelona',
@@ -29,6 +30,9 @@ export default function Home() {
             <SistemaCards />
           </div>
         </section>
+
+        {/* TESTIMONIOS */}
+        <Testimonios />
 
         {/* LA DIFERENCIA VIRTUO */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: '#f0f4fa' }}>

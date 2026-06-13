@@ -1,131 +1,168 @@
-export default function Testimonios() {
-  const testimonios = [
-    {
-      nombre: 'Carlos M.',
-      tipo: 'Propietario · Coliving',
-      texto: 'Llevaba años con el piso a medio ocupar y con problemas de pagos. Con Virtuo llevo 8 meses con ocupación total y sin un solo problema.',
-      rating: 5,
-      acento: 'var(--color-coliving)',
-      acentoTag: 'Coliving',
-    },
-    {
-      nombre: 'Laura P.',
-      tipo: 'Propietario · Vacacional',
-      texto: 'El apartamento de la playa estaba cogiendo polvo. Ahora genera más en temporada alta que todo el año anterior con alquiler tradicional.',
-      rating: 5,
-      acento: 'var(--color-vacacional)',
-      acentoTag: 'Vacacional',
-    },
-    {
-      nombre: 'Andrés T.',
-      tipo: 'Inquilino · Temporal',
-      texto: 'Vine por trabajo tres meses. Todo estaba impecable, el contrato era claro y cualquier duda la resolvieron al momento. Volvería sin dudarlo.',
-      rating: 5,
-      acento: 'var(--color-temporal)',
-      acentoTag: 'Temporal',
-    },
-  ];
+import Link from 'next/link';
 
+const testimonios = [
+  {
+    nombre: 'Laura M.',
+    lugar: 'Madrid, España',
+    texto: 'He vivido en 3 pisos compartidos en Barcelona y este es el primero donde todo funciona. Suministros incluidos, limpieza semanal y el equipo responde rápido. Recomiendo Viviendas Virtuo 100%.',
+    sistema: 'Coliving',
+    color: '#0453ab',
+    iniciales: 'LM',
+  },
+  {
+    nombre: 'Carlos R.',
+    lugar: 'México D.F., México',
+    texto: 'La flexibilidad del alquiler temporal me salvó durante mi máster. Pude alquilar por 5 meses sin problemas. Todo correcto y sin sorpresas.',
+    sistema: 'Temporal',
+    color: '#008f58',
+    iniciales: 'CR',
+  },
+  {
+    nombre: 'Sophie L.',
+    lugar: 'París, Francia',
+    texto: 'El apartamento vacacional estaba impecable, tal cual las fotos. La atención 24h nos ayudó con un problema de la calefacción a las 10pm. Repetiremos.',
+    sistema: 'Vacacional',
+    color: '#c45e00',
+    iniciales: 'SL',
+  },
+];
+
+export default function Testimonios() {
   return (
-    <section className="section section-alt">
+    <section style={{
+      padding: 'clamp(60px, 8vw, 100px) 0',
+      background: '#ffffff',
+    }}>
       <div className="container">
-        <div
-          style={{
-            display: 'flex', alignItems: 'flex-end',
-            justifyContent: 'space-between', flexWrap: 'wrap',
-            gap: 'var(--space-4)',
-            marginBottom: 'var(--space-12)',
-          }}
-        >
-          <div>
-            <p className="section-label">Lo que dicen</p>
-            <h2 className="section-title" style={{ margin: 0 }}>Propietarios e inquilinos satisfechos</h2>
-          </div>
-          {/* Estrellas promedio */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', flexShrink: 0 }}>
-            {Array.from({ length: 5 }).map((_, i) => (
-              <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill="#f59e0b" aria-hidden="true">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-              </svg>
-            ))}
-            <span style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--color-text)', marginLeft: '4px' }}>5.0</span>
-            <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)' }}>media</span>
-          </div>
+
+        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+          <p style={{
+            color: 'var(--color-primary)',
+            fontWeight: 700,
+            fontSize: 'var(--text-sm)',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            marginBottom: '12px',
+          }}>Opiniones reales</p>
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)',
+            fontWeight: 800,
+            color: 'var(--color-text)',
+            lineHeight: 1.2,
+          }}>Lo que dicen nuestros inquilinos</h2>
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
-            gap: 'var(--space-5)',
-          }}
-        >
-          {testimonios.map(t => (
-            <blockquote
-              key={t.nombre}
-              style={{
-                background: 'var(--color-surface)',
-                borderRadius: 'var(--radius-xl)',
-                padding: 'var(--space-8)',
-                border: '1px solid var(--color-border)',
-                boxShadow: 'var(--shadow-sm)',
-                display: 'flex', flexDirection: 'column', gap: 'var(--space-5)',
-                margin: 0,
-              }}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '24px',
+        }}>
+          {testimonios.map((t) => (
+            <div key={t.nombre} style={{
+              background: '#ffffff',
+              border: '1px solid #e8ecf2',
+              borderRadius: 'var(--radius-xl)',
+              padding: '28px 24px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '16px',
+              boxShadow: '0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04)',
+              transition: 'box-shadow 0.2s ease, transform 0.2s ease',
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLDivElement).style.boxShadow = '0 8px 28px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06)';
+              (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLDivElement).style.boxShadow = '0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04)';
+              (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
+            }}
             >
               {/* Estrellas */}
               <div style={{ display: 'flex', gap: '3px' }}>
-                {Array.from({ length: t.rating }).map((_, i) => (
-                  <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" aria-hidden="true">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                  </svg>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <span key={i} style={{ color: '#f59e0b', fontSize: '1rem' }}>★</span>
                 ))}
               </div>
 
               {/* Texto */}
-              <p
-                style={{
-                  fontSize: 'var(--text-base)', color: 'var(--color-text)',
-                  lineHeight: 1.7, flex: 1, fontStyle: 'italic',
-                }}
-              >
+              <p style={{
+                fontSize: 'var(--text-sm)',
+                color: 'var(--color-text)',
+                lineHeight: 1.7,
+                margin: 0,
+                flexGrow: 1,
+              }}>
                 &ldquo;{t.texto}&rdquo;
               </p>
 
               {/* Autor */}
-              <footer
-                style={{
-                  display: 'flex', alignItems: 'center',
-                  justifyContent: 'space-between',
-                  paddingTop: 'var(--space-4)',
-                  borderTop: '1px solid var(--color-border)',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
-                  {/* Avatar inicial */}
-                  <div
-                    style={{
-                      width: '36px', height: '36px',
-                      borderRadius: '50%',
-                      background: `${t.acento}15`,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: 'var(--text-sm)', fontWeight: 800,
-                      color: t.acento,
-                      fontFamily: 'var(--font-display)',
-                      flexShrink: 0,
-                    }}
-                  >
-                    {t.nombre[0]}
-                  </div>
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)' }}>{t.nombre}</div>
-                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-faint)' }}>{t.tipo}</div>
-                  </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', paddingTop: '8px', borderTop: '1px solid #f0f2f5' }}>
+                {/* Avatar con iniciales */}
+                <div style={{
+                  width: '42px',
+                  height: '42px',
+                  borderRadius: '50%',
+                  background: t.color,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                  color: '#ffffff',
+                  fontWeight: 700,
+                  fontSize: '0.8rem',
+                  letterSpacing: '0.05em',
+                }}>
+                  {t.iniciales}
                 </div>
-              </footer>
-            </blockquote>
+                <div style={{ flexGrow: 1 }}>
+                  <p style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)', margin: 0 }}>{t.nombre}</p>
+                  <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', margin: 0 }}>{t.lugar}</p>
+                </div>
+                {/* Badge sistema */}
+                <span style={{
+                  fontSize: '0.65rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  color: t.color,
+                  background: `${t.color}14`,
+                  border: `1px solid ${t.color}30`,
+                  borderRadius: '9999px',
+                  padding: '3px 10px',
+                  flexShrink: 0,
+                }}>
+                  {t.sistema}
+                </span>
+              </div>
+            </div>
           ))}
         </div>
+
+        {/* Link Google Reviews */}
+        <div style={{ textAlign: 'center', marginTop: '40px' }}>
+          <Link href="#" style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            fontSize: 'var(--text-sm)',
+            fontWeight: 600,
+            color: 'var(--color-primary)',
+            textDecoration: 'none',
+            borderBottom: '1px solid transparent',
+            transition: 'border-color 0.15s ease',
+          }}
+          onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = 'var(--color-primary)'}
+          onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = 'transparent'}
+          >
+            <span>Ver todas las opiniones en Google</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </Link>
+        </div>
+
       </div>
     </section>
   );
