@@ -130,7 +130,7 @@ export default function Hero() {
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        paddingTop: '100px',
+        paddingTop: '80px',
         paddingBottom: '1rem',
         paddingLeft: 'clamp(1.25rem, 4vw, 3rem)',
         paddingRight: 'clamp(1.25rem, 4vw, 3rem)',
@@ -138,22 +138,6 @@ export default function Hero() {
         marginInline: 'auto',
         width: '100%',
       }}>
-
-        <div style={{
-          display: 'inline-flex', alignItems: 'center', gap: '8px',
-          background: 'rgba(255,255,255,0.10)',
-          border: '1px solid rgba(255,255,255,0.18)',
-          borderRadius: '9999px',
-          padding: '0.3rem 1rem 0.3rem 0.6rem',
-          marginBottom: '1.25rem',
-          backdropFilter: 'blur(12px)',
-        }}>
-          <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4ade80', flexShrink: 0 }} />
-          <span style={{ fontSize: 'clamp(0.7rem, 0.65rem + 0.2vw, 0.9rem)', fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.05em' }}>
-            <span className="badge-desktop">Gestión profesional de alquiler · Barcelona y área metropolitana</span>
-            <span className="badge-mobile"><span>Gestión profesional de alquiler</span><span>Barcelona y área metropolitana</span></span>
-          </span>
-        </div>
 
         <h1 style={{
           fontFamily: 'var(--font-display)',
@@ -248,9 +232,6 @@ export default function Hero() {
         .ticker-item { display:inline-flex; align-items:center; gap:10px; padding:0 2rem; font-size:clamp(0.7rem,0.65rem + 0.2vw,0.8rem); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#1a4a8a; white-space:nowrap; }
         .ticker-dot { width:4px; height:4px; border-radius:50%; background:#1a4a8a; opacity:0.35; flex-shrink:0; }
 
-        .badge-mobile { display:none; }
-        .badge-desktop { display:inline; }
-
         /* --- Hero CTAs --- */
         .hero-ctas {
           display: flex;
@@ -292,7 +273,6 @@ export default function Hero() {
           letter-spacing: 0.03em;
         }
 
-        /* Colores por sistema */
         .hero-btn--coliving  { background: rgba(4, 83, 171, 0.45); }
         .hero-btn--coliving:hover  { background: rgba(4, 83, 171, 0.70); }
 
@@ -302,11 +282,7 @@ export default function Hero() {
         .hero-btn--vacacional { background: rgba(196, 94, 0, 0.45); }
         .hero-btn--vacacional:hover { background: rgba(196, 94, 0, 0.70); }
 
-        /* Mobile: 2+1 */
         @media (max-width: 600px) {
-          .badge-desktop { display:none; }
-          .badge-mobile { display:flex; flex-direction:column; align-items:center; line-height:1.5; }
-
           .hero-ctas {
             display: grid;
             grid-template-columns: 1fr 1fr;
