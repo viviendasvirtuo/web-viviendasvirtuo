@@ -112,7 +112,7 @@ export default function Home() {
        {/* 4. POR QUÉ VIVIENDAS VIRTUO */}
 <section style={{ padding: 'clamp(60px,8vw,100px) 0', backgroundImage: 'url(/images/habitacion-fondo.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
   <div className="container">
-    <div style={{ background: 'rgba(26, 74, 138, 0.88)', borderRadius: 'var(--radius-xl)', padding: 'clamp(40px,6vw,72px)', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', color: 'white', backdropFilter: 'blur(8px)' }}>
+    <div style={{ background: 'rgba(26, 74, 138, 0.78)', borderRadius: 'var(--radius-xl)', padding: 'clamp(40px,6vw,72px)', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', color: 'white', backdropFilter: 'blur(8px)' }}>
       <p style={{ fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px', opacity: 0.75 }}>¿Por qué Viviendas Virtuo?</p>
       <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.75rem,3vw,2.8rem)', fontWeight: 900, lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '20px', maxWidth: '680px' }}>Hasta <span style={{ color: '#6effc0' }}>400€ menos al mes</span> que un alquiler tradicional</h2>
       <p style={{ fontSize: 'clamp(0.95rem,0.85rem + 0.5vw,1.1rem)', opacity: 0.85, lineHeight: 1.75, maxWidth: '520px', marginBottom: '36px' }}>
@@ -179,65 +179,3 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* 8. DESCUENTOS, TAMBIÉN INCLUIDOS */}
-        <section style={{ padding: 'clamp(60px,8vw,96px) 0', background: 'var(--color-bg)' }}>
-          <div className="container">
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
-              <span style={{ display: 'inline-block', background: '#fff3e0', color: '#e07000', fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '6px 16px', borderRadius: 'var(--radius-full)', marginBottom: '20px' }}>Próximamente</span>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.4rem)', fontWeight: 900, color: 'var(--color-text)', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '20px' }}>Descuentos, también incluidos</h2>
-              <p style={{ fontSize: 'clamp(0.95rem,0.85rem + 0.5vw,1.1rem)', color: 'var(--color-text-muted)', lineHeight: 1.75, marginBottom: '32px' }}>Estamos negociando ventajas exclusivas con gimnasios, co-workings, transporte y ocio en Barcelona para todos los inquilinos Virtuo.</p>
-              <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-primary)', color: 'white', fontWeight: 700, fontSize: 'var(--text-base)', padding: '13px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none' }}>Avísame cuando esté disponible <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></Link>
-            </div>
-          </div>
-        </section>
-
-        {/* 9. UNA COMUNIDAD CON POTENCIAL */}
-        <section style={{ padding: 'clamp(60px,8vw,96px) 0', background: '#f0f4fa' }}>
-          <div className="container">
-            <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-              <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Una comunidad con potencial</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.4rem)', fontWeight: 900, color: 'var(--color-text)', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '16px' }}>Gente de más de 10 países</h2>
-              <p style={{ fontSize: 'clamp(0.95rem,0.85rem + 0.5vw,1.1rem)', color: 'var(--color-text-muted)', lineHeight: 1.75, maxWidth: '520px', margin: '0 auto' }}>Profesionales, estudiantes de máster, nómadas digitales y emprendedores comparten espacios y crean red en Barcelona.</p>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(180px,1fr))', gap: '20px', maxWidth: '960px', margin: '0 auto' }}>
-              {[{ icon: '🌍', label: '+10 países representados' }, { icon: '💼', label: 'Profesionales y freelancers' }, { icon: '🎓', label: 'Estudiantes de máster y ciclos' }, { icon: '🤝', label: 'Eventos mensuales de networking' }, { icon: '📱', label: 'Grupo privado de residentes' }, { icon: '🏙️', label: 'Zonas prime de Barcelona' }].map(item => (
-                <div key={item.label} style={{ background: 'white', borderRadius: 'var(--radius-xl)', padding: '24px 20px', border: '1px solid var(--color-border)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '1.6rem', marginBottom: '10px' }}>{item.icon}</div>
-                  <p style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--color-text)', lineHeight: 1.4 }}>{item.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 10. CLUB VIRTUO */}
-        <section style={{ padding: 'clamp(60px,8vw,96px) 0', background: 'var(--color-bg)' }}>
-          <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: '48px', alignItems: 'center' }}>
-              <div>
-                <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '16px' }}>Club Virtuo</p>
-                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.4rem)', fontWeight: 900, color: 'var(--color-text)', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '20px' }}>Espacios para trabajar y conectar</h2>
-                <p style={{ fontSize: 'clamp(0.95rem,0.85rem + 0.5vw,1.1rem)', color: 'var(--color-text-muted)', lineHeight: 1.75, marginBottom: '32px' }}>Todos los residentes Virtuo tienen acceso a nuestra red de zonas comunes, salas de trabajo y eventos exclusivos pensados para hacer crecer tu red profesional en Barcelona.</p>
-                <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-primary)', color: 'white', fontWeight: 700, fontSize: 'var(--text-base)', padding: '13px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none' }}>Quiero saber más <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></Link>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                {[{ icon: '💻', title: 'Co-working en las zonas comunes', desc: 'Espacios habilitados con escritorio, cargadores y WiFi de alta velocidad.' }, { icon: '🎉', title: 'Eventos mensuales', desc: 'Afterworks, cenas de bienvenida, talleres y actividades de ocio.' }, { icon: '📢', title: 'Canal exclusivo de residentes', desc: 'Grupos privados donde compartir oportunidades, buscar compañeros y hacer contactos.' }].map(item => (
-                  <div key={item.title} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start', background: '#f0f4fa', borderRadius: 'var(--radius-lg)', padding: '20px' }}>
-                    <span style={{ fontSize: '1.5rem', flexShrink: 0 }}>{item.icon}</span>
-                    <div>
-                      <h3 style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-text)', marginBottom: '4px' }}>{item.title}</h3>
-                      <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.6, margin: 0 }}>{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-      </main>
-      <Footer />
-    </>
-  );
-}
