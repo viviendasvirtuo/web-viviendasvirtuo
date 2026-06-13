@@ -184,15 +184,15 @@ export default function Hero() {
         <div className="hero-ctas">
           <Link href="/coliving" className="hero-btn hero-btn--coliving">
             <span className="hero-btn-label">Coliving</span>
-            <span className="hero-btn-sub">Habitaciones · largo plazo</span>
+            <span className="hero-btn-sub">Tu habitación en Barcelona</span>
           </Link>
           <Link href="/temporal" className="hero-btn hero-btn--temporal">
             <span className="hero-btn-label">Temporal</span>
-            <span className="hero-btn-sub">1 a 6 meses</span>
+            <span className="hero-btn-sub">Estancias de corta duración</span>
           </Link>
           <Link href="/vacacional" className="hero-btn hero-btn--vacacional">
             <span className="hero-btn-label">Vacacional</span>
-            <span className="hero-btn-sub">Apartamento completo</span>
+            <span className="hero-btn-sub">Todo el apartamento para ti</span>
           </Link>
         </div>
       </div>
