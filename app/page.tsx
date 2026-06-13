@@ -33,14 +33,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3. COMUNIDAD VIRTUO */}
+        {/* 3. AHORRO ECONÓMICO */}
+        <Ahorro />
+
+        {/* 4. COMUNIDAD */}
         <Comunidad />
 
-        {/* 4. TESTIMONIOS */}
+        {/* 5. TESTIMONIOS */}
         <Testimonios />
-
-        {/* 5. AHORRO */}
-        <Ahorro />
 
         {/* 6. LA DIFERENCIA VIRTUO */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: '#f0f4fa' }}>
