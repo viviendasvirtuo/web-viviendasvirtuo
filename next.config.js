@@ -26,12 +26,22 @@ const nextConfig = {
       },
       {
         source: '/inquilinos/temporal',
-        destination: '/alquiler-temporal',
+        destination: '/temporal',
         permanent: true,
       },
       {
         source: '/inquilinos/vacacional',
-        destination: '/alquiler-vacacional',
+        destination: '/vacacional',
+        permanent: true,
+      },
+      {
+        source: '/alquiler-temporal',
+        destination: '/temporal',
+        permanent: true,
+      },
+      {
+        source: '/alquiler-vacacional',
+        destination: '/vacacional',
         permanent: true,
       },
     ];
