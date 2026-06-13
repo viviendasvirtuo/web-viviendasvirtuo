@@ -163,9 +163,9 @@ export default function Hero() {
           letterSpacing: '-0.025em',
           textShadow: '0 2px 16px rgba(0,0,0,0.35)',
         }}>
-          Tu próximo hogar en Barcelona,
+          Alquilar en Barcelona sin miedo.
           <span style={{ display: 'block', color: '#ffffff', fontWeight: 700 }}>
-            gestionado de verdad.
+            Con todo incluido. Hasta la tranquilidad.
           </span>
         </h1>
 
@@ -177,7 +177,7 @@ export default function Hero() {
           maxWidth: '46ch', marginInline: 'auto',
           textShadow: '0 1px 8px rgba(0,0,0,0.3)',
         }}>
-          Habitaciones y apartamentos con gestión profesional. Sin pisos mal mantenidos, sin propietarios que no cogen el teléfono. Solo calidad y tranquilidad.
+          Cuando llegues a Barcelona, nosotros ya lo tenemos todo listo.
         </p>
 
         <div className="hero-ctas">
