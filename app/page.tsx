@@ -76,15 +76,24 @@ export default function Home() {
                 ].map((servicio, index) => (
                   <div
                     key={index}
-                    className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-md hover:shadow-lg hover:scale-[1.03] transition-all duration-300 cursor-pointer group"
+                    className="relative rounded-xl overflow-hidden shadow-md hover:shadow-lg hover:scale-[1.03] transition-all duration-300 cursor-pointer group"
+                    style={{ aspectRatio: '4/3' }}
                   >
                     <img
                       src={servicio.img}
                       alt={servicio.label}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      loading="lazy"
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block',
+                      }}
                     />
-                    <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors"></div>
-                    <span className="absolute inset-0 flex items-center justify-center text-white font-semibold text-sm md:text-base text-center px-3">
+                    <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors" />
+                    <span className="absolute inset-0 flex items-center justify-center text-white font-semibold text-sm md:text-base text-center px-3 leading-snug">
                       {servicio.label}
                     </span>
                   </div>
