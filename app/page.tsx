@@ -109,33 +109,32 @@ export default function Home() {
           `}</style>
         </section>
 
-        {/* 4. POR QUÉ VIVIENDAS VIRTUO */}
-        <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
-          <div className="container">
-            <div style={{ background: 'linear-gradient(135deg,#1a4a8a 0%,#0f2d5e 100%)', borderRadius: 'var(--radius-xl)', padding: 'clamp(40px,6vw,72px)', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', color: 'white' }}>
-              <p style={{ fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px', opacity: 0.75 }}>¿Por qué Viviendas Virtuo?</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.75rem,3vw,2.8rem)', fontWeight: 900, lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '20px', maxWidth: '680px' }}>Hasta <span style={{ color: '#6effc0' }}>400€ menos al mes</span> que un alquiler tradicional</h2>
-              <p style={{ fontSize: 'clamp(0.95rem,0.85rem + 0.5vw,1.1rem)', opacity: 0.85, lineHeight: 1.75, maxWidth: '520px', marginBottom: '36px' }}>
-  Tu estancia temporal en Barcelona, 100% segura y sin costes sorpresa.
-  En un mercado lleno de incertidumbres, operamos bajo un marco legal estricto para ofrecerte flexibilidad real en estancias de media duración. 
-  <br />
-  Con nuestro modelo todo incluido, te garantizamos un contrato digital transparente, gestión ágil de fianzas y acceso a la "Wiki del piso" con todo el control desde tu móvil. 
-  <br />
-  Olvídate de sorpresas financieras: disfrutas de una habitación totalmente amueblada, suministros cubiertos y un único pago mensual sin complicaciones.
-</p>
-<div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '36px' }}>
-              <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '36px' }}>
-                {[{ val: '400€', label: 'ahorro mensual medio' }, { val: '24h', label: 'respuesta a incidencias' }, { val: '100%', label: 'contratos regulados' }].map(s => (
-                  <div key={s.label} style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 900, color: '#6effc0', lineHeight: 1 }}>{s.val}</div>
-                    <div style={{ fontSize: 'var(--text-xs)', opacity: 0.7, marginTop: '4px' }}>{s.label}</div>
-                  </div>
-                ))}
-              </div>
-              <Link href="/coliving" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'white', color: '#1a4a8a', fontWeight: 700, fontSize: 'var(--text-base)', padding: '13px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none' }}>Ver habitaciones <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></Link>
-            </div>
+       {/* 4. POR QUÉ VIVIENDAS VIRTUO */}
+<section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
+  <div className="container">
+    <div style={{ background: 'linear-gradient(135deg,#1a4a8a 0%,#0f2d5e 100%)', borderRadius: 'var(--radius-xl)', padding: 'clamp(40px,6vw,72px)', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', color: 'white' }}>
+      <p style={{ fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px', opacity: 0.75 }}>¿Por qué Viviendas Virtuo?</p>
+      <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.75rem,3vw,2.8rem)', fontWeight: 900, lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '20px', maxWidth: '680px' }}>Hasta <span style={{ color: '#6effc0' }}>400€ menos al mes</span> que un alquiler tradicional</h2>
+      <p style={{ fontSize: 'clamp(0.95rem,0.85rem + 0.5vw,1.1rem)', opacity: 0.85, lineHeight: 1.75, maxWidth: '520px', marginBottom: '36px' }}>
+        Tu estancia temporal en Barcelona, 100% segura y sin costes sorpresa.
+        En un mercado lleno de incertidumbres, operamos bajo un marco legal estricto para ofrecerte flexibilidad real en estancias de media duración. 
+        <br />
+        Con nuestro modelo todo incluido, te garantizamos un contrato digital transparente, gestión ágil de fianzas y acceso a la "Wiki del piso" con todo el control desde tu móvil. 
+        <br />
+        Olvídate de sorpresas financieras: disfrutas de una habitación totalmente amueblada, suministros cubiertos y un único pago mensual sin complicaciones.
+      </p>
+      <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '36px' }}>
+        {[{ val: '400€', label: 'ahorro mensual medio' }, { val: '24h', label: 'respuesta a incidencias' }, { val: '100%', label: 'contratos regulados' }].map(s => (
+          <div key={s.label} style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 900, color: '#6effc0', lineHeight: 1 }}>{s.val}</div>
+            <div style={{ fontSize: 'var(--text-xs)', opacity: 0.7, marginTop: '4px' }}>{s.label}</div>
           </div>
-        </section>
+        ))}
+      </div>
+      <Link href="/coliving" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'white', color: '#1a4a8a', fontWeight: 700, fontSize: 'var(--text-base)', padding: '13px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none' }}>Ver habitaciones <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></Link>
+    </div>
+  </div>
+</section>
 
         {/* 5. EVENTOS Y COMUNIDAD */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: '#f0f4fa' }}>
