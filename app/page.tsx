@@ -124,7 +124,7 @@ export default function Home() {
         Olvídate de sorpresas financieras: disfrutas de una habitación totalmente amueblada, suministros cubiertos y un único pago mensual sin complicaciones.
       </p>
       <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '36px' }}>
-        {[{ val: '400€', label: 'ahorro mensual medio' }, { val: '24h', label: 'respuesta a incidencias' }, { val: '100%', label: 'contratos regulados' }].map(s => (
+        {[{ val: '100%', label: 'control total desde tu móvil' }, { val: '24h', label: 'respuesta a incidencias' }, { val: '100%', label: 'contratos regulados' }].map(s => (
           <div key={s.label} style={{ textAlign: 'center' }}>
             <div style={{ fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 900, color: '#6effc0', lineHeight: 1 }}>{s.val}</div>
             <div style={{ fontSize: 'var(--text-xs)', opacity: 0.7, marginTop: '4px' }}>{s.label}</div>
