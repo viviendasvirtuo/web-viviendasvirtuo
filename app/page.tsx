@@ -3,7 +3,6 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
-import Image from 'next/image';
 import SistemaCards from '@/components/SistemaCards';
 import Testimonios from '@/components/Testimonios';
 import HabitacionesDestacadas from '@/components/HabitacionesDestacadas';
@@ -23,23 +22,21 @@ export default function Home() {
         <Hero />
 
         {/* 2. NUESTROS SISTEMAS */}
-        <section id="opciones" style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
+        <section
+          id="opciones"
+          style={{
+            padding: 'clamp(60px,8vw,100px) 0',
+            backgroundImage: 'linear-gradient(rgba(10,20,50,0.72), rgba(10,20,50,0.72)), url(/images/comunidad_gente.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-              <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Todo incluido</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>¿Qué tipo de alojamiento necesitas?</h2>
+              <p style={{ color: '#6effc0', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Todo incluido</p>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'white', lineHeight: 1.2 }}>¿Qué tipo de alojamiento necesitas?</h2>
             </div>
             <SistemaCards />
-            <div style={{ marginTop: '48px', borderRadius: 'var(--radius-xl)', overflow: 'hidden', lineHeight: 0 }}>
-              <Image
-                src="/images/comunidad_gente.jpg"
-                alt="Comunidad de residentes Viviendas Virtuo"
-                width={1400}
-                height={600}
-                style={{ width: '100%', height: 'clamp(260px,40vw,600px)', objectFit: 'cover' }}
-                priority={false}
-              />
-            </div>
           </div>
         </section>
 
@@ -122,9 +119,7 @@ export default function Home() {
             <div style={{ textAlign: 'center', marginBottom: '16px' }}>
               <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Tú eliges</p>
             </div>
-            {/* Fila 1: Temporal (4 pisos) */}
             <HabitacionesDestacadas sistema="temporal" />
-            {/* Fila 2: Coliving (4 pisos) */}
             <div style={{ marginTop: '0' }}>
               <HabitacionesDestacadas sistema="coliving" />
             </div>
