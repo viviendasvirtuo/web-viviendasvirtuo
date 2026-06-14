@@ -1,12 +1,7 @@
-import type { Metadata } from 'next';
+'use client';
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
-
-export const metadata: Metadata = {
-  title: 'Iniciar sesión — Viviendas Virtuo',
-  description: 'Accede a tu portal de inquilino o propietario en Viviendas Virtuo.',
-};
 
 export default function IniciarSesion() {
   return (
