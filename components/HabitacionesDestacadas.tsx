@@ -121,198 +121,186 @@ export default function HabitacionesDestacadas({ sistema, sistemas, mostrarTitul
     'Vacacional';
 
   return (
-    <>
-      <style>{`
-        .hab-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
-        }
-        @media (max-width: 1100px) {
-          .hab-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 600px) {
-          .hab-grid { grid-template-columns: 1fr; }
-        }
-      `}</style>
+    <section style={{ background: '#f8f9fc', padding: mostrarTitulo ? '80px 0' : '0' }}>
+      <div style={{ width: '100%', padding: '0 12px' }}>
 
-      <section style={{ background: '#f8f9fc', padding: mostrarTitulo ? '80px 0' : '0' }}>
-        <div style={{ maxWidth: '1600px', margin: '0 auto', padding: '0 20px' }}>
+        {/* Cabecera */}
+        {mostrarTitulo && (
+          <div style={{ textAlign: 'center', marginBottom: '56px', maxWidth: '700px', margin: '0 auto 56px' }}>
+            <span style={{
+              display: 'inline-block',
+              background: '#e8f0fb',
+              color: accentColor,
+              fontSize: '13px',
+              fontWeight: 600,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              padding: '6px 16px',
+              borderRadius: '999px',
+              marginBottom: '16px',
+            }}>
+              {sistemaEfectivo === 'vacacional' ? 'Apartamentos' : 'Habitaciones'} {labelSistema}
+            </span>
+            <h2 style={{
+              fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
+              fontWeight: 700,
+              color: '#0f2d5e',
+              marginBottom: '16px',
+              lineHeight: 1.2,
+            }}>
+              {sistemaEfectivo === 'vacacional'
+                ? 'Apartamentos disponibles en Barcelona'
+                : 'Encuentra tu habitación en Barcelona'}
+            </h2>
+            <p style={{ fontSize: '1.05rem', color: '#5a6a7e', lineHeight: 1.6 }}>
+              {sistemaEfectivo === 'vacacional'
+                ? 'Apartamentos completos gestionados profesionalmente. Precio todo incluido.'
+                : 'Precio regulado según índice oficial INCASÒL. Todo incluido, sin sorpresas.'}
+            </p>
+          </div>
+        )}
 
-          {/* Cabecera */}
-          {mostrarTitulo && (
-            <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-              <span style={{
-                display: 'inline-block',
-                background: '#e8f0fb',
-                color: accentColor,
-                fontSize: '13px',
-                fontWeight: 600,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                padding: '6px 16px',
-                borderRadius: '999px',
-                marginBottom: '16px',
-              }}>
-                {sistemaEfectivo === 'vacacional' ? 'Apartamentos' : 'Habitaciones'} {labelSistema}
-              </span>
-              <h2 style={{
-                fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
-                fontWeight: 700,
-                color: '#0f2d5e',
-                marginBottom: '16px',
-                lineHeight: 1.2,
-              }}>
-                {sistemaEfectivo === 'vacacional'
-                  ? 'Apartamentos disponibles en Barcelona'
-                  : 'Encuentra tu habitación en Barcelona'}
-              </h2>
-              <p style={{ fontSize: '1.05rem', color: '#5a6a7e', maxWidth: '560px', margin: '0 auto', lineHeight: 1.6 }}>
-                {sistemaEfectivo === 'vacacional'
-                  ? 'Apartamentos completos gestionados profesionalmente. Precio todo incluido.'
-                  : 'Precio regulado según índice oficial INCASÒL. Todo incluido, sin sorpresas.'}
-              </p>
-            </div>
-          )}
+        {/* Sin resultados */}
+        {lista.length === 0 && (
+          <div style={{ textAlign: 'center', padding: '60px 24px', color: '#9aa5b4' }}>
+            <p style={{ fontSize: '1.1rem', marginBottom: '8px' }}>Próximamente disponible</p>
+            <p style={{ fontSize: '0.9rem' }}>Estamos preparando nuevas unidades. Contáctanos para más información.</p>
+          </div>
+        )}
 
-          {/* Sin resultados */}
-          {lista.length === 0 && (
-            <div style={{ textAlign: 'center', padding: '60px 24px', color: '#9aa5b4' }}>
-              <p style={{ fontSize: '1.1rem', marginBottom: '8px' }}>Próximamente disponible</p>
-              <p style={{ fontSize: '0.9rem' }}>Estamos preparando nuevas unidades. Contáctanos para más información.</p>
-            </div>
-          )}
-
-          {/* Grid 4 columnas */}
-          {lista.length > 0 && (
-            <div className="hab-grid">
-              {lista.map((hab) => {
-                const cardAccent =
-                  hab.sistema === 'coliving' ? '#0453ab' :
-                  hab.sistema === 'temporal' ? '#008f58' :
-                  '#c45e00';
-                return (
-                  <div
-                    key={hab.ref}
-                    style={{
-                      background: '#ffffff',
-                      borderRadius: '16px',
-                      overflow: 'hidden',
-                      boxShadow: '0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)',
-                      border: '1px solid rgba(0,0,0,0.07)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-3px)';
-                      (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 12px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.06)';
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
-                      (e.currentTarget as HTMLDivElement).style.boxShadow = '0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)';
-                    }}
-                  >
-                    {/* Imagen */}
-                    <div style={{ position: 'relative', width: '100%', height: '220px', flexShrink: 0 }}>
-                      <Image
-                        src={hab.imagen}
-                        alt={`Foto de ${hab.titulo}`}
-                        fill
-                        style={{ objectFit: 'cover' }}
-                        sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 25vw"
-                      />
-                      {/* Badge Tour 3D */}
-                      <div style={{
-                        position: 'absolute', top: '12px', left: '12px',
-                        background: 'rgba(255,255,255,0.95)',
-                        backdropFilter: 'blur(4px)',
-                        color: '#1a1a1a',
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        padding: '5px 12px',
-                        borderRadius: '999px',
-                      }}>
-                        Tour 3D
-                      </div>
-                      {/* Hueco para badges futuros (disponibilidad, etc.) */}
+        {/* Grid auto-fill — 3 cols a zoom 100%, 4 cols a zoom menor */}
+        {lista.length > 0 && (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
+            gap: '16px',
+          }}>
+            {lista.map((hab) => {
+              const cardAccent =
+                hab.sistema === 'coliving' ? '#0453ab' :
+                hab.sistema === 'temporal' ? '#008f58' :
+                '#c45e00';
+              return (
+                <div
+                  key={hab.ref}
+                  style={{
+                    background: '#ffffff',
+                    borderRadius: '24px',
+                    overflow: 'hidden',
+                    boxShadow: '0 1px 4px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04)',
+                    border: '1px solid rgba(0,0,0,0.06)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)';
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = '0 8px 24px rgba(0,0,0,0.1), 0 16px 40px rgba(0,0,0,0.06)';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = '0 1px 4px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04)';
+                  }}
+                >
+                  {/* Imagen */}
+                  <div style={{ position: 'relative', width: '100%', height: '240px', flexShrink: 0 }}>
+                    <Image
+                      src={hab.imagen}
+                      alt={`Foto de ${hab.titulo}`}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                    />
+                    {/* Badge Tour 3D */}
+                    <div style={{
+                      position: 'absolute', top: '14px', left: '14px',
+                      background: 'rgba(255,255,255,0.96)',
+                      backdropFilter: 'blur(6px)',
+                      color: '#1a1a1a',
+                      fontSize: '12px',
+                      fontWeight: 600,
+                      padding: '6px 14px',
+                      borderRadius: '999px',
+                    }}>
+                      Tour 3D
                     </div>
+                    {/* Hueco para badges futuros */}
+                  </div>
 
-                    {/* Contenido */}
-                    <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '10px', flex: 1 }}>
+                  {/* Contenido */}
+                  <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px', flex: 1 }}>
 
-                      {/* Nombre + Precio */}
-                      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px' }}>
-                        <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#0f2d5e', lineHeight: 1.2, flex: 1 }}>
-                          {hab.titulo}
-                        </h3>
-                        <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                          <div style={{ fontSize: '10px', color: '#9aa5b4', lineHeight: 1 }}>Desde</div>
-                          <div style={{ fontSize: '1.3rem', fontWeight: 800, color: cardAccent, lineHeight: 1.1 }}>
-                            {hab.precio.toLocaleString('es-ES')}€
-                          </div>
+                    {/* Nombre + Precio */}
+                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px' }}>
+                      <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f2d5e', lineHeight: 1.2, flex: 1 }}>
+                        {hab.titulo}
+                      </h3>
+                      <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                        <div style={{ fontSize: '10px', color: '#9aa5b4', lineHeight: 1 }}>Desde</div>
+                        <div style={{ fontSize: '1.4rem', fontWeight: 800, color: cardAccent, lineHeight: 1.1 }}>
+                          {hab.precio.toLocaleString('es-ES')}€
                         </div>
                       </div>
-
-                      {/* Barrio */}
-                      <p style={{ fontSize: '0.82rem', color: '#5a6a7e', display: 'flex', alignItems: 'center', gap: '4px', margin: 0 }}>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-                        </svg>
-                        {hab.zona}
-                      </p>
-
-                      {/* Detalles sutiles */}
-                      <p style={{ fontSize: '0.78rem', color: '#9aa5b4', margin: 0 }}>
-                        {hab.detalles.join(' · ')}
-                      </p>
-
-                      {/* Hueco badges futuros (Pet Friendly, etc.) */}
-                      {/* <div style={{ minHeight: '24px' }} /> */}
-
-                      {/* Botón ancho completo */}
-                      <a
-                        href={hab.tallyUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          display: 'block',
-                          marginTop: 'auto',
-                          textAlign: 'center',
-                          border: `1.5px solid ${cardAccent}`,
-                          color: cardAccent,
-                          background: '#ffffff',
-                          fontSize: '0.88rem',
-                          fontWeight: 600,
-                          padding: '11px 16px',
-                          borderRadius: '10px',
-                          textDecoration: 'none',
-                          transition: 'background 0.18s ease, color 0.18s ease',
-                        }}
-                        onMouseEnter={(e) => {
-                          (e.currentTarget as HTMLAnchorElement).style.background = cardAccent;
-                          (e.currentTarget as HTMLAnchorElement).style.color = '#ffffff';
-                        }}
-                        onMouseLeave={(e) => {
-                          (e.currentTarget as HTMLAnchorElement).style.background = '#ffffff';
-                          (e.currentTarget as HTMLAnchorElement).style.color = cardAccent;
-                        }}
-                      >
-                        Explorar habitación →
-                      </a>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
 
-          {/* Nota legal */}
-          <p style={{ textAlign: 'center', fontSize: '12px', color: '#9aa5b4', marginTop: '40px' }}>
-            Todos los precios incluyen renta regulada según índice oficial y pack de servicios. Contratos conformes a la normativa catalana vigente.
-          </p>
-        </div>
-      </section>
-    </>
+                    {/* Barrio */}
+                    <p style={{ fontSize: '0.85rem', color: '#5a6a7e', display: 'flex', alignItems: 'center', gap: '4px', margin: 0 }}>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                      </svg>
+                      {hab.zona}
+                    </p>
+
+                    {/* Detalles sutiles */}
+                    <p style={{ fontSize: '0.8rem', color: '#9aa5b4', margin: 0 }}>
+                      {hab.detalles.join(' · ')}
+                    </p>
+
+                    {/* Hueco badges futuros (Pet Friendly, etc.) */}
+                    {/* <div style={{ minHeight: '28px' }} /> */}
+
+                    {/* Botón ancho completo */}
+                    <a
+                      href={hab.tallyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'block',
+                        marginTop: 'auto',
+                        textAlign: 'center',
+                        border: `1.5px solid ${cardAccent}`,
+                        color: cardAccent,
+                        background: '#ffffff',
+                        fontSize: '0.9rem',
+                        fontWeight: 600,
+                        padding: '12px 16px',
+                        borderRadius: '12px',
+                        textDecoration: 'none',
+                        transition: 'background 0.18s ease, color 0.18s ease',
+                      }}
+                      onMouseEnter={(e) => {
+                        (e.currentTarget as HTMLAnchorElement).style.background = cardAccent;
+                        (e.currentTarget as HTMLAnchorElement).style.color = '#ffffff';
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLAnchorElement).style.background = '#ffffff';
+                        (e.currentTarget as HTMLAnchorElement).style.color = cardAccent;
+                      }}
+                    >
+                      Explorar habitación →
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Nota legal */}
+        <p style={{ textAlign: 'center', fontSize: '12px', color: '#9aa5b4', marginTop: '40px' }}>
+          Todos los precios incluyen renta regulada según índice oficial y pack de servicios. Contratos conformes a la normativa catalana vigente.
+        </p>
+      </div>
+    </section>
   );
 }
