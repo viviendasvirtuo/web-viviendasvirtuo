@@ -209,15 +209,13 @@ export default function Home() {
 
         {/* 7. TÚ ELIGES — 8 HABITACIONES REALES */}
         <section style={{ background: '#f8f9fc', padding: '0' }}>
-          <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(60px,8vw,96px) 24px' }}>
-            <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-              <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Tú eliges</p>
-            </div>
-            <HabitacionesDestacadas sistema="temporal" />
-            <div style={{ marginTop: '0' }}>
-              <HabitacionesDestacadas sistema="coliving" />
+          <div style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(60px,8vw,96px) 24px 0' }}>
+            <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>Encuentra tu habitación en Barcelona</h2>
             </div>
           </div>
+          <HabitacionesDestacadas sistema="temporal" mostrarTitulo={false} />
+          <HabitacionesDestacadas sistema="coliving" mostrarTitulo={false} />
         </section>
 
         {/* 8. DESCUENTOS, TAMBIÉN INCLUIDOS */}

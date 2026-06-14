@@ -114,9 +114,10 @@ function getFechaDisponible(mesesExtra: number): string {
 
 interface Props {
   sistema: Sistema;
+  mostrarTitulo?: boolean;
 }
 
-export default function HabitacionesDestacadas({ sistema }: Props) {
+export default function HabitacionesDestacadas({ sistema, mostrarTitulo = true }: Props) {
   const lista = habitaciones.filter((h) => h.sistema === sistema);
 
   const accentColor =
@@ -130,48 +131,50 @@ export default function HabitacionesDestacadas({ sistema }: Props) {
     'Vacacional';
 
   return (
-    <section style={{ background: '#f8f9fc', padding: '80px 0' }}>
+    <section style={{ background: '#f8f9fc', padding: mostrarTitulo ? '80px 0' : '0' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px' }}>
 
-        {/* Cabecera */}
-        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-          <span style={{
-            display: 'inline-block',
-            background: '#e8f0fb',
-            color: accentColor,
-            fontSize: '13px',
-            fontWeight: 600,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            padding: '6px 16px',
-            borderRadius: '999px',
-            marginBottom: '16px',
-          }}>
-            {sistema === 'vacacional' ? 'Apartamentos' : 'Habitaciones'} {labelSistema}
-          </span>
-          <h2 style={{
-            fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
-            fontWeight: 700,
-            color: '#0f2d5e',
-            marginBottom: '16px',
-            lineHeight: 1.2,
-          }}>
-            {sistema === 'vacacional'
-              ? 'Apartamentos disponibles en Barcelona'
-              : 'Encuentra tu habitación en Barcelona'}
-          </h2>
-          <p style={{
-            fontSize: '1.05rem',
-            color: '#5a6a7e',
-            maxWidth: '560px',
-            margin: '0 auto',
-            lineHeight: 1.6,
-          }}>
-            {sistema === 'vacacional'
-              ? 'Apartamentos completos gestionados profesionalmente. Precio todo incluido.'
-              : 'Precio regulado según índice oficial INCASÒL. Todo incluido, sin sorpresas.'}
-          </p>
-        </div>
+        {/* Cabecera — solo si mostrarTitulo es true */}
+        {mostrarTitulo && (
+          <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+            <span style={{
+              display: 'inline-block',
+              background: '#e8f0fb',
+              color: accentColor,
+              fontSize: '13px',
+              fontWeight: 600,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              padding: '6px 16px',
+              borderRadius: '999px',
+              marginBottom: '16px',
+            }}>
+              {sistema === 'vacacional' ? 'Apartamentos' : 'Habitaciones'} {labelSistema}
+            </span>
+            <h2 style={{
+              fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
+              fontWeight: 700,
+              color: '#0f2d5e',
+              marginBottom: '16px',
+              lineHeight: 1.2,
+            }}>
+              {sistema === 'vacacional'
+                ? 'Apartamentos disponibles en Barcelona'
+                : 'Encuentra tu habitación en Barcelona'}
+            </h2>
+            <p style={{
+              fontSize: '1.05rem',
+              color: '#5a6a7e',
+              maxWidth: '560px',
+              margin: '0 auto',
+              lineHeight: 1.6,
+            }}>
+              {sistema === 'vacacional'
+                ? 'Apartamentos completos gestionados profesionalmente. Precio todo incluido.'
+                : 'Precio regulado según índice oficial INCASÒL. Todo incluido, sin sorpresas.'}
+            </p>
+          </div>
+        )}
 
         {/* Sin resultados */}
         {lista.length === 0 && (
