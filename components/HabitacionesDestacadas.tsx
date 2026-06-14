@@ -122,6 +122,28 @@ export default function HabitacionesDestacadas({ sistema, sistemas, mostrarTitul
 
   return (
     <section style={{ background: '#f8f9fc', padding: mostrarTitulo ? '80px 0' : '0' }}>
+      <style>{`
+        .hab-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 16px;
+        }
+        @media (min-width: 1600px) {
+          .hab-grid {
+            grid-template-columns: repeat(4, 1fr);
+          }
+        }
+        @media (max-width: 900px) {
+          .hab-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        @media (max-width: 600px) {
+          .hab-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
       <div style={{ width: '100%', padding: '0 12px' }}>
 
         {/* Cabecera */}
@@ -168,13 +190,8 @@ export default function HabitacionesDestacadas({ sistema, sistemas, mostrarTitul
           </div>
         )}
 
-        {/* Grid auto-fill — 3 cols a zoom 100%, 4 cols a zoom menor */}
         {lista.length > 0 && (
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
-            gap: '16px',
-          }}>
+          <div className="hab-grid">
             {lista.map((hab) => {
               const cardAccent =
                 hab.sistema === 'coliving' ? '#0453ab' :
@@ -209,9 +226,8 @@ export default function HabitacionesDestacadas({ sistema, sistemas, mostrarTitul
                       alt={`Foto de ${hab.titulo}`}
                       fill
                       style={{ objectFit: 'cover' }}
-                      sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                      sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, (max-width: 1600px) 33vw, 25vw"
                     />
-                    {/* Badge Tour 3D */}
                     <div style={{
                       position: 'absolute', top: '14px', left: '14px',
                       background: 'rgba(255,255,255,0.96)',
@@ -224,13 +240,11 @@ export default function HabitacionesDestacadas({ sistema, sistemas, mostrarTitul
                     }}>
                       Tour 3D
                     </div>
-                    {/* Hueco para badges futuros */}
                   </div>
 
                   {/* Contenido */}
                   <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px', flex: 1 }}>
 
-                    {/* Nombre + Precio */}
                     <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px' }}>
                       <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f2d5e', lineHeight: 1.2, flex: 1 }}>
                         {hab.titulo}
@@ -243,7 +257,6 @@ export default function HabitacionesDestacadas({ sistema, sistemas, mostrarTitul
                       </div>
                     </div>
 
-                    {/* Barrio */}
                     <p style={{ fontSize: '0.85rem', color: '#5a6a7e', display: 'flex', alignItems: 'center', gap: '4px', margin: 0 }}>
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
@@ -251,15 +264,10 @@ export default function HabitacionesDestacadas({ sistema, sistemas, mostrarTitul
                       {hab.zona}
                     </p>
 
-                    {/* Detalles sutiles */}
                     <p style={{ fontSize: '0.8rem', color: '#9aa5b4', margin: 0 }}>
                       {hab.detalles.join(' · ')}
                     </p>
 
-                    {/* Hueco badges futuros (Pet Friendly, etc.) */}
-                    {/* <div style={{ minHeight: '28px' }} /> */}
-
-                    {/* Botón ancho completo */}
                     <a
                       href={hab.tallyUrl}
                       target="_blank"
@@ -296,7 +304,6 @@ export default function HabitacionesDestacadas({ sistema, sistemas, mostrarTitul
           </div>
         )}
 
-        {/* Nota legal */}
         <p style={{ textAlign: 'center', fontSize: '12px', color: '#9aa5b4', marginTop: '40px' }}>
           Todos los precios incluyen renta regulada según índice oficial y pack de servicios. Contratos conformes a la normativa catalana vigente.
         </p>
