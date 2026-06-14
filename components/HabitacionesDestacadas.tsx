@@ -113,21 +113,27 @@ function getFechaDisponible(mesesExtra: number): string {
 }
 
 interface Props {
-  sistema: Sistema;
+  sistema?: Sistema;
+  sistemas?: Sistema[];
   mostrarTitulo?: boolean;
 }
 
-export default function HabitacionesDestacadas({ sistema, mostrarTitulo = true }: Props) {
-  const lista = habitaciones.filter((h) => h.sistema === sistema);
+export default function HabitacionesDestacadas({ sistema, sistemas, mostrarTitulo = true }: Props) {
+  // Si se pasa `sistemas` (array), filtra por todos ellos; si no, usa `sistema` (singular)
+  const lista = sistemas
+    ? habitaciones.filter((h) => sistemas.includes(h.sistema))
+    : habitaciones.filter((h) => h.sistema === sistema);
 
+  // Color de acento: si es un único sistema usar su color; si es mixto usar el primario
+  const sistemaEfectivo = sistemas ? sistemas[0] : sistema;
   const accentColor =
-    sistema === 'coliving' ? '#0453ab' :
-    sistema === 'temporal' ? '#008f58' :
+    sistemaEfectivo === 'coliving' ? '#0453ab' :
+    sistemaEfectivo === 'temporal' ? '#008f58' :
     '#c45e00';
 
   const labelSistema =
-    sistema === 'coliving' ? 'Coliving' :
-    sistema === 'temporal' ? 'Temporal' :
+    sistemaEfectivo === 'coliving' ? 'Coliving' :
+    sistemaEfectivo === 'temporal' ? 'Temporal' :
     'Vacacional';
 
   return (
@@ -149,7 +155,7 @@ export default function HabitacionesDestacadas({ sistema, mostrarTitulo = true }
               borderRadius: '999px',
               marginBottom: '16px',
             }}>
-              {sistema === 'vacacional' ? 'Apartamentos' : 'Habitaciones'} {labelSistema}
+              {sistemaEfectivo === 'vacacional' ? 'Apartamentos' : 'Habitaciones'} {labelSistema}
             </span>
             <h2 style={{
               fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
@@ -158,7 +164,7 @@ export default function HabitacionesDestacadas({ sistema, mostrarTitulo = true }
               marginBottom: '16px',
               lineHeight: 1.2,
             }}>
-              {sistema === 'vacacional'
+              {sistemaEfectivo === 'vacacional'
                 ? 'Apartamentos disponibles en Barcelona'
                 : 'Encuentra tu habitación en Barcelona'}
             </h2>
@@ -169,7 +175,7 @@ export default function HabitacionesDestacadas({ sistema, mostrarTitulo = true }
               margin: '0 auto',
               lineHeight: 1.6,
             }}>
-              {sistema === 'vacacional'
+              {sistemaEfectivo === 'vacacional'
                 ? 'Apartamentos completos gestionados profesionalmente. Precio todo incluido.'
                 : 'Precio regulado según índice oficial INCASÒL. Todo incluido, sin sorpresas.'}
             </p>
@@ -187,116 +193,122 @@ export default function HabitacionesDestacadas({ sistema, mostrarTitulo = true }
         {/* Grid de cards */}
         {lista.length > 0 && (
           <div className="habitaciones-grid">
-            {lista.map((hab) => (
-              <div
-                key={hab.ref}
-                style={{
-                  background: '#ffffff',
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                  boxShadow: '0 2px 8px rgba(26,74,138,0.07), 0 8px 24px rgba(26,74,138,0.05)',
-                  border: '1px solid rgba(26,74,138,0.08)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)';
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 16px rgba(26,74,138,0.12), 0 16px 40px rgba(26,74,138,0.08)';
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = '0 2px 8px rgba(26,74,138,0.07), 0 8px 24px rgba(26,74,138,0.05)';
-                }}
-              >
-                {/* Imagen */}
-                <div style={{ position: 'relative', width: '100%', height: '180px', flexShrink: 0 }}>
-                  <Image
-                    src={hab.imagen}
-                    alt={`Foto de ${hab.titulo}`}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 25vw"
-                  />
-                  <div style={{
-                    position: 'absolute', top: '10px', left: '10px',
-                    background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(4px)',
-                    color: '#2e7d32', fontSize: '11px', fontWeight: 600,
-                    padding: '4px 10px', borderRadius: '999px',
-                  }}>
-                    ● Disponible {getFechaDisponible(hab.mesesDisponible)}
-                  </div>
-                  <div style={{
-                    position: 'absolute', bottom: '8px', right: '10px',
-                    background: 'rgba(0,0,0,0.45)', color: '#fff',
-                    fontSize: '10px', fontFamily: 'monospace',
-                    padding: '2px 7px', borderRadius: '6px',
-                  }}>
-                    {hab.ref}
-                  </div>
-                </div>
-
-                {/* Contenido */}
-                <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px', flex: 1 }}>
-                  <div>
-                    <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#0f2d5e', marginBottom: '4px' }}>
-                      {hab.titulo}
-                    </h3>
-                    <p style={{ fontSize: '0.85rem', color: '#5a6a7e', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <span>📍</span> {hab.zona}
-                    </p>
+            {lista.map((hab) => {
+              const cardAccent =
+                hab.sistema === 'coliving' ? '#0453ab' :
+                hab.sistema === 'temporal' ? '#008f58' :
+                '#c45e00';
+              return (
+                <div
+                  key={hab.ref}
+                  style={{
+                    background: '#ffffff',
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    boxShadow: '0 2px 8px rgba(26,74,138,0.07), 0 8px 24px rgba(26,74,138,0.05)',
+                    border: '1px solid rgba(26,74,138,0.08)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)';
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 16px rgba(26,74,138,0.12), 0 16px 40px rgba(26,74,138,0.08)';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = '0 2px 8px rgba(26,74,138,0.07), 0 8px 24px rgba(26,74,138,0.05)';
+                  }}
+                >
+                  {/* Imagen */}
+                  <div style={{ position: 'relative', width: '100%', height: '180px', flexShrink: 0 }}>
+                    <Image
+                      src={hab.imagen}
+                      alt={`Foto de ${hab.titulo}`}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 25vw"
+                    />
+                    <div style={{
+                      position: 'absolute', top: '10px', left: '10px',
+                      background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(4px)',
+                      color: '#2e7d32', fontSize: '11px', fontWeight: 600,
+                      padding: '4px 10px', borderRadius: '999px',
+                    }}>
+                      ● Disponible {getFechaDisponible(hab.mesesDisponible)}
+                    </div>
+                    <div style={{
+                      position: 'absolute', bottom: '8px', right: '10px',
+                      background: 'rgba(0,0,0,0.45)', color: '#fff',
+                      fontSize: '10px', fontFamily: 'monospace',
+                      padding: '2px 7px', borderRadius: '6px',
+                    }}>
+                      {hab.ref}
+                    </div>
                   </div>
 
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                    {hab.detalles.map((d) => (
-                      <span key={d} style={{
-                        background: '#f0f4fa', color: accentColor,
-                        fontSize: '11px', fontWeight: 500,
-                        padding: '3px 10px', borderRadius: '8px',
-                      }}>{d}</span>
-                    ))}
-                  </div>
+                  {/* Contenido */}
+                  <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px', flex: 1 }}>
+                    <div>
+                      <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#0f2d5e', marginBottom: '4px' }}>
+                        {hab.titulo}
+                      </h3>
+                      <p style={{ fontSize: '0.85rem', color: '#5a6a7e', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <span>📍</span> {hab.zona}
+                      </p>
+                    </div>
 
-                  <div style={{ borderTop: '1px solid rgba(26,74,138,0.08)', paddingTop: '10px' }}>
-                    <p style={{ fontSize: '10px', color: '#9aa5b4', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>Todo incluido</p>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
-                      {hab.extras.map((e) => (
-                        <span key={e} style={{ fontSize: '11px', color: '#3d6b9e', display: 'flex', alignItems: 'center', gap: '3px' }}>
-                          ✓ {e}
-                        </span>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                      {hab.detalles.map((d) => (
+                        <span key={d} style={{
+                          background: '#f0f4fa', color: cardAccent,
+                          fontSize: '11px', fontWeight: 500,
+                          padding: '3px 10px', borderRadius: '8px',
+                        }}>{d}</span>
                       ))}
                     </div>
-                  </div>
 
-                  <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '8px' }}>
-                    <div>
-                      <span style={{ fontSize: '1.5rem', fontWeight: 800, color: accentColor, lineHeight: 1 }}>
-                        {hab.precio.toLocaleString('es-ES')}€
-                      </span>
-                      <span style={{ fontSize: '0.8rem', color: '#9aa5b4', marginLeft: '4px' }}>/mes</span>
-                      <p style={{ fontSize: '10px', color: '#9aa5b4', marginTop: '2px' }}>Precio regulado INCASÒL</p>
+                    <div style={{ borderTop: '1px solid rgba(26,74,138,0.08)', paddingTop: '10px' }}>
+                      <p style={{ fontSize: '10px', color: '#9aa5b4', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>Todo incluido</p>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                        {hab.extras.map((e) => (
+                          <span key={e} style={{ fontSize: '11px', color: '#3d6b9e', display: 'flex', alignItems: 'center', gap: '3px' }}>
+                            ✓ {e}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                    <a
-                      href={hab.tallyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        background: accentColor,
-                        color: '#ffffff',
-                        fontSize: '0.85rem',
-                        fontWeight: 600,
-                        padding: '10px 16px',
-                        borderRadius: '10px',
-                        textDecoration: 'none',
-                        whiteSpace: 'nowrap',
-                      }}
-                    >
-                      Reservar →
-                    </a>
+
+                    <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '8px' }}>
+                      <div>
+                        <span style={{ fontSize: '1.5rem', fontWeight: 800, color: cardAccent, lineHeight: 1 }}>
+                          {hab.precio.toLocaleString('es-ES')}€
+                        </span>
+                        <span style={{ fontSize: '0.8rem', color: '#9aa5b4', marginLeft: '4px' }}>/mes</span>
+                        <p style={{ fontSize: '10px', color: '#9aa5b4', marginTop: '2px' }}>Precio regulado INCASÒL</p>
+                      </div>
+                      <a
+                        href={hab.tallyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          background: cardAccent,
+                          color: '#ffffff',
+                          fontSize: '0.85rem',
+                          fontWeight: 600,
+                          padding: '10px 16px',
+                          borderRadius: '10px',
+                          textDecoration: 'none',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        Reservar →
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
 
