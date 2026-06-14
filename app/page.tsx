@@ -151,13 +151,13 @@ export default function Home() {
           </p>
         </section>
 
-        {/* 8. DESCUENTOS, TAMBIÉN INCLUIDOS */}
+        {/* 8. BENEFICIOS POR SER VIRTUO */}
         <section style={{ padding: 'clamp(60px,8vw,96px) 0', background: 'var(--color-bg)' }}>
           <div className="container">
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
-              <span style={{ display: 'inline-block', background: '#fff3e0', color: '#e07000', fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '6px 16px', borderRadius: 'var(--radius-full)', marginBottom: '20px' }}>Próximamente</span>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.4rem)', fontWeight: 900, color: 'var(--color-text)', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '20px' }}>Descuentos, también incluidos</h2>
-              <p style={{ fontSize: 'clamp(0.95rem,0.85rem + 0.5vw,1.1rem)', color: 'var(--color-text-muted)', lineHeight: 1.75, marginBottom: '32px' }}>Estamos negociando ventajas exclusivas con gimnasios, co-workings, transporte y ocio en Barcelona para todos los inquilinos Virtuo.</p>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', maxWidth: '680px', margin: '0 auto' }}>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.4rem)', fontWeight: 900, color: 'var(--color-text)', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '16px' }}>Beneficios por ser Virtuo</h2>
+              <p style={{ fontSize: 'clamp(1rem,0.9rem + 0.5vw,1.2rem)', fontWeight: 600, color: 'var(--color-primary)', lineHeight: 1.4, marginBottom: '20px' }}>Exprime Barcelona al mejor precio.</p>
+              <p style={{ fontSize: 'clamp(0.95rem,0.85rem + 0.5vw,1.05rem)', color: 'var(--color-text-muted)', lineHeight: 1.8, marginBottom: '36px' }}>Al alojarte con nosotros, desbloqueas de inmediato una red de tarifas preferenciales en toda la ciudad. Hemos cerrado acuerdos estratégicos con gimnasios, espacios de coworking, transporte urbano, servicios de delivery y el comercio local de moda. Son ventajas exclusivas diseñadas a la medida de tu estilo de vida, pensadas para simplificar tu día a día y optimizar tu presupuesto mensual mientras disfrutas de la experiencia.</p>
               <Link href="/contacto" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-primary)', color: 'white', fontWeight: 700, fontSize: 'var(--text-base)', padding: '13px 28px', borderRadius: 'var(--radius-lg)', textDecoration: 'none' }}>Avísame cuando esté disponible <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></Link>
             </div>
           </div>
