@@ -6,6 +6,7 @@ import Link from 'next/link';
 import SistemaCards from '@/components/SistemaCards';
 import Testimonios from '@/components/Testimonios';
 import HabitacionesDestacadas from '@/components/HabitacionesDestacadas';
+import ComoFuncionaSection from '@/components/home/ComoFunciona';
 
 export const metadata: Metadata = {
   title: 'Viviendas Virtuo — Gestión profesional de alquiler en Barcelona',
@@ -116,129 +117,7 @@ export default function Home() {
         </section>
 
         {/* 6. CÓMO FUNCIONA */}
-        <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
-          <div className="container">
-
-            {/* Cabecera */}
-            <div style={{ textAlign: 'center', marginBottom: '80px' }}>
-              <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Empieza hoy mismo</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '12px' }}>Cómo funciona</h2>
-              <p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text-muted)', margin: '0 auto' }}>Fácil, rápido y sin complicaciones.</p>
-            </div>
-
-            {/* Contenedor con flechas flotantes encima */}
-            <div style={{ position: 'relative' }}>
-
-              {/* Flechas SVG curvas — absolutas, encima de las tarjetas */}
-              <div className="cf-flechas" aria-hidden="true">
-                {/* Flecha 1→2: curva hacia abajo */}
-                <svg className="cf-flecha cf-flecha-1" viewBox="0 0 200 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M 10 15 C 60 -10, 140 80, 190 55" stroke="var(--color-primary)" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.5" strokeDasharray="0"/>
-                  <path d="M 178 42 L 190 55 L 177 62" stroke="var(--color-primary)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.5"/>
-                </svg>
-                {/* Flecha 2→3: curva hacia arriba */}
-                <svg className="cf-flecha cf-flecha-2" viewBox="0 0 200 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M 10 55 C 60 80, 140 -10, 190 15" stroke="var(--color-primary)" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.5"/>
-                  <path d="M 178 8 L 190 15 L 180 26" stroke="var(--color-primary)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.5"/>
-                </svg>
-                {/* Flecha 3→4: curva hacia abajo */}
-                <svg className="cf-flecha cf-flecha-3" viewBox="0 0 200 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M 10 15 C 60 -10, 140 80, 190 55" stroke="var(--color-primary)" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.5"/>
-                  <path d="M 178 42 L 190 55 L 177 62" stroke="var(--color-primary)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.5"/>
-                </svg>
-              </div>
-
-              {/* Grid de tarjetas */}
-              <div className="cf-grid">
-                {[
-                  { paso: '01', title: 'Elige tu habitación', desc: 'Explora la web y selecciona la opción que mejor encaja con tus fechas y necesidades.', badge: null },
-                  { paso: '02', title: 'Consulta disponibilidad', desc: 'Contacta con nosotros de inmediato. Debido a la alta demanda de nuestros modelos, las habitaciones libres se reservan rápido.', badge: 'Plazas limitadas' },
-                  { paso: '03', title: 'Contrato digital exprés', desc: 'Si la habitación sigue libre, resolvemos tus dudas, validamos tu perfil y firmamos el contrato de forma digital, sin papeleos ni esperas.', badge: null },
-                  { paso: '04', title: 'Entra a vivir hoy mismo', desc: 'Recibe tus accesos y empieza tu nueva etapa en Barcelona desde ese mismo instante. Todo está pensado para llegar y funcionar desde el primer minuto.', badge: null },
-                ].map((s) => (
-                  <div key={s.paso} className="cf-paso">
-                    <div style={{
-                      width: '52px', height: '52px', borderRadius: '50%',
-                      background: 'var(--color-primary)', color: 'white',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '1.1rem',
-                      marginBottom: '16px', flexShrink: 0,
-                    }}>
-                      {s.paso}
-                    </div>
-                    <div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '8px' }}>
-                        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-text)', margin: 0, lineHeight: 1.3 }}>{s.title}</h3>
-                        {s.badge && (
-                          <span style={{ background: '#fff3e0', color: '#c45e00', fontSize: '11px', fontWeight: 700, padding: '3px 10px', borderRadius: '999px', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>{s.badge}</span>
-                        )}
-                      </div>
-                      <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.65, margin: 0 }}>{s.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          </div>
-          <style>{`
-            /* Grid de tarjetas */
-            .cf-grid {
-              display: grid;
-              grid-template-columns: repeat(4, 1fr);
-              gap: 24px;
-              position: relative;
-              z-index: 1;
-            }
-            .cf-paso {
-              background: white;
-              border: 1px solid rgba(26,74,138,0.10);
-              border-radius: var(--radius-xl);
-              padding: 28px 24px;
-              box-shadow: 0 2px 8px rgba(26,74,138,0.06);
-              display: flex;
-              flex-direction: column;
-            }
-
-            /* Flechas flotantes */
-            .cf-flechas {
-              position: absolute;
-              top: -72px;
-              left: 0;
-              right: 0;
-              display: grid;
-              grid-template-columns: repeat(4, 1fr);
-              gap: 24px;
-              pointer-events: none;
-              z-index: 2;
-            }
-            .cf-flecha {
-              width: 100%;
-              height: 72px;
-              grid-column: span 1;
-              /* cada flecha ocupa el espacio entre tarjeta N y N+1 */
-            }
-            .cf-flecha-1 { grid-column: 1 / 3; }
-            .cf-flecha-2 { grid-column: 2 / 4; }
-            .cf-flecha-3 { grid-column: 3 / 5; }
-
-            /* Tablet: 2x2 */
-            @media (max-width: 900px) {
-              .cf-grid {
-                grid-template-columns: repeat(2, 1fr);
-              }
-              .cf-flechas {
-                display: none;
-              }
-            }
-            /* Móvil: 1 columna */
-            @media (max-width: 480px) {
-              .cf-grid {
-                grid-template-columns: 1fr;
-              }
-            }
-          `}</style>
-        </section>
+        <ComoFuncionaSection />
 
         {/* 7. TÚ ELIGES — 8 HABITACIONES REALES */}
         <section style={{ background: '#f8f9fc', padding: '0' }}>
