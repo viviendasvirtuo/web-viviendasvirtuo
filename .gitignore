@@ -1,0 +1,20 @@
+# dependencies
+node_modules/
+
+# next.js build output
+.next/
+out/
+
+# package manager lockfiles (generated)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# env files
+.env
+.env.local
+.env.*.local
+
+# misc
+.DS_Store
+*.pem
