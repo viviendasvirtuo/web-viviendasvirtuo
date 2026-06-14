@@ -191,19 +191,145 @@ export default function Home() {
         {/* 6. CÓMO FUNCIONA */}
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
           <div className="container">
-            <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+
+            {/* Cabecera */}
+            <div style={{ textAlign: 'center', marginBottom: '64px' }}>
               <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Empieza hoy mismo</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>Cómo funciona</h2>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '12px' }}>Cómo funciona</h2>
+              <p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text-muted)', margin: '0 auto' }}>Fácil, rápido y sin complicaciones.</p>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: '24px' }}>
-              {[{ paso: '01', title: 'Elige tu opción', desc: 'Selecciona el sistema que mejor encaja con tu estancia y necesidades.' }, { paso: '02', title: 'Contacta con nosotros', desc: 'Cuéntanos qué buscas. Respondemos en menos de 2 horas.' }, { paso: '03', title: 'Visita y confirma', desc: 'Te enseñamos el piso, resolvemos dudas y preparamos el contrato.' }, { paso: '04', title: 'Entra a vivir', desc: 'Recibe las llaves, conéctate al wifi y empieza a disfrutar tu nuevo hogar.' }].map(s => (
-                <div key={s.paso}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '3rem', fontWeight: 900, color: 'var(--color-primary)', opacity: 0.15, lineHeight: 1, marginBottom: '8px' }}>{s.paso}</div>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-text)', marginBottom: '8px' }}>{s.title}</h3>
-                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.6, margin: 0 }}>{s.desc}</p>
+
+            {/* Pasos con flechas */}
+            <div style={{ maxWidth: '680px', margin: '0 auto', position: 'relative' }}>
+              {[
+                {
+                  paso: '01',
+                  title: 'Elige tu habitación',
+                  desc: 'Explora la web y selecciona la opción que mejor encaja con tus fechas y necesidades.',
+                  badge: null,
+                },
+                {
+                  paso: '02',
+                  title: 'Consulta disponibilidad',
+                  desc: 'Contacta con nosotros de inmediato. Debido a la alta demanda de nuestros modelos, las habitaciones libres se reservan rápido.',
+                  badge: 'Plazas limitadas',
+                },
+                {
+                  paso: '03',
+                  title: 'Contrato digital exprés',
+                  desc: 'Si la habitación sigue libre, resolvemos tus dudas, validamos tu perfil y firmamos el contrato de forma digital, sin papeleos ni esperas.',
+                  badge: null,
+                },
+                {
+                  paso: '04',
+                  title: 'Entra a vivir hoy mismo',
+                  desc: 'Recibe tus accesos y empieza tu nueva etapa en Barcelona desde ese mismo instante. Todo está pensado para llegar y funcionar desde el primer minuto.',
+                  badge: null,
+                },
+              ].map((s, i, arr) => (
+                <div key={s.paso} style={{ position: 'relative' }}>
+
+                  {/* Fila del paso */}
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '20px',
+                    background: 'white',
+                    border: '1px solid rgba(26,74,138,0.10)',
+                    borderRadius: 'var(--radius-xl)',
+                    padding: '24px 28px',
+                    boxShadow: '0 2px 8px rgba(26,74,138,0.06)',
+                    position: 'relative',
+                    zIndex: 1,
+                  }}>
+                    {/* Número */}
+                    <div style={{
+                      flexShrink: 0,
+                      width: '48px',
+                      height: '48px',
+                      borderRadius: '50%',
+                      background: 'var(--color-primary)',
+                      color: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontFamily: 'var(--font-display)',
+                      fontWeight: 900,
+                      fontSize: '1.1rem',
+                    }}>
+                      {s.paso}
+                    </div>
+                    {/* Texto */}
+                    <div style={{ flex: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '6px' }}>
+                        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-text)', margin: 0 }}>
+                          {s.title}
+                        </h3>
+                        {s.badge && (
+                          <span style={{
+                            background: '#fff3e0',
+                            color: '#c45e00',
+                            fontSize: '11px',
+                            fontWeight: 700,
+                            padding: '3px 10px',
+                            borderRadius: '999px',
+                            letterSpacing: '0.04em',
+                          }}>
+                            {s.badge}
+                          </span>
+                        )}
+                      </div>
+                      <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.65, margin: 0 }}>
+                        {s.desc}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Flecha curva SVG entre pasos (excepto después del último) */}
+                  {i < arr.length - 1 && (
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'flex-start',
+                      paddingLeft: '14px',
+                      margin: '-4px 0',
+                      position: 'relative',
+                      zIndex: 0,
+                    }}>
+                      <svg
+                        width="48"
+                        height="48"
+                        viewBox="0 0 48 48"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        {/* Flecha curva de arriba-izquierda a abajo-derecha */}
+                        <path
+                          d="M 10 4 C 10 28, 36 20, 36 42"
+                          stroke="var(--color-primary)"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          fill="none"
+                          opacity="0.5"
+                        />
+                        {/* Punta de flecha */}
+                        <path
+                          d="M 29 38 L 36 42 L 40 34"
+                          stroke="var(--color-primary)"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          fill="none"
+                          opacity="0.5"
+                        />
+                      </svg>
+                    </div>
+                  )}
+
                 </div>
               ))}
             </div>
+
           </div>
         </section>
 
