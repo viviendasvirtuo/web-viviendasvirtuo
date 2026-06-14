@@ -126,6 +126,7 @@ export default function Home() {
               display: grid;
               grid-template-columns: repeat(3, 1fr);
               gap: 20px;
+              padding: 0 24px;
             }
             @media (min-width: 1600px) {
               .hab-grid-home { grid-template-columns: repeat(4, 1fr); }
@@ -137,19 +138,17 @@ export default function Home() {
               .hab-grid-home { grid-template-columns: 1fr; }
             }
           `}</style>
-          <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px' }}>
-            <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>
-                Encuentra tu habitación en Barcelona
-              </h2>
-            </div>
-            <div className="hab-grid-home">
-              <HabitacionesDestacadas sistemas={['temporal', 'coliving']} mostrarTitulo={false} />
-            </div>
-            <p style={{ textAlign: 'center', fontSize: '12px', color: '#9aa5b4', marginTop: '40px' }}>
-              Todos los precios incluyen renta regulada según índice oficial y pack de servicios. Contratos conformes a la normativa catalana vigente.
-            </p>
+          <div style={{ textAlign: 'center', marginBottom: '48px', padding: '0 24px' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>
+              Encuentra tu habitación en Barcelona
+            </h2>
           </div>
+          <div className="hab-grid-home">
+            <HabitacionesDestacadas sistemas={['temporal', 'coliving']} mostrarTitulo={false} />
+          </div>
+          <p style={{ textAlign: 'center', fontSize: '12px', color: '#9aa5b4', marginTop: '40px', padding: '0 24px' }}>
+            Todos los precios incluyen renta regulada según índice oficial y pack de servicios. Contratos conformes a la normativa catalana vigente.
+          </p>
         </section>
 
         {/* 8. DESCUENTOS, TAMBIÉN INCLUIDOS */}
