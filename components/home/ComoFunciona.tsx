@@ -49,14 +49,19 @@ export default function ComoFunciona() {
   }, []);
 
   return (
-    <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
+    <section style={{
+      padding: 'clamp(60px,8vw,100px) 0',
+      backgroundImage: 'linear-gradient(rgba(10,20,50,0.68), rgba(10,20,50,0.68)), url(/images/como-funciona-bg.webp)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}>
       <div className="container">
 
         {/* Cabecera */}
         <div style={{ textAlign: 'center', marginBottom: '80px' }}>
-          <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Empieza hoy mismo</p>
-          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '12px' }}>Cómo funciona</h2>
-          <p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text-muted)', margin: '0 auto' }}>Fácil, rápido y sin complicaciones.</p>
+          <p style={{ color: '#6effc0', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Empieza hoy mismo</p>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'white', lineHeight: 1.2, marginBottom: '12px' }}>Cómo funciona</h2>
+          <p style={{ fontSize: 'var(--text-base)', color: 'rgba(255,255,255,0.75)', margin: '0 auto' }}>Fácil, rápido y sin complicaciones.</p>
         </div>
 
         {/* Contenedor con flechas flotantes encima */}
@@ -72,7 +77,7 @@ export default function ComoFunciona() {
             >
               <defs>
                 <marker id="arrow-cf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)" />
+                  <path d="M0,0 L10,5 L0,10 z" fill="white" />
                 </marker>
               </defs>
               {paths.map((d, i) =>
@@ -80,11 +85,11 @@ export default function ComoFunciona() {
                   <path
                     key={i}
                     d={d}
-                    stroke="var(--color-primary)"
+                    stroke="white"
                     strokeWidth={3}
                     fill="none"
                     strokeLinecap="round"
-                    opacity={0.55}
+                    opacity={0.6}
                     markerEnd="url(#arrow-cf)"
                   />
                 ) : null
@@ -124,7 +129,6 @@ export default function ComoFunciona() {
 
       </div>
       <style>{`
-        /* Grid de tarjetas */
         .cf-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
@@ -141,8 +145,6 @@ export default function ComoFunciona() {
           display: flex;
           flex-direction: column;
         }
-
-        /* Tablet: 2x2 */
         @media (max-width: 900px) {
           .cf-grid {
             grid-template-columns: repeat(2, 1fr);
@@ -151,7 +153,6 @@ export default function ComoFunciona() {
             display: none;
           }
         }
-        /* Móvil: 1 columna */
         @media (max-width: 480px) {
           .cf-grid {
             grid-template-columns: 1fr;
