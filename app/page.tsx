@@ -289,38 +289,38 @@ export default function Home() {
                   {i < arr.length - 1 && (
                     <div style={{
                       display: 'flex',
-                      justifyContent: 'flex-start',
-                      paddingLeft: '14px',
+                      justifyContent: i % 2 === 0 ? 'flex-start' : 'flex-end',
+                      paddingLeft: i % 2 === 0 ? '14px' : '0',
+                      paddingRight: i % 2 === 0 ? '0' : '14px',
                       margin: '-4px 0',
                       position: 'relative',
                       zIndex: 0,
                     }}>
                       <svg
-                        width="48"
-                        height="48"
-                        viewBox="0 0 48 48"
+                        width="56"
+                        height="52"
+                        viewBox="0 0 56 52"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                         aria-hidden="true"
+                        style={{ transform: i % 2 === 1 ? 'scaleX(-1)' : 'none' }}
                       >
-                        {/* Flecha curva de arriba-izquierda a abajo-derecha */}
                         <path
-                          d="M 10 4 C 10 28, 36 20, 36 42"
+                          d="M 10 4 C 10 32, 44 20, 44 46"
                           stroke="var(--color-primary)"
                           strokeWidth="2.5"
                           strokeLinecap="round"
                           fill="none"
-                          opacity="0.5"
+                          opacity="0.45"
                         />
-                        {/* Punta de flecha */}
                         <path
-                          d="M 29 38 L 36 42 L 40 34"
+                          d="M 36 41 L 44 46 L 48 37"
                           stroke="var(--color-primary)"
                           strokeWidth="2.5"
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           fill="none"
-                          opacity="0.5"
+                          opacity="0.45"
                         />
                       </svg>
                     </div>
