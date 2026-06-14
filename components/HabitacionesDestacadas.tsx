@@ -129,22 +129,17 @@ export default function HabitacionesDestacadas({ sistema, sistemas, mostrarTitul
           gap: 16px;
         }
         @media (min-width: 1600px) {
-          .hab-grid {
-            grid-template-columns: repeat(4, 1fr);
-          }
+          .hab-grid { grid-template-columns: repeat(4, 1fr); }
         }
         @media (max-width: 900px) {
-          .hab-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+          .hab-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 600px) {
-          .hab-grid {
-            grid-template-columns: 1fr;
-          }
+          .hab-grid { grid-template-columns: 1fr; }
         }
       `}</style>
-      <div style={{ width: '100%', padding: '0 12px' }}>
+
+      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px' }}>
 
         {/* Cabecera */}
         {mostrarTitulo && (
@@ -244,7 +239,6 @@ export default function HabitacionesDestacadas({ sistema, sistemas, mostrarTitul
 
                   {/* Contenido */}
                   <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px', flex: 1 }}>
-
                     <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px' }}>
                       <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f2d5e', lineHeight: 1.2, flex: 1 }}>
                         {hab.titulo}
