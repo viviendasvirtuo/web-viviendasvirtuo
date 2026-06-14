@@ -185,7 +185,7 @@ export default function HabitacionesDestacadas({ sistema, sistemas, mostrarTitul
                   key={hab.ref}
                   style={{
                     background: '#ffffff',
-                    borderRadius: '24px',
+                    borderRadius: '32px',
                     overflow: 'hidden',
                     boxShadow: '0 1px 4px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04)',
                     border: '1px solid rgba(0,0,0,0.06)',
@@ -274,7 +274,7 @@ export default function HabitacionesDestacadas({ sistema, sistemas, mostrarTitul
                         fontSize: '0.9rem',
                         fontWeight: 600,
                         padding: '12px 16px',
-                        borderRadius: '12px',
+                        borderRadius: '16px',
                         textDecoration: 'none',
                         transition: 'background 0.18s ease, color 0.18s ease',
                       }}
