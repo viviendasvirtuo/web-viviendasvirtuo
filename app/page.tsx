@@ -23,7 +23,7 @@ export default function Home() {
 
         {/* 2. NUESTROS SISTEMAS */}
         <section
-          id="opciones"
+          id="todo-incluido"
           style={{
             padding: 'clamp(60px,8vw,100px) 0',
             backgroundImage: 'linear-gradient(rgba(10,20,50,0.72), rgba(10,20,50,0.72)), url(/images/comunidad_gente.jpg)',
