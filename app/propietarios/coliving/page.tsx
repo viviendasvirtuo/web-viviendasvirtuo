@@ -253,7 +253,7 @@ export default function PropietariosColivingPage() {
               </div>
               <div style={{ position: 'relative', borderRadius: 'var(--radius-xl)', overflow: 'hidden', aspectRatio: '3/4', boxShadow: '0 24px 64px rgba(4,83,171,0.1)' }}>
                 <Image
-                  src="/images/coliving-residentes.jpg"
+                  src="/images/coliving-residentes.webp"
                   alt="Residentes en un piso coliving gestionado por Viviendas Virtuo"
                   fill
                   style={{ objectFit: 'cover' }}

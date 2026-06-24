@@ -49,7 +49,7 @@ const habitaciones = [
     sistema: 'temporal' as Sistema,
     titulo: 'Habitación Eixample',
     zona: 'Passeig de Gràcia / Provença',
-    imagen: '/images/eixample01.jpg',
+    imagen: '/images/eixample01.webp',
     detalles: ['5 hab.', '2 baños renovados'],
     precio: 1200,
     tallyUrl: 'https://tally.so/r/pbO1lV?inmueble=Eixam_2026_01&precio_hab=1200',

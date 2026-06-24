@@ -27,7 +27,7 @@ export default function Home() {
           id="todo-incluido"
           style={{
             padding: 'clamp(60px,8vw,100px) 0',
-            backgroundImage: 'linear-gradient(rgba(10,20,50,0.72), rgba(10,20,50,0.72)), url(/images/comunidad_gente.jpg)',
+            backgroundImage: 'linear-gradient(rgba(10,20,50,0.72), rgba(10,20,50,0.72)), url(/images/comunidad_gente.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -56,9 +56,9 @@ export default function Home() {
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 {[
-                  { img: '/images/servicio-wifi.jpg', label: 'WiFi alta velocidad' },
+                  { img: '/images/servicio-wifi.webp', label: 'WiFi alta velocidad' },
                   { img: '/images/servicio-suministros.jpg', label: 'Suministros incluidos' },
-                  { img: '/images/servicio-limpieza.jpg', label: 'Limpieza profesional' },
+                  { img: '/images/servicio-limpieza.webp', label: 'Limpieza profesional' },
                   { img: '/images/servicio-flexibilidad.jpg', label: 'Flexibilidad total' },
                   { img: '/images/servicio-precios-regulados.jpg', label: 'Precios regulados' },
                   { img: '/images/servicio-espacios-comunes.jpg', label: 'Espacios comunes equipados' },
