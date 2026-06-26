@@ -203,12 +203,13 @@ export default function PropietariosTemporalPage() {
         </section>
 
         {/* ── PERFIL DE PROPIEDAD ──────────────────────────── */}
-        <section style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: '#f0faf5' }}>
-          <div className="container">
+        <section style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: 'linear-gradient(135deg, #004d30 0%, #008f58 100%)', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(255,255,255,0.06) 0%, transparent 60%)', pointerEvents: 'none' }} />
+          <div className="container" style={{ position: 'relative' }}>
             <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-              <p style={{ color: '#008f58', fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>¿Tu piso encaja?</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>Perfil ideal de vivienda para Temporal</h2>
-              <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-base)', maxWidth: '480px', margin: '16px auto 0', lineHeight: 1.7 }}>
+              <p style={{ color: '#86efac', fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>¿Tu piso encaja?</p>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: 800, color: 'white', lineHeight: 1.2 }}>Perfil ideal de vivienda para Temporal</h2>
+              <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 'var(--text-base)', maxWidth: '480px', margin: '16px auto 0', lineHeight: 1.7 }}>
                 El modelo temporal funciona especialmente bien cerca de centros de trabajo, hospitales y universidades.
               </p>
             </div>
@@ -270,12 +271,13 @@ export default function PropietariosTemporalPage() {
         </section>
 
         {/* ── CÓMO TRABAJAMOS ──────────────────────────────── */}
-        <section id="como-trabajamos" style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: '#f0faf5', scrollMarginTop: '80px' }}>
-          <div className="container">
+        <section id="como-trabajamos" style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: 'linear-gradient(135deg, #004d30 0%, #008f58 100%)', scrollMarginTop: '80px', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(255,255,255,0.06) 0%, transparent 60%)', pointerEvents: 'none' }} />
+          <div className="container" style={{ position: 'relative' }}>
             <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-              <p style={{ color: '#008f58', fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>El proceso</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>Cómo gestionamos tu alquiler temporal</h2>
-              <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-base)', maxWidth: '480px', margin: '16px auto 0', lineHeight: 1.7 }}>
+              <p style={{ color: '#86efac', fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>El proceso</p>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: 800, color: 'white', lineHeight: 1.2 }}>Cómo gestionamos tu alquiler temporal</h2>
+              <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 'var(--text-base)', maxWidth: '480px', margin: '16px auto 0', lineHeight: 1.7 }}>
                 De la primera consulta a los primeros ingresos, en menos de 2 semanas.
               </p>
             </div>
@@ -325,9 +327,9 @@ export default function PropietariosTemporalPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {faqs.map((faq, i) => (
                 <details key={i} name="faq" style={{ background: 'white', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)', overflow: 'hidden' }}>
-                  <summary style={{ padding: '20px 24px', cursor: 'pointer', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-base)', color: 'var(--color-text)', listStyle: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px' }}>
+                  <summary style={{ padding: '20px 24px', cursor: 'pointer', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-base)', color: 'white', background: 'linear-gradient(135deg, #004d30 0%, #008f58 100%)', listStyle: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px' }}>
                     {faq.q}
-                    <span style={{ flexShrink: 0, color: '#008f58', fontSize: '1.25rem', fontWeight: 400 }}>+</span>
+                    <span style={{ flexShrink: 0, color: 'white', fontSize: '1.25rem', fontWeight: 400 }}>+</span>
                   </summary>
                   <p style={{ padding: '0 24px 20px', color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)', lineHeight: 1.7, margin: 0 }}>{faq.a}</p>
                 </details>
