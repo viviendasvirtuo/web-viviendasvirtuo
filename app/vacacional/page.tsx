@@ -89,7 +89,7 @@ export default function AlquilerVacacionalPage() {
               </div>
               <div style={{ position: 'relative', borderRadius: 'var(--radius-xl)', overflow: 'hidden', aspectRatio: '4/3', boxShadow: `0 20px 60px ${VACACIONAL_ORANGE}1f` }}>
                 <Image
-                  src="/images/vacacional01.jpg"
+                  src="/images/vacacional.webp"
                   alt="Apartamento vacacional gestionado por Viviendas Virtuo en Barcelona"
                   fill
                   style={{ objectFit: 'cover' }}

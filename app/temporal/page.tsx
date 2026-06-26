@@ -89,7 +89,7 @@ export default function TemporalPage() {
               </div>
               <div style={{ position: 'relative', borderRadius: 'var(--radius-xl)', overflow: 'hidden', aspectRatio: '4/3', boxShadow: `0 20px 60px ${TEMPORAL_GREEN}1f` }}>
                 <Image
-                  src="/images/temporal01.jpg"
+                  src="/images/temporal.webp"
                   alt="Habitación de alquiler temporal gestionada por Viviendas Virtuo"
                   fill
                   style={{ objectFit: 'cover' }}
