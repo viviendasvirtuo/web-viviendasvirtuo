@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import SistemaCards from '@/components/SistemaCards';
 
 export const metadata: Metadata = {
@@ -37,11 +38,19 @@ export default function PropietariosPage() {
         </section>
 
         {/* SISTEMAS */}
-        <section id="sistemas" style={{ padding: 'clamp(60px,8vw,100px) 0', background: 'var(--color-bg)' }}>
-          <div className="container">
+        <section id="sistemas" style={{ position: 'relative', padding: 'clamp(60px,8vw,100px) 0', overflow: 'hidden' }}>
+          <Image
+            src="/images/propietarios-sistema-bg.webp"
+            alt=""
+            fill
+            sizes="100vw"
+            style={{ objectFit: 'cover', zIndex: 0 }}
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(rgba(10,20,50,0.82), rgba(10,20,50,0.82))', zIndex: 1 }} />
+          <div className="container" style={{ position: 'relative', zIndex: 2 }}>
             <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-              <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Nuestros sistemas</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>¿Cuál es el mejor modelo para tu vivienda?</h2>
+              <p style={{ color: 'rgba(255,255,255,0.75)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Nuestros sistemas</p>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>¿Cuál es el mejor modelo para tu vivienda?</h2>
             </div>
             <SistemaCards basePath="/propietarios" />
           </div>

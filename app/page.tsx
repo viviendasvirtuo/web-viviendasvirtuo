@@ -131,7 +131,7 @@ export default function Home() {
             <div className="comunidad-grid">
               <div className="comunidad-imagen" style={{ position: 'relative', minHeight: '320px', borderRadius: 'var(--radius-xl)', overflow: 'hidden', boxShadow: '0 8px 32px rgba(26,74,138,0.15)' }}>
                 <Image
-                  src="/images/comunidad-alegre.jpg"
+                  src="/images/comunidad-alegre.webp"
                   alt="Comunidad de residentes Viviendas Virtuo"
                   fill
                   loading="lazy"

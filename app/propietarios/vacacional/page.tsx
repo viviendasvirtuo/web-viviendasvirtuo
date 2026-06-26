@@ -143,7 +143,7 @@ export default function PropietariosVacacionalPage() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(460px, 100%), 1fr))', gap: 'clamp(40px, 6vw, 80px)', alignItems: 'center' }}>
               <div style={{ position: 'relative', borderRadius: 'var(--radius-xl)', overflow: 'hidden', aspectRatio: '4/3', boxShadow: '0 24px 64px rgba(196,94,0,0.12)', background: '#fef3e2' }}>
                 <Image
-                  src="/images/vacacional-apartamento.jpg"
+                  src="/images/vacacional-apartamento.webp"
                   alt="Apartamento turístico gestionado por Viviendas Virtuo en Barcelona"
                   fill
                   style={{ objectFit: 'cover' }}

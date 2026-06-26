@@ -170,7 +170,7 @@ export default function PropietariosTemporalPage() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(460px, 100%), 1fr))', gap: 'clamp(40px, 6vw, 80px)', alignItems: 'center' }}>
               <div style={{ position: 'relative', borderRadius: 'var(--radius-xl)', overflow: 'hidden', aspectRatio: '4/3', boxShadow: '0 24px 64px rgba(0,143,88,0.12)', background: '#e8f5e9' }}>
                 <Image
-                  src="/images/temporal-habitacion.jpg"
+                  src="/images/temporal-habitacion.webp"
                   alt="Habitación para alquiler temporal gestionada por Viviendas Virtuo"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -258,7 +258,7 @@ export default function PropietariosTemporalPage() {
               </div>
               <div style={{ position: 'relative', borderRadius: 'var(--radius-xl)', overflow: 'hidden', aspectRatio: '3/4', boxShadow: '0 24px 64px rgba(0,143,88,0.1)', background: '#e8f5e9' }}>
                 <Image
-                  src="/images/temporal-inquilino.jpg"
+                  src="/images/temporal-inquilino.webp"
                   alt="Inquilino temporal trabajando en piso gestionado por Viviendas Virtuo"
                   fill
                   style={{ objectFit: 'cover' }}
