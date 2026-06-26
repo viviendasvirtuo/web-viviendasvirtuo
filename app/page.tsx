@@ -36,7 +36,7 @@ export default function Home() {
           }}
         >
           <Image
-            src="/images/comunidad_gente.webp"
+            src="/images/comunidad-eventos.webp"
             alt=""
             fill
             loading="lazy"
