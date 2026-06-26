@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
@@ -7,6 +8,9 @@ import SistemaCards from '@/components/SistemaCards';
 import Testimonios from '@/components/Testimonios';
 import HabitacionesDestacadas from '@/components/HabitacionesDestacadas';
 import ComoFuncionaSection from '@/components/home/ComoFunciona';
+
+const BLUR_DATA_URL =
+  'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
 export const metadata: Metadata = {
   title: 'Viviendas Virtuo — Gestión profesional de alquiler en Barcelona',
@@ -26,13 +30,22 @@ export default function Home() {
         <section
           id="todo-incluido"
           style={{
+            position: 'relative',
             padding: 'clamp(60px,8vw,100px) 0',
-            backgroundImage: 'linear-gradient(rgba(10,20,50,0.72), rgba(10,20,50,0.72)), url(/images/comunidad_gente.webp)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            overflow: 'hidden',
           }}
         >
-          <div className="container">
+          <Image
+            src="/images/comunidad_gente.webp"
+            alt=""
+            fill
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
+            style={{ objectFit: 'cover', zIndex: -2 }}
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(10,20,50,0.72)', zIndex: -1 }} />
+          <div className="container" style={{ position: 'relative' }}>
             <div style={{ textAlign: 'center', marginBottom: '56px' }}>
               <p style={{ color: '#6effc0', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Todo incluido</p>
               <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'white', lineHeight: 1.2 }}>¿Qué tipo de alojamiento necesitas?</h2>
@@ -64,7 +77,15 @@ export default function Home() {
                   { img: '/images/servicio-espacios-comunes.jpg', label: 'Espacios comunes equipados' },
                 ].map((servicio, index) => (
                   <div key={index} className="servicio-card" style={{ position: 'relative', aspectRatio: '4/3', borderRadius: 'var(--radius-xl)', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.10)', cursor: 'pointer' }}>
-                    <img src={servicio.img} alt={servicio.label} loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <Image
+                      src={servicio.img}
+                      alt={servicio.label}
+                      fill
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL={BLUR_DATA_URL}
+                      style={{ objectFit: 'cover' }}
+                    />
                     <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.50)' }} />
                     <span style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 600, fontSize: 'clamp(0.75rem,0.7rem + 0.3vw,0.95rem)', textAlign: 'center', padding: '0 12px', lineHeight: 1.3 }}>{servicio.label}</span>
                   </div>
@@ -76,8 +97,17 @@ export default function Home() {
         </section>
 
         {/* 4. POR QUÉ VIVIENDAS VIRTUO */}
-        <section style={{ padding: 'clamp(60px,8vw,100px) 0', backgroundImage: 'url(/images/habitacion-fondo.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-          <div className="container">
+        <section style={{ position: 'relative', padding: 'clamp(60px,8vw,100px) 0', overflow: 'hidden' }}>
+          <Image
+            src="/images/habitacion-fondo.jpg"
+            alt=""
+            fill
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
+            style={{ objectFit: 'cover', zIndex: -1 }}
+          />
+          <div className="container" style={{ position: 'relative' }}>
             <div style={{ background: 'rgba(26,74,138,0.45)', borderRadius: 'var(--radius-xl)', padding: 'clamp(40px,6vw,72px)', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', color: 'white', backdropFilter: 'blur(8px)' }}>
               <p style={{ fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px', opacity: 0.75 }}>¿Por qué Viviendas Virtuo?</p>
               <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.75rem,3vw,2.8rem)', fontWeight: 900, lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '20px', maxWidth: '680px' }}>Hasta <span style={{ color: '#6effc0' }}>400€ menos al mes</span> que un alquiler tradicional</h2>
@@ -99,8 +129,16 @@ export default function Home() {
         <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: '#f0f4fa' }}>
           <div className="container">
             <div className="comunidad-grid">
-              <div className="comunidad-imagen">
-                <img src="/images/comunidad-alegre.jpg" alt="Comunidad de residentes Viviendas Virtuo" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'var(--radius-xl)', boxShadow: '0 8px 32px rgba(26,74,138,0.15)', display: 'block', minHeight: '320px' }} />
+              <div className="comunidad-imagen" style={{ position: 'relative', minHeight: '320px', borderRadius: 'var(--radius-xl)', overflow: 'hidden', boxShadow: '0 8px 32px rgba(26,74,138,0.15)' }}>
+                <Image
+                  src="/images/comunidad-alegre.jpg"
+                  alt="Comunidad de residentes Viviendas Virtuo"
+                  fill
+                  loading="lazy"
+                  placeholder="blur"
+                  blurDataURL={BLUR_DATA_URL}
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
               <div className="comunidad-texto">
                 <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '16px' }}>Eventos y comunidad</p>
