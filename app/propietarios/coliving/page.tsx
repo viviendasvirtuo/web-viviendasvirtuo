@@ -199,12 +199,13 @@ export default function PropietariosColivingPage() {
         </section>
 
         {/* ── REQUISITOS DEL PISO ──────────────────────────── */}
-        <section style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: '#f0f4fa' }}>
-          <div className="container">
+        <section style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: 'linear-gradient(135deg, #0f2d5e 0%, #0453ab 100%)', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(255,255,255,0.06) 0%, transparent 60%)', pointerEvents: 'none' }} />
+          <div className="container" style={{ position: 'relative' }}>
             <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-              <p style={{ color: '#0453ab', fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>¿Tu piso encaja?</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>¿Cómo debe ser tu vivienda?</h2>
-              <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-base)', maxWidth: '480px', margin: '16px auto 0', lineHeight: 1.7 }}>
+              <p style={{ color: '#90caf9', fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>¿Tu piso encaja?</p>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: 800, color: 'white', lineHeight: 1.2 }}>¿Cómo debe ser tu vivienda?</h2>
+              <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 'var(--text-base)', maxWidth: '480px', margin: '16px auto 0', lineHeight: 1.7 }}>
                 Estos son los criterios que maximizan la rentabilidad en coliving.
               </p>
             </div>
@@ -265,12 +266,13 @@ export default function PropietariosColivingPage() {
         </section>
 
         {/* ── CÓMO TRABAJAMOS ──────────────────────────────── */}
-        <section id="como-trabajamos" style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: '#f0f4fa', scrollMarginTop: '80px' }}>
-          <div className="container">
+        <section id="como-trabajamos" style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: 'linear-gradient(135deg, #0f2d5e 0%, #0453ab 100%)', scrollMarginTop: '80px', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(255,255,255,0.06) 0%, transparent 60%)', pointerEvents: 'none' }} />
+          <div className="container" style={{ position: 'relative' }}>
             <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-              <p style={{ color: '#0453ab', fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>El proceso</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>Cómo gestionamos tu coliving</h2>
-              <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-base)', maxWidth: '480px', margin: '16px auto 0', lineHeight: 1.7 }}>
+              <p style={{ color: '#90caf9', fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>El proceso</p>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: 800, color: 'white', lineHeight: 1.2 }}>Cómo gestionamos tu coliving</h2>
+              <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 'var(--text-base)', maxWidth: '480px', margin: '16px auto 0', lineHeight: 1.7 }}>
                 De la primera visita a los primeros ingresos, en menos de 5 días.
               </p>
             </div>
@@ -334,9 +336,9 @@ export default function PropietariosColivingPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {faqs.map((faq, i) => (
                 <details key={i} style={{ background: 'white', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)', padding: '0', overflow: 'hidden' }}>
-                  <summary style={{ padding: '20px 24px', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-base)', color: 'var(--color-text)', cursor: 'pointer', listStyle: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px' }}>
+                  <summary style={{ padding: '20px 24px', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-base)', color: 'white', background: 'linear-gradient(135deg, #0f2d5e 0%, #0453ab 100%)', cursor: 'pointer', listStyle: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px' }}>
                     {faq.q}
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0453ab" strokeWidth="2" style={{ flexShrink: 0 }} aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" style={{ flexShrink: 0 }} aria-hidden="true">
                       <path d="M6 9l6 6 6-6" />
                     </svg>
                   </summary>
