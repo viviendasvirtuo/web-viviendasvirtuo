@@ -20,6 +20,16 @@ const TEMPORAL_GREEN = '#008f58';
 
 const TALLY_INQUILINO = 'https://tally.so/r/2EaJNe';
 
+const faqs = [
+  { q: '¿Qué tipo de alojamiento es el vacacional?', a: 'Un apartamento completo para ti, equipado y listo para disfrutar tu estancia turística o visita puntual en Barcelona. Privacidad total, sin compartir.' },
+  { q: '¿Qué incluye el apartamento?', a: 'Apartamento íntegro totalmente equipado: cocina, ropa de cama, toallas, wifi y todo lo necesario para una estancia cómoda. Con atención 24h durante tu estancia.' },
+  { q: '¿Cómo reservo?', a: 'Puedes reservar a través de las plataformas donde publicamos (Airbnb, Booking y otras) o contactando directamente con nosotros para consultar disponibilidad.' },
+  { q: '¿Hay estancia mínima?', a: 'Depende del apartamento y la temporada. Te confirmamos las condiciones de cada alojamiento al consultar disponibilidad.' },
+  { q: '¿Qué pasa si tengo un problema durante la estancia?', a: 'Tienes atención 24h. Cualquier incidencia se resuelve rápido para que tu estancia sea perfecta de principio a fin.' },
+  { q: '¿Cómo es el check-in y el check-out?', a: 'Coordinamos contigo la entrada y salida de forma sencilla. Te damos todas las instrucciones de acceso con antelación.' },
+  { q: '¿Se pide depósito de seguridad?', a: 'Sí, las reservas pueden incluir un depósito de seguridad estándar según la plataforma, que se gestiona y se devuelve tras el check-out si todo está correcto.' },
+];
+
 export default function AlquilerVacacionalPage() {
   return (
     <>
@@ -135,10 +145,20 @@ export default function AlquilerVacacionalPage() {
         {/* OTROS SISTEMAS */}
         <section style={{ padding: 'clamp(40px,6vw,80px) 0', background: 'var(--color-bg)' }}>
           <div className="container">
-            <p style={{ textAlign: 'center', color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)', marginBottom: '24px' }}>¿Buscas otro tipo de alojamiento?</p>
-            <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/coliving" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: COLIVING_BLUE, color: 'white', borderRadius: 'var(--radius-lg)', padding: '12px 24px', textDecoration: 'none', fontWeight: 600, fontSize: 'var(--text-sm)' }}>Ver Coliving →</Link>
-              <Link href="/temporal" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: TEMPORAL_GREEN, color: 'white', borderRadius: 'var(--radius-lg)', padding: '12px 24px', textDecoration: 'none', fontWeight: 600, fontSize: 'var(--text-sm)' }}>Ver Alquiler Temporal →</Link>
+            <p style={{ textAlign: 'center', color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)', marginBottom: '32px' }}>¿Buscas otro tipo de alojamiento?</p>
+            <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link href="/coliving" style={{ display: 'flex', flexDirection: 'column', gap: '10px', background: 'white', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xl)', padding: '28px 24px', textDecoration: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', flex: '1 1 280px', maxWidth: '360px' }}>
+                <span style={{ fontSize: '2rem', lineHeight: 1 }}>🛋️</span>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontWeight: 800, color: COLIVING_BLUE, margin: 0 }}>Coliving</h3>
+                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.6, margin: 0 }}>¿Buscas quedarte una temporada? Habitación privada con comunidad incluida.</p>
+                <span style={{ marginTop: '4px', fontWeight: 700, fontSize: 'var(--text-sm)', color: COLIVING_BLUE }}>Ver coliving →</span>
+              </Link>
+              <Link href="/temporal" style={{ display: 'flex', flexDirection: 'column', gap: '10px', background: 'white', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xl)', padding: '28px 24px', textDecoration: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', flex: '1 1 280px', maxWidth: '360px' }}>
+                <span style={{ fontSize: '2rem', lineHeight: 1 }}>🗓️</span>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontWeight: 800, color: TEMPORAL_GREEN, margin: 0 }}>Alquiler temporal</h3>
+                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.6, margin: 0 }}>¿Solo necesitas unas semanas o meses? Estancias flexibles de corta duración.</p>
+                <span style={{ marginTop: '4px', fontWeight: 700, fontSize: 'var(--text-sm)', color: TEMPORAL_GREEN }}>Ver temporal →</span>
+              </Link>
             </div>
           </div>
         </section>
@@ -177,12 +197,24 @@ export default function AlquilerVacacionalPage() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: `linear-gradient(135deg, ${VACACIONAL_ORANGE_DARK}, ${VACACIONAL_ORANGE})`, textAlign: 'center' }}>
-          <div className="container">
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,3vw,2.2rem)', fontWeight: 800, color: 'white', marginBottom: '16px' }}>¿Cuándo visitas Barcelona?</h2>
-            <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 'var(--text-lg)', maxWidth: '460px', margin: '0 auto 36px', lineHeight: 1.7 }}>Dinos tus fechas y buscamos el apartamento perfecto para ti. Sin comisiones ocultas.</p>
-            <a href={TALLY_INQUILINO} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', background: 'white', color: VACACIONAL_ORANGE, fontWeight: 700, padding: '14px 32px', borderRadius: 'var(--radius-lg)', textDecoration: 'none', fontSize: 'var(--text-base)' }}>Reservar ahora</a>
+        {/* FAQ */}
+        <section style={{ padding: 'clamp(60px,8vw,100px) 0', background: '#fff7ed' }}>
+          <div className="container" style={{ maxWidth: '760px' }}>
+            <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+              <p style={{ color: VACACIONAL_ORANGE, fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>FAQ</p>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,2.5vw,2.2rem)', fontWeight: 800, color: 'var(--color-text)', lineHeight: 1.2 }}>Preguntas frecuentes sobre Alquiler Vacacional</h2>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {faqs.map((faq, i) => (
+                <details key={i} name="faq" style={{ background: 'white', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)', overflow: 'hidden' }}>
+                  <summary style={{ padding: '20px 24px', cursor: 'pointer', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-base)', color: 'white', background: 'linear-gradient(135deg, #7c2d00 0%, #c45e00 100%)', listStyle: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px' }}>
+                    {faq.q}
+                    <span style={{ flexShrink: 0, color: 'white', fontSize: '1.25rem', fontWeight: 400 }}>+</span>
+                  </summary>
+                  <p style={{ padding: '0 24px 20px', color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)', lineHeight: 1.7, margin: 0 }}>{faq.a}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </section>
       </main>
