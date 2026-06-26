@@ -135,6 +135,7 @@ export default function FaqPage() {
                   {cat.items.map((item, i) => (
                     <details
                       key={i}
+                      name="faq"
                       style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xl)', overflow: 'hidden' }}
                     >
                       <summary style={{

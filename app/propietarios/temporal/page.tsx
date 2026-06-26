@@ -280,10 +280,10 @@ export default function PropietariosTemporalPage() {
               </p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
-              {pasos.map((paso, i) => (
+              {pasos.map((paso) => (
                 <div key={paso.num} style={{ background: 'white', borderRadius: 'var(--radius-xl)', border: '1px solid var(--color-border)', padding: '32px 28px', display: 'flex', flexDirection: 'column', gap: '16px', position: 'relative', overflow: 'hidden' }}>
                   <div style={{ position: 'absolute', top: '20px', right: '24px', fontFamily: 'var(--font-display)', fontSize: '3.5rem', fontWeight: 900, color: 'rgba(0,143,88,0.06)', lineHeight: 1 }}>{paso.num}</div>
-                  <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: i < 2 ? '#008f58' : '#f0faf5', border: i < 2 ? 'none' : '2px solid rgba(0,143,88,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'var(--text-sm)', color: i < 2 ? 'white' : '#008f58' }}>{paso.num}</div>
+                  <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#f0faf5', border: '2px solid rgba(0,143,88,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'var(--text-sm)', color: '#008f58' }}>{paso.num}</div>
                   <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--color-text)', margin: 0 }}>{paso.title}</h3>
                   <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.65, margin: 0 }}>{paso.desc}</p>
                 </div>
@@ -324,7 +324,7 @@ export default function PropietariosTemporalPage() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {faqs.map((faq, i) => (
-                <details key={i} style={{ background: 'white', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)', overflow: 'hidden' }}>
+                <details key={i} name="faq" style={{ background: 'white', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)', overflow: 'hidden' }}>
                   <summary style={{ padding: '20px 24px', cursor: 'pointer', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-base)', color: 'var(--color-text)', listStyle: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px' }}>
                     {faq.q}
                     <span style={{ flexShrink: 0, color: '#008f58', fontSize: '1.25rem', fontWeight: 400 }}>+</span>
